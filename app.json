@@ -1,0 +1,26 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/tab/tasks/tasks",
+    "pages/tab/essays/essays",
+    "pages/tab/personal/personal",
+    "pages/tab/tasks/newtask/newtask"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar":{
+    "color": "#333",
+    "selectedColor": "#e83015",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "list":[
+
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}
