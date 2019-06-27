@@ -1,7 +1,5 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/logs/logs",
     "pages/tab/tasks/tasks",
     "pages/tab/essays/essays",
     "pages/tab/personal/personal",
@@ -11,16 +9,31 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
+    "navigationStyle":"custom",
     "navigationBarTextStyle": "black"
+  
   },
   "tabBar":{
     "color": "#333",
     "selectedColor": "#e83015",
     "backgroundColor": "#fff",
     "borderStyle": "black",
-    "list":[
-
-    ]
+    "list":[{
+      "pagePath": "pages/tab/essays/essays",
+      "iconPath": "image/tab_essays.png",
+      "selectedIconPath": "image/tab_essays_hl.png",
+      "text": "动态"
+    },{
+      "pagePath": "pages/tab/tasks/tasks",
+      "iconPath": "image/tab_tasks.png",
+      "selectedIconPath": "image/tab_tasks_hl.png",
+      "text": "主页"
+    },{
+      "pagePath": "pages/tab/personal/personal",
+      "iconPath": "image/tab_personal.png",
+      "selectedIconPath": "image/tab_personal_hl.png",
+      "text": "我的"
+    }]
   },
   "sitemapLocation": "sitemap.json"
 }
