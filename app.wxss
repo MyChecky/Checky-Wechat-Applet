@@ -8,3 +8,17 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+.newtask{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: #fff;
+  background: #e83015;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  box-shadow: 1px 1px 1px 0px rgba(165,165,165,0.5);
+  font-size:30px;
+  padding: 0px;
+}

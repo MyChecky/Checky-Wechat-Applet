@@ -10,14 +10,14 @@ App({
     wx.login({
       success: res => {
         var that = this
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        // 获取code
         that.globalData.code=res.code
-        console.log(res)
+        console.log("获取到code：" +res)
         // 获取地址
         wx.getLocation({
           type: 'gcj02',
           success: function(res) {
-            console.log(res)
+            console.log("获取到经纬度："+res)
             that.globalData.location = res
           },
         })
@@ -32,6 +32,7 @@ App({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
+              console.log("再次登陆获取信息" + res)
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
@@ -43,11 +44,26 @@ App({
       }
     })
   },
+  request: function(url,method,data,callback,error){
+    wx.request({
+      url: this.base+url,
+      method:method==null?'GET':method,
+      data:data,
+      success: res=>{
+        callback(res.data)
+      },
+      fail: err=>{
+        error(err)
+      }
+    })
+  },
   globalData: {
     code:null,
     userInfo: null,
-    base: "",
+    base: "http://192.168.1.104",
+    port: "8080",
     curPages: null,
-    location:{}
+    location:{},
+    openId:null
   }
 })

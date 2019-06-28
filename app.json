@@ -9,22 +9,30 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "Checky",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
+    "color":"#333",
+    "selectedColor":"#e83015",
     "list": [
       {
         "pagePath": "pages/tab/essays/essays",
+        "iconPath": "image/tab_essays.png",
+        "selectedIconPath": "image/tab_essays_hl.png",
         "text": "动态"
       },
       {
         "pagePath": "pages/tab/tasks/tasks",
-        "text": "任务"
+        "iconPath": "image/tab_tasks.png",
+        "selectedIconPath": "image/tab_tasks_hl.png",
+        "text": "主页"
       },
       {
         "pagePath": "pages/tab/personal/personal",
-        "text": "个人"
+        "iconPath": "image/tab_personal.png",
+        "selectedIconPath": "image/tab_personal_hl.png",
+        "text": "我的"
       }
     ]
   },

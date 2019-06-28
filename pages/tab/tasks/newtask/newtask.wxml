@@ -1,2 +1,19 @@
 <!--pages/tab/tasks/newtask/newtask.wxml-->
-<text>pages/tab/tasks/newtask/newtask.wxml</text>
+<view class='form-view'>
+  <view class='container-view'>
+    <view class='notifcation'>标题：</view>
+    <input class='title-input' placeholder='打卡标题'></input>
+  </view>
+  <view class='container-view'>
+    <view class='notifcation'>描述内容：</view>
+    <textarea class='content-textarea' placeholder='简单地描述……'></textarea>
+  </view>
+  <view class='container-view'>
+    <view class='notifcation'>监督人数</view>
+    <radio-group class="type">
+      <label wx:for='{{numOfSus}}'>
+        <radio >{{item.value}}</radio>
+      </label>
+    </radio-group>
+  </view>
+</view>

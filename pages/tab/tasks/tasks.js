@@ -27,7 +27,6 @@ Page({
      * 获取系统信息 
      */
     wx.getSystemInfo({
-
       success: function (res) {
         that.setData({
           winWidth: res.windowWidth,
@@ -42,19 +41,15 @@ Page({
     * 滑动切换tab 
     */
   bindChange: function (e) {
-
     var that = this;
     that.setData({ currentTab: e.detail.current });
-
   },  
 
   /** 
   * 点击tab切换 
   */
   swichNav: function (e) {
-
     var that = this;
-
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
     } else {
@@ -62,7 +57,11 @@ Page({
         currentTab: e.target.dataset.current
       })
     }
-  }  
-
+  },  
+  newtask: function(){
+    wx.navigateTo({
+      url: './newtask/newtask',
+    })
+  }
   
 })
