@@ -12,3 +12,5 @@
       <view>监督</view>  
     </swiper-item> 
 </swiper> 
+
+<button class='newtask' bindtap='newtask' ></button>

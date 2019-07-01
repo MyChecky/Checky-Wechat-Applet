@@ -2,13 +2,17 @@
 .form-view{
   width: 100%;
   height: 100%;
-  padding: 0px;
+  padding: 5px 0px;
   background-color: #f3f5f5;
 }
 .container-view{
+  margin: 10px 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: #fff;
+  border-radius: 2px;
+  padding: 5px;
 }
 .title-input{
   width: auto;
@@ -16,9 +20,7 @@
   font-size: 16px;
   color: #333;
   padding:5px 5px;
-  margin:0px 5px;
   background-color: #fff;
-  border-radius: 2px;
 }
 .content-textarea{
   width:auto;
@@ -26,13 +28,54 @@
   font-size:16px;
   color:#333;
   padding:5px 5px;
-  margin:0px 5px;
   background-color: #fff;
   border-radius: 2px;
 }
 .notifcation{
   color: #e83015;
   font-size: 14px;
-  padding: 2px;
-  margin: 5px 10px
+  padding: 5px;
+  margin: 5px 0px
+}
+.numOfSus{
+  margin: 0px 10px;
+}
+.typebtn{
+  color: #333;
+  font-size: 14px;
+  border: none;
+  background-color: #fff;
+}
+.picker{
+  color: #666;
+}
+.date-choose{
+  color: #666;
+  font-size: 14px;
+}
+.weekend{
+  color: #e38;
+}
+checkbox .wx-checkbox-input{
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+}
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  background: #e83015;
+  color: #fff;
+}
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+  background: #e83015;
+  color: #fff;
+  font-size: 12px;
+}
+.confirm{
+  background-color: #e83015;
+  color: #fff;
+  border-radius: 2px;
+  box-shadow: 1px 1px 1px 0px rgba(100,100,100,0.5);
+  margin: 10px 5px;
+  height: 40px;
+  font-size: 16px;
 }

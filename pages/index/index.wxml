@@ -10,5 +10,5 @@
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>
-    <button class='btn' bindtap='sendInfo'></button>
+    <button class='btn' bindtap='sendInfo'>进入</button>
 </view>

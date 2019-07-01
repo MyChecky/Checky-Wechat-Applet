@@ -2,18 +2,60 @@
 <view class='form-view'>
   <view class='container-view'>
     <view class='notifcation'>标题：</view>
-    <input class='title-input' placeholder='打卡标题'></input>
+    <input class='title-input' placeholder='打卡标题' bindblur="bindTitle"></input>
   </view>
   <view class='container-view'>
     <view class='notifcation'>描述内容：</view>
-    <textarea class='content-textarea' placeholder='简单地描述……'></textarea>
+    <textarea class='content-textarea' placeholder='简单地描述……' bindblur="bindContent"></textarea>
   </view>
   <view class='container-view'>
-    <view class='notifcation'>监督人数</view>
-    <radio-group class="type">
+    <view class='notifcation'>监督人数：</view>
+    <radio-group bindchange="bindNum" class="type">
       <label wx:for='{{numOfSus}}'>
-        <radio >{{item.value}}</radio>
+        <radio class='numOfSus' value='{{item.value}}'>{{item.value}}</radio>
       </label>
     </radio-group>
   </view>
+  <view class='container-view' style='flex-direction: row;justify-content: space-between;'>
+    <view class='notifcation' style='width: auto;'>打卡类别：</view>
+    <picker bindchange="bindPickerChange" style='padding:5px;' value="{{index}}" range="{{types}}" range-key="{{'typeContent'}}">
+      <view style='line-height:30px;' wx:if="{{index<0}}">点击选择类型</view>
+      <view style='line-height:30px;' wx:else class="picker">当前选择：<text style='color:#333;'>{{types[index].typeContent}}</text>
+      </view>
+    </picker>
+  </view>
+  <view class='container-view' style='flex-direction: row;justify-content: space-between;'>
+    <view class='notifcation'>开始时间：</view>
+    <picker bindchange="bindPickerStartTime" mode="date" style='padding:5px;' value='{{startTime}}'>
+      <view style='line-height:30px;' class="picker">
+        <text style='color:#333;'>{{startTime}}</text>
+      </view>
+    </picker>
+  </view>
+   <view class='container-view' style='flex-direction: row;justify-content: space-between;'>
+    <view class='notifcation'>结束时间：</view>
+    <picker bindchange="bindPickerEndTime" mode="date" style='padding:5px;' value='{{endTime}}'>
+      <view style='line-height:30px;' class="picker">
+        <text style='color:#333;'>{{endTime}}</text>
+      </view>
+    </picker>
+  </view>
+  <view class='container-view'>
+    <view class='notifcation'>重复周期：</view>
+    <checkbox-group bindchange="bindRepeatDate">
+      <block wx:for="{{repeatDate}}">
+        <label wx:if="{{item.value=='SAT'||item.value=='SUN'}}" class='date-choose weekend'>
+          <checkbox value="{{item.value}}">{{item.name}}</checkbox>
+        </label>
+        <label wx:else class='date-choose'>
+          <checkbox value="{{item.value}}">{{item.name}}</checkbox>
+        </label>
+      </block>
+    </checkbox-group>
+  </view>
+  <view class='container-view'>
+    <view class='notifcation'>押金金额：</view>
+    <input class='title-input' type='digit' bindblur='bindMoney'></input>
+  </view>
+  <button class='confirm' bindtap='sendForm'>确认</button>
 </view>

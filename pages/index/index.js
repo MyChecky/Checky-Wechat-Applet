@@ -30,7 +30,7 @@ Page({
       success: (res) => {
         console.log(res.data)
         app.globalData.openId=res.data.states
-        if (true){
+        if (app.globalData.openId!="0"){
           wx.showModal({
             title: '提示',
             content: '登录失败,请重试',

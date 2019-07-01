@@ -16,4 +16,4 @@
 .swiper-box{ display: block; height: 100%; width: 100%; overflow: hidden; }  
 .swiper-box view{  
     text-align: center;  
-}  
+}

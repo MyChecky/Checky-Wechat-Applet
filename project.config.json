@@ -13,7 +13,7 @@
 		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.7.2",
+	"libVersion": "2.6.6",
 	"appid": "wx4b2f117b30cebf29",
 	"projectname": "Checky",
 	"debugOptions": {
