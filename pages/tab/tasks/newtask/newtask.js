@@ -13,10 +13,7 @@ Page({
       { "value": 0 }, { "value": 1 }, { "value": 3 }, { "value": 5 }
       ],
     num:0,
-    types: [
-      { "typeId": "5301f10a-2df7-4e72-97ac-8e1cbecf9aec", "typeContent": "健身" },
-      { "typeId": "a8179f78-69ac-4723-bf23-7b4c695bdf7f", "typeContent": "学习" }
-    ],
+    types: app.globalData.types,
     repeatDate:[
       { "name": "日", "value": 0 },
       { "name": "一", "value": 1 },
@@ -29,8 +26,8 @@ Page({
     chooseRepeat:null,
     index:-1,
     array:[],
-    startTime: null,
-    endTime:null,
+    startTime: "",
+    endTime: "",
     money:0
   },
 
@@ -41,7 +38,6 @@ Page({
     wx.setNavigationBarTitle({
       title: '新建任务',
     })
-    this.getType()
   },
 
   /**
@@ -59,24 +55,8 @@ Page({
   },
   // 获取类型
   getType: function(){
-    wx.request({
-      url: app.globalData.base+'/taskType/allType',
-      data:{
-      },
-      success: res => {
-        this.data.types = res.data.Type
-      },
-      fail: err=> {
-        wx.showModal({
-          title: '提示',
-          content: '获取类型列表失败',
-          showCancel: false,
-          success(res) {
-            if (res.confirm) {
-            }
-          }
-        })
-      }
+    wx.navigateTo({
+      url: '../type/type',
     })
   },
   bindPickerChange: function(e){
@@ -120,17 +100,7 @@ Page({
     })
   },
   sendForm: function(){
-    console.log(
-      "title:"+this.data.title+
-      "/n content:"+this.data.content+
-      "/n num:"+this.data.num+
-      "/n type:"+this.data.types[this.data.index].typeId+
-      "/n start time:"+this.data.startTime+
-      "/n end time:"+this.data.endTime+
-      "/n repeat date:"+this.data.chooseRepeat+
-      "/n money:"+this.data.money
-    )
-    var data= {
+    var data = {
       "title": this.data.title,
       "content": this.data.content,
       "num": this.data.num,
@@ -141,27 +111,36 @@ Page({
       "money": this.data.money,
     }
     console.log(data)
-    wx.request({
-      url: app.globalData.base +'/task/addTask',
-      data:{
-        "title": this.data.title,
-        "content": this.data.content,
-        "num": this.data.num,
-        "type": this.data.types[this.data.index].typeId,
-        "startTime": this.data.startTime,
-        "endTime": this.data.endTime,
-        "repeatDate": util.formatRepeatDate(this.data.chooseRepeat),
-        "money": this.data.money,
-      },
-      success: function(res){
-        wx.showModal({
-          title: '提示',
-          content: '创建成功',
-          showCancel: false,
-          success(res) {},
-          fail(err){}
-        })
-      }
-    })
+    if (this.data.title == "" || this.data.index < 0 || this.data.startTime == "" || this.data.endTime == "" || this.data.chooseRepeat == null || this.data.money<=0){
+      wx.showModal({
+        title: '',
+        content: '',
+        
+      })
+    }
+    else{
+      wx.request({
+        url: app.globalData.base +'/task/addTask',
+        data:{
+          "title": this.data.title,
+          "content": this.data.content,
+          "num": this.data.num,
+          "type": this.data.types[this.data.index].typeId,
+          "startTime": this.data.startTime,
+          "endTime": this.data.endTime,
+          "repeatDate": util.formatRepeatDate(this.data.chooseRepeat),
+          "money": this.data.money,
+        },
+        success: function(res){
+          wx.showModal({
+            title: '提示',
+            content: '创建成功',
+            showCancel: false,
+            success(res) {},
+            fail(err){}
+          })
+        }
+      })
+    }
   }
 })

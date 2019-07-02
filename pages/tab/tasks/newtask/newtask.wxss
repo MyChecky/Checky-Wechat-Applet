@@ -42,9 +42,10 @@
 }
 .typebtn{
   color: #333;
-  font-size: 14px;
+  font-size: 16px;
   border: none;
   background-color: #fff;
+  margin: 0px;
 }
 .picker{
   color: #666;
