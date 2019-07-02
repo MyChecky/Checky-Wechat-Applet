@@ -1,18 +1,34 @@
 // pages/tab/tasks/newtask/newtask.js
 const app = getApp()
-
+var util = require("../../../../utils/util.js")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    title:"",
+    content:"",
     numOfSus:[
-      { "value": 0 }, { "value": 1 }, { "value": 3 }, { "value": 5 }],
-    types: [
-      { "typeId": "5301f10a-2df7-4e72-97ac-8e1cbecf9aec", "typeContent": "健身" },
-      { "typeId": "a8179f78-69ac-4723-bf23-7b4c695bdf7f", "typeContent": "背单词" }
-    ]
+      { "value": 0 }, { "value": 1 }, { "value": 3 }, { "value": 5 }
+      ],
+    num:0,
+    types: app.globalData.types,
+    repeatDate:[
+      { "name": "日", "value": 0 },
+      { "name": "一", "value": 1 },
+      { "name": "二", "value": 2 },
+      { "name": "三", "value": 3 },
+      { "name": "四", "value": 4 },
+      { "name": "五", "value": 5 },
+      { "name": "六", "value": 6 }
+    ],
+    chooseRepeat:null,
+    index:-1,
+    array:[],
+    startTime: "",
+    endTime: "",
+    money:0
   },
 
   /**
@@ -37,25 +53,94 @@ Page({
   onShow: function () {
 
   },
+  // 获取类型
   getType: function(){
-    wx.request({
-      url: app.globalData.base+'/taskType/allType',
-      data:{
-      },
-      success: res => {
-        this.Type = res.Type
-      },
-      fail: err=> {
-        wx.showModal({
-          title: '提示',
-          content: '获取类型列表失败',
-          showCancel: false,
-          success(res) {
-            if (res.confirm) {
-            }
-          }
-        })
-      }
+    wx.navigateTo({
+      url: '../type/type',
     })
+  },
+  bindPickerChange: function(e){
+    this.setData({
+      index: e.detail.value
+    })
+  },
+  bindPickerStartTime: function(e){
+    this.setData({
+      startTime: e.detail.value
+    })
+  },
+  bindPickerEndTime: function (e) {
+    this.setData({
+      endTime: e.detail.value
+    })
+  },
+  bindNum: function(e){
+    this.setData({
+      num: e.detail.value
+    })
+  },
+  bindRepeatDate:function(e){
+    this.setData({
+      chooseRepeat: e.detail.value
+    })
+  },
+  bindTitle: function(e){
+    this.setData({
+      title: e.detail.value
+    })
+  },
+  bindContent: function(e){
+    this.setData({
+      content: e.detail.value
+    })
+  },
+  bindMoney: function(e){
+    this.setData({
+      money: e.detail.value
+    })
+  },
+  sendForm: function(){
+    var data = {
+      "title": this.data.title,
+      "content": this.data.content,
+      "num": this.data.num,
+      "type": this.data.types[this.data.index].typeId,
+      "startTime": this.data.startTime,
+      "endTime": this.data.endTime,
+      "repeatDate": util.formatRepeatDate(this.data.chooseRepeat),
+      "money": this.data.money,
+    }
+    console.log(data)
+    if (this.data.title == "" || this.data.index < 0 || this.data.startTime == "" || this.data.endTime == "" || this.data.chooseRepeat == null || this.data.money<=0){
+      wx.showModal({
+        title: '',
+        content: '',
+        
+      })
+    }
+    else{
+      wx.request({
+        url: app.globalData.base +'/task/addTask',
+        data:{
+          "title": this.data.title,
+          "content": this.data.content,
+          "num": this.data.num,
+          "type": this.data.types[this.data.index].typeId,
+          "startTime": this.data.startTime,
+          "endTime": this.data.endTime,
+          "repeatDate": util.formatRepeatDate(this.data.chooseRepeat),
+          "money": this.data.money,
+        },
+        success: function(res){
+          wx.showModal({
+            title: '提示',
+            content: '创建成功',
+            showCancel: false,
+            success(res) {},
+            fail(err){}
+          })
+        }
+      })
+    }
   }
 })

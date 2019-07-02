@@ -17,3 +17,15 @@ const formatNumber = n => {
 module.exports = {
   formatTime: formatTime
 }
+// 重复日期转化
+const formatRepeatDate = function(chooseDate){
+  var result = [0,0,0,0,0,0,0]
+  for(var i = 0;i<chooseDate.length;i++){
+    result[chooseDate[i]]=1
+  }
+  result = result.join('')
+  return result
+}
+module.exports = {
+  formatRepeatDate: formatRepeatDate
+}

@@ -10,10 +10,11 @@
 		"minified": true,
 		"newFeature": true,
 		"autoAudits": false,
-		"checkInvalidKey": true
+		"checkInvalidKey": true,
+		"nodeModules": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.7.2",
+	"libVersion": "2.6.6",
 	"appid": "wx4b2f117b30cebf29",
 	"projectname": "Checky",
 	"debugOptions": {

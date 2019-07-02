@@ -1,11 +1,11 @@
 /* pages/tab/tasks/tasks.wxss */
 .swiper-tab{  
     width: 100%;
-    //height: 20%;  
-    border-bottom: 2rpx solid #000000;  
+    border-bottom: 2rpx solid #cccccc;  
     text-align: center;  
     line-height: 80rpx;}  
-.swiper-tab-list{  font-size: 30rpx;  
+.swiper-tab-list{  
+    font-size: 36rpx;  
     display: inline-block;  
     width: 20%;  
     color: #000000;  
@@ -13,7 +13,50 @@
 .on{ color: #e83015;  
     border-bottom: 5rpx solid #e83015;}  
   
-.swiper-box{ display: block; height: 100%; width: 100%; overflow: hidden; }  
-.swiper-box view{  
-    text-align: center;  
-}  
+.swiper-box{ 
+  display: block; 
+  height: 100%; 
+  width: 100%; 
+  overflow: hidden; }  
+.swiper-box view{
+  text-align: center;
+} 
+.btn_nt{
+  margin-left: 12px;
+  margin-top: 28px;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border: none;  
+  color: #999999;
+  border-radius: 0rpx;
+  align-items: center;
+  justify-content: center;
+}
+.ntImg{
+  width:40rpx;
+  height: 40rpx;
+}
+.btn_nt::after{
+  border: 0;
+}
+
+.calendar {
+  background-color:white; /*背景色为白色*/
+  padding-top: 10px;    /*上内边距为10px*/
+  color: #e83015;
+  
+}
+.calendar-header{
+  font-size: large;
+  color: #000000;   /*修改了标题文字和按钮的颜色*/
+}
+
+.hiddenCal{
+  color: #3e3e3e;
+  text-align: center; 
+  justify-content: center;
+  font-size: 10px;
+}

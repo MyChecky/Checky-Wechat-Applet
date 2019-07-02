@@ -5,7 +5,26 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
+    // 获取类型
+    wx.request({
+      url: this.globalData.base + '/taskType/allType',
+      data: {
+      },
+      success: res => {
+        this.globalData.types = res.data.Type
+      },
+      fail: err => {
+        // wx.showModal({
+        //   title: '提示',
+        //   content: '获取类型列表失败',
+        //   showCancel: false,
+        //   success(res) {
+        //     if (res.confirm) {
+        //     }
+        //   }
+        // })
+      }
+    })
     // 登录
     wx.login({
       success: res => {
@@ -64,6 +83,10 @@ App({
     port: "8080",
     curPages: null,
     location:{},
-    openId:null
+    openId:null,
+    types: [
+      { "typeId": "5301f10a-2df7-4e72-97ac-8e1cbecf9aec", "typeContent": "健身" },
+      { "typeId": "a8179f78-69ac-4723-bf23-7b4c695bdf7f", "typeContent": "学习" }
+    ]
   }
 })

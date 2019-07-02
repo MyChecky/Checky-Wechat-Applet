@@ -1,9 +1,9 @@
 <!--pages/tab/tasks/tasks.wxml-->
-<view class="swiper-tab">  
-    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">打卡</view>  
-    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">监督</view>  
-</view>
-
+<view>
+  <button class="btn_nt" open-type='contact' bindTap='gotoPage/'>
+  <image class="ntImg" src='image/task_add.png' mode="widthFix">
+  </image>
+  </button>
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
     <swiper-item>  
       <view>打卡</view>  
@@ -12,3 +12,14 @@
       <view>监督</view>  
     </swiper-item> 
 </swiper> 
+
+<button class='newtask' bindtap='newtask' ></button>
+  <!--引用navbar-->
+  <include src="./navbar/navbar.wxml"/> 
+  </view>
+ <calendar  calendar-style="calendar"  header-style="calendar-header"  board-style="calendar-board" days-color="{{dayStyle}}" weeks-type="cn" binddayClick="dayClick"
+ />
+ <!--><view class="hiddenCal">
+ 点击收起日历
+ </view>
+</view>
