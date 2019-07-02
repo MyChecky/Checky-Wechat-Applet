@@ -7,7 +7,7 @@
     "pages/tab/tasks/tasks",
     "pages/tab/personal/personal",
     "pages/tab/tasks/newtask/newtask",
-    "pages/tab/tasks/type/type"
+    "pages/tab/tasks/type/type"    
   ],
   "window": {
     "backgroundTextStyle": "light",

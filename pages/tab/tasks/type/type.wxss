@@ -1,10 +1,23 @@
 /* pages/tab/tasks/type/type.wxss */
 .type-view{
+  text-align: center;
+  color: #fff;
   margin: 10px 0px;
+  padding: 10px;
+  background-color: #e83015;
+  border-radius: 2px;
+  box-shadow: 1px 1px 2px 0px rgba(156,156,156,0.5);
+  font-size: 22px;
+}
+.def-view{
+  margin: 20px 0px 10px 0px;
   padding: 10px;
   background-color: #fff;
   box-shadow: 1px 1px 2px 0px rgba(156,156,156,0.5);
   font-size: 22px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .container-view{
   margin: 10px 5px;
@@ -16,10 +29,36 @@
   padding: 5px;
 }
 .new-input{
-  width: auto;
+  width: 60%;
   height:30px;
   font-size: 16px;
   color: #333;
   padding:5px 5px;
   background-color: #fff;
+  border-bottom: 1px solid #999;
+  text-align: center;
+}
+.notification{
+  padding:5px 0px;
+  font-size: 22px;
+  color: #333;
+  position: relative;
+  left: 41%;
+  transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.move{
+  left: -40%!important;
+}
+.no{
+  display: none;
+}
+.confirm-btn{
+  width: 50px;
+  height: 30px;
+  background-color: #fff;
+  color: #e83015;
+  font-size: 16px;
+  position: normal;
+  padding: 0px;
+  line-height: 30px;
 }

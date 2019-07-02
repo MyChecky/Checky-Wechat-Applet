@@ -7,7 +7,11 @@ Page({
    */
   data: {
     types:app.globalData.types,
-    isNew:true
+    isNew:false,
+    out:"no",
+    move:"",
+    flag:true,
+    newType:""
   },
 
   /**
@@ -65,20 +69,61 @@ Page({
   onShareAppMessage: function () {
 
   },
+  // 获取现有类型Id
   getId: function (e) {
     var choice = e.target.dataset.value
+    var text = e.target.dataset.text
     console.log(choice)
-    if(choice=="new"){
-      this.isNew=!this.isNew
-      console.log(this.isNew)
-    }
-    else{
-      wx.navigateBack({
-        
+    var arr = getCurrentPages()
+    arr[arr.length - 2].setData({
+      type: choice,
+      typeContent: text,
+      index: 0
+    })
+    console.log(arr[arr.length - 2].data)
+    wx.navigateBack({
+      delta: 1,
+      success: function(res){
+      }
+    })
+  },
+  // 显示输入框
+  getOut: function(e){
+    this.setData({
+      out: this.data.flag?'':'no',
+      move: this.data.flag?'move':'',
+      flag: !this.data.flag
+    })
+  },
+  // 获取新的建议文本
+  cancelBack: function(e){
+    this.setData({
+      out: this.data.flag ? '' : 'no',
+      move: this.data.flag ? 'move' : '',
+      flag: !this.data.flag,
+      newType: e.detail.value
+    })
+  },
+  // 发送新的建议
+  confirmNewTpye: function(){
+    if(this.data.newType!=""){
+      wx.request({
+        url: app.globalData.base +'/taskType/delType',
+        data:{
+          newType: this.data.newType
+        },
+        success(res){
+          wx.showModal({
+            title: '提示',
+            content: '新的类型建议已发送',
+            showCancel: false,
+            success(res) {
+              wx.navigateBack({})
+            },
+            fail(err) { }
+          })
+        }
       })
     }
-  },
-  newType: function(){
-
   }
 })

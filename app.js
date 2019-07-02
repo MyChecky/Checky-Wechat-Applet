@@ -1,4 +1,5 @@
 //app.js
+var util = require('./utils/util.js')
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -86,7 +87,11 @@ App({
     openId:null,
     types: [
       { "typeId": "5301f10a-2df7-4e72-97ac-8e1cbecf9aec", "typeContent": "健身" },
-      { "typeId": "a8179f78-69ac-4723-bf23-7b4c695bdf7f", "typeContent": "学习" }
-    ]
+      { "typeId": "a8179f78-69ac-4723-bf23-7b4c695bdf7f", "typeContent": "学习" },
+      { "typeId": "a8179f78-69ac-4723-bf23-7b4c695bdf7f", "typeContent": "联系" },
+      { "typeId": "a8179f78-69ac-4723-bf23-7b4c695bdf7f", "typeContent": "早起" },
+      { "typeId": "a8179f78-69ac-4723-bf23-7b4c695bdf7f", "typeContent": "冥想" },
+    ],
+    date: util.formatTime(new Date())
   }
 })
