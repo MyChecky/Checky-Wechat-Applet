@@ -2,9 +2,25 @@
 .type-view{
   margin: 10px 0px;
   padding: 10px;
-  background-color: #fff;
+  background-color: #e83015;
+  text-align: center;
+  color: #fff;
   box-shadow: 1px 1px 2px 0px rgba(156,156,156,0.5);
   font-size: 22px;
+  border-radius: 2px;
+}
+.def-view{
+  margin: 10px 0px;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #fff;
+  color: #333;
+  box-shadow: 1px 1px 2px 0px rgba(156,156,156,0.5);
+  font-size: 22px;
+  border-radius: 2px;
 }
 .container-view{
   margin: 10px 5px;
@@ -21,28 +37,29 @@
   font-size: 16px;
   color: #333;
   padding:5px 5px;
+  margin: 0px 10px;
   background-color: #fff;
   border-bottom: 1px solid #999;
   text-align: center;
 }
 .notification{
+  background-color: #fff;
   padding:5px 0px;
   font-size: 22px;
   color: #333;
+  left: 40%;
+  z-index: 10;
   position: relative;
-  left: 41%;
   transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 .move{
-  left: -40%!important;
+  left: 5px!important;
 }
 .off{
-  display: none;
   transform: scaleX(0);
   transition: 0.2s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1)
 }
 .on{
-  display: block;
   transform: scaleX(1);
   transition: 0.2s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1)
 }

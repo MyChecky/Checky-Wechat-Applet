@@ -71,6 +71,7 @@ Page({
   },
   getId: function (e) {
     var choice = e.target.dataset.value
+    var text = e.target.dataset.text
     console.log(choice)
     var arr = getCurrentPages()
     arr[arr.length - 2].setData({
@@ -88,7 +89,7 @@ Page({
   // 显示输入框
   getOut: function(e){
     this.setData({
-      out: this.data.flag?'':'no',
+      out: this.data.flag?'on':'off',
       move: this.data.flag?'move':'',
       flag: !this.data.flag
     })
