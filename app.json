@@ -1,6 +1,7 @@
 {
   "pages": [
-    
+    "pages/tab/tasks/taskDetail/taskDetail",
+    "pages/tab/tasks/superiseDetail/superisetaskDetail",
     "pages/index/index",
     "pages/tab/tasks/tasks",
     "pages/tab/essays/essays",
@@ -15,8 +16,8 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "color":"#333",
-    "selectedColor":"#e83015",
+    "color": "#333",
+    "selectedColor": "#e83015",
     "list": [
       {
         "pagePath": "pages/tab/essays/essays",
