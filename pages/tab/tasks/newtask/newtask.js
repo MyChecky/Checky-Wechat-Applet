@@ -13,8 +13,7 @@ Page({
       { "value": 0 }, { "value": 1 }, { "value": 3 }, { "value": 5 }
       ],
     num:0,
-    type: null,
-    typeContent: "-",
+    types: app.globalData.types,
     repeatDate:[
       { "name": "日", "value": 0 },
       { "name": "一", "value": 1 },
@@ -27,8 +26,8 @@ Page({
     chooseRepeat:null,
     index:-1,
     array:[],
-    startTime: app.globalData.date,
-    endTime: app.globalData.date,
+    startTime: "",
+    endTime: "",
     money:0
   },
 
@@ -52,11 +51,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      type: this.data.type,
-      typeContent: this.data.typeContent,
-      index: this.data.index
-    })
+
   },
   // 获取类型
   getType: function(){
@@ -109,7 +104,7 @@ Page({
       "title": this.data.title,
       "content": this.data.content,
       "num": this.data.num,
-      "type": this.data.type,
+      "type": this.data.types[this.data.index].typeId,
       "startTime": this.data.startTime,
       "endTime": this.data.endTime,
       "repeatDate": util.formatRepeatDate(this.data.chooseRepeat),
@@ -118,11 +113,9 @@ Page({
     console.log(data)
     if (this.data.title == "" || this.data.index < 0 || this.data.startTime == "" || this.data.endTime == "" || this.data.chooseRepeat == null || this.data.money<=0){
       wx.showModal({
-        title: '提示',
-        content: '缺失必要信息',
-        showCancel: false,
-        success(res) { },
-        fail(err) { }
+        title: '',
+        content: '',
+        
       })
     }
     else{
@@ -132,7 +125,7 @@ Page({
           "title": this.data.title,
           "content": this.data.content,
           "num": this.data.num,
-          "type": this.data.type,
+          "type": this.data.types[this.data.index].typeId,
           "startTime": this.data.startTime,
           "endTime": this.data.endTime,
           "repeatDate": util.formatRepeatDate(this.data.chooseRepeat),

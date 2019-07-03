@@ -1,25 +1,79 @@
 <!--pages/tab/tasks/tasks.wxml-->
-<view>
-  <button class="btn_nt" open-type='contact' bindTap='gotoPage/'>
+<view class="{{scrollTop>1 ? 'topnavFixed' : 'topnavAbsolute'}}" >
+
+<button class='newtask1' bindtap='newtask1' mode="top">
   <image class="ntImg" src='image/task_add.png' mode="widthFix">
   </image>
-  </button>
-<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+</button>
+<view class="swiper-tab" >
+<!--style="margin-top:26rpx"-->  
+
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav" >打卡</view>  
+  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">监督</view>  
+</view>
+</view>
+
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="margin-top:100rpx" bindchange="bindChange">
+
+   <!--打卡-->
     <swiper-item>  
-      <view>打卡</view>  
-    </swiper-item> 
+    <view class="hiddenCal">
+      <button class='hidCal' bindtap='hidCal' mode="top">
+      <image class="hcImg" src=" {{isHid?'../../image/calendar_show.png':' ../../image/calendar.png'}}" mode="widthFix">
+      </image>
+      </button>
+
+      <view class="time" hidden='{{isHid}}'>{{time}}</view>
+      
+      <!--日历-->
+        <view hidden="{{!isHid}}" >
+          <calendar  calendar-style="calendar"  
+          header-style="calendar-header"  
+          board-style="calendar-board" 
+          days-color="{{dayStyle}}" 
+          weeks-type="cn" 
+          binddayClick="dayClick"/>
+          </view>
+      </view> 
+
+<!--分类 -->
+<view class="li" data-index="0" bindtap='changeToggle'>
+<view class="left">未打卡</view>
+</view>
+  <view hidden="{{!selectedItem[0]}}">
+    <block wx:for="{{list01}}" wx:for-item="item" wx:for-index="index">
+      <view class="li bg-gray">
+        <view>task1</view>
+      </view>
+    </block>
+  </view>
+  
+
+  <view class="li" data-index="1" bindtap='changeToggle'>
+    <view class="left">待认证</view>
+  </view>
+  <view hidden="{{!selectedItem[1]}}">
+    <block wx:for="{{list02}}" wx:for-item="item" wx:for-index="index">
+      <view class="li bg-gray">
+        <view>task2</view>
+      </view>
+    </block>
+  </view>
+
+  <view class="li" data-index="2" bindtap='changeToggle'>
+    <view class="left">打卡成功</view>
+    </view>
+  <view hidden="{{!selectedItem[2]}}">
+    <block wx:for="{{list03}}" wx:for-item="item" wx:for-index="index">
+      <view class="li bg-gray">
+        <view>task3</view>
+      </view>
+    </block>
+  </view></swiper-item> 
+
+    <!--监督-->
     <swiper-item>  
       <view>监督</view>  
     </swiper-item> 
 </swiper> 
 
-<button class='newtask' bindtap='newtask' ></button>
-  <!--引用navbar-->
-  <include src="./navbar/navbar.wxml"/> 
-  </view>
- <calendar  calendar-style="calendar"  header-style="calendar-header"  board-style="calendar-board" days-color="{{dayStyle}}" weeks-type="cn" binddayClick="dayClick"
- />
- <!--><view class="hiddenCal">
- 点击收起日历
- </view>
-</view>

@@ -1,22 +1,71 @@
 // pages/tab/tasks/tasks.js
 const app = getApp()
+var util = require("../../../utils/util.js")
 
 Page({
   data: {
-    motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     winWidth: 0,
     winHeight: 0,
-    // tab切换  
     currentTab: 0,
     dayStyle: [
       { month: 'current', day: new Date().getDate(), color: 'white', background: '#e83015' },
       { month: 'current', day: new Date().getDate(), color: 'white', background: '#3e3e3e' }
-    ]
+    ],
+    isHid:false,
+    list01: [
+      { item_id: 1 }, { item_id: 11 }, { item_id: 11 },
+    ],
+    list02: [
+    ],
+    list03: [
+      { item_id: 11 }, { item_id: 11 }
+    ],
+    selectedItem: [false, false, false]
+  },
+  
+  hidCal: function () {
+    this.setData({
+      isHid: !this.data.isHid,
+    })
   },
 
+//item展开
+  // 展开折叠选择  
+  changeToggle: function (e) {
+    var index = e.currentTarget.dataset.index;
+    if (this.data.selectedItem[index]) {
+      this.data.selectedItem[index] = false;
+    } else {
+      this.data.selectedItem[index] = true;
+    }
+
+    this.setData({
+      selectedItem: this.data.selectedItem
+    })
+  },
+  onLoad: function () {
+    var that = this;
+    var time = util.formatTime(new Date());
+    this.setData({
+      time: time
+    });
+
+    /** 
+     * 获取系统信息 
+     */
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          winWidth: res.windowWidth,
+          winHeight: res.windowHeight
+        });
+      }
+
+    });
+  },
   //给点击的日期设置一个背景颜色
   dayClick: function (event) {
     let clickDay = event.detail.day;
@@ -33,24 +82,6 @@ Page({
       }
     })
   },
-
-// <<<<<<< HEAD
-//     /** 
-//      * 获取系统信息 
-//      */
-//     wx.getSystemInfo({
-//       success: function (res) {
-//         that.setData({
-//           winWidth: res.windowWidth,
-//           winHeight: res.windowHeight
-//         });
-// =======
- //点击新建打卡事项跳转
- gotoPage: function(){
-   wx.navigateTo({
-     url: '../newtask/newtask',
-   })
- },
 
   //事件处理函数
   bindViewTap: function () {
@@ -101,27 +132,29 @@ Page({
       hasUserInfo: true
     })
   },
-    swichNav: function (e) {
+  //顶部切换页面
+  swichNav: function (e) {
 
     var that = this;
-    if (this.data.currentTab == 0) {
-      wx.navigateTo({
-        url: './tasks',
-      })
-    }
-    if (this.data.currentTab == 1) {
+
+    if (this.data.currentTab === e.target.dataset.current) {
+      return false;
+    } else {
       that.setData({
-        currentTab: e.target.dataset.current,
-      })
-      wx.navigateTo({
-        url: './newtask/newtask',
+        currentTab: e.target.dataset.current
       })
     }
-  },  
-  newtask: function(){
+  },
+  onPageScroll: function (e) {//监听页面滚动
+    this.setData({
+      scrollTop: e.scrollTop
+    })
+  },
+
+  //跳转到新建打卡
+    newtask1: function () {
     wx.navigateTo({
       url: './newtask/newtask',
     })
   }
-  
 })

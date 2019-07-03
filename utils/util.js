@@ -6,12 +6,16 @@ const formatTime = date => {
   const minute = date.getMinutes()
   const second = date.getSeconds()
 
-  return [year, month, day].map(formatNumber).join('-')
+  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
+}
+
+module.exports = {
+  formatTime: formatTime
 }
 // 重复日期转化
 const formatRepeatDate = function(chooseDate){
@@ -23,6 +27,5 @@ const formatRepeatDate = function(chooseDate){
   return result
 }
 module.exports = {
-  formatRepeatDate: formatRepeatDate,
-  formatTime: formatTime
+  formatRepeatDate: formatRepeatDate
 }

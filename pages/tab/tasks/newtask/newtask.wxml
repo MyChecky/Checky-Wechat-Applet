@@ -18,11 +18,12 @@
   </view>
   <view class='container-view' style='flex-direction: row;justify-content: space-between;'>
     <view class='notifcation' style='width: auto;'>打卡类别：</view>
-    <button bindtap='getType' wx:if="{{index<0}}" class='typebtn'>选择类别</button>
-    <view style='line-height:30px;' wx:else class="picker">当前选择：
-      <text style='color:#333;'>{{typeContent}}</text>
-    </view>
-    
+    <button bindtap='getType' class='typebtn' >点击选择类别</button>
+    <!-- <picker bindchange="bindPickerChange" style='padding:5px;' value="{{index}}" range="{{types}}" range-key="{{'typeContent'}}">
+      <view style='line-height:30px;' wx:if="{{index<0}}"></view>
+      <view style='line-height:30px;' wx:else class="picker">当前选择：<text style='color:#333;'>{{types[index].typeContent}}</text>
+      </view>
+    </picker> -->
   </view>
   <view class='container-view' style='flex-direction: row;justify-content: space-between;'>
     <view class='notifcation'>开始时间：</view>

@@ -2,12 +2,11 @@
   "pages": [
     
     "pages/index/index",
-    "pages/tab/tasks/navbar/navbar",
-    "pages/tab/essays/essays",
     "pages/tab/tasks/tasks",
+    "pages/tab/essays/essays",
     "pages/tab/personal/personal",
     "pages/tab/tasks/newtask/newtask",
-    "pages/tab/tasks/type/type"    
+    "pages/tab/tasks/type/type"
   ],
   "window": {
     "backgroundTextStyle": "light",
