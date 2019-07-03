@@ -1,3 +1,2 @@
 <!--pages/tab/essays/essays.wxml-->
 <text>pages/tab/essays/essays.wxml</text>
-<view >{{time}}</view>

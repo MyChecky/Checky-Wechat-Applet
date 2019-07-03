@@ -48,10 +48,10 @@ Page({
   },
   onLoad: function () {
     var that = this;
-    var time = util.formatTime(new Date());
+    var date = util.formatDate(new Date());
     this.setData({
-      time: time
-    });
+      date:Date,
+    });  
 
     /** 
      * 获取系统信息 

@@ -22,8 +22,6 @@
       <image class="hcImg" src=" {{isHid?'../../image/calendar_show.png':' ../../image/calendar.png'}}" mode="widthFix">
       </image>
       </button>
-
-      <view class="time" hidden='{{isHid}}'>{{time}}</view>
       
       <!--日历-->
         <view hidden="{{!isHid}}" >
@@ -36,36 +34,40 @@
           </view>
       </view> 
 
+<view class="time">
+  <view>{{date}}</view>
+</view> 
+
 <!--分类 -->
 <view class="li" data-index="0" bindtap='changeToggle'>
-<view class="left">未打卡</view>
+
+<view class="unfinished"><text class="unfinished-text">未打卡</text></view>
 </view>
   <view hidden="{{!selectedItem[0]}}">
-    <block wx:for="{{list01}}" wx:for-item="item" wx:for-index="index">
-      <view class="li bg-gray">
-        <view>task1</view>
+    <block class="unfin-bg" wx:for="{{list01}}" wx:for-item="item" wx:for-index="index">
+      <view class="unfin-item">
+        <view >task1</view>
       </view>
     </block>
   </view>
-  
 
   <view class="li" data-index="1" bindtap='changeToggle'>
-    <view class="left">待认证</view>
+    <view class="unchecked"><text class="unche-text">待认证</text></view>
   </view>
   <view hidden="{{!selectedItem[1]}}">
     <block wx:for="{{list02}}" wx:for-item="item" wx:for-index="index">
-      <view class="li bg-gray">
+      <view class="unche-item">
         <view>task2</view>
       </view>
     </block>
   </view>
 
   <view class="li" data-index="2" bindtap='changeToggle'>
-    <view class="left">打卡成功</view>
+    <view class="success"><text class="suc-text">打卡成功</text></view>
     </view>
   <view hidden="{{!selectedItem[2]}}">
     <block wx:for="{{list03}}" wx:for-item="item" wx:for-index="index">
-      <view class="li bg-gray">
+      <view class="suc-item">
         <view>task3</view>
       </view>
     </block>
