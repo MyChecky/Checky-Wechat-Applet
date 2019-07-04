@@ -75,6 +75,7 @@ z-index: 1;
 }
 
 .hidCal{
+  z-index: 100;
   position: fixed;
   right: 6px;
   width: 30px;
@@ -96,12 +97,8 @@ z-index: 1;
 }
 
 .hiddenCal{
-  transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); 
-}
-
-.date{
-margin-left: 10px;
-font-size: 40rpx;
+  border-bottom: 2rpx solid #cccccc;
+  transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .li {
