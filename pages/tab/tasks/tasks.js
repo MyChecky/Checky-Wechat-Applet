@@ -19,6 +19,7 @@ Page({
       { item_id: 1 }, { item_id: 11 }, { item_id: 11 },
     ],
     list02: [
+      { item_id: 1 }, { item_id: 11 }, { item_id: 11 },
     ],
     list03: [
       { item_id: 11 }, { item_id: 11 }
@@ -48,9 +49,9 @@ Page({
   },
   onLoad: function () {
     var that = this;
-    var date = util.formatDate(new Date());
+    var time = util.formatTime(new Date());
     this.setData({
-      date:Date,
+      time: Time,
     });  
 
     /** 
@@ -155,6 +156,19 @@ Page({
     newtask1: function () {
     wx.navigateTo({
       url: './newtask/newtask',
+    })
+  },
+
+    //跳转到打卡详情
+    detail_btn: function () {
+    wx.navigateTo({
+      url: './taskDetail/taskDetail',
+    })
+  },
+  //跳转到监督详情
+  detail_btn_s: function () {
+    wx.navigateTo({
+      url: './superiseDetail/superisetaskDetail',
     })
   }
 })
