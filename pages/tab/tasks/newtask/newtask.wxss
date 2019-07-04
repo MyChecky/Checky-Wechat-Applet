@@ -80,3 +80,6 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
   height: 40px;
   font-size: 16px;
 }
+.file{
+  background: 
+}

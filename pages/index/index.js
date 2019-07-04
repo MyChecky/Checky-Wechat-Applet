@@ -4,7 +4,6 @@ const app = getApp()
 
 Page({
   data: {
-    
     motto: 'Checky, check everyday!',
     userInfo: {},
     hasUserInfo: false,
