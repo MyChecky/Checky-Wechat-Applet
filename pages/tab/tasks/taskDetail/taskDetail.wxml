@@ -1,0 +1,33 @@
+<!--pages/tab/tasks/taskDetail/taskDetail.wxml-->
+<view class='form-view'>
+  <view class='container-view'>
+    <view class='title-view'>打卡状态</view>
+    <view class='item-view'>
+      <view class='inner-item-view'>
+        <view class='tag item'>我的打卡:</view>
+        <view class='state item'>{{taskState}}</view>
+      </view>
+      <view class='operation item' bindtap='upload'>></view>
+    </view>
+    <view class='item-view'>
+      <view class='inner-item-view'>
+        <view class='tag item'>认证状态:</view>
+        <view class='state item'>{{supState}}</view>
+      </view>
+      <view class='operation item' style='color:#e83015;'>({{numOfSuped}}/{{numOfSup}})</view>
+    </view>
+  </view>
+  <view class='container-view'>
+    <view class='title-view'>打卡状态</view>
+    <view class='item-view'>
+      <view class='tag'></view>
+      <view class='state'></view>
+      <view class='operation'></view>
+    </view>
+    <view class='item-view'>
+      <view class='tag'></view>
+      <view class='state'></view>
+      <view class='operation'></view>
+    </view>
+  </view>
+</view>

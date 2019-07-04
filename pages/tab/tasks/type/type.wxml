@@ -1,10 +1,11 @@
 <!--pages/tab/tasks/type/type.wxml-->
 <view class='container-view'>
-  <view class='type-view' bindtap='getId' wx:for="{{types}}" data-value="{{item.typeId}}">{{item.typeContent}}</view>
-  <block wx:if="{{isNew}}">
-    <view class='type-view' bindtap='getId'  data-value="new">自定义</view>
-  </block>
-  <block wx:else>
-    <view class='type-view' bindtap='getId' data-value="new"><input type='text' class='new-input'></input></view>
-  </block>
+  <view class='type-view' bindtap='getId' wx:for="{{types}}" 
+    data-text = "{{item.typeContent}}" data-value="{{item.typeId}}" >{{item.typeContent}}
+  </view>
+  <view class='def-view' style='overflow:hidden;'>
+    <text class='notification {{move}}' bindtap='getOut'>自定义</text>
+    <input type='text' class='new-input {{out}}' focus='true' bindblur='cancelBack'></input>
+    <button bindtap='confirmNewTpye' class='confirm-btn {{out}}' data-value="new">确认</button>
+  </view>
 </view>

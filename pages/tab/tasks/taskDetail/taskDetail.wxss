@@ -1,0 +1,25 @@
+/* pages/tab/tasks/taskDetail/taskDetail.wxss */
+.title-view{
+  color: #e83015;
+  font-size: 22px;
+  padding: 2px 5px;
+  margin: 10px 0px;
+}
+.item-view{
+  padding: 15px 5px;
+  margin: 0px 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(144,144,144,0.3);
+}
+.inner-item-view{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.item{
+  margin-right: 10px;
+
+}

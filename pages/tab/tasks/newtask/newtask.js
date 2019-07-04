@@ -26,8 +26,8 @@ Page({
     chooseRepeat:null,
     index:-1,
     array:[],
-    startTime: "",
-    endTime: "",
+    startTime: app.globalData.date,
+    endTime: app.globalData.date,
     money:0
   },
 

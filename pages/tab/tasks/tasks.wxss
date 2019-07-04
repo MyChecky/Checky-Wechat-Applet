@@ -20,18 +20,20 @@ background:white;
 z-index: 1;
 }
 .swiper-tab{  
-    width: 100%;
-    border-bottom: 2rpx solid #cccccc;  
-    text-align: center;  
-    line-height: 80rpx;}  
+  width: 100%;
+  border-bottom: 2rpx solid #cccccc;  
+  text-align: center;  
+  line-height: 80rpx;
+  }  
 .swiper-tab-list{  
-    font-size: 36rpx;  
-    display: inline-block;  
-    width: 20%;  
-    color: #000000;  
+  font-size: 36rpx;  
+  display: inline-block;  
+  width: 20%;  
+  color: #000000;  
 }  
 .on{ color: #e83015;  
-    border-bottom: 5rpx solid #e83015;}  
+  border-bottom: 5rpx solid #e83015;
+}
   
 .swiper-box{ 
   display: block; 
@@ -77,6 +79,7 @@ z-index: 1;
 }
 
 .hidCal{
+  z-index: 100;
   position: fixed;
   right: 6px;
   margin-top: 6px;
@@ -100,6 +103,7 @@ z-index: 1;
 
 .hiddenCal{
   border-bottom: 2rpx solid #cccccc;
+  transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); 
 }
 
 .li {

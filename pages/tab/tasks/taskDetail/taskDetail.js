@@ -1,20 +1,24 @@
-// pages/tab/essays/essays.js
-var util = require("../../../utils/util.js")
+// pages/tab/tasks/taskDetail/taskDetail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    title: "XXX任务",
+    taskState: "未上传",
+    supState: "未认证",
+    numOfSup: 3,
+    numOfSuped: 1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-
   onLoad: function (options) {
-    
+    wx.setNavigationBarTitle({
+      title: this.data.title
+    })
   },
 
   /**
