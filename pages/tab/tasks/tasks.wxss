@@ -98,7 +98,7 @@ z-index: 1;
 
 .hiddenCal{
   border-bottom: 2rpx solid #cccccc;
-  transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); 
 }
 
 .li {

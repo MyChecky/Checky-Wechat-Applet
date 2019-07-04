@@ -16,7 +16,6 @@ const formatNumber = n => {
 module.exports = {
   formatTime: formatTime,
 }
-
 // 重复日期转化
 const formatRepeatDate = function(chooseDate){
   var result = [0,0,0,0,0,0,0]
