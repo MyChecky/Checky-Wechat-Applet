@@ -1,17 +1,13 @@
 {
   "pages": [
-    "pages/tab/tasks/upload/upload",
-    "pages/tab/tasks/taskDetail/taskDetail",
     "pages/index/index",
     "pages/tab/tasks/tasks",
     "pages/tab/essays/essays",
     "pages/tab/personal/personal",
     "pages/tab/tasks/newtask/newtask",
     "pages/tab/tasks/type/type",
-<<<<<<< HEAD
-=======
+    "pages/tab/tasks/upload/upload",
     "pages/tab/tasks/taskDetail/taskDetail",
->>>>>>> master
     "pages/tab/tasks/superiseDetail/superisetaskDetail"
   ],
   "window": {
