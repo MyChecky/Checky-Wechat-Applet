@@ -29,11 +29,15 @@
   background-color: #f3f5f5;
 }
 .container-view{
-  margin: 10px 5px;
+  margin: 10px 5px 20px 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-color: #fff;
   border-radius: 2px;
+  box-shadow: 1px 1px 2px 0px rgba(165,165,165,0.5);
   padding: 5px;
+}
+button::after{
+  border: none;
 }

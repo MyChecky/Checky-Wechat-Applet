@@ -104,7 +104,7 @@ Page({
   confirmNewTpye: function(){
     if(this.data.newType!=""){
       wx.request({
-        url: app.globalData.base +'/taskType/delType',
+        url: app.globalData.base +'/taskType',
         data:{
           newType: this.data.newType
         },

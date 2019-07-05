@@ -80,11 +80,11 @@ App({
   globalData: {
     code:null,
     userInfo: null,
-    base: "http://172.20.10.9",
+    base: "http://192.168.1.102",
     port: "8080",
     curPages: null,
     location:{},
-    openId:null,
+    openId:"oM2yQ4jR0La_jZ8hyxkERsqNTh_8",
     types: [
       { "typeId": "5301f10a-2df7-4e72-97ac-8e1cbecf9aec", "typeContent": "健身" },
       { "typeId": "a8179f78-69ac-4723-bf23-7b4c695bdf7f", "typeContent": "学习" }

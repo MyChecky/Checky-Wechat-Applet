@@ -40,8 +40,7 @@ z-index: 1;
   height: 1000px; 
   width: 100%; 
   overflow: hidden; 
-}  
-
+}
 .newtask1{
   position: fixed;
   margin-left: 12px;
@@ -89,13 +88,17 @@ z-index: 1;
   justify-content: center;
 }
 .hcImg{
-  width:40rpx;
-  height: 40rpx;
+  width:40px;
+  height: 40px;
+  background-color: #fff;
 }
 .hidCal::after{
   border: 0;
 }
-
+.hiddenCal{
+  border-bottom: 2rpx solid #cccccc;
+  transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); 
+}
 .li {
   background-color: #fff;
   display: flex;
@@ -109,7 +112,6 @@ margin-left:10px;
 height: 20px;
 font-size: 16px;
 }
-
 .unfinished{
 height: 70rpx;
 width: 100%;
@@ -118,12 +120,12 @@ margin-right: 10px;
 text-align: center;
 background-color: #e83015;
 border-bottom: 1rpx solid #e83015;
+
 }
 .unfinished-text{
   color: #fff;
   font-size: 30rpx;
 }
-
 .unfin-item{
   width: 93%;
   height: 120rpx;
@@ -168,7 +170,6 @@ left: 20px;
 font-size:12px;
 color: #3e3e3e;
 }
-
 .unchecked{
 margin-top:30rpx;
 height: 70rpx;

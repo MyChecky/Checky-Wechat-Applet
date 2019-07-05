@@ -1,0 +1,17 @@
+<!--pages/tab/tasks/upload/upload.wxml-->
+<view class='.form-view'>
+  <view class='container-view'>
+    <view class='title'>打卡描述</view>
+    <textarea class='content' placeholder='今天心情如何？'maxlength='200' bindinput='lengthChange'></textarea>
+    <view class='limit'>{{currentLength}}/200</view>
+  </view>
+  <view class='container-view'>
+    <view class='title'>上传附件</view>
+    <view class='limit'>{{currentNum}}/4</view>
+    <view class='button-view'>
+      <image class='img' wx:for="{{image}}" wx:if="{{item.URL!=''}}" src='{{item.URL}}' mode='aspectFit'><button class='cancel' bindtap='cancel' data-index="{{index}}">删除</button></image>
+      <button class='file' wx:if="{{currentNum<4}}" bindtap="chooseFile">+</button>
+    </view>
+  </view>
+  <button class='submit' bindtap='submit'>提交</button>
+</view>
