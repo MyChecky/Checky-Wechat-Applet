@@ -120,12 +120,12 @@ margin-right: 10px;
 text-align: center;
 background-color: #e83015;
 border-bottom: 1rpx solid #e83015;
+
 }
 .unfinished-text{
   color: #fff;
   font-size: 30rpx;
 }
-
 .unfin-item{
   width: 93%;
   height: 120rpx;
@@ -170,7 +170,6 @@ left: 20px;
 font-size:12px;
 color: #3e3e3e;
 }
-
 .unchecked{
 margin-top:30rpx;
 height: 70rpx;

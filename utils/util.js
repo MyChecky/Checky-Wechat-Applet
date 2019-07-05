@@ -13,6 +13,7 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+
 // 重复日期转化S2B
 const formatRepeatDate = function(chooseDate){
   if (chooseDate.length==0){
