@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/tab/tasks/tasks",
+    "pages/index/index",
     "pages/tab/essays/essays",
     "pages/tab/personal/personal",
     "pages/tab/tasks/newtask/newtask",

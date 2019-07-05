@@ -137,21 +137,21 @@ Page({
       data:{
         "checkInfo": {
           "userId": app.globalData.openId,
-          "taskId": "123",
+          "taskId": "e0ff35e0-5ae0-4b54-a375-66e8aee6657d",
           "checkTime": app.globalData.date,
         },
         "content": this.data.content
       },
       success(res){
         console.log(res)
-        var checkId = res.checkId
+        var checkId = res.data.checkId
         // 附件上传
         for (var i = 0; i < that.data.index; i++) {
           console.log(that.data.image[i].URL)
           wx.uploadFile({
             url: app.globalData.base + ":" + app.globalData.port + '/check/file/upload',
             filePath: that.data.image[i].URL,
-            name: 'picture',
+            name: 'file',
             header: {
               "Content-Type": "multipart/form-data"
             },

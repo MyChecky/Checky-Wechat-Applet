@@ -18,7 +18,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      types: app.globalData.types
+    })
   },
 
   /**
@@ -104,11 +106,15 @@ Page({
   confirmNewTpye: function(){
     if(this.data.newType!=""){
       wx.request({
-        url: app.globalData.base +'/taskType',
+        url: app.globalData.base + ":" + app.globalData.port + '/suggestion/addSuggestion',
+        method: 'POST',
         data:{
-          newType: this.data.newType
+          "suggestionContent": this.data.newType,
+          "suggestionTime": app.globalData.date,
+          "userId": app.globalData.openId
         },
         success(res){
+          console.log(res)
           wx.showModal({
             title: '提示',
             content: '新的类型建议已发送',

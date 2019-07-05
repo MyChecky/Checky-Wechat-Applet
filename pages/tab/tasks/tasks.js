@@ -24,7 +24,10 @@ Page({
     list03: [
       { item_id: 11 }, { item_id: 11 }
     ],
-    selectedItem: [false, false, false]
+    selectedItem: [false, false, false],
+    unknown: [],
+    checked: [],
+    toCheck: []
   },
   
   hidCal: function () {
@@ -51,8 +54,8 @@ Page({
     var that = this;
     var time = util.formatTime(new Date());
     this.setData({
-      time: Time,
-    });  
+      time: time,
+    });
 
     /** 
      * 获取系统信息 
@@ -66,6 +69,23 @@ Page({
       }
 
     });
+
+    wx.request({
+      url: app.globalData.base + ":" + app.globalData.port + '/check/listDayCheck',
+      method: 'POST',
+      data:{
+        "userId":app.globalData.openId,
+        "date": app.globalData.date
+      },
+      success(res){
+        console.log(res.data)
+        that.setData({
+          unknown: res.data.unknown,
+          toCheck: res.data.toCheck,
+          checked: res.data.checked
+        })
+      }
+    })
   },
   //给点击的日期设置一个背景颜色
   dayClick: function (event) {

@@ -95,5 +95,10 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  upload: function(){
+    wx.navigateTo({
+      url: '../upload/upload',
+    })
   }
 })

@@ -7,12 +7,14 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
     // 获取类型
+    var that = this
     wx.request({
-      url: this.globalData.base + '/taskType/allType',
+      url: this.globalData.base +":"+ this.globalData.port + '/taskType/allType',
       data: {
       },
       success: res => {
-        this.globalData.types = res.data.Type
+        console.log(res.data)
+        that.globalData.types = res.data
       },
       fail: err => {
         // wx.showModal({
@@ -80,15 +82,12 @@ App({
   globalData: {
     code:null,
     userInfo: null,
-    base: "http://192.168.1.102",
+    base: "http://192.168.1.100",
     port: "8080",
     curPages: null,
     location:{},
     openId:"oM2yQ4jR0La_jZ8hyxkERsqNTh_8",
-    types: [
-      { "typeId": "5301f10a-2df7-4e72-97ac-8e1cbecf9aec", "typeContent": "健身" },
-      { "typeId": "a8179f78-69ac-4723-bf23-7b4c695bdf7f", "typeContent": "学习" }
-    ],
+    types: [],
     date: util.formatTime(new Date())
   }
 })

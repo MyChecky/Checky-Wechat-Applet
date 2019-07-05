@@ -32,7 +32,7 @@ Page({
         if (app.globalData.openId!="0"){
           wx.showModal({
             title: '提示',
-            content: '登录失败,请重试',
+            content: '登录成功',
             showCancel: false,
             success(res) {
               if (res.confirm) {

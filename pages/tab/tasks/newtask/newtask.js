@@ -13,7 +13,7 @@ Page({
       { "value": 0 }, { "value": 1 }, { "value": 3 }, { "value": 5 }
       ],
     num:0,
-    types: app.globalData.types,
+    types: [],
     repeatDate:[
       { "name": "日", "value": 0 },
       { "name": "一", "value": 1 },
@@ -37,6 +37,9 @@ Page({
   onLoad: function (options) {
     wx.setNavigationBarTitle({
       title: '新建任务',
+    })
+    this.setData({
+      types: app.globalData.types
     })
   },
 
@@ -101,14 +104,15 @@ Page({
   },
   sendForm: function(){
     var data = {
-      "title": this.data.title,
-      "content": this.data.content,
-      "num": this.data.num,
-      "type": this.data.types[this.data.index].typeId,
-      "startTime": this.data.startTime,
-      "endTime": this.data.endTime,
-      "repeatDate": util.formatRepeatDate(this.data.chooseRepeat),
-      "money": this.data.money,
+      "userId": app.globalData.openId,
+      "taskTitle": this.data.title,
+      "taskContent": this.data.content,
+      "supervisorNum": this.data.num,
+      "typeId": this.data.types[this.data.index].typeId,
+      "taskStartTime": this.data.startTime,
+      "taskEndTime": this.data.endTime,
+      "checkFrec": util.formatRepeatDate(this.data.chooseRepeat),
+      "taskMoney": this.data.money,
     }
     console.log(data)
     if (this.data.title == "" || this.data.index < 0 || this.data.startTime == "" || this.data.endTime == "" || this.data.chooseRepeat == null || this.data.money<=0){
@@ -120,18 +124,11 @@ Page({
     }
     else{
       wx.request({
-        url: app.globalData.base +'/task/addTask',
-        data:{
-          "title": this.data.title,
-          "content": this.data.content,
-          "num": this.data.num,
-          "type": this.data.types[this.data.index].typeId,
-          "startTime": this.data.startTime,
-          "endTime": this.data.endTime,
-          "repeatDate": util.formatRepeatDate(this.data.chooseRepeat),
-          "money": this.data.money,
-        },
+        url: app.globalData.base + ":" + app.globalData.port + '/task/addTask',
+        method: 'POST',
+        data: data,
         success: function(res){
+          console.log(res)
           wx.showModal({
             title: '提示',
             content: '创建成功',

@@ -22,7 +22,7 @@
       </image>
       </button>
 
-      <text class='date' hidden='{{isHid}}'>7月4日</text>
+      <text class='date' hidden='{{isHid}}'>{{time}}</text>
       
       <!--日历-->
         <view hidden="{{!isHid}}" >
