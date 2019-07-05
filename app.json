@@ -8,6 +8,10 @@
     "pages/tab/personal/personal",
     "pages/tab/tasks/newtask/newtask",
     "pages/tab/tasks/type/type",
+<<<<<<< HEAD
+=======
+    "pages/tab/tasks/taskDetail/taskDetail",
+>>>>>>> master
     "pages/tab/tasks/superiseDetail/superisetaskDetail"
   ],
   "window": {

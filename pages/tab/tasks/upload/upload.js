@@ -128,32 +128,8 @@ Page({
   },
   submit: function(){
     var that = this
-    // 附件上传
-    for(var i = 0; i<that.data.index; i++){
-      wx.uploadFile({
-        url: app.globalData.base + ":" + app.globalData.port +'/check/file/upload',
-        filePath: that.data.image[i].URL,
-        name: 'picture',
-        name: 'file',
-        header: {
-          "Content-Type": "multipart/form-data"
-        },
-        formData:{
-          'userId': app.globalData.openId,
-          'type':'picture',
-          'checkId':'123'
-        },
-        success(res){
-          console.log(res)
-        },
-        fail(err){
-          console.log(err)
-          wx.showToast({
-            title: '上传图片'+i+'失败！',
-          })
-        }
-      })
-    }
+    
+
     // 文本上传
     wx.request({
       url: app.globalData.base + ":" + app.globalData.port + '/check/addCheck',
@@ -168,6 +144,33 @@ Page({
       },
       success(res){
         console.log(res)
+        var checkId = res.checkId
+        // 附件上传
+        for (var i = 0; i < that.data.index; i++) {
+          console.log(that.data.image[i].URL)
+          wx.uploadFile({
+            url: app.globalData.base + ":" + app.globalData.port + '/check/file/upload',
+            filePath: that.data.image[i].URL,
+            name: 'picture',
+            header: {
+              "Content-Type": "multipart/form-data"
+            },
+            formData: {
+              'userId': app.globalData.openId,
+              'type': 'picture',
+              'checkId': checkId
+            },
+            success(res) {
+              console.log(res)
+            },
+            fail(err) {
+              console.log(err)
+              wx.showToast({
+                title: '上传图片' + i + '失败！',
+              })
+            }
+          })
+        }
       },
       fail(err){
         console.log(err)
