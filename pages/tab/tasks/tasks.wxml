@@ -36,68 +36,65 @@
       </view>
 
 <!--分类 -->
-<view class="li" data-index="0" bindtap='changeToggle'>
+<view class="li" data-index="0" bindtap='changeToggle' style="margin-top:20rpx">
 
 <view class="unfinished" style='margin-top:20rpx'><text class="unfinished-text">未打卡</text></view>
 </view>
   <view hidden="{{!selectedItem[0]}}">
-    <block class="unfin-bg" wx:for="{{list01}}" wx:for-item="item" wx:for-index="index">
-      <view class="unfin-item">
+      <view class="unfin-item" wx:for="{{toCheck}}">
         <!--跳转button-->
-        <button class='detail_btn' bindtap='detail_btn' mode="top">
+        <button class='detail_btn' bindtap='detail_btn' mode="top" url="" id="{item.taskId}}" data-checkId="{{item.checkId}}"> 
           <image class="detail-img" src='image/forward_arrow.png' mode="widthFix">
           </image>
         </button>
         <!--打卡名称-->
-        <text class='task-name'>task1</text>
+        <text class='task-name'>{{item.taskTitle}}</text>
         <!--内容描述简略-->
         <text class='task-des'>
-        打卡内容描述
+        {{item.taskContent}}
         </text>
       </view>
-    </block>
   </view>
 
   <view class="li" data-index="1" bindtap='changeToggle'>
     <view class="unchecked"><text class="unche-text">待认证</text></view>
   </view>
   <view hidden="{{!selectedItem[1]}}">
-    <block wx:for="{{list02}}" wx:for-item="item" wx:for-index="index">
-      <view class="unche-item">
+      <view class="unche-item" wx:for="{{unknown}}">
         <!--跳转button-->
-        <button class='detail_btn' bindtap='detail_btn' mode="top">
+        <button class='detail_btn' bindtap='detail_btn' mode="top" url="" id="{item.taskId}}" data-checkId="{{item.checkId}}"> 
           <image class="detail-img" src='image/forward_arrow_black.png' mode="widthFix">
           </image>
         </button>
         <!--打卡名称-->
-        <text class='task-name'>task2</text>
+        <text class='task-name'>{{item.taskTitle}}</text>
         <!--内容描述简略-->
         <text class='task-des'>
-        打卡内容描述
+         {{item.taskContent}}
         </text>
       </view>
-    </block>
   </view>
 
   <view class="li" data-index="2" bindtap='changeToggle'>
     <view class="success"><text class="suc-text">打卡结束</text></view>
     </view>
-  <view hidden="{{!selectedItem[2]}}">
-    <block wx:for="{{list03}}" wx:for-item="item" wx:for-index="index">
+  <view hidden="{{!selectedItem[2]}}" wx:for="{{checked}}">
       <view class="suc-item">
-                <!--跳转button-->
-        <button class='detail_btn' bindtap='detail_btn' mode="top">
+        <!--跳转button-->
+        <button class='detail_btn' bindtap='detail_btn' mode="top" url="" id="{item.taskId}}" data-checkId="{{item.checkId}}"> 
           <image class="detail-img" src='image/forward_arrow_gray.png' mode="widthFix">
           </image>
         </button>
         <!--打卡名称-->
-        <text class='task-name'>task3</text>
+        <text class='task-name'>{{item.taskTitle}}</text>
         <!--内容描述简略-->
-        <text class='task-state'>
-        打卡成功
+        <text class='task-state-f' wx:if="{{item.checkState==0}}">
+         打卡失败
+        </text>
+        <text class='task-state-s' wx:if="{{item.checkState==1}}">
+         打卡成功
         </text>
       </view>
-    </block>
   </view></swiper-item> 
 
     <!--监督-->

@@ -15,9 +15,7 @@ Page({
       { month: 'current', day: new Date().getDate(), color: 'white', background: '#3e3e3e' }
     ],
     isHid:false,
-    list01: [
-      { item_id: 1 }, { item_id: 11 }, { item_id: 11 },
-    ],
+
     list02: [
       { item_id: 1 }, { item_id: 11 }, { item_id: 11 },
     ],
@@ -25,9 +23,45 @@ Page({
       { item_id: 11 }, { item_id: 11 }
     ],
     selectedItem: [false, false, false],
-    unknown: [],
-    checked: [],
-    toCheck: []
+    unknown: [
+      {
+        taskId: 120,
+        taskTitle: "背单词",
+        taskContent: "每天被50个",
+      },
+      {
+        taskId: 111,
+        taskTitle: "背单词",
+        taskContent: "每天被20个",
+      },
+      {
+        taskId: 129,
+        taskTitle: "背单词",
+        taskContent: "每天被30个",
+      },
+    ],
+    checked: [{
+      taskId: 100,
+      taskTitle: "运动",
+      checkState:1,
+    },
+    {
+      taskId: 190,
+      taskTitle: "不运动",
+      checkState: 0,
+    }],
+    toCheck: [
+      {
+        taskId: 122,
+        taskTitle: "好好学习",
+        taskContent: "每天看书4小时",
+      },
+      {
+        taskId: 123,
+        taskTitle: "不学习",
+        taskContent: "每天玩耍"
+      },
+    ]
   },
   
   hidCal: function () {
@@ -36,20 +70,6 @@ Page({
     })
   },
 
-//item展开
-  // 展开折叠选择  
-  changeToggle: function (e) {
-    var index = e.currentTarget.dataset.index;
-    if (this.data.selectedItem[index]) {
-      this.data.selectedItem[index] = false;
-    } else {
-      this.data.selectedItem[index] = true;
-    }
-
-    this.setData({
-      selectedItem: this.data.selectedItem
-    })
-  },
   onLoad: function () {
     var that = this;
     var time = util.formatTime(new Date());
@@ -101,6 +121,21 @@ Page({
       data:{
 
       }
+    })
+  },
+
+  //item展开
+  // 展开折叠选择  
+  changeToggle: function (e) {
+    var index = e.currentTarget.dataset.index;
+    if (this.data.selectedItem[index]) {
+      this.data.selectedItem[index] = false;
+    } else {
+      this.data.selectedItem[index] = true;
+    }
+
+    this.setData({
+      selectedItem: this.data.selectedItem
     })
   },
 
@@ -180,10 +215,21 @@ Page({
   },
 
     //跳转到打卡详情
-    detail_btn: function () {
-    wx.navigateTo({
-      url: './taskDetail/taskDetail',
-    })
+    detail_btn: function (e) {
+      var id = e.currentTarget.id
+      if(this.data.checkId){
+        this.data.checkId = e.currentTarget.dataset.checkId;
+        wx.navigateTo({
+          url: './taskDetail/taskDetail?id=' + id + '&checkId' + checkId,
+        })
+
+      }else{
+        this.data.checkId = null;
+        wx.navigateTo({
+          url: './taskDetail/taskDetail?id=' + id,
+        })
+      }
+      
   },
   //跳转到监督详情
   detail_btn_s: function () {
@@ -191,4 +237,5 @@ Page({
       url: './superiseDetail/superisetaskDetail',
     })
   }
+  
 })
