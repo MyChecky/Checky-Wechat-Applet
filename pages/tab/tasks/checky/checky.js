@@ -10,7 +10,8 @@ Page({
     taskId:"",
     image:[],
     content:"",
-    state:""
+    state:"",
+    lastPageFlag: true
   },
 
   /**
@@ -18,6 +19,8 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
+    if(options.lastPage=='taskDetail')
+      this.setData({lastPageFlag: false})
     this.setData({
       taskId: options.taskId,
       checkId: options.checkId

@@ -2,7 +2,7 @@
 /* pages/tab/tasks/taskDetail/taskDetail.wxss */
 .title-view{
   color: #e83015;
-  font-size: 22px;
+  font-size: 20px;
   padding: 2px 5px;
   margin: 10px 0px;
 }

@@ -71,6 +71,7 @@ Page({
   onShareAppMessage: function () {
 
   },
+  // 获得类别
   getId: function (e) {
     var choice = e.target.dataset.value
     var text = e.target.dataset.text

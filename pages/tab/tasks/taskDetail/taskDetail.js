@@ -173,8 +173,15 @@ Page({
 
   },
   upload: function() {
-    wx.navigateTo({
-      url: '../upload/upload?checkId=' + this.data.checkId,
-    })
+    if(this.data.checkId==''){// 未打卡情况
+      wx.navigateTo({
+        url: '../upload/upload',
+      })
+    }
+    else{// 已打卡情况
+      wx.navigateTo({
+        url: '../checky/checky?checkId=' + this.data.checkId + '&lastPage=taskDetail',
+      })
+    }
   }
 })

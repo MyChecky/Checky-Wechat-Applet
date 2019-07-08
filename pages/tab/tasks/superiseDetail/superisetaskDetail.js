@@ -108,11 +108,9 @@ Page({
 
   },
   superise: function(e){
+    // 已打卡情况
     wx.navigateTo({
-      url: '../checky/checky?taskId='+this.data.taskId+'&checkId='+this.data.checkId,
-      success(res){
-
-      }
+      url: '../checky/checky?checkId=' + this.data.checkId + '&lastPage=superisetaskDetail',
     })
   }
 })

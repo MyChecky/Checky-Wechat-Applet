@@ -188,7 +188,6 @@ Page({
     var checkId = e.target.dataset.checkid
     wx.navigateTo({
       url: './taskDetail/taskDetail?taskId=' + taskId + '&checkId=' + checkId,
-
     })
   },
   // -未打卡情况
