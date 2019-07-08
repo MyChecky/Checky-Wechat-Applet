@@ -14,7 +14,7 @@
   padding: 5px;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   background-color: #fff;
   color: #333;
@@ -66,8 +66,8 @@
 .confirm-btn{
   width: 50px;
   height: 30px;
-  background-color: #fff;
-  color: #e83015;
+  background-color: #e83015;
+  color: #fff;
   font-size: 16px;
   position: normal;
   padding: 0px;

@@ -7,14 +7,19 @@
         <view class='tag item'>我的打卡:</view>
         <view class='state item'>{{taskState}}</view>
       </view>
-      <view class='operation item' bindtap='upload'>></view>
+      <view class='operation item' bindtap='upload'>
+        <button class='detail-btn fa fa-angle-right'></button>
+      </view>
     </view>
     <view class='item-view'>
       <view class='inner-item-view'>
         <view class='tag item'>认证状态:</view>
         <view class='state item'>{{supState}}</view>
       </view>
-      <view class='operation item' style='color:#e83015;'>({{numOfSuped}}/{{numOfSup}})</view>
+      <view wx:if="{{supState=='待认证'}}" class='operation item mark'>{{numOfSuped}}/{{numOfSup}}</view>
+      <view wx:else class='operation item'>
+        <button class='appeal'>申诉</button>
+      </view>
     </view>
   </view>
   <view class='container-view'>
@@ -24,7 +29,8 @@
         <view class='tag item'>{{item.supName}}</view>
         <view class="state item {{item.supState=='fail'?'fail':''}} {{item.supState=='pass'?'pass':''}}">{{item.content}}</view>
       </view>
-      <view class='operation item' bindtap='upload'><button wx:if="{{item.supState!='pass'}}" class='notice'>提醒</button>
+      <view class='operation item' bindtap='upload'>
+        <!-- <button wx:if="{{item.supState!='pass'}}" class='notice'>提醒</button> -->
       </view>
     </view>
   </view>

@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/tab/tasks/tasks",
+    "pages/tab/tasks/superiseDetail/superisetaskDetail",
     "pages/index/index",
     "pages/tab/essays/essays",
     "pages/tab/personal/personal",
@@ -8,7 +9,7 @@
     "pages/tab/tasks/type/type",
     "pages/tab/tasks/upload/upload",
     "pages/tab/tasks/taskDetail/taskDetail",
-    "pages/tab/tasks/superiseDetail/superisetaskDetail"
+    "pages/tab/tasks/checky/checky"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,26 @@
+/* pages/tab/tasks/checky/checky.wxss */
+.title{
+  color: #e83015;
+  font-size: 22px;
+  padding: 2px 5px;
+  margin: 10px 0px;
+}
+.content-view{
+  padding: 5px;
+  font-size: 22px;
+  color: #333;
+  border-top: 1px solid rgba(100,100,100,0.2);
+}
+.image-view{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 5px;
+  border-top: 1px solid rgba(100,100,100,0.2);
+}
+.img{
+  width: 40%;
+  margin: 5px 5%;
+  background-color: #f3f5f5;
+}

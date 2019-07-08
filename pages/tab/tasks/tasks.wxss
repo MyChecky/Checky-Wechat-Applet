@@ -1,231 +1,213 @@
 /* pages/tab/tasks/tasks.wxss */
-.topnavFixed{
-border-top-left-radius:20rpx;
-border-top-right-radius:20rpx;
-position:fixed;
-width:100%;
-height:100rpx; 
-top:0rpx;
-background:white;
-z-index: 1;
-}
-.topnavAbsolute{
-border-top-left-radius:20rpx;
-border-top-right-radius:20rpx;
-position:absolute;
-width:100%;
-height:100rpx; 
-top:1rpx;
-background:white;
-z-index: 1;
-}
-.swiper-tab{  
-  width: 100%;
-  border-bottom: 2rpx solid #cccccc;  
-  text-align: center;  
-  line-height: 80rpx;
-  }  
-.swiper-tab-list{  
-  font-size: 36rpx;  
-  display: inline-block;  
-  width: 20%;  
-  color: #000000;  
-}  
-.on{ color: #e83015;  
-  border-bottom: 5rpx solid #e83015;
-}
-  
-.swiper-box{ 
-  display: block; 
-  height: 1000px; 
-  width: 100%; 
-  overflow: hidden; 
-}
-.newtask1{
+
+.topnavFixed {
   position: fixed;
-  margin-left: 12px;
+  width: 100%;
+  height: auto;
+  top: 0rpx;
+  background: white;
+  z-index: 100;
+}
+
+.shadow {
+  box-shadow: 0px 1px 5px 1px rgba(100, 100, 100, 0.5);
+}
+
+.swiper-tab {
+  width: 100%;
+  border-bottom: 1px solid rgba(100, 100, 100, 0.3);
+  text-align: center;
+  line-height: 30px;
+}
+swiper-item {
+  background-color: #f3f5f5;
+}
+.swiper-tab-list {
+  font-size: 22px;
+  display: inline-block;
+  width: 80px;
+  color: #000;
+  overflow: hidden;
+  position: relative;
+}
+
+.swiper-box {
+  margin-top: 40px;
+  display: block;
+  height: 2000px;
+  width: 100%;
+  overflow: scroll;
+}
+
+.newtask1 {
+  position: fixed;
+  z-index: 101;
+  margin-left: 10px;
   width: 30px;
   height: 30px;
+  font-size: 26px;
+  color: #e80315;
   background-color: white;
-  display: flex;
-  flex-direction: column;
-  border: none; 
-  border-radius: 0;
-  align-items: center;
-  justify-content: center;
-}
-.ntImg{
-  width:40rpx;
-  height: 40rpx;
-}
-.newtask1::after{
-  border: 0;
 }
 
 .calendar {
-  background-color:white; /*背景色为白色*/
-  padding-top: 10px;    /*上内边距为10px*/
-  color: #e83015;
-  
+  background-color: white; /*背景色为白色*/
+  padding-top: 10px; /*上内边距为10px*/
+  color: #e80315;
 }
-.calendar-header{
+
+.calendar-header {
   font-size: large;
-  color: #000000;   /*修改了标题文字和按钮的颜色*/
+  color: #000; /*修改了标题文字和按钮的颜色*/
 }
 
-.hidCal{
-  z-index: 100;
-  position: fixed;
-  right: 6px;
-  width: 30px;
-  height: 30px;
-  background-color: white;
+.calNav {
+  padding: 5px 2px;
   display: flex;
-  flex-direction: column;
-  border: none; 
-  border-radius: 0;
-  align-items: center;
-  justify-content: center;
-}
-.hcImg{
-  width:40px;
-  height: 40px;
-  background-color: #fff;
-}
-.hidCal::after{
-  border: 0;
-}
-.hiddenCal{
-  border-bottom: 2rpx solid #cccccc;
-  transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); 
-}
-.li {
-  background-color: #fff;
-  display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  width:100%;
-  line-height: 80rpx;
-}
-
-.date{
-margin-left:10px;
-height: 20px;
-font-size: 16px;
-}
-.unfinished{
-height: 70rpx;
-width: 100%;
-margin-left: 10px;
-margin-right: 10px;
-text-align: center;
-background-color: #e83015;
-border-bottom: 1rpx solid #e83015;
-
-}
-.unfinished-text{
-  color: #fff;
-  font-size: 30rpx;
-}
-.unfin-item{
-  width: 93%;
-  height: 120rpx;
-  margin-left: 10px;
-  margin-right: 10px;
+  align-items: center;
   background-color: #fff;
-  border-bottom: 1rpx solid  #e83015;
-  border-left: 1rpx solid #e83015;
-  border-right: 1rpx solid #e83015;
 }
-.detail_btn{
-  position: absolute;
-  right: 20px;
-  margin-top: 10px;
+
+.hidCal {
+  z-index: 100;
+  font-size: 26px;
   width: 30px;
   height: 30px;
   background-color: white;
+  margin: 0px 10px;
+}
+/* 开关控制样式 */
+.on {
+  color: #333;
+}
+
+.off {
+  color: #e80315;
+}
+
+.onCal {
+  max-height: 400px;
+}
+
+.offCal {
+  max-height: 0px;
+}
+
+.onList {
+  max-height: 800px;
+}
+
+.offList {
+  max-height: 0px;
+}
+.onTab{
+  color: #e80315;
+}
+.onTab::after{
+  content: "";
+  background-color: #e80315;
+  width: 5px;
+  top: 0px;
+  left: 0px;
+  position: relative;
+  height: 5px;
+  transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transform: scaleX(100);
+}
+.inner-list {
+  height: auto;
+  overflow: hidden;
+  transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.hiddenCal {
+  overflow: hidden;
+  border-bottom: 1px solid rgba(200, 200, 200, 0.3);
+  transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.date {
+  margin-left: 20px;
+  height: 20px;
+  font-size: 22px;
+}
+
+.list-view{
+  margin-top: 10px;
+  padding: 5px;
+  background-color: #f3f5f5;
+}
+.list{
+  margin-top: 10px;
+  background-color: #fff;
+  padding: 10px 5px 10px 5px;
+  border-radius: 5px;
+}
+.list-title{
+  /* box-shadow: 0px 1px 2px 0px rgba(100, 100, 100, 0.5); */
+  font-size: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  padding: 5px 0px 10px 10px;
+  border-bottom: 1px solid rgba(100, 100, 100, 0.1);
+}
+.title{
+  margin-left: 10px;
+}
+.toCheck{
+  /* background-color: #e80315; */
+  color: #e80315;
+}
+.checked{
+  /* background-color: #5eb1f5; */
+  color: #5eb1f5;
+}
+.unknown{
+  /* background-color: #666; */
+  color: #666; 
+}
+.list-item{
+  padding: 5px 10px 5px 10px;
+  display:  flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(100, 100, 100, 0.1);
+}
+.text{
   display: flex;
   flex-direction: column;
-  border: none; 
-  border-radius: 0;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 5px 0px;
+  width: 60%;
 }
-.detail-img{
-  width:40rpx;
-  height: 40rpx;
+.taskTitle{
+  margin: 5px 0px 5px 0px;
+  color: #333;
+  font-size: 22px;
 }
-.detail_btn::after{
-  border: 0;
+.taskContent{
+  margin: 5px 0px 5px 5px;
+  color: #aaa;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.task-name{
-position: absolute;
-margin-top:10rpx;
-left: 20px;
-font-size: 18px;
+.detail-btn{
+  font-size: 30px;
+  color: #666;
+  background-color: transparent;
+  transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
-.task-des{
-position: absolute;
-margin-top:10px;
-left: 20px;
-font-size:12px;
-color: #3e3e3e;
-}
-.unchecked{
-margin-top:30rpx;
-height: 70rpx;
-width: 100%;
-margin-left: 10px;
-margin-right: 10px;
-text-align: center;
-background-color: #3e3e3e;
-border-bottom: 1rpx solid #3e3e3e;
-}
-
-.unche-text{
-  color: #fff;
-  font-size: 30rpx;
-}
-.unche-item{
-  width: 93%;
-  height: 120rpx;
-  margin-left: 10px;
-  margin-right: 10px;
-  background-color: #fff;
-  border-bottom: 1rpx solid  #3e3e3e;
-  border-left: 1rpx solid #3e3e3e;
-  border-right: 1rpx solid #3e3e3e;
-}
-
-.success{
-margin-top:30rpx;
-height: 70rpx;
-width: 100%;
-margin-left: 10px;
-margin-right: 10px;
-text-align: center;
-background-color: #fff;
-border: 1rpx solid #939393;
-}
-.suc-text{
-  color: #000;
-  font-size: 30rpx;
-}
-
-.suc-item{
-  width: 93%;
-  height: 120rpx;
-  margin-left: 10px;
-  margin-right: 10px;
-  background-color: #fff;
-  border-bottom: 1rpx solid  #939393;
-  border-left: 1rpx solid #939393;
-  border-right: 1rpx solid #939393;
-}
-
-.task-state{
-position: absolute;
-margin-top:10px;
-left: 20px;
-font-size:12px;
-color: #259b24;
+.detail-btn:active{
+  color: #333;
+  transform: scale(1.2,1.2);
 }

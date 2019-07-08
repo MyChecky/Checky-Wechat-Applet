@@ -1,0 +1,13 @@
+<!--pages/tab/tasks/checky/checky.wxml-->
+<view class='form-view'>
+  <view class='container-view'>
+    <view class='title'>描述</view>
+    <view class='content-view'>{{content}}</view>
+  </view>
+  <view class='container-view'>
+    <view class='title'>附件</view>
+    <view class='image-view'>
+      <image class='img' wx:for="{{imgae}}" wx:if="{{item.URL!=''}}" src='{{item.URL}}' mode='aspectFit'></image>
+    </view>
+  </view>
+</view>
