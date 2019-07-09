@@ -6,6 +6,8 @@ Page({
   data: {
     userInfo: {},
     date: "",
+    chooseDate: "",
+    nowDate: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     winWidth: 0,
@@ -21,7 +23,7 @@ Page({
         month: 'current',
         day: new Date().getDate(),
         color: 'white',
-        background: '#3e3e3e'
+        background: '#333'
       }
     ],
     isHid: false,
@@ -96,21 +98,28 @@ Page({
     })
   },
   onLoad: function() {
-  },
-  onShow: function(){
-    this.requestList()
-  },
-  requestList: function(){
-    var that = this
+    var t = new Date()
     this.setData({
-      date: app.globalData.date,
+      nowDate: t,
+      chooseDate: app.globalData.date,
+      date: app.globalData.date
     })
+  },
+  onShow: function() {
+    this.requestCheckList(this.data.chooseDate)
+    this.requestSupList(this.data.date)
+  },
+  // 请求列表
+  // 打卡
+  requestCheckList: function(chooseDate) {
+    console.log(chooseDate)
+    var that = this
     wx.request({
       url: app.globalData.base + ":" + app.globalData.port + '/check/listDayCheck',
       method: 'POST',
       data: {
         "userId": app.globalData.openId,
-        "date": app.globalData.date
+        "date": chooseDate
       },
       success(res) {
         console.log(res.data)
@@ -123,21 +132,89 @@ Page({
       }
     })
   },
-  //给点击的日期设置一个背景颜色
+  // 监督
+  requestSupList: function(chooseDate) {
+    console.log(chooseDate)
+    var that = this
+    wx.request({
+      url: app.globalData.base + ":" + app.globalData.port + '',
+      method: 'POST',
+      data: {
+        "userId": app.globalData.openId,
+        "date": chooseDate
+      },
+      success(res) {
+        console.log(res.data)
+        that.setData({
+          toSupvise: res.data.toSupvise
+        })
+      }
+    })
+  },
+  // 点击日期
   dayClick: function(event) {
     let clickDay = event.detail.day
-    console.log(clickDay)
+    console.log(event.detail)
+    // 给点击的日期设置一个背景颜色
     let changeDay = `dayStyle[1].day`
     let changeBg = `dayStyle[1].background`
     this.setData({
       [changeDay]: clickDay,
       [changeBg]: "#333"
     })
-    // wx.request({
-    //   url: '',
-    //   data:{
-    //   }
-    // })
+    // 请求点击的日期的数据
+    var year = event.detail.year + ''
+    var month = event.detail.month + ''
+    var day = event.detail.day + ''
+    var that = this
+    this.setData({
+      chooseDate: year + '-' + month + '-' + day
+    })
+    this.requestCheckList(this.data.chooseDate)
+  },
+  // 月份跳转
+  prev: function(event) {
+    console.log(event.detail)
+    var month = this.data.nowDate.getMonth()+1
+    var year = this.data.nowDate.getFullYear()
+    if (event.detail.currentMonth == month && event.detail.currentYear == year) {
+      this.dayClickStyle(this.data.nowDate.getDate())
+    }
+    else {
+      this.dayClickStyle(0)
+    }
+  },
+  next: function(event) {
+    console.log(event.detail)
+    var month = this.data.nowDate.getMonth()+1
+    var year = this.data.nowDate.getFullYear()
+    if (event.detail.currentMonth == month && event.detail.currentYear == year) {
+      this.dayClickStyle(this.data.nowDate.getDate())
+    }
+    else {
+      this.dayClickStyle(0)
+    }
+  },
+  dateChange: function(event) {
+    console.log(event.detail)
+    var month = this.data.nowDate.getMonth()+1
+    var year = this.data.nowDate.getFullYear()
+    if (event.detail.month == month && event.detail.year == year) {
+      this.dayClickStyle(this.data.nowDate.getDate())
+    }
+    else {
+      this.dayClickStyle(0)
+    }
+  },
+  // 样式修改
+  dayClickStyle: function(day) {
+    // 给点击的日期设置一个背景颜色
+    let changeDay0 = `dayStyle[0].day`
+    let changeDay1 = `dayStyle[1].day`
+    this.setData({
+      [changeDay0]: day,
+      [changeDay1]: day
+    })
   },
   /** 
    * 滑动切换tab 

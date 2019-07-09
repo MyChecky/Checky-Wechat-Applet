@@ -46,14 +46,14 @@ swiper-item {
   width: 30px;
   height: 30px;
   font-size: 26px;
-  color: #e80315;
+  color: #e83015;
   background-color: white;
 }
 
 .calendar {
   background-color: white; /*背景色为白色*/
   padding-top: 10px; /*上内边距为10px*/
-  color: #e80315;
+  color: #e83015;
 }
 
 .calendar-header {
@@ -84,7 +84,7 @@ swiper-item {
 }
 
 .off {
-  color: #e80315;
+  color: #e83015;
 }
 
 .onCal {
@@ -103,11 +103,11 @@ swiper-item {
   max-height: 0px;
 }
 .onTab{
-  color: #e80315;
+  color: #e83015;
 }
 .onTab::after{
   content: "";
-  background-color: #e80315;
+  background-color: #e83015;
   width: 5px;
   top: 0px;
   left: 0px;
@@ -159,8 +159,8 @@ swiper-item {
   margin-left: 10px;
 }
 .toCheck{
-  /* background-color: #e80315; */
-  color: #e80315;
+  /* background-color: #e83015; */
+  color: #e83015;
 }
 .checked{
   /* background-color: #5eb1f5; */

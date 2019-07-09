@@ -1,7 +1,7 @@
 /* pages/tab/tasks/checky/checky.wxss */
 
 .title {
-  color: #e80315;
+  color: #e83015;
   font-size: 20px;
   padding: 2px 5px;
   margin: 10px 0px;
@@ -55,7 +55,7 @@
 }
 
 .pass {
-  background-color: #e80315;
+  background-color: #e83015;
   color: #fff;
 }
 

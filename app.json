@@ -1,11 +1,10 @@
 {
   "pages": [
-    
+    "pages/index/index",
+    "pages/tab/personal/personal",
     "pages/tab/tasks/tasks",
     "pages/tab/tasks/superiseDetail/superisetaskDetail",
-    "pages/index/index",
     "pages/tab/essays/essays",
-    "pages/tab/personal/personal",
     "pages/tab/tasks/newtask/newtask",
     "pages/tab/tasks/type/type",
     "pages/tab/tasks/upload/upload",

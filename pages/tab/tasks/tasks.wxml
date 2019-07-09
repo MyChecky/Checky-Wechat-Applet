@@ -16,7 +16,7 @@
       </view>
       <!--日历-->
       <view class="hiddenCal {{!isHid?'onCal':'offCal'}}">
-        <calendar calendar-style="calendar" header-style="calendar-header" board-style="calendar-board" days-color="{{dayStyle}}" weeks-type="cn" binddayClick="dayClick" />
+        <calendar calendar-style="calendar" header-style="calendar-header" board-style="calendar-board" days-color="{{dayStyle}}" weeks-type="cn" binddayClick="dayClick" bindprevMonth="prev" bindnextMonth="next" binddateChange="dateChange"/>
       </view>
     </view>
     <!--分类 -->
