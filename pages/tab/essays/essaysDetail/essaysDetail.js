@@ -1,44 +1,17 @@
-// pages/tab/essays/essays.js
-var util = require("../../../utils/util.js")
 Page({
 
+  /**
+   * 页面的初始数据
+   */
   data: {
-    isLike: false,
-    isComment:false,
 
-    essays: [{
-      userId: "用户123",
-      essaysText: "背单词好快乐",
-      essayTime: "7月2日 13:45"
-    },
-    {
-      userId: "用户231",
-      essaysText: "背单词好痛苦,我今天花了10个小时背单词，头都大了，测试一下",
-      essayTime: "7月3日 13:45"
-    }
-    ],
   },
 
-  isLike: function () {
-    this.setData({
-      isLike: !this.data.isLike,
-    })
-  },
-
-  isComment: function () {
-    this.setData({
-      isComment: !this.data.isComment,
-    })
-  },
-
-  essaysClick: function () {
-    wx.navigateTo({
-      url: './essaysDetail/essaysDetail',
-    })
-  },
-
+  /**
+   * 生命周期函数--监听页面加载
+   */
   onLoad: function (options) {
-    
+
   },
 
   /**
