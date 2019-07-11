@@ -18,7 +18,7 @@
       </view>
       <view wx:if="{{supState=='待认证'}}" class='operation item mark'>{{numOfSuped}}/{{numOfSup}}</view>
       <view wx:else class='operation item'>
-        <button class='appeal'>申诉</button>
+        <button class='appeal' bindtap='appeal'>申诉</button>
       </view>
     </view>
   </view>

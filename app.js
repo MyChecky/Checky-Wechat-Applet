@@ -82,11 +82,11 @@ App({
   globalData: {
     code:null,
     userInfo: null,
-    base: "http://192.168.1.100",
+    base: "http://192.168.1.105",
     port: "8080",
     curPages: null,
     location:{},
-    openId:"oM2yQ4jR0La_jZ8hyxkERsqNTh_8",
+    openId:"",
     types: [],
     date: util.formatTime(new Date())
   }

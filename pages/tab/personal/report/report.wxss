@@ -1,0 +1,6 @@
+/* pages/tab/personal/report/report.wxss */
+@import "../list.wxss";
+
+.content{
+  max-width: 200px;
+}

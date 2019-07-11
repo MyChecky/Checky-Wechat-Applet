@@ -1,0 +1,11 @@
+<!--pages/tab/personal/appealreport/appealreport.wxml-->
+<import src="../list.wxml"/>
+
+<view class='from-view'>
+  <view class='container-view'>
+    <view class='title'>
+      <icon class='icon fa {{icon}}'></icon>{{title}}
+    </view>
+    <template wx:for="{{reportList}}" is="list-trace-item" data="{{item}}"/>
+  </view>
+</view>

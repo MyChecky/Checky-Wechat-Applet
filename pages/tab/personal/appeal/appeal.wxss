@@ -1,0 +1,15 @@
+/* pages/tab/personal/appealreport/appealreport.wxss */
+@import "../list.wxss";
+
+.content{
+  max-width: 200px;
+}
+.result{
+  color: #e83015;
+  font-size: 16px;
+}
+.state{
+  color: #666;
+  margin-left: 10px;
+  font-size: 16px;
+}

@@ -7,43 +7,13 @@
     </view>
   </view>
   <view class='function-view'>
-    <view class='inner-view'>
-      <view class='function-item'>
-        <view class='icon fa fa-fw fa-address-book-o'></view>
-        <view class='text'>好友</view>
+    <view class='inner-view' wx:for="{{itemList}}">
+      <block  wx:for="{{item.subItemList}}">
+      <view class='function-item' data-url='{{item.url}}' data-param='{{item.param}}' bindtap='jumpTo'>
+        <view class='icon fa fa-fw {{item.icon}}' data-url='{{item.url}}' data-param='{{item.param}}'></view>
+        <view class='text' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.name}}</view>
       </view>
-      <view class='function-item'>
-        <view class='icon fa fa-fw fa-globe'></view>
-        <view class='text'>动态</view>
-      </view>
-    </view>
-    <view class='inner-view'>
-      <view class='function-item'>
-        <view class='icon fa fa-fw fa-rmb'></view>
-        <view class='text'>资金记录</view>
-      </view>
-      <view class='function-item'>
-        <view class='icon fa fa-fw fa-history'></view>
-        <view class='text'>历史记录</view>
-      </view>
-    </view>
-    <view class='inner-view'>
-      <view class='function-item'>
-        <view class='icon fa fa-fw fa-cog'></view>
-        <view class='text'>设置</view>
-      </view>
-      <view class='function-item'>
-        <view class='icon fa fa-fw fa-pencil-square-o'></view>
-        <view class='text'>反馈</view>
-      </view>
-      <view class='function-item'>
-        <view class='icon fa fa-fw fa-hand-paper-o'></view>
-        <view class='text'>申诉</view>
-      </view>
-      <view class='function-item'>
-        <view class='icon fa fa-fw fa-exclamation-circle'></view>
-        <view class='text'>举报</view>
-      </view>
+      </block>
     </view>
   </view>
 </view>

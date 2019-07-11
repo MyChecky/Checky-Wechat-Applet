@@ -1,0 +1,90 @@
+<!-- 人像列表项 -->
+<template name="list-ava-item">
+  <view class='item-view'>
+    <view class='head-view'>
+      <image class='imgae-view' src='{{item.avatarUrl}}' mode='cover'></image>
+    </view>
+    <view class='content-view'>
+      <view class='content'>{{item.content}}</view>
+      <view class='info-view'>
+        <view class='subContent'>{{item.subContent}}</view>
+        <view class='date'>{{item.date}}</view>
+      </view>
+    </view>
+    <view class='operation-view'>
+      <button class='op-button fa fa-chevron-right'>{{item.operation}}</button>
+    </view>
+  </view>
+</template>
+<!-- 文本列表项 -->
+<template name="list-content-item">
+  <view class='item-view'>
+    <view class='head-view'>
+      <image class='imgae-view' src='{{item.avatarUrl}}' mode='cover'></image>
+    </view>
+    <view class='content-view'>
+      <view class='content'>{{item.content}}</view>
+      <view class='info-view'>
+        <view class='subContent'>{{item.subContent}}</view>
+        <view class='date'>{{item.date}}</view>
+      </view>
+    </view>
+    <view class='operation-view'>
+      <button class='op-button fa fa-chevron-right'>{{item.operation}}</button>
+    </view>
+  </view>
+</template>
+<!-- 图片列表项 -->
+<template name="list-pic-item">
+  <view class='item-view'>
+    <view class='head-view'>
+      <image class='pics-view' src='{{item.imageList[0]}}' mode='cover'></image>
+    </view>
+    <view class='content-view'>
+      <view class='content'>{{item.content}}</view>
+      <view class='info-view' style='justify-content: flex-start;'>
+        <icon class='like fa fa-heart'>{{item.likes}}</icon>
+        <icon class='comment fa fa-commenting'>{{item.comments}}</icon>
+        <view class='date'>{{item.date}}</view>
+      </view>
+    </view>
+    <view class='operation-view'>
+      <button class='op-button fa fa-chevron-right'></button>
+    </view>
+  </view>
+</template>
+<!-- 数值列表项 -->
+<template name="list-num-item">
+  <view class='item-view'>
+    <view class='head-view'>
+      <icon class='direction fa {{item.direction=="in"?"fa-plus":"fa-minus"}} {{item.direction}}'></icon>
+    </view>
+    <view class='content-view'>
+      <view class='content {{item.direction}}'>
+        <icon class='rmb fa fa-rmb'></icon>{{item.value}}</view>
+      <view class='date'>{{item.date}}</view>
+    </view>
+  </view>
+</template>
+<!-- 进度跟踪列表项 -->
+<template name="list-trace-item">
+
+  <view class='item-view' style='flex-direction: column;'>
+    <view class='content-view'>
+      <view class='info-view'>
+        <view class='content'>{{item.content}}</view>
+        <view class='date'>{{item.date}}</view>
+      </view>
+    </view>
+    <view class='info-view'>
+      <view class='state'>
+        <view class='type' wx:if='{{item.type!=undefine}}'>举报对象：{{item.type}}</view>
+        {{item.state}}
+      </view>
+      <view class='result-view'>
+        <view class='result'>{{item.result}}</view>
+        <view class='date'>{{item.processDate}}</view>
+      </view>
+    </view>
+  </view>
+</template>

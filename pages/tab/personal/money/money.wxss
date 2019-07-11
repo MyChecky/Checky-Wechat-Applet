@@ -1,0 +1,24 @@
+/* pages/tab/personal/money/money.wxss */
+@import "../list.wxss";
+
+.direction {
+  padding: 20px 40px 10px 20px;
+}
+
+.in {
+  color: #e83015;
+}
+
+.out {
+  color: #333;
+}
+
+.content{
+  font-size: 30px;
+}
+.date{
+  margin: 5px 0px;
+}
+.rmb{
+  font-size: 20px;
+}
