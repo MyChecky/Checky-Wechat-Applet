@@ -1,4 +1,4 @@
-// pages/tab/personal/personal.js
+// pages/tab/tasks/checky/checky.js
 const app = getApp()
 Page({
 
@@ -6,15 +6,41 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: ''
+    checkId:"",
+    taskId:"",
+    image:[],
+    content:"",
+    state:"",
+    lastPageFlag: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
+    if(options.lastPage=='taskDetail')
+      this.setData({lastPageFlag: false})
     this.setData({
-      userInfo: app.globalData.userInfo
+      taskId: options.taskId,
+      checkId: options.checkId
+    })
+    var that = this
+    wx.request({
+      url: app.globalData.base + ":" + app.globalData.port + '',
+      data:{
+        taskId: this.data.taskId,
+        checkId: this.data.checkId,
+        userId: app.globalData.openId
+      },
+      success(res){
+        console.log(res)
+        that.setData({
+          image: res.data.image,
+          content: res.data.content,
+          state: res.data.state
+        })
+      }
     })
   },
 

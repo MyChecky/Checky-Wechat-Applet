@@ -1,7 +1,7 @@
 /* pages/tab/tasks/taskDetail/taskDetail.wxss */
 .title-view{
   color: #e83015;
-  font-size: 22px;
+  font-size: 20px;
   padding: 2px 5px;
   margin: 10px 0px;
 }
@@ -22,6 +22,25 @@
 }
 .item{
   margin-right: 10px;
+}
+.detail-btn{
+  font-size: 30px;
+  color: #666;
+  background-color: transparent;
+  transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.appeal{
+  background-color: #333;
+  font-size:16px;
+  color:#fff;
+  height:30px;
+  width:50px;
+  line-height:30px;
+  border-radius: 15px;
+}
+.detail-btn:active{
+  color: #333;
+  transform: scale(1.2,1.2);
 }
 .notice{
   background-color: #333;

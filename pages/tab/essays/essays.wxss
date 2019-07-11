@@ -1,12 +1,32 @@
 /* pages/tab/essays/essays.wxss */
 .essays{
-  margin-top: 10px;
+  margin-top: 5px;
   padding: 5px;
   background-color: #f3f5f5;
+}
+.essays-new{
+  height: 30px;
+  width: 100%;
+  background-color: #fff;
+  font-size: 16px;
+  display: table;
+  border-radius: 30px;
+}
+.essays-new text {
+  vertical-align:middle;
+}
+
+.fa-plus{
+  margin-right: 4px;
+  margin-bottom: 6px;
+  color: #e80315;
+  font-size: 18px;
+  vertical-align:middle;
 }
 
 .essays-item{
   padding: 5px 10px 5px 10px;
+  margin-top: 5px;
   height: 120px;
   background-color: #fff;
   display:  flex;
@@ -17,15 +37,18 @@
 }
 
 .essays-pic{
-  padding: 8px 8px 8px 8px;
-  height: 84px;
-  width: 84px;
-  background-color: #6f5445
+  height: 100px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  background-color: #6f5445;
 }
+
 .essays-right{
-  padding: 20px 10px 20px 10px;
+  padding: 20px 0px 20px 10px;
+  margin-top: 10px;
   height: 100%;
-  width: 60%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-content:flex-start;
@@ -38,11 +61,13 @@
   height: 100px;
   width: 100%;
   margin-top: 10px;
+  margin-bottom:10px;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
   font-size: 14px;
 }
+
 
 .essays-data{
   display: flex;
@@ -63,9 +88,17 @@
   font-size: 20px;
 }
 
+.like-sum{
+  font-size:12px;
+  color: #868686;
+  height: 20px;
+  margin-top: 4px;
+  margin-left: 2px;
+  margin-right: 5px;
+}
+
 .btn{
   color:#e80315;
-  margin-right: 5px;
   background-color: white;
 }
 

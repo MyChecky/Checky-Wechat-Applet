@@ -1,0 +1,23 @@
+<!--pages/tab/tasks/checky/checky.wxml-->
+<view class='form-view'>
+  <view class='container-view'>
+    <view class='title'>描述</view>
+    <view class='content-view'>{{content}}</view>
+  </view>
+  <view class='container-view'>
+    <view class='title'>附件</view>
+    <view class='image-view'>
+      <image class='img' wx:for="{{imgae}}" wx:if="{{item.URL!=''}}" src='{{item.URL}}' mode='aspectFit'></image>
+    </view>
+  </view>
+  <view wx:if="{{lastPageFlag}}" class='button-view'>
+    <button class='sup-button pass'>
+      <view class='icon fa fa-check-circle-o fw'></view>
+      <view>通过</view>
+    </button>
+    <button class='sup-button fail'>
+      <view class='icon fa fa-times-circle-o fw'></view>
+      <view>不通过</view>
+    </button>
+  </view>
+</view>

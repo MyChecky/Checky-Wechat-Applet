@@ -1,2 +1,49 @@
 <!--pages/tab/personal/personal.wxml-->
-<text>pages/tab/personal/personal.wxml</text>
+<view class='form-view'>
+  <view class='header-view'>
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    <view>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </view>
+  </view>
+  <view class='function-view'>
+    <view class='inner-view'>
+      <view class='function-item'>
+        <view class='icon fa fa-fw fa-address-book-o'></view>
+        <view class='text'>好友</view>
+      </view>
+      <view class='function-item'>
+        <view class='icon fa fa-fw fa-globe'></view>
+        <view class='text'>动态</view>
+      </view>
+    </view>
+    <view class='inner-view'>
+      <view class='function-item'>
+        <view class='icon fa fa-fw fa-rmb'></view>
+        <view class='text'>资金记录</view>
+      </view>
+      <view class='function-item'>
+        <view class='icon fa fa-fw fa-history'></view>
+        <view class='text'>历史记录</view>
+      </view>
+    </view>
+    <view class='inner-view'>
+      <view class='function-item'>
+        <view class='icon fa fa-fw fa-cog'></view>
+        <view class='text'>设置</view>
+      </view>
+      <view class='function-item'>
+        <view class='icon fa fa-fw fa-pencil-square-o'></view>
+        <view class='text'>反馈</view>
+      </view>
+      <view class='function-item'>
+        <view class='icon fa fa-fw fa-hand-paper-o'></view>
+        <view class='text'>申诉</view>
+      </view>
+      <view class='function-item'>
+        <view class='icon fa fa-fw fa-exclamation-circle'></view>
+        <view class='text'>举报</view>
+      </view>
+    </view>
+  </view>
+</view>

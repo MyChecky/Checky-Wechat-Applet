@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    checkId:"",
     currentLength: 0,
     currentNum: 0,
     image: [
@@ -22,7 +23,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // 如果已经上传
+    if (options.checkId!=""){
+      console.log(options)
+      this.setData({
+        checkId: options.checkId
+      })
+      
+    }
   },
 
   /**
@@ -73,6 +81,7 @@ Page({
   onShareAppMessage: function () {
 
   },
+  // 文本长度监督
   lengthChange: function (e) {
     var length = e.detail.value.length
     var text = e.detail.value
@@ -108,6 +117,7 @@ Page({
       complete: function(res) {},
     })
   },
+  // 取消上传图片
   cancel: function(e){
     var n = this.data.index-1
     var p = e.target.dataset.index
@@ -126,10 +136,9 @@ Page({
       currentNum: n
     })
   },
+  // 提交
   submit: function(){
     var that = this
-    
-
     // 文本上传
     wx.request({
       url: app.globalData.base + ":" + app.globalData.port + '/check/addCheck',
@@ -145,6 +154,10 @@ Page({
       success(res){
         console.log(res)
         var checkId = res.data.checkId
+        var done = 0
+        that.setData({
+          checkId: checkId
+        })
         // 附件上传
         for (var i = 0; i < that.data.index; i++) {
           console.log(that.data.image[i].URL)
@@ -162,21 +175,35 @@ Page({
             },
             success(res) {
               console.log(res)
+              done++
             },
             fail(err) {
               console.log(err)
               wx.showToast({
-                title: '上传图片' + i + '失败！',
+                title: '上传图片' + done + '失败！',
               })
+              done++
             }
           })
         }
+        that.back()
       },
       fail(err){
         console.log(err)
         wx.showToast({
           title: '打卡失败',
         })
+      }
+    })
+  },
+  back: function(){
+    var arr = getCurrentPages()
+    arr[arr.length-2].setData({
+      checkId: this.data.checkId
+    })
+    wx.navigateBack({
+      delta: 2,
+      success: function (res) {
       }
     })
   }

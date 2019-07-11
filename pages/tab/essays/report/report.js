@@ -1,21 +1,16 @@
-// pages/tab/personal/personal.js
-const app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    userInfo: ''
+    essReason:[
+      "垃圾营销","涉黄信息","人身攻击","不实信息","有害信息","内容抄袭","违法信息","诈骗信息"],
+    userId:["陆老板"],
+    essaysText:["今天也是努力生活的一天呢哈哈哈哈哈哈哈哈哈哈哈哈"]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      userInfo: app.globalData.userInfo
-    })
+
   },
 
   /**

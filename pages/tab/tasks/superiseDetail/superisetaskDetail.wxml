@@ -1,2 +1,44 @@
 <!--pages/tab/tasks/superiseDetail/superisetaskDetail.wxml-->
-<text>pages/tab/tasks/superiseDetail/superisetaskDetail.wxml</text>
+<!--pages/tab/tasks/taskDetail/taskDetail.wxml-->
+<view class='form-view'>
+  <view class='container-view'>
+    <view class='title-view'>打卡状态</view>
+    <view class='item-view'>
+      <view class='inner-item-view'>
+        <view class='tag item'>打卡证明:</view>
+        <view class='state item'>{{taskState}}</view>
+      </view>
+      <view class='operation item' bindtap='superise'>
+        <button class='detail-btn fa fa-angle-right'></button>
+      </view>
+    </view>
+    <view class='item-view'>
+      <view class='inner-item-view'>
+        <view class='tag item'>认证状态:</view>
+        <view class='state item'>{{supState}}</view>
+      </view>
+      <view class='operation item mark'>{{numOfSuped}}/{{numOfSup}}</view>
+    </view>
+  </view>
+  <view class='container-view'>
+    <view class='title-view'>监督状态</view>
+    <view class='item-view' wx:for="{{supList}}">
+      <view class='inner-item-view'>
+        <view class='tag item'>{{item.supName}}</view>
+        <view class="state item {{item.supState=='fail'?'fail':''}} {{item.supState=='pass'?'pass':''}}">{{item.content}}</view>
+      </view>
+      <view class='operation item' bindtap='upload'>
+      </view>
+    </view>
+  </view>
+  <view class='container-view'>
+    <view class='title-view'>其他信息</view>
+    <view class='item-view' wx:for="{{info}}">
+      <view class='inner-item-view'>
+        <view class='tag item'>{{item.name}}</view>
+        <view class="state item">{{item.value}}</view>
+      </view>
+      <view class='operation item' bindtap='upload'></view>
+    </view>
+  </view>
+</view>

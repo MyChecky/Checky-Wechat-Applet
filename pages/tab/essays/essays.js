@@ -9,12 +9,15 @@ Page({
     essays: [{
       userId: "用户123",
       essaysText: "背单词好快乐",
-      essayTime: "7月2日 13:45"
+      essayTime: "7月2日 13:45",
+      likeSum:"20",
+      essayPic:"image/pic.jpg"
     },
     {
       userId: "用户231",
       essaysText: "背单词好痛苦,我今天花了10个小时背单词，头都大了，测试一下",
-      essayTime: "7月3日 13:45"
+      essayTime: "7月3日 13:45",
+      likeSum:"12"
     }
     ],
   },
@@ -29,13 +32,23 @@ Page({
     this.setData({
       isComment: !this.data.isComment,
     })
+    wx.navigateTo({
+      url: './essaysDetail/essaysDetail',
+    })
   },
-
+  //查看打卡详情
   essaysClick: function () {
     wx.navigateTo({
       url: './essaysDetail/essaysDetail',
     })
   },
+//创建打卡
+  essaysNew:function(){
+    wx.navigateTo({
+      url: './essaysNew/essaysNew',
+    })
+  },
+
 
   onLoad: function (options) {
     
