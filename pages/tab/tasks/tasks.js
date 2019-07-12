@@ -28,57 +28,13 @@ Page({
     ],
     isHid: false,
     selectedItem: [false, false, false, false],
-    unknown: [{
-        taskId: "123",
-        checkId: '123',
-        taskTitle: "背单词计划",
-        taskContent: "每天背40个加油！"
-      },
-      {
-        taskId: "321",
-        checkId: '123',
-        taskTitle: "背单词计划",
-        taskContent: "每天背50个加油！长文本测试啊啊啊啊啊啊啊啊啊啊啊啊啊"
-      }
+    unknown: [
     ],
-    checked: [{
-        taskId: "123",
-        checkId: '123',
-        taskTitle: "背单词计划",
-        taskContent: "每天背40个加油！"
-      },
-      {
-        taskId: "321",
-        checkId: '123',
-        taskTitle: "背单词计划",
-        taskContent: "每天背50个加油！长文本测试啊啊啊啊啊啊啊啊啊啊啊啊啊"
-      }
+    checked: [
     ],
-    toCheck: [{
-        taskId: "123",
-        taskTitle: "背单词计划",
-        taskContent: "每天背40个加油！"
-      },
-      {
-        taskId: "321",
-        taskTitle: "背单词计划",
-        taskContent: "每天背50个加油！长文本测试啊啊啊啊啊啊啊啊啊啊啊啊啊"
-      }
+    toCheck: [
     ],
-    toSupvise: [{
-        taskTitle: '背单词',
-        taskContent: "每天背50个加油！长文本测试啊啊啊啊啊啊啊啊啊啊啊啊啊",
-        date: '2019-07-02',
-        checkId: '123',
-        taskId: '123'
-      },
-      {
-        taskTitle: '健身',
-        taskContent: "每天背50个加油！长文本测试啊啊啊啊啊啊啊啊啊啊啊啊啊",
-        date: '2019-07-01',
-        checkId: '321',
-        taskId: '321'
-      }
+    toSupvise: [
     ]
   },
 

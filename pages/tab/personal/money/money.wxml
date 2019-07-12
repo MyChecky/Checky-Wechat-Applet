@@ -1,0 +1,11 @@
+<!--pages/tab/personal/money/money.wxml-->
+<import src="../list.wxml" />
+
+<view class='from-view'>
+  <view class='container-view'>
+    <view class='title'>
+      <icon class='icon fa {{icon}}'></icon>{{title}}
+    </view>
+    <template wx:for="{{moneyList}}" is="list-num-item" data="{{item}}"/>
+  </view>
+</view>

@@ -1,0 +1,2 @@
+/* pages/tab/personal/essay/essay.wxss */
+@import "../list.wxss"
