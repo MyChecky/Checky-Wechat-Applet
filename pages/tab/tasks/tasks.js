@@ -106,6 +106,7 @@ Page({
         })
       }
     })
+    this.requestCheckList(this.data.chooseDate)
   },
   // 点击日期
   dayClick: function(event) {
@@ -139,6 +140,27 @@ Page({
     else {
       this.dayClickStyle(0)
     }
+  },
+  dateChange: function (event) {
+    console.log(event.detail)
+    var month = this.data.nowDate.getMonth() + 1
+    var year = this.data.nowDate.getFullYear()
+    if (event.detail.month == month && event.detail.year == year) {
+      this.dayClickStyle(this.data.nowDate.getDate())
+    }
+    else {
+      this.dayClickStyle(0)
+    }
+  },
+  // 样式修改
+  dayClickStyle: function (day) {
+    // 给点击的日期设置一个背景颜色
+    let changeDay0 = `dayStyle[0].day`
+    let changeDay1 = `dayStyle[1].day`
+    this.setData({
+      [changeDay0]: day,
+      [changeDay1]: day
+    })
   },
   next: function(event) {
     console.log(event.detail)
