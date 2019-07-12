@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/tab/essays/report/report",
     "pages/index/index",
     "pages/tab/personal/personal",
     "pages/tab/tasks/tasks",
@@ -9,8 +10,9 @@
     "pages/tab/tasks/type/type",
     "pages/tab/tasks/upload/upload",
     "pages/tab/tasks/taskDetail/taskDetail",
-    "pages/tab/tasks/checky/checky"
-    
+    "pages/tab/tasks/checky/checky",
+    "pages/tab/essays/essaysDetail/essaysDetail",
+    "pages/tab/essays/essaysNew/essaysNew"
   ],
   "window": {
     "backgroundTextStyle": "light",
