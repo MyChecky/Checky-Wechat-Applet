@@ -14,75 +14,75 @@ Page({
     winHeight: 0,
     currentTab: 0,
     dayStyle: [{
-      month: 'current',
-      day: new Date().getDate(),
-      color: 'white',
-      background: '#e83015'
-    },
-    {
-      month: 'current',
-      day: new Date().getDate(),
-      color: 'white',
-      background: '#333'
-    }
+        month: 'current',
+        day: new Date().getDate(),
+        color: 'white',
+        background: '#e83015'
+      },
+      {
+        month: 'current',
+        day: new Date().getDate(),
+        color: 'white',
+        background: '#333'
+      }
     ],
     isHid: false,
     selectedItem: [false, false, false, false],
     unknown: [{
-      taskId: "123",
-      checkId: '123',
-      taskTitle: "背单词计划",
-      taskContent: "每天背40个加油！"
-    },
-    {
-      taskId: "321",
-      checkId: '123',
-      taskTitle: "背单词计划",
-      taskContent: "每天背50个加油！长文本测试啊啊啊啊啊啊啊啊啊啊啊啊啊"
-    }
+        taskId: "123",
+        checkId: '123',
+        taskTitle: "背单词计划",
+        taskContent: "每天背40个加油！"
+      },
+      {
+        taskId: "321",
+        checkId: '123',
+        taskTitle: "背单词计划",
+        taskContent: "每天背50个加油！长文本测试啊啊啊啊啊啊啊啊啊啊啊啊啊"
+      }
     ],
     checked: [{
-      taskId: "123",
-      checkId: '123',
-      taskTitle: "背单词计划",
-      taskContent: "每天背40个加油！"
-    },
-    {
-      taskId: "321",
-      checkId: '123',
-      taskTitle: "背单词计划",
-      taskContent: "每天背50个加油！长文本测试啊啊啊啊啊啊啊啊啊啊啊啊啊"
-    }
+        taskId: "123",
+        checkId: '123',
+        taskTitle: "背单词计划",
+        taskContent: "每天背40个加油！"
+      },
+      {
+        taskId: "321",
+        checkId: '123',
+        taskTitle: "背单词计划",
+        taskContent: "每天背50个加油！长文本测试啊啊啊啊啊啊啊啊啊啊啊啊啊"
+      }
     ],
     toCheck: [{
-      taskId: "123",
-      taskTitle: "背单词计划",
-      taskContent: "每天背40个加油！"
-    },
-    {
-      taskId: "321",
-      taskTitle: "背单词计划",
-      taskContent: "每天背50个加油！长文本测试啊啊啊啊啊啊啊啊啊啊啊啊啊"
-    }
+        taskId: "123",
+        taskTitle: "背单词计划",
+        taskContent: "每天背40个加油！"
+      },
+      {
+        taskId: "321",
+        taskTitle: "背单词计划",
+        taskContent: "每天背50个加油！长文本测试啊啊啊啊啊啊啊啊啊啊啊啊啊"
+      }
     ],
     toSupvise: [{
-      taskTitle: '背单词',
-      taskContent: "每天背50个加油！长文本测试啊啊啊啊啊啊啊啊啊啊啊啊啊",
-      date: '2019-07-02',
-      checkId: '123',
-      taskId: '123'
-    },
-    {
-      taskTitle: '健身',
-      taskContent: "每天背50个加油！长文本测试啊啊啊啊啊啊啊啊啊啊啊啊啊",
-      date: '2019-07-01',
-      checkId: '321',
-      taskId: '321'
-    }
+        taskTitle: '背单词',
+        taskContent: "每天背50个加油！长文本测试啊啊啊啊啊啊啊啊啊啊啊啊啊",
+        date: '2019-07-02',
+        checkId: '123',
+        taskId: '123'
+      },
+      {
+        taskTitle: '健身',
+        taskContent: "每天背50个加油！长文本测试啊啊啊啊啊啊啊啊啊啊啊啊啊",
+        date: '2019-07-01',
+        checkId: '321',
+        taskId: '321'
+      }
     ]
   },
 
-  hidCal: function () {
+  hidCal: function() {
     this.setData({
       isHid: !this.data.isHid,
     })
@@ -90,14 +90,14 @@ Page({
 
   //item展开
   // 展开折叠选择  
-  changeToggle: function (e) {
+  changeToggle: function(e) {
     var index = e.currentTarget.dataset.index
     this.data.selectedItem[index] = !this.data.selectedItem[index]
     this.setData({
       selectedItem: this.data.selectedItem
     })
   },
-  onLoad: function () {
+  onLoad: function() {
     var t = new Date()
     this.setData({
       nowDate: t,
@@ -105,13 +105,13 @@ Page({
       date: app.globalData.date
     })
   },
-  onShow: function () {
+  onShow: function() {
     this.requestCheckList(this.data.chooseDate)
     this.requestSupList(this.data.date)
   },
   // 请求列表
   // 打卡
-  requestCheckList: function (chooseDate) {
+  requestCheckList: function(chooseDate) {
     console.log(chooseDate)
     var that = this
     wx.request({
@@ -133,7 +133,7 @@ Page({
     })
   },
   // 监督
-  requestSupList: function (chooseDate) {
+  requestSupList: function(chooseDate) {
     console.log(chooseDate)
     var that = this
     wx.request({
@@ -150,9 +150,10 @@ Page({
         })
       }
     })
+    this.requestCheckList(this.data.chooseDate)
   },
   // 点击日期
-  dayClick: function (event) {
+  dayClick: function(event) {
     let clickDay = event.detail.day
     console.log(event.detail)
     // 给点击的日期设置一个背景颜色
@@ -173,20 +174,9 @@ Page({
     this.requestCheckList(this.data.chooseDate)
   },
   // 月份跳转
-  prev: function (event) {
+  prev: function(event) {
     console.log(event.detail)
-    var month = this.data.nowDate.getMonth() + 1
-    var year = this.data.nowDate.getFullYear()
-    if (event.detail.currentMonth == month && event.detail.currentYear == year) {
-      this.dayClickStyle(this.data.nowDate.getDate())
-    }
-    else {
-      this.dayClickStyle(0)
-    }
-  },
-  next: function (event) {
-    console.log(event.detail)
-    var month = this.data.nowDate.getMonth() + 1
+    var month = this.data.nowDate.getMonth()+1
     var year = this.data.nowDate.getFullYear()
     if (event.detail.currentMonth == month && event.detail.currentYear == year) {
       this.dayClickStyle(this.data.nowDate.getDate())
@@ -216,16 +206,48 @@ Page({
       [changeDay1]: day
     })
   },
+  next: function(event) {
+    console.log(event.detail)
+    var month = this.data.nowDate.getMonth()+1
+    var year = this.data.nowDate.getFullYear()
+    if (event.detail.currentMonth == month && event.detail.currentYear == year) {
+      this.dayClickStyle(this.data.nowDate.getDate())
+    }
+    else {
+      this.dayClickStyle(0)
+    }
+  },
+  dateChange: function(event) {
+    console.log(event.detail)
+    var month = this.data.nowDate.getMonth()+1
+    var year = this.data.nowDate.getFullYear()
+    if (event.detail.month == month && event.detail.year == year) {
+      this.dayClickStyle(this.data.nowDate.getDate())
+    }
+    else {
+      this.dayClickStyle(0)
+    }
+  },
+  // 样式修改
+  dayClickStyle: function(day) {
+    // 给点击的日期设置一个背景颜色
+    let changeDay0 = `dayStyle[0].day`
+    let changeDay1 = `dayStyle[1].day`
+    this.setData({
+      [changeDay0]: day,
+      [changeDay1]: day
+    })
+  },
   /** 
    * 滑动切换tab 
    */
-  bindChange: function (e) {
+  bindChange: function(e) {
     var that = this;
     that.setData({
       currentTab: e.detail.current
     });
   },
-  getUserInfo: function (e) {
+  getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
@@ -234,7 +256,7 @@ Page({
     })
   },
   //顶部切换页面
-  swichNav: function (e) {
+  swichNav: function(e) {
 
     var that = this;
 
@@ -246,21 +268,21 @@ Page({
       })
     }
   },
-  onPageScroll: function (e) { //监听页面滚动
+  onPageScroll: function(e) { //监听页面滚动
     this.setData({
       scrollTop: e.scrollTop
     })
   },
 
   //跳转到新建打卡
-  newTask: function () {
+  newTask: function() {
     wx.navigateTo({
       url: './newtask/newtask',
     })
   },
   // 跳转到打卡详情
   // -已打卡情况
-  detail: function (e) {
+  detail: function(e) {
     var taskId = e.target.dataset.taskid
     var checkId = e.target.dataset.checkid
     wx.navigateTo({
@@ -268,7 +290,7 @@ Page({
     })
   },
   // -未打卡情况
-  toCheck: function (e) {
+  toCheck: function(e) {
     var taskId = e.target.dataset.taskid
     wx.navigateTo({
       url: './taskDetail/taskDetail?taskId=' + taskId,
@@ -276,7 +298,7 @@ Page({
     })
   },
   //跳转到监督详情
-  superise: function (e) {
+  superise: function(e) {
     var taskId = e.target.dataset.taskid
     var checkId = e.target.dataset.checkid
     console.log(taskId)
