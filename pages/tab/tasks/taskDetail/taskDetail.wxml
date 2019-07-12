@@ -1,4 +1,6 @@
 <!--pages/tab/tasks/taskDetail/taskDetail.wxml-->
+<modal id='modal'  modal-title="{{modal.title}}"  modal-hidden="{{modal.isHidden}}" modal-msg="{{modal.message}}"/>
+
 <view class='form-view'>
   <view class='container-view'>
     <view class='title-view'>打卡状态</view>

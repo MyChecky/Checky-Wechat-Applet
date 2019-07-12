@@ -7,6 +7,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    modal:{
+      isHidden: true,
+      message: 'msg',
+      title: '申诉理由'
+    },
     title: "XXX任务",
     checkId: "",
     taskId: "",
@@ -38,8 +43,12 @@ Page({
         "value": "1111111"
       },
       {
-        "name": "时间",
-        "value": "2019-07-01 2019-08-01"
+        "name": "开始时间",
+        "value": "2019-07-01"
+      },
+      {
+        "name": "结束时间",
+        "value": "2019-08-01"
       },
       {
         "name": "押金",
@@ -60,6 +69,10 @@ Page({
     console.log(options)
     if (options.checkId != undefined) {
       this.setData({
+        checkId: options.checkId
+      })
+      var modal = this.selectCompnent('#modal')
+      modal.setData({
         checkId: options.checkId
       })
     }
@@ -151,6 +164,11 @@ Page({
     }
   },
   appeal: function(){
+    var temp = this.data.modal
+    temp.isHidden = false
+    this.setData({
+      modal: temp
+    })
     wx.request({
       url: app.globalData.base+':'+app.globalData.port+'',
       data: {
@@ -159,5 +177,5 @@ Page({
       },
       success(res){}
     })
-  }
+  },
 });
