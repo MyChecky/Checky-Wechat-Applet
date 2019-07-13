@@ -12,7 +12,7 @@ Page({
     date: "2019-07-02",
     title: "XXX任务",
     taskState: "已上传",
-    supState: "未认证",
+    checkState: "待认证",
     numOfSup: 3,
     numOfSuped: 1,
     supList: [

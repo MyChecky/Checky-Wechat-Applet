@@ -32,6 +32,7 @@ Component({
       })
       if(this.data.text!=''){
         wx.request({
+          // url
           url: app.globalData.base+':'+app.globalData.port+'',
           data: {
             content: this.data.text,

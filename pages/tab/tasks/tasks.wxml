@@ -47,7 +47,7 @@
               <view class='taskTitle'>{{item.taskTitle}}</view>
               <view class='taskContent'>{{item.taskContent}}</view>
             </view>
-            <button class='detail-btn fa fa-angle-right' bindtap='detail' mode="top"  data-taskId="{{item.taskId}}" data-checkId='{{item.checkId}}'></button>
+            <button class='detail-btn fa fa-angle-right' bindtap='detail' mode="top"  data-taskId="{{item.taskId}}" data-checkId='{{item.checkId}}' data-checkState='{{item.checkState}}'></button>
           </view>
         </view>
       </view>
@@ -62,7 +62,7 @@
               <view class='taskTitle'>{{item.taskTitle}}</view>
               <view class='taskContent'>{{item.taskContent}}</view>
             </view>
-            <button class='detail-btn fa fa-angle-right' bindtap='detail' mode="top" data-taskId="{{item.taskId}}" data-checkId='{{item.checkId}}'></button>
+            <button class='detail-btn fa fa-angle-right' bindtap='detail' mode="top" data-taskId="{{item.taskId}}" data-checkId='{{item.checkId}}' data-checkState='{{item.checkState}}'></button>
           </view>
         </view>
       </view>

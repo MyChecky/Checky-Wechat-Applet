@@ -15,7 +15,7 @@
     <view class='item-view'>
       <view class='inner-item-view'>
         <view class='tag item'>认证状态:</view>
-        <view class='state item'>{{supState}}</view>
+        <view class='state item'>{{checkState}}</view>
       </view>
       <view class='operation item mark'>{{numOfSuped}}/{{numOfSup}}</view>
     </view>

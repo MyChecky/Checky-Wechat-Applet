@@ -82,8 +82,7 @@ Page({
         that.setData({
           unknown: res.data.unknown,
           toCheck: res.data.toCheck,
-          checked: res.data.checked,
-          toSupvise: res.data.toSupvise
+          checked: res.data.checked
         })
       }
     })
@@ -106,7 +105,7 @@ Page({
         })
       }
     })
-    this.requestCheckList(this.data.chooseDate)
+    // this.requestCheckList(this.data.chooseDate)
   },
   // 点击日期
   dayClick: function(event) {
@@ -132,28 +131,26 @@ Page({
   // 月份跳转
   prev: function(event) {
     console.log(event.detail)
-    var month = this.data.nowDate.getMonth()+1
+    var month = this.data.nowDate.getMonth() + 1
     var year = this.data.nowDate.getFullYear()
     if (event.detail.currentMonth == month && event.detail.currentYear == year) {
       this.dayClickStyle(this.data.nowDate.getDate())
-    }
-    else {
+    } else {
       this.dayClickStyle(0)
     }
   },
-  dateChange: function (event) {
+  dateChange: function(event) {
     console.log(event.detail)
     var month = this.data.nowDate.getMonth() + 1
     var year = this.data.nowDate.getFullYear()
     if (event.detail.month == month && event.detail.year == year) {
       this.dayClickStyle(this.data.nowDate.getDate())
-    }
-    else {
+    } else {
       this.dayClickStyle(0)
     }
   },
   // 样式修改
-  dayClickStyle: function (day) {
+  dayClickStyle: function(day) {
     // 给点击的日期设置一个背景颜色
     let changeDay0 = `dayStyle[0].day`
     let changeDay1 = `dayStyle[1].day`
@@ -164,23 +161,21 @@ Page({
   },
   next: function(event) {
     console.log(event.detail)
-    var month = this.data.nowDate.getMonth()+1
+    var month = this.data.nowDate.getMonth() + 1
     var year = this.data.nowDate.getFullYear()
     if (event.detail.currentMonth == month && event.detail.currentYear == year) {
       this.dayClickStyle(this.data.nowDate.getDate())
-    }
-    else {
+    } else {
       this.dayClickStyle(0)
     }
   },
   dateChange: function(event) {
     console.log(event.detail)
-    var month = this.data.nowDate.getMonth()+1
+    var month = this.data.nowDate.getMonth() + 1
     var year = this.data.nowDate.getFullYear()
     if (event.detail.month == month && event.detail.year == year) {
       this.dayClickStyle(this.data.nowDate.getDate())
-    }
-    else {
+    } else {
       this.dayClickStyle(0)
     }
   },
@@ -241,8 +236,9 @@ Page({
   detail: function(e) {
     var taskId = e.target.dataset.taskid
     var checkId = e.target.dataset.checkid
+    var checkState = e.target.dataset.checkstate
     wx.navigateTo({
-      url: './taskDetail/taskDetail?taskId=' + taskId + '&checkId=' + checkId,
+      url: './taskDetail/taskDetail?taskId=' + taskId + '&checkState=' + checkState + '&checkId=' + checkId,
     })
   },
   // -未打卡情况
@@ -250,7 +246,6 @@ Page({
     var taskId = e.target.dataset.taskid
     wx.navigateTo({
       url: './taskDetail/taskDetail?taskId=' + taskId,
-
     })
   },
   //跳转到监督详情

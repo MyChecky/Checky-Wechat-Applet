@@ -16,7 +16,7 @@ Page({
     checkId: "",
     taskId: "",
     taskState: "未上传",
-    supState: "已结束",
+    checkState: "待认证",
     numOfSup: 0,
     numOfSuped: 0,
     supList: [{
@@ -56,7 +56,7 @@ Page({
       },
       {
         "name": "描述",
-        "value": "something...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        "value": "something...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
       },
     ]
   },
@@ -69,7 +69,8 @@ Page({
     console.log(options)
     if (options.checkId != undefined) {
       this.setData({
-        checkId: options.checkId
+        checkId: options.checkId,
+        checkState: options.checkState
       })
       var modal = this.selectCompnent('#modal')
       modal.setData({
@@ -79,28 +80,6 @@ Page({
     this.setData({
       taskId: options.taskId
     })
-    wx.request({
-      url: '',
-      data: {
-        taskId: that.data.taskId,
-        checkId: that.data.checkId
-      },
-      success(res) {
-        that.setData({
-          taskState: res.data.taskState,
-          supState: res.data.supState
-        })
-        that.getSupNum(res.data.supList)
-        that.formatInfo(res.data.info)
-        wx.setNavigationBarTitle({
-          title: res.data.taskTitle
-        })
-      }
-    })
-    // 本地测试
-    this.formatInfo(this.data.info)
-    this.getSupNum(this.data.supList)
-    console.log(this.data.info)
   },
   // 格式化重复周期
   formatInfo: function(newInfo) {
@@ -150,6 +129,30 @@ Page({
         taskState: '已上传'
       })
     }
+    var that = this
+    wx.request({
+      // url
+      url: '',
+      data: {
+        taskId: that.data.taskId,
+        checkId: that.data.checkId
+      },
+      success(res) {
+        that.setData({
+          taskState: res.data.taskState,
+          supState: res.data.supState
+        })
+        that.getSupNum(res.data.supList)
+        that.formatInfo(res.data.info)
+        wx.setNavigationBarTitle({
+          title: res.data.taskTitle
+        })
+      }
+    })
+    // 本地测试
+    this.formatInfo(this.data.info)
+    this.getSupNum(this.data.supList)
+    console.log(this.data.info)
   },
   upload: function() {
     if(this.data.checkId==''){// 未打卡情况

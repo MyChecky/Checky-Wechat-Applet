@@ -16,15 +16,15 @@
     <view class='item-view'>
       <view class='inner-item-view'>
         <view class='tag item'>认证状态:</view>
-        <view class='state item'>{{supState}}</view>
+        <view class='state item'>{{checkState}}</view>
       </view>
-      <view wx:if="{{supState=='待认证'}}" class='operation item mark'>{{numOfSuped}}/{{numOfSup}}</view>
+      <view wx:if="{{checkState=='待认证'}}" class='operation item mark'>{{numOfSuped}}/{{numOfSup}}</view>
       <view wx:else class='operation item'>
         <button class='appeal' bindtap='appeal'>申诉</button>
       </view>
     </view>
   </view>
-  <view class='container-view'>
+  <view wx:if="{{checkState!='待认证'}}" class='container-view'>
     <view class='title-view'>监督状态</view>
     <view class='item-view' wx:for="{{supList}}">
       <view class='inner-item-view'>
