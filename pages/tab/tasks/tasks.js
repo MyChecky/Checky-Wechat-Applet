@@ -34,7 +34,7 @@ Page({
         taskTitle: "背单词",
         taskContent: "每天被50个",
         checkState: "unknown",
-        checkId: ''
+        checkId: '123'
       }
     ],
     checked: [
@@ -116,14 +116,24 @@ Page({
   },
   // 监督
   requestSupList: function(chooseDate) {
+    var startDate = new Date(Date.parse(chooseDate.replace(/-/g, '/')));//字符串格式转换为日期格式
+    var day = 10;//定义天数​
+    // 计算结束日期                   
+    var value = startDate.getTime();//将开始时间转为毫秒            
+    value -= 2 * (24 * 3600 * 1000);//将天数转换成毫秒后与开始时间相加得到结束时间的毫秒数         
+    var endDate = new Date(value);//将得到的毫秒数转换为日期
+    endDate = util.formatTime(endDate)
     console.log(chooseDate)
+    console.log(endDate)
     var that = this
+
     wx.request({
-      url: app.globalData.base + ":" + app.globalData.port + '',
+      url: app.globalData.base + ":" + app.globalData.port + '/supervise/needToSupervise',
       method: 'POST',
       data: {
         "userId": app.globalData.openId,
-        "date": chooseDate
+        "startDate": endDate,
+        "endDate": chooseDate
       },
       success(res) {
         console.log(res.data)
