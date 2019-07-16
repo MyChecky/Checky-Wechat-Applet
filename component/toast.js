@@ -40,6 +40,24 @@ Component({
           toastShow: false
         })
       }, duration)
+    },
+    toastShow2: function (str, icon) {
+      this.setData({
+        toastShow: true,
+        toastMsg: str,
+        iconClass: icon
+      })
+    },
+    toastChange: function(str, icon){
+      this.setData({
+        toastMsg: str,
+        iconClass: icon
+      })
+    },
+    toastStop: function(){
+      this.setData({
+        toastShow: false
+      })
     }
   }
 })

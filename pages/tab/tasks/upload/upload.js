@@ -18,7 +18,6 @@ Page({
     index: 0,
     content: ""
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -26,55 +25,6 @@ Page({
     this.setData({
       taskId: options.taskId
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   },
   // 文本长度监督
   lengthChange: function (e) {
@@ -108,8 +58,7 @@ Page({
           else break
         }
       },
-      fail: function(res) {},
-      complete: function(res) {},
+      fail: function(res) {}
     })
   },
   // 取消上传图片
@@ -133,7 +82,8 @@ Page({
   },
   // 提交
   submit: function(){
-    this.selectComponent("#toast").toastShow('稍等', 'fa-spinner fa-pulse', 1000)
+    const toast = this.selectComponent("#toast")
+    toast.toastShow2('稍等，请勿重复提交', 'fa-spinner fa-pulse')
     var that = this
     // 文本上传
     wx.request({
@@ -175,17 +125,16 @@ Page({
             },
             fail(err) {
               console.log(err)
-              wx.showToast({
-                title: '上传图片' + done + '失败！',
-              })
+              toast.toastShow('上传图片失败', 'fa-exclamation-circle',1000)
               done++
             }
           })
         }
-        // that.back()
+        that.back()
       },
       fail(err){
-        console.log(err) 
+        console.log(err)
+        toast.toastShow('上传失败', 'fa-exclamation-circle',1000)
       }
     })
   },

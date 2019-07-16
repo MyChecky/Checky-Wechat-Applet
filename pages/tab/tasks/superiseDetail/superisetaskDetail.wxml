@@ -1,35 +1,27 @@
 <!--pages/tab/tasks/superiseDetail/superisetaskDetail.wxml-->
 <!--pages/tab/tasks/taskDetail/taskDetail.wxml-->
+<toast id="toast" />
+
 <view class='form-view'>
   <view class='container-view'>
-    <view class='title-view'>打卡状态</view>
-    <view class='item-view'>
-      <view class='inner-item-view'>
-        <view class='tag item'>打卡证明:</view>
-        <view class='state item'>{{taskState}}</view>
-      </view>
-      <view class='operation item' bindtap='superise'>
-        <button class='detail-btn fa fa-angle-right'></button>
-      </view>
-    </view>
-    <view class='item-view'>
-      <view class='inner-item-view'>
-        <view class='tag item'>认证状态:</view>
-        <view class='state item'>{{checkState}}</view>
-      </view>
-      <view class='operation item mark'>{{numOfSuped}}/{{numOfSup}}</view>
-    </view>
+    <view class='title'>描述</view>
+    <view class='content-view'>{{content}}</view>
   </view>
   <view class='container-view'>
-    <view class='title-view'>监督状态</view>
-    <view class='item-view' wx:for="{{supList}}">
-      <view class='inner-item-view'>
-        <view class='tag item'>{{item.supName}}</view>
-        <view class="state item {{item.supState=='fail'?'fail':''}} {{item.supState=='pass'?'pass':''}}">{{item.content}}</view>
-      </view>
-      <view class='operation item' bindtap='upload'>
-      </view>
+    <view class='title'>附件</view>
+    <view class='image-view'>
+      <image class='img' wx:for="{{imgae}}" wx:if="{{item.fileAddr!=''}}" src='{{item.fileAddr}}' mode='aspectFit'></image>
     </view>
+  </view>
+  <view wx:if="{{lastPageFlag}}" class='button-view'>
+    <button class='sup-button pass' bindtap='pass' data-flag='pass'>
+      <view class='icon fa fa-check-circle-o fw'></view>
+      <view>通过</view>
+    </button>
+    <button class='sup-button fail' bindtap='pass' data-flag='deny'>
+      <view class='icon fa fa-times-circle-o fw'></view>
+      <view>不通过</view>
+    </button>
   </view>
   <view class='container-view'>
     <view class='title-view'>其他信息</view>
