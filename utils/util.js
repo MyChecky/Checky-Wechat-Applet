@@ -71,8 +71,20 @@ const formatBiDate = function(biString){
   date = date.join('  ')
   return date
 }
+const dictionary = {
+  pass: "通过",
+  deny: "失败",
+  unknown: "待认证"
+}
+const dataEN2CN = function(string){
+  var result = dictionary[string] 
+  console.log(result)
+  return result
+}
 module.exports = {
   formatRepeatDate: formatRepeatDate,
   formatBiDate: formatBiDate,
-  formatTime: formatTime
+  formatTime: formatTime,
+  formatNumber: formatNumber,
+  dataEN2CN: dataEN2CN
 }

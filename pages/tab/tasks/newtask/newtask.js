@@ -103,26 +103,22 @@ Page({
     })
   },
   sendForm: function(){
-    var data = {
-      "userId": app.globalData.openId,
-      "taskTitle": this.data.title,
-      "taskContent": this.data.content,
-      "supervisorNum": this.data.num,
-      "typeId": this.data.types[this.data.index].typeId,
-      "taskStartTime": this.data.startTime,
-      "taskEndTime": this.data.endTime,
-      "checkFrec": util.formatRepeatDate(this.data.chooseRepeat),
-      "taskMoney": this.data.money,
-    }
-    console.log(data)
     if (this.data.title == "" || this.data.index < 0 || this.data.startTime == "" || this.data.endTime == "" || this.data.chooseRepeat == null || this.data.money<=0){
-      wx.showModal({
-        title: '',
-        content: '',
-        
-      })
+      this.selectComponent("#toast").toastShow('必要信息不可为空', 'fa-exclamation-circle', 2000)
     }
     else{
+      var data = {
+        "userId": app.globalData.openId,
+        "taskTitle": this.data.title,
+        "taskContent": this.data.content,
+        "supervisorNum": this.data.num,
+        "typeId": this.data.types[this.data.index].typeId,
+        "taskStartTime": this.data.startTime,
+        "taskEndTime": this.data.endTime,
+        "checkFrec": util.formatRepeatDate(this.data.chooseRepeat),
+        "taskMoney": this.data.money,
+      }
+      console.log(data)
       wx.request({
         url: app.globalData.base + ":" + app.globalData.port + '/task/addTask',
         method: 'POST',

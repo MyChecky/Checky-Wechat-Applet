@@ -9,50 +9,27 @@ Page({
   data: {
     taskId: "",
     checkId: "",
-    date: "2019-07-02",
-    title: "XXX任务",
+    date: "",
+    title: "",
     taskState: "已上传",
     checkState: "待认证",
-    numOfSup: 3,
-    numOfSuped: 1,
-    supList: [
-      { "supId": "1", "supName": "Tom", "supState": "pass", "content": "通过" },
-      { "supId": "1", "supName": "Tom", "supState": "fail", "content": "失败" },
-      { "supId": "1", "supName": "Tom", "supState": "unknow", "content": "未认证" }
-    ],
-    info: [
-      { "name": "重复", "value": "1111111" },
-      { "name": "时间", "value": "2019-07-01 2019-08-01" },
-      { "name": "押金", "value": "20.00" },
-      { "name": "描述", "value": "something...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
-    ]
+    numOfSup: 0,
+    numOfSuped: 0,
+    supList: [],
+    info: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     console.log(options)
-    
-    wx.request({
-      url: app.globalData.base + ":" + app.globalData.port +'',
-      data: {
-        userId: app.globalData.openId,
-        taskId: options.taskId,
-        checkId: options.checkId
-      },
-      success(res) {
-        formatInfo(res)
-        wx.setNavigationBarTitle({
-          title: this.data.title
-        })
-      }
+    this.setData({
+      taskId: options.taskId,
+      checkId: options.checkId
     })
-    // 本地测试
-    this.formatInfo(this.data.info)
-    console.log(this.data.info)
   },
-  formatInfo: function (newInfo) {
+  formatInfo: function(newInfo) {
     newInfo[0].value = util.formatBiDate(newInfo[0].value)
     this.setData({
       info: newInfo
@@ -62,52 +39,44 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
+  onShow: function() {
+    var that = this
+    wx.request({// 获取任务信息
+      // url
+      url: app.globalData.base + ':' + app.globalData.port + 'task/querytask',
+      data: {
+        taskId: that.data.taskId
+      },
+      success(res) {
+        that.getSupNum(res.data.supList)
+        that.formatInfo(res.data.info)
+        wx.setNavigationBarTitle({
+          title: res.data.taskTitle
+        })
+      }
+    })
+    wx.request({// 获取监督状态列表
+      url: app.globalData.base + ':' + app.globalData.port + 'supervise//querySupervisorState',
+      data: {
+        taskId: that.data.taskId,
+        checkId: that.data.checkId
+      },
+      success(res) {
+        that.getSupNum(res.data.supList)
+      }
+    })
+    // 本地测试
+    console.log(this.data.info)
+    console.log(this.data.supList)
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-  superise: function(e){
+  superise: function(e) {
     // 已打卡情况
     wx.navigateTo({
       url: '../checky/checky?checkId=' + this.data.checkId + '&lastPage=superisetaskDetail',

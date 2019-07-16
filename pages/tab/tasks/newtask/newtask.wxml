@@ -1,4 +1,6 @@
 <!--pages/tab/tasks/newtask/newtask.wxml-->
+<toast id="toast"/>
+
 <view class='form-view'>
   <view class='container-view'>
     <view class='notifcation'>标题：</view>

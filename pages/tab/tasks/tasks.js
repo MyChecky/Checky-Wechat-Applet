@@ -29,10 +29,38 @@ Page({
     isHid: false,
     selectedItem: [false, false, false, false],
     unknown: [
+      {
+        taskId: 120,
+        taskTitle: "背单词",
+        taskContent: "每天被50个",
+        checkState: "unknown",
+        checkId: ''
+      }
     ],
     checked: [
+      {
+        taskId: 120,
+        taskTitle: "背单词",
+        taskContent: "每天被50个",
+        checkState: "deny",
+        checkId: '123'
+      },
+      {
+        taskId: 120,
+        taskTitle: "背单词",
+        taskContent: "每天被50个",
+        checkState: "pass",
+        checkId: '123'
+      }
     ],
     toCheck: [
+      {
+        taskId: 120,
+        taskTitle: "背单词",
+        taskContent: "每天被50个",
+        checkState: "",
+        checkId: ''
+      }
     ],
     toSupvise: [
     ]
@@ -63,7 +91,6 @@ Page({
   },
   onShow: function() {
     this.requestCheckList(this.data.chooseDate)
-    this.requestSupList(this.data.date)
   },
   // 请求列表
   // 打卡
@@ -122,9 +149,10 @@ Page({
     var year = event.detail.year + ''
     var month = event.detail.month + ''
     var day = event.detail.day + ''
+    var tempDate = [year, month, day].map(util.formatNumber).join('-')
     var that = this
     this.setData({
-      chooseDate: year + '-' + month + '-' + day
+      chooseDate: tempDate
     })
     this.requestCheckList(this.data.chooseDate)
   },
@@ -193,10 +221,13 @@ Page({
    * 滑动切换tab 
    */
   bindChange: function(e) {
-    var that = this;
+    var that = this
     that.setData({
       currentTab: e.detail.current
-    });
+    })
+    if(this.data.currentTab==1){
+      this.requestSupList(this.data.date)
+    }
   },
   getUserInfo: function(e) {
     console.log(e)

@@ -30,16 +30,17 @@ Page({
         console.log(res.data)
         app.globalData.openId=res.data.states
         if (app.globalData.openId!="0"){
-          wx.showModal({
-            title: '提示',
-            content: '登录成功',
-            showCancel: false,
-            success(res) {
-              if (res.confirm) {
-              }
-            }
+          this.selectComponent("#toast").toastShow("登陆成功", "fa-check", 1000)
+          wx.switchTab({
+            url: '../tab/tasks/tasks'
           })
         }
+        else {
+          this.selectComponent("#toast").toastShow("登陆失败", "fa-remove", 1000)
+        }
+      },
+      fail: (err) => {
+        this.selectComponent("#toast").toastShow("登陆失败", "fa-remove", 1000)
       }
     })
   },
@@ -83,5 +84,6 @@ Page({
     })
     console.log("点击授权")
     // this.sendInfo()
-  }
+  },
+  
 }) 

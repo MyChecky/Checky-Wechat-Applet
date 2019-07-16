@@ -1,4 +1,6 @@
 <!--pages/tab/tasks/upload/upload.wxml-->
+<toast id="toast"/>
+
 <view class='.form-view'>
   <view class='container-view'>
     <view class='title'>打卡描述</view>

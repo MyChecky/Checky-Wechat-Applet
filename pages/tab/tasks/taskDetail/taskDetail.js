@@ -12,52 +12,16 @@ Page({
       message: 'msg',
       title: '申诉理由'
     },
-    title: "XXX任务",
+    title: "",
     checkId: "",
     taskId: "",
     taskState: "未上传",
     checkState: "待认证",
     numOfSup: 0,
     numOfSuped: 0,
-    supList: [{
-        "supId": "1",
-        "supName": "Tom",
-        "supState": "pass",
-        "content": ""
-      },
-      {
-        "supId": "1",
-        "supName": "Tom",
-        "supState": "fail",
-        "content": ""
-      },
-      {
-        "supId": "1",
-        "supName": "Tom",
-        "supState": "unknown",
-        "content": ""
-      }
+    supList: [
     ],
-    info: [{
-        "name": "重复",
-        "value": "1111111"
-      },
-      {
-        "name": "开始时间",
-        "value": "2019-07-01"
-      },
-      {
-        "name": "结束时间",
-        "value": "2019-08-01"
-      },
-      {
-        "name": "押金",
-        "value": "20.00"
-      },
-      {
-        "name": "描述",
-        "value": "something...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-      },
+    info: [
     ]
   },
 
@@ -66,13 +30,13 @@ Page({
    */
   onLoad: function(options) {
     var that = this
-    console.log(options)
     if (options.checkId != undefined) {
       this.setData({
         checkId: options.checkId,
-        checkState: options.checkState
+        checkState: util.dataEN2CN(options.checkState),
+        taskState: '已上传'
       })
-      var modal = this.selectCompnent('#modal')
+      var modal = this.selectComponent('#modal')
       modal.setData({
         checkId: options.checkId
       })
@@ -80,6 +44,7 @@ Page({
     this.setData({
       taskId: options.taskId
     })
+    console.log(this.data.taskId+''+this.data.checkId)
   },
   // 格式化重复周期
   formatInfo: function(newInfo) {
@@ -93,19 +58,7 @@ Page({
     var done = 0;
     var length = list.length;
     for (var i = 0; i < length; i++) {
-      switch (this.data.supList[i].supState) {
-        case 'pass':
-          list[i].content = '通过'
-          done++
-          break
-        case 'unknown':
-          list[i].content = '待认证'
-          break
-        case 'fail':
-          list[i].content = '未通过'
-          done++
-          break
-      }
+      list[i].content = util.dataEN2CN(this.data.supList[i].supState)
     }
     this.setData({
       numOfSup: length,
@@ -124,24 +77,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    if(this.data.checkId!=""){
-      this.setData({
-        taskState: '已上传'
-      })
-    }
     var that = this
-    wx.request({
+    wx.request({// 获取任务信息
       // url
-      url: '',
+      url: app.globalData.base+':'+app.globalData.port+'task/querytask',
       data: {
-        taskId: that.data.taskId,
-        checkId: that.data.checkId
+        taskId: that.data.taskId
       },
       success(res) {
-        that.setData({
-          taskState: res.data.taskState,
-          supState: res.data.supState
-        })
         that.getSupNum(res.data.supList)
         that.formatInfo(res.data.info)
         wx.setNavigationBarTitle({
@@ -149,15 +92,25 @@ Page({
         })
       }
     })
+    wx.request({// 获取监督状态列表
+      url: app.globalData.base + ':' + app.globalData.port + 'supervise//querySupervisorState',
+      data: {
+        taskId: that.data.taskId,
+        checkId: that.data.checkId
+      },
+      success(res) {
+        that.getSupNum(res.data.supList)
+      }
+    })
     // 本地测试
-    this.formatInfo(this.data.info)
-    this.getSupNum(this.data.supList)
     console.log(this.data.info)
+    console.log(this.data.supList)
   },
+  // 打卡或查看打卡内容
   upload: function() {
     if(this.data.checkId==''){// 未打卡情况
       wx.navigateTo({
-        url: '../upload/upload',
+        url: '../upload/upload?taskId='+this.data.taskId,
       })
     }
     else{// 已打卡情况

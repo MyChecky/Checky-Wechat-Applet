@@ -27,12 +27,12 @@
           <view class='title'>未打卡</view>
         </view>
         <view class='inner-list {{selectedItem[0]?"onList":"offList"}}'>
-          <view class='list-item' wx:for='{{toCheck}}'>
+          <view class='list-item' wx:for='{{toCheck}}' bindtap='toCheck'>
             <view class='text'>
               <view class='taskTitle'>{{item.taskTitle}}</view>
               <view class='taskContent'>{{item.taskContent}}</view>
             </view>
-            <button class='detail-btn fa fa-angle-right' bindtap='toCheck' mode="top" data-taskId="{{item.taskId}}"></button>
+            <button class='detail-btn fa fa-arrow-circle-o-right' bindtap='toCheck' mode="top" data-taskId="{{item.taskId}}"></button>
           </view>
         </view>
       </view>
@@ -42,12 +42,12 @@
           <view class='title'>待认证</view>
         </view>
         <view class='inner-list {{selectedItem[1]?"onList":"offList"}}'>
-          <view class='list-item' wx:for='{{unknown}}'>
+          <view class='list-item' wx:for='{{unknown}}' bindtap='detail'>
             <view class='text'>
               <view class='taskTitle'>{{item.taskTitle}}</view>
               <view class='taskContent'>{{item.taskContent}}</view>
             </view>
-            <button class='detail-btn fa fa-angle-right' bindtap='detail' mode="top"  data-taskId="{{item.taskId}}" data-checkId='{{item.checkId}}' data-checkState='{{item.checkState}}'></button>
+            <button class='detail-btn fa fa-arrow-circle-o-right' bindtap='detail' mode="top"  data-taskId="{{item.taskId}}" data-checkId='{{item.checkId}}' data-checkState='{{item.checkState}}'></button>
           </view>
         </view>
       </view>
@@ -57,12 +57,12 @@
           <view class='title'>已结束</view>
         </view>
         <view class='inner-list {{selectedItem[2]?"onList":"offList"}}'>
-          <view class='list-item' wx:for='{{checked}}'>
+          <view class='list-item' wx:for='{{checked}}' bindtap='detail'>
             <view class='text'>
               <view class='taskTitle'>{{item.taskTitle}}</view>
               <view class='taskContent'>{{item.taskContent}}</view>
             </view>
-            <button class='detail-btn fa fa-angle-right' bindtap='detail' mode="top" data-taskId="{{item.taskId}}" data-checkId='{{item.checkId}}' data-checkState='{{item.checkState}}'></button>
+            <button class='detail-btn fa fa-arrow-circle-o-right' bindtap='detail' mode="top" data-taskId="{{item.taskId}}" data-checkId='{{item.checkId}}' data-checkState='{{item.checkState}}'></button>
           </view>
         </view>
       </view>

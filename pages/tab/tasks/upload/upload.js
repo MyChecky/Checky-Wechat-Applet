@@ -23,14 +23,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 如果已经上传
-    if (options.checkId!=""){
-      console.log(options)
-      this.setData({
-        checkId: options.checkId
-      })
-      
-    }
+    this.setData({
+      taskId: options.taskId
+    })
   },
 
   /**
@@ -138,6 +133,7 @@ Page({
   },
   // 提交
   submit: function(){
+    this.selectComponent("#toast").toastShow('稍等', 'fa-spinner fa-pulse', 1000)
     var that = this
     // 文本上传
     wx.request({
@@ -146,7 +142,7 @@ Page({
       data:{
         "checkInfo": {
           "userId": app.globalData.openId,
-          "taskId": "e0ff35e0-5ae0-4b54-a375-66e8aee6657d",
+          "taskId": this.data.taskId,
           "checkTime": app.globalData.date,
         },
         "content": this.data.content
@@ -186,13 +182,10 @@ Page({
             }
           })
         }
-        that.back()
+        // that.back()
       },
       fail(err){
-        console.log(err)
-        wx.showToast({
-          title: '打卡失败',
-        })
+        console.log(err) 
       }
     })
   },

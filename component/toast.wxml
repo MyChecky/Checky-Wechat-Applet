@@ -1,0 +1,6 @@
+<!--component/toast.wxml-->
+<view  class='toast-view {{toastShow?"appear":"disappear"}}'>
+  <icon class='toast-icon fa fa-fw {{iconClass}}'>
+  </icon>
+  <view class='toast-content'>{{toastMsg}}</view>
+</view>

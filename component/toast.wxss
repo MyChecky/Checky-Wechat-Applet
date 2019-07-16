@@ -1,0 +1,48 @@
+/* component/toast.wxss */
+.toast-view {
+  position: fixed;
+  width: 100px;
+  min-height: 100px;
+  height: auto;
+  background-color: rgba(100, 100, 100, 0.8);
+  margin-top: 50%;
+  z-index: 200;
+  margin-left: -60px;
+  left: 50%;
+  border-radius: 5px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-around;
+  align-items: center;
+  padding: 10px;
+}
+
+.appear {
+  animation: appear 0.5s 0s cubic-bezier(0.175, 0.885, 0.32, 1.5) both;
+  opacity: 1;
+}
+
+.disappear {
+  animation: disappear 0.5s 0s cubic-bezier(0.175, 0.885, 0.32, 1.5) both;
+  opacity: 1;
+}
+@keyframes disappear{
+  25%{transform: scale(0.5,1)}
+  50%{transform: scale(0.5,0.1)}
+  100%{transform: scale(0,0)}
+}
+@keyframes appear{
+  25%{transform: scale(1.1,0.9)}
+  50%{transform: scale(0.9,1.1)}
+  100%{transform: scale(1,1)}  
+}
+.toast-icon {
+  font-size:30px;
+  color:#fff;
+}
+
+.toast-content {
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+}
