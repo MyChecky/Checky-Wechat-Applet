@@ -4,7 +4,7 @@
     <icon class='fa fw fa-plus'></icon>
     <text>发表一条新的动态</text>
   </button>
-  <view class='essays-item' wx:for='{{essays}}'>
+  <view class='essays-item' wx:for='{{essays}}' wx:for-index='index'>
     <!--图片-->
     <image class='essays-pic' bindtap='essaysPic' src='{{item.essayPic}}' mode='aspectFill'></image>
 
@@ -17,10 +17,10 @@
           <view class='essays-time'>{{item.essayTime}}</view>
         </view>
         <!--按钮-->
-        <view class='essays-button'>
-          <button class='btn {{isLike?"fa fw fa-heart":"fa fw fa-heart-o"}}' bindtap='isLike' mode="top"></button>
-          <text class='like-sum'>({{item.likeSum}})</text>
-          <button class='btn {{isComment?"fa fw fa-commenting":"fa fw fa-commenting-o"}}' bindtap='isComment' mode="top"></button>
+        <view class='essays-button' >
+          <button class='btn {{isLike ?"fa fw fa-heart":"fa fw fa-heart-o"}}' bindtap='isLike' mode="top" ></button>
+          <text class='like-sum'>({{likeSum}})</text>
+          <button class='btn fa fw fa-commenting-o' bindtap='isComment' mode="top"></button>
         </view>
       </view>
     </view>

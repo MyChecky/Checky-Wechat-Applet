@@ -5,18 +5,17 @@
     <view class='report-title'>投诉
       <text class='report-id'>{{userId}}</text>的动态:</view>
     <view class='report-view'>
-      <text class='report-id'>{{userId}}</text>
-      <text>: {{essaysText}}</text>
+      <text class='view-text'><text class='report-id'>{{userId}}</text>: {{essaysText}}</text>
     </view>
     <view class='report-reason'>请选择你想要举报的类型：
       <view class='report-list'>
-        <view class='reason-item' wx:for='{{essReason}}'>
-          <text>{{essReason[0]}}</text>
+        <view class='reason-item' wx:for='{{essReason}}' wx:for-index='index' bindtap='reasonClick'>
+          <text class="reasonClick {{reasonClick ? 'r-choose' : 'r-unchoose'}}">{{essReason[index]}}</text>
         </view>
       </view>
     </view>
-    <button class='report-submit' bindtap='reSubmit'>
-      <text>提交</text>
-    </button>
   </view>
+  <button class='report-submit' bindtap='reSubmit'>
+    <text>提交</text>
+  </button>
 </view>
