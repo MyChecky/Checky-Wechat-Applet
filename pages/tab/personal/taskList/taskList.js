@@ -1,18 +1,37 @@
 // pages/tab/personal/taskList/taskList.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    title: '举报',
+    icon: 'fa-reorder',
+    taskList: [
+    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.request({
+      url: app.globalData.base + ':' + app.globalData.port + '/task/queryUserTasks',
+      method: 'POST',
+      data: {
+        userId: app.globalData.openId
+      },
+      success: res => {
+        console.log(res.data)
+        this.setData({
+          taskList: res.data
+        })
+      },
+      fail: err => {
+        console.log(err)
+      }
+    })
   },
 
   /**

@@ -58,7 +58,10 @@ Page({
     var done = 0;
     var length = list.length;
     for (var i = 0; i < length; i++) {
-      list[i].content = util.dataEN2CN(this.data.supList[i].supState)
+      if (this.data.supList[i].supervisorState!='unknown'){
+        done++
+      }
+      list[i].supervisorState = util.dataEN2CN(this.data.supList[i].supervisorState)
     }
     this.setData({
       numOfSup: length,
@@ -100,9 +103,12 @@ Page({
         taskId: that.data.taskId,
         checkId: that.data.checkId
       },
-      success(res) {
-        
+      success: res =>{
         console.log(res.data)
+        this.setData({
+          supList: res.data
+        })
+        this.getSupNum(res.data)
       }
     })
   },
@@ -122,16 +128,28 @@ Page({
   appeal: function(){
     var temp = this.data.modal
     temp.isHidden = false
+    temp
     this.setData({
       modal: temp
     })
-    wx.request({
-      url: app.globalData.base+':'+app.globalData.port+'',
-      data: {
-        userId:app.globalData.openId,
-        checkId: this.data.checkId
-      },
-      success(res){}
-    })
   },
+  sendAppeal: function(e){
+    var appealContent = e.detail.content
+    wx.request({
+      url: app.globalData.base+':'+app.globalData.port+'/appeal/add',
+      method:'POST',
+      data:{
+        userId: app.globalData.openId,
+        checkId: this.data.checkId,
+        taskId: this.data.taskId,
+        content: appealContent
+      },
+      success(res){
+        console.log(res)
+      },
+      fail(err){
+        console.log(err)
+      }
+    })
+  }
 });

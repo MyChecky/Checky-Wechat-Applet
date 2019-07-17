@@ -1,5 +1,5 @@
 <!--pages/tab/tasks/taskDetail/taskDetail.wxml-->
-<modal id='modal'  modal-title="{{modal.title}}"  modal-hidden="{{modal.isHidden}}" modal-msg="{{modal.message}}"/>
+<modal id='modal' modal-title="{{modal.title}}" modal-hidden="{{modal.isHidden}}" modal-msg="{{modal.message}}" bind:appeal = "sendAppeal"/>
 
 <view class='form-view'>
   <view class='container-view'>
@@ -19,31 +19,60 @@
         <view class='state item'>{{checkState}}</view>
       </view>
       <view wx:if="{{checkState=='待认证'}}" class='operation item mark'>{{numOfSuped}}/{{numOfSup}}</view>
-      <view wx:else class='operation item'>
+      <view wx:elif="{{checkState==''}}" class='operation item'>
         <button class='appeal' bindtap='appeal'>申诉</button>
       </view>
     </view>
   </view>
-  <view wx:if="{{checkState!='待认证'}}" class='container-view'>
+  <view wx:if="{{checkId!=''}}" class='container-view'>
     <view class='title-view'>监督状态</view>
     <view class='item-view' wx:for="{{supList}}">
       <view class='inner-item-view'>
-        <view class='tag item'>{{item.supName}}</view>
-        <view class="state item {{item.supState=='fail'?'fail':''}} {{item.supState=='pass'?'pass':''}}">{{item.content}}</view>
+        <view class='tag item'>{{item.supervisorName}}</view>
+        <view class="state item {{item.supState=='fail'?'fail':''}} {{item.supState=='pass'?'pass':''}}">{{item.supervisorState}}</view>
       </view>
       <view class='operation item' bindtap='upload'>
-        <!-- <button wx:if="{{item.supState!='pass'}}" class='notice'>提醒</button> -->
       </view>
     </view>
   </view>
   <view class='container-view'>
     <view class='title-view'>其他信息</view>
-    <view class='item-view' wx:for="{{info}}">
+    <view class='item-view'>
       <view class='inner-item-view'>
-        <view class='tag item'>{{item.name}}</view>
-        <view class="state item">{{item.value}}</view>
+        <view class='tag item'>标题</view>
+        <view class="state item">{{info.taskTitle}}</view>
       </view>
-      <view class='operation item' bindtap='upload'></view>
     </view>
+    <view class='item-view'>
+      <view class='inner-item-view'>
+        <view class='tag item'>金额</view>
+        <view class="state item">{{info.taskMoney}}</view>
+      </view>
+    </view>
+    <view class='item-view'>
+      <view class='inner-item-view'>
+        <view class='tag item'>重复</view>
+        <view class="state item">{{info.checkFrec}}</view>
+      </view>
+    </view>
+    <view class='item-view'>
+      <view class='inner-item-view'>
+        <view class='tag item'>开始时间</view>
+        <view class="state item">{{info.taskStartTime}}</view>
+      </view>
+    </view>
+    <view class='item-view'>
+      <view class='inner-item-view'>
+        <view class='tag item'>结束时间</view>
+        <view class="state item">{{info.taskEndTime}}</view>
+      </view>
+    </view>
+    <view class='item-view'>
+      <view class='inner-item-view'>
+        <view class='tag item'>描述</view>
+        <view class="state item">{{info.taskContent}}</view>
+      </view>
+    </view>
+    <view class='operation item' bindtap='upload'></view>
   </view>
 </view>

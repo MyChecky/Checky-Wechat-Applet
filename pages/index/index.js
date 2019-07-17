@@ -30,7 +30,6 @@ Page({
         console.log(res.data)
         app.globalData.openId=res.data.states
         if (app.globalData.openId!="0"){
-          this.selectComponent("#toast").toastShow("登陆成功", "fa-check", 1000)
           wx.switchTab({
             url: '../tab/tasks/tasks'
           })

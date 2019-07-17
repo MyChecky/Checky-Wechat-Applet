@@ -5,11 +5,11 @@
   padding: 20px 40px 10px 20px;
 }
 
-.in {
+.income {
   color: #e83015;
 }
 
-.out {
+.cost {
   color: #333;
 }
 

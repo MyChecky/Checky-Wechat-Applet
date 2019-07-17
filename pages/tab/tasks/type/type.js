@@ -18,8 +18,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      types: app.globalData.types
+    
+    // 获取类型
+    var that = this
+    wx.request({
+      url: app.globalData.base + ":" + app.globalData.port + '/taskType/allType',
+      data: {
+      },
+      success: res => {
+        console.log(res.data)
+        app.globalData.types = res.data
+        this.setData({
+          types: app.globalData.types
+        })
+      },
+      fail: err => {
+      }
     })
   },
 

@@ -6,6 +6,6 @@
     <view class='title'>
       <icon class='icon fa {{icon}}'></icon>{{title}}
     </view>
-    <template wx:for="{{reportList}}" is="list-trace-item" data="{{item}}"/>
+    <template wx:for="{{reportList}}" is="list-report-item" data="{{item}}"/>
   </view>
 </view>

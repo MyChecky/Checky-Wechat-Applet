@@ -1,4 +1,5 @@
 // pages/tab/personal/money/money.js
+const app = getApp()
 Page({
 
   /**
@@ -8,21 +9,6 @@ Page({
     title: "资金记录",
     icon: "fa-rmb",
     moneyList: [
-      {
-        direction: 'in',
-        value: 15.00,
-        date: "2019-06-30"
-      },
-      {
-        direction: 'out',
-        value: 15.00,
-        date: "2019-06-30"
-      },
-      {
-        direction: 'in',
-        value: 12.02,
-        date: "2019-06-30"
-      }
     ]
   },
 
@@ -30,7 +16,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.request({
+      url: app.globalData.base + ':' + app.globalData.port + '/money/queryMoneyRecord',
+      method: 'POST',
+      data: {
+        userId: app.globalData.openId
+      },
+      success: res => {
+        console.log(res.data)
+        this.setData({
+          moneyList: res.data
+        })
+      },
+      fail: err => {
+        console.log(err)
+      }
+    })
   },
 
   /**

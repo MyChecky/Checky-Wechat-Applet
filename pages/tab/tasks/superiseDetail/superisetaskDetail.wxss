@@ -51,6 +51,7 @@
 .tag{
   margin-right: 20px;
   color: #666;
+  min-width: 100px;
 }
 .state{
   overflow-wrap: break-word;

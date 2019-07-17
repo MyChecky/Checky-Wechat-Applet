@@ -20,15 +20,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // console.log(options)
-    // this.setData({
-    //   taskId: options.taskId,
-    //   checkId: options.checkId
-    // })
+    console.log(options)
+    this.setData({
+      taskId: options.taskId,
+      checkId: options.checkId
+    })
   },
   // 格式化重复日期
   formatInfo: function(newInfo) {
-    newInfo[0].value = util.formatBiDate(newInfo[0].value)
+    newInfo.checkFrec = util.formatBiDate(newInfo.checkFrec)
     this.setData({
       info: newInfo
     })
@@ -48,17 +48,17 @@ Page({
     var that = this
     wx.request({// 获取任务信息
       // url
-      url: app.globalData.base + ':' + app.globalData.port + '/task/querytask',
+      url: app.globalData.base + ':' + app.globalData.port + '/task/queryTask',
       method: 'POST',
       data: {
         taskId: this.data.taskId
       },
       success(res) {
-        console.log(res)
-        // that.formatInfo(res.data.info)
-        // wx.setNavigationBarTitle({
-        //   title: res.data.taskTitle
-        // })
+        console.log(res.data)
+        that.formatInfo(res.data)
+        wx.setNavigationBarTitle({
+          title: res.data.taskTitle
+        })
       }
     })
     wx.request({// 获取记录
@@ -69,6 +69,9 @@ Page({
       },
       success(res) {
         console.log(res.data)
+        for(item in res.data.image){
+          res.data.image[item].fileAddr = app.globalData.base + ":" + app.globalData.port + '/' + res.data.image[item].fileAddr
+        }
         that.setData({
           image: res.data.image,
           content: res.data.text.recordContent,

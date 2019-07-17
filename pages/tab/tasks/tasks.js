@@ -29,38 +29,10 @@ Page({
     isHid: false,
     selectedItem: [false, false, false, false],
     unknown: [
-      {
-        taskId: 120,
-        taskTitle: "背单词",
-        taskContent: "每天被50个",
-        checkState: "unknown",
-        checkId: '123'
-      }
     ],
     checked: [
-      {
-        taskId: 120,
-        taskTitle: "背单词",
-        taskContent: "每天被50个",
-        checkState: "deny",
-        checkId: '123'
-      },
-      {
-        taskId: 120,
-        taskTitle: "背单词",
-        taskContent: "每天被50个",
-        checkState: "pass",
-        checkId: '123'
-      }
     ],
     toCheck: [
-      {
-        taskId: 120,
-        taskTitle: "背单词",
-        taskContent: "每天被50个",
-        checkState: "",
-        checkId: ''
-      }
     ],
     toSupvise: [
     ]
@@ -138,7 +110,7 @@ Page({
       success(res) {
         console.log(res.data)
         that.setData({
-          toSupvise: res.data.toSupvise
+          toSupvise: res.data
         })
       }
     })

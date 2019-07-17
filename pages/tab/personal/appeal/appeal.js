@@ -1,4 +1,5 @@
 // pages/tab/personal/appealreport/appealreport.js
+const app = getApp()
 Page({
 
   /**
@@ -8,27 +9,6 @@ Page({
     title: '申诉',
     icon: 'fa-exclamation-circle',
     appealList: [
-      {
-        date: '2019-07-09',
-        processDate: '',
-        content: 'XXX故意不通过',
-        state: '待审核',
-        result: ''
-      },
-      {
-        date: '2019-07-09',
-        processDate: '',
-        content: 'XXX故意不通过',
-        state: '待审核',
-        result: ''
-      },
-      {
-        date: '2019-07-09',
-        processDate: '2019-07-11',
-        content: 'XXX故意不通过',
-        state: '已审核',
-        result: '申诉成功'
-      }
     ]
   },
 
@@ -36,7 +16,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.request({
+      url: app.globalData.base+':'+app.globalData.port+'/appeal/queryUserAppeal',
+      method: 'POST',
+      data:{
+        userId: app.globalData.openId
+      },
+      success: res=>{
+        console.log(res.data)
+        this.setData({
+          appealList: res.data
+        })
+      },
+      fail: err=>{
+        console.log(err)
+      }
+    })
   },
 
   /**
