@@ -44,11 +44,11 @@ Page({
     this.setData({
       taskId: options.taskId
     })
-    console.log(this.data.taskId+''+this.data.checkId)
+    console.log('taskId:' + this.data.taskId + ',checkId:'+this.data.checkId)
   },
   // 格式化重复周期
   formatInfo: function(newInfo) {
-    newInfo[0].value = util.formatBiDate(newInfo[0].value)
+    newInfo.checkFrec = util.formatBiDate(newInfo.checkFrec)
     this.setData({
       info: newInfo
     })
@@ -58,7 +58,10 @@ Page({
     var done = 0;
     var length = list.length;
     for (var i = 0; i < length; i++) {
-      list[i].content = util.dataEN2CN(this.data.supList[i].supState)
+      if (this.data.supList[i].supervisorState!='unknown'){
+        done++
+      }
+      list[i].supervisorState = util.dataEN2CN(this.data.supList[i].supervisorState)
     }
     this.setData({
       numOfSup: length,
@@ -80,31 +83,34 @@ Page({
     var that = this
     wx.request({// 获取任务信息
       // url
-      url: app.globalData.base+':'+app.globalData.port+'task/querytask',
+      url: app.globalData.base+':'+app.globalData.port+'/task/queryTask',
+      method: 'POST',
       data: {
         taskId: that.data.taskId
       },
       success(res) {
-        that.getSupNum(res.data.supList)
-        that.formatInfo(res.data.info)
+        console.log(res.data)
+        that.formatInfo(res.data)
         wx.setNavigationBarTitle({
           title: res.data.taskTitle
         })
       }
     })
     wx.request({// 获取监督状态列表
-      url: app.globalData.base + ':' + app.globalData.port + 'supervise//querySupervisorState',
+      url: app.globalData.base + ':' + app.globalData.port + '/supervise/querySupervisorState',
+      method: 'POST',
       data: {
         taskId: that.data.taskId,
         checkId: that.data.checkId
       },
-      success(res) {
-        that.getSupNum(res.data.supList)
+      success: res =>{
+        console.log(res.data)
+        this.setData({
+          supList: res.data
+        })
+        this.getSupNum(res.data)
       }
     })
-    // 本地测试
-    console.log(this.data.info)
-    console.log(this.data.supList)
   },
   // 打卡或查看打卡内容
   upload: function() {
@@ -122,16 +128,28 @@ Page({
   appeal: function(){
     var temp = this.data.modal
     temp.isHidden = false
+    temp
     this.setData({
       modal: temp
     })
-    wx.request({
-      url: app.globalData.base+':'+app.globalData.port+'',
-      data: {
-        userId:app.globalData.openId,
-        checkId: this.data.checkId
-      },
-      success(res){}
-    })
   },
+  sendAppeal: function(e){
+    var appealContent = e.detail.content
+    wx.request({
+      url: app.globalData.base+':'+app.globalData.port+'/appeal/add',
+      method:'POST',
+      data:{
+        userId: app.globalData.openId,
+        checkId: this.data.checkId,
+        taskId: this.data.taskId,
+        content: appealContent
+      },
+      success(res){
+        console.log(res)
+      },
+      fail(err){
+        console.log(err)
+      }
+    })
+  }
 });

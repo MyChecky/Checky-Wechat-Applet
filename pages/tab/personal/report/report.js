@@ -1,4 +1,6 @@
 // pages/tab/personal/report/report.js
+const app = getApp()
+const util = require("../../../../utils/util.js")
 Page({
 
   /**
@@ -8,14 +10,6 @@ Page({
     title: '举报',
     icon: 'fa-exclamation-circle',
     reportList: [
-      {
-        date: '2019-07-09',
-        processDate: '2019-07-09',
-        content: 'XXX内容低俗',
-        state: '待审核',
-        result: '举报成功',
-        type: '用户'
-      },
     ]
   },
 
@@ -23,7 +17,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.request({
+      url: app.globalData.base + ':' + app.globalData.port + '/report/queryUserReports',
+      method: 'POST',
+      data: {
+        userId: app.globalData.openId
+      },
+      success: res => {
+        console.log(res.data)
+        for(item in res.data){
+          item.reportType = util.dataEN2CN(item.reportType)
+        }
+        this.setData({
+          reportList: res.data
+        })
+      },
+      fail: err => {
+        console.log(err)
+      }
+    })
   },
 
   /**

@@ -1,4 +1,6 @@
 <!--pages/tab/tasks/checky/checky.wxml-->
+<toast id="toast"/>
+
 <view class='form-view'>
   <view class='container-view'>
     <view class='title'>描述</view>
@@ -11,11 +13,11 @@
     </view>
   </view>
   <view wx:if="{{lastPageFlag}}" class='button-view'>
-    <button class='sup-button pass'>
+    <button class='sup-button pass'  bindtap='pass' data-flag='pass'>
       <view class='icon fa fa-check-circle-o fw'></view>
       <view>通过</view>
     </button>
-    <button class='sup-button fail'>
+    <button class='sup-button fail'  bindtap='pass' data-flag='deny'>
       <view class='icon fa fa-times-circle-o fw'></view>
       <view>不通过</view>
     </button>

@@ -6,28 +6,7 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-    // 获取类型
-    var that = this
-    wx.request({
-      url: this.globalData.base +":"+ this.globalData.port + '/taskType/allType',
-      data: {
-      },
-      success: res => {
-        console.log(res.data)
-        that.globalData.types = res.data
-      },
-      fail: err => {
-        // wx.showModal({
-        //   title: '提示',
-        //   content: '获取类型列表失败',
-        //   showCancel: false,
-        //   success(res) {
-        //     if (res.confirm) {
-        //     }
-        //   }
-        // })
-      }
-    })
+
     // 登录
     wx.login({
       success: res => {
@@ -82,7 +61,7 @@ App({
   globalData: {
     code:null,
     userInfo: null,
-    base: "http://192.168.1.103",
+    base: "http://192.168.1.102",
     port: "8080",
     curPages: null,
     location:{},

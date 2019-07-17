@@ -63,6 +63,7 @@
 .date-choose{
   color: #666;
   font-size: 14px;
+  margin: 0px 5px;
 }
 .weekend{
   color: #e38;

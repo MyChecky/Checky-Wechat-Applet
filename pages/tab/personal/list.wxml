@@ -57,33 +57,48 @@
 <template name="list-num-item">
   <view class='item-view'>
     <view class='head-view'>
-      <icon class='direction fa {{item.direction=="in"?"fa-plus":"fa-minus"}} {{item.direction}}'></icon>
+      <icon class='direction fa {{item.type=="income"?"fa-plus":"fa-minus"}} {{item.type}}'></icon>
     </view>
     <view class='content-view'>
-      <view class='content {{item.direction}}'>
-        <icon class='rmb fa fa-rmb'></icon>{{item.value}}</view>
-      <view class='date'>{{item.date}}</view>
+      <view class='content {{item.type}}'>
+        <icon class='rmb fa fa-rmb'></icon>{{item.flowMoney}}</view>
+      <view class='date'>{{item.flowTime}}</view>
     </view>
   </view>
 </template>
-<!-- 进度跟踪列表项 -->
-<template name="list-trace-item">
-
+<!-- 申诉列表项 -->
+<template name="list-appeal-item">
   <view class='item-view' style='flex-direction: column;'>
     <view class='content-view'>
       <view class='info-view'>
-        <view class='content'>{{item.content}}</view>
-        <view class='date'>{{item.date}}</view>
+        <view class='content'>{{item.appealContent}}</view>
+        <view class='date'>{{item.appealTime}}</view>
       </view>
     </view>
     <view class='info-view'>
-      <view class='state'>
-        <view class='type' wx:if='{{item.type!=undefine}}'>举报对象：{{item.type}}</view>
-        {{item.state}}
-      </view>
       <view class='result-view'>
-        <view class='result'>{{item.result}}</view>
-        <view class='date'>{{item.processDate}}</view>
+        <view class='result'>{{item.processResult}}</view>
+        <view class='date'>{{item.processTime}}</view>
+      </view>
+    </view>
+  </view>
+</template>
+<!-- 举报列表项 -->
+<template name="list-report-item">
+  <view class='item-view' style='flex-direction: column;'>
+    <view class='content-view'>
+      <view class='info-view'>
+        <view class='content'>{{item.reportContent}}</view>
+        <view class='date'>{{item.reportTime}}</view>
+      </view>
+    </view>
+    <view class='info-view'>
+      <view class='result-view'>
+        <view class='result'>{{item.processResult}}</view>
+        <view class='date'>{{item.processTime}}</view>
+      </view>
+      <view class='state'>
+        <view class='type'>举报对象：{{item.reportType}}</view>
       </view>
     </view>
   </view>

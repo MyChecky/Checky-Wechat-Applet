@@ -15,8 +15,7 @@ Component({
     }
   },
   data: {
-    text: '',
-    checkId: ''
+    text: ''
   },
   methods: {
     // 这里放置自定义方法
@@ -31,16 +30,7 @@ Component({
         modalHidden: true,
       })
       if(this.data.text!=''){
-        wx.request({
-          // url
-          url: app.globalData.base+':'+app.globalData.port+'',
-          data: {
-            content: this.data.text,
-            date: app.globalData.date,
-            userId: app.globalData.openId,
-            checkId: this.data.checkId
-          }
-        })
+        this.triggerEvent('appeal', {content: this.data.text})
       }
     },
     getText: function(e){
