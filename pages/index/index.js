@@ -12,9 +12,8 @@ Page({
   // 事件处理函数
   // 向后台发送用户信息
   sendInfo: function () {
-    wx.switchTab({
-      url: '../tab/tasks/tasks'
-    })
+    var that = this
+    var toast = this.selectComponent("#toast")
     console.log("准备发送的数据：")
     console.log(app.globalData)
     // 向后台发送
@@ -30,16 +29,19 @@ Page({
         console.log(res.data)
         app.globalData.openId=res.data.states
         if (app.globalData.openId!="0"){
-          wx.switchTab({
-            url: '../tab/tasks/tasks'
-          })
+          that.selectComponent("#toast").toastShow("登录成功", "fa-check", 1000)
+          setTimeout(function(){
+            wx.switchTab({
+              url: '../tab/tasks/tasks'
+            })
+          },1000)
         }
         else {
-          this.selectComponent("#toast").toastShow("登陆失败", "fa-remove", 1000)
+          that.selectComponent("#toast").toastShow("登陆失败", "fa-remove", 1000)
         }
       },
       fail: (err) => {
-        this.selectComponent("#toast").toastShow("登陆失败", "fa-remove", 1000)
+        that.selectComponent("#toast").toastShow("登陆失败", "fa-remove", 1000)        
       }
     })
   },
@@ -83,6 +85,6 @@ Page({
     })
     console.log("点击授权")
     // this.sendInfo()
-  },
+  }
   
 }) 

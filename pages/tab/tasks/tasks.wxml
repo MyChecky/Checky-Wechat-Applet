@@ -77,12 +77,12 @@
           <view class='title'>待审查</view>
         </view>
         <view class='inner-list {{selectedItem[3]?"onList":"offList"}}'>
-          <view class='list-item' wx:for='{{toSupvise}}' bindtap='superise' mode="top" data-taskId="{{item.taskId}}" data-checkId="{{item.checkId}}">
+          <view class='list-item' wx:for='{{toSupvise}}'>
             <view class='text'>
               <view class='taskTitle'>{{item.taskTitle}}</view>
               <view class='taskContent'>{{item.date}}</view>
             </view>
-            <button class='detail-btn fa fa-angle-right'></button>
+            <button class='detail-btn fa fa-arrow-circle-o-right'bindtap='superise' mode="top" data-taskId="{{item.taskId}}" data-checkId="{{item.checkId}}"></button>
           </view>
         </view>
       </view>

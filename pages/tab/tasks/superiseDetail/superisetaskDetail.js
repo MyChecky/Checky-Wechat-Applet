@@ -79,22 +79,30 @@ Page({
         })
       }
     })
-    // wx.request({// 获取监督状态列表
-    //   url: app.globalData.base + ':' + app.globalData.port + 'supervise//querySupervisorState',
-    //   data: {
-    //     taskId: that.data.taskId,
-    //     checkId: that.data.checkId
-    //   },
-    //   success(res) {
-    //     that.getSupNum(res.data.supList)
-    //   }
-    // })
   },
-
-  // superise: function(e) {
-  //   // 已打卡情况
-  //   wx.navigateTo({
-  //     url: '../checky/checky?checkId=' + this.data.checkId + '&lastPage=superisetaskDetail',
-  //   })
-  // }
+  pass: function(e){
+    this.selectComponent("#toast").toastShow2("正在提交，请稍等","fa-spinner fa-pulse")
+    var state = e.target.dataset.flag
+    wx.request({
+      url: app.globalData.base + ":" + app.globalData.port+'/supervise/addSupervise',
+      method: 'POST',
+      data: {
+        superviseState: state,
+        supervisorId: app.globalData.openId,
+        checkId: this.data.checkId,
+        superviseTime: util.formatTime(new Date())
+      },
+      success: res=>{
+        this.selectComponent("#toast").toastShow("成功","fa-check",1500)
+        setTimeout(function(){
+          wx.navigateBack({
+            delta: 1
+          })
+        },1500)
+      },
+      fail: err=>{
+        this.selectComponent("#toast").toastShow("失败，请稍后重试", "fa-remove", 1500)
+      }
+    })
+  }
 })

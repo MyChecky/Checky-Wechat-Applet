@@ -63,6 +63,7 @@ Page({
   },
   onShow: function() {
     this.requestCheckList(this.data.chooseDate)
+    this.requestSupList(this.data.date)
   },
   // 请求列表
   // 打卡
@@ -208,7 +209,6 @@ Page({
       currentTab: e.detail.current
     })
     if(this.data.currentTab==1){
-      this.requestSupList(this.data.date)
     }
   },
   getUserInfo: function(e) {

@@ -7,106 +7,132 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title:"",
-    content:"",
-    numOfSus:[
-      { "value": 0 }, { "value": 1 }, { "value": 3 }, { "value": 5 }
-      ],
-    num:0,
+    title: "",
+    content: "",
+    numOfSus: [{
+      "value": 0
+    }, {
+      "value": 1
+    }, {
+      "value": 3
+    }, {
+      "value": 5
+    }],
+    num: 0,
     types: [],
-    repeatDate:[
-      { "name": "日", "value": 0 },
-      { "name": "一", "value": 1 },
-      { "name": "二", "value": 2 },
-      { "name": "三", "value": 3 },
-      { "name": "四", "value": 4 },
-      { "name": "五", "value": 5 },
-      { "name": "六", "value": 6 }
+    repeatDate: [{
+        "name": "日",
+        "value": 0
+      },
+      {
+        "name": "一",
+        "value": 1
+      },
+      {
+        "name": "二",
+        "value": 2
+      },
+      {
+        "name": "三",
+        "value": 3
+      },
+      {
+        "name": "四",
+        "value": 4
+      },
+      {
+        "name": "五",
+        "value": 5
+      },
+      {
+        "name": "六",
+        "value": 6
+      }
     ],
-    chooseRepeat:null,
-    index:-1,
-    array:[],
+    chooseRepeat: null,
+    index: -1,
+    array: [],
     startTime: app.globalData.date,
     endTime: app.globalData.date,
-    money:0
+    money: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     wx.setNavigationBarTitle({
       title: '新建任务',
-    })
-    this.setData({
-      types: app.globalData.types
     })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
+  onShow: function() {
+    this.setData({
+      types: app.globalData.types
+    })
   },
   // 获取类型
-  getType: function(){
+  getType: function() {
     wx.navigateTo({
       url: '../type/type',
     })
   },
-  bindPickerChange: function(e){
+  // 获取数据
+  bindPickerChange: function(e) {
     this.setData({
       index: e.detail.value
     })
   },
-  bindPickerStartTime: function(e){
+  bindPickerStartTime: function(e) {
     this.setData({
       startTime: e.detail.value
     })
   },
-  bindPickerEndTime: function (e) {
+  bindPickerEndTime: function(e) {
     this.setData({
       endTime: e.detail.value
     })
   },
-  bindNum: function(e){
+  bindNum: function(e) {
     this.setData({
       num: e.detail.value
     })
   },
-  bindRepeatDate:function(e){
+  bindRepeatDate: function(e) {
     this.setData({
       chooseRepeat: e.detail.value
     })
   },
-  bindTitle: function(e){
+  bindTitle: function(e) {
     this.setData({
       title: e.detail.value
     })
   },
-  bindContent: function(e){
+  bindContent: function(e) {
     this.setData({
       content: e.detail.value
     })
   },
-  bindMoney: function(e){
+  bindMoney: function(e) {
     this.setData({
       money: e.detail.value
     })
   },
-  sendForm: function(){
-    if (this.data.title == "" || this.data.index < 0 || this.data.startTime == "" || this.data.endTime == "" || this.data.chooseRepeat == null || this.data.money<=0){
+  // 发送信息
+  sendForm: function() {
+    if (this.data.title == "" || this.data.index < 0 || this.data.startTime == "" || this.data.endTime == "" || this.data.chooseRepeat == null || this.data.money <= 0) {
       this.selectComponent("#toast").toastShow('必要信息不可为空', 'fa-exclamation-circle', 2000)
-    }
-    else{
+    } else {
       var data = {
         "userId": app.globalData.openId,
         "taskTitle": this.data.title,
@@ -123,15 +149,18 @@ Page({
         url: app.globalData.base + ":" + app.globalData.port + '/task/addTask',
         method: 'POST',
         data: data,
-        success: function(res){
+        success: res => {
           console.log(res)
-          wx.showModal({
-            title: '提示',
-            content: '创建成功',
-            showCancel: false,
-            success(res) {},
-            fail(err){}
-          })
+          this.selectComponent("#toast").toastShow("新建成功", "fa-check", 1500)
+          setTimeout(function() {
+            wx.navigateBack({
+              delta: 1
+            })
+          }, 1500)
+        },
+        fail: err=>{
+          console.log(err)
+          this.selectComponent("#toast").toastShow("新建失败", "fa-remove", 1500)
         }
       })
     }
