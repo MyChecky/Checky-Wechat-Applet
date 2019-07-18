@@ -1,1 +1,81 @@
 /* pages/tab/essays/essaysNew/essaysNew.wxss */
+
+
+.title{
+  color: #e83015;
+  margin: 5px;
+  padding-bottom: 10px;
+  font-size: 16px;
+  border-bottom: 1px solid rgba(144,144,144,0.3);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.title-text
+{
+  width: 150px;
+  padding-left: 5px;
+}
+.content{
+  width: auto;
+  height: 80px;
+  padding: 5px;
+  word-wrap: break-word;
+}
+.limit{
+  color: #999;
+  width: 50px;
+  font-size: 16px;
+  padding-right: 5px;
+  text-align: right;
+}
+
+.submit{
+  background-color: #e83015;
+  color: #fff;
+  border-radius: 2px;
+  box-shadow: 1px 1px 1px 0px rgba(100,100,100,0.5);
+  margin: 10px 5px;
+  height: 40px;
+  font-size: 16px;
+}
+.file{
+  width: 30%;
+  height: auto;
+  margin: 5px 1.25%;
+  padding: 2px;
+  font-size: 60px;
+  border-radius: 0px;
+  background-color: #f3f5f5;
+}
+.img{
+  width: 30%;
+  padding: 0px;
+  padding-bottom: 10%;
+  margin: 5px 1.25%;
+  background-color: #f3f5f5;
+  align-items: center;
+  position: relative;
+}
+.button-view{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.img:hover .cancel{
+  bottom: 0px;
+}
+.cancel{
+  position: absolute;
+  width: 100%;
+  bottom: -30px;
+  color: #fff;
+  height: 30px;
+  font-size: 14px;
+  line-height: 30px;
+  background-color: rgba(232,48,21,0.5);
+  border-radius: 0px;
+  transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}

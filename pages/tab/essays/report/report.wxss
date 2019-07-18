@@ -26,14 +26,13 @@
 }
 
 .report-view{
-  display: table;
   background-color: #ececec;
   height: 60px;
 }
-.report-view text
-{
-  vertical-align:middle;
+.view-text{
+  margin:10px 10px 10px 10px;
 }
+
 
 .report-reason{
   margin-top: 10px;
@@ -52,10 +51,19 @@
   width: 80px;
   display: flex;
   background-color: #ececec;
+  justify-content: center;
+  align-items: center;
+  
 }
 
 .report-id{
   color: #74b9ff;
 }
+.r-unchoose{
+  color:#000;
+}
 
+.r-choose{
+color: #e80315;
+}
 

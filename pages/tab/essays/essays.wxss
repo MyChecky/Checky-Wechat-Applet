@@ -38,7 +38,7 @@
 
 .essays-pic{
   height: 100px;
-  width: 100px;
+  width: 120px;
   display: flex;
   align-items: center;
   background-color: #6f5445;
@@ -101,4 +101,3 @@
   color:#e80315;
   background-color: white;
 }
-

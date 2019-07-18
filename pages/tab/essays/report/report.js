@@ -1,7 +1,8 @@
 Page({
+  reasonClick:false,
   data: {
     essReason:[
-      "垃圾营销","涉黄信息","人身攻击","不实信息","有害信息","内容抄袭","违法信息","诈骗信息"],
+      "垃圾营销","涉黄信息","人身攻击","不实信息","有害信息","内容抄袭","违法信息","诈骗信息","违规活动"],
     userId:["陆老板"],
     essaysText:["今天也是努力生活的一天呢哈哈哈哈哈哈哈哈哈哈哈哈"]
   },
@@ -11,6 +12,11 @@ Page({
    */
   onLoad: function (options) {
 
+  },
+  reasonClick: function () {
+    this.setData({
+      reasonClick: !this.data.reasonClick,
+    })
   },
 
   /**

@@ -33,7 +33,8 @@
   </view>
 
   <view class='essays-comment'>
-    <input placeholder='评论' bindinput='essaysComment' data-name='comment'></input>
+    <input placeholder='评论一下吧' bindinput='essaysComment' data-name='comment'></input>
+    <button class='btn-submit' bindtap='commentSubmit'>发送</button>
   </view>
 </scroll-view>
 <view class='border'></view>

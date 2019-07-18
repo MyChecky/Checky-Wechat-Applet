@@ -1,8 +1,9 @@
 {
   "pages": [
+   
     "pages/index/index",
-    "pages/tab/essays/essays",
     "pages/tab/personal/personal",
+    "pages/tab/essays/essays",
     "pages/tab/personal/appeal/appeal",
     "pages/tab/personal/report/report",
     "pages/tab/personal/money/money",
@@ -19,6 +20,7 @@
     "pages/tab/essays/essaysDetail/essaysDetail",
     "pages/tab/essays/essaysNew/essaysNew",
     "pages/tab/essays/report/report"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
