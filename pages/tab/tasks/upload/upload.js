@@ -134,7 +134,7 @@ Page({
       },
       fail(err){
         console.log(err)
-        toast.toastShow('上传失败', 'fa-exclamation-circle',1000)
+        toast.toastShow('上传打卡失败', 'fa-exclamation-circle',1000)
       }
     })
   },

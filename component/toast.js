@@ -41,6 +41,7 @@ Component({
         })
       }, duration)
     },
+    // toast 永久显示
     toastShow2: function (str, icon) {
       this.setData({
         toastShow: true,
@@ -48,12 +49,14 @@ Component({
         iconClass: icon
       })
     },
+    // toast 更换
     toastChange: function(str, icon){
       this.setData({
         toastMsg: str,
         iconClass: icon
       })
     },
+    // toast 停止
     toastStop: function(){
       this.setData({
         toastShow: false

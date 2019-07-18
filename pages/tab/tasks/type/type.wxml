@@ -1,4 +1,6 @@
 <!--pages/tab/tasks/type/type.wxml-->
+<toast id="toast"/>
+
 <view class='container-view'>
   <view class='type-view' bindtap='getId' wx:for="{{types}}" 
     data-text = "{{item.typeContent}}" data-value="{{item.typeId}}" >{{item.typeContent}}

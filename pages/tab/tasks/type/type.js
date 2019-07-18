@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    types:app.globalData.types,
+    types:[],
     isNew:false,
     out:"off",
     move:"",
@@ -18,9 +18,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.selectComponent("#toast").toastShow2("正在获取类型请稍后","fa-spinner fa-pulse")
     // 获取类型
-    var that = this
     wx.request({
       url: app.globalData.base + ":" + app.globalData.port + '/taskType/allType',
       data: {
@@ -31,8 +30,10 @@ Page({
         this.setData({
           types: app.globalData.types
         })
+        this.selectComponent("#toast").toastStop()
       },
       fail: err => {
+        this.selectComponent("#toast").toastShow("获取类型失败", "fa-remove",1000)
       }
     })
   },
