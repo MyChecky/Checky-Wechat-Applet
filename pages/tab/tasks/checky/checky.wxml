@@ -9,7 +9,9 @@
   <view class='container-view'>
     <view class='title'>附件</view>
     <view class='image-view'>
-      <image class='img' wx:for="{{imgae}}" wx:if="{{item.URL!=''}}" src='{{item.URL}}' mode='aspectFit'></image>
+      <view class='img-view' wx:for="{{image}}" wx:if="{{item.URL!=''}}">
+        <image class='img' src='{{item.URL}}' mode='aspectFill'></image>
+      </view>
     </view>
   </view>
   <view wx:if="{{lastPageFlag}}" class='button-view'>

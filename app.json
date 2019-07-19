@@ -1,6 +1,5 @@
 {
   "pages": [
-   
     "pages/index/index",
     "pages/tab/personal/personal",
     "pages/tab/essays/essays",
@@ -14,7 +13,6 @@
     "pages/tab/tasks/taskDetail/taskDetail",
     "pages/tab/tasks/tasks",
     "pages/tab/tasks/checky/checky",
-    "pages/tab/tasks/newtask/newtask",
     "pages/tab/tasks/type/type",
     "pages/tab/tasks/upload/upload",
     "pages/tab/essays/essaysDetail/essaysDetail",
