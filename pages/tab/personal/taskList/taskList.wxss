@@ -1,1 +1,27 @@
 /* pages/tab/personal/taskList/taskList.wxss */
+@import "../list.wxss";
+
+.info-view{
+  width: auto;
+  flex-direction:column;
+  padding: 10px 0px;
+}
+.state{
+  color:#fff;
+  padding:2px 10px;
+  border-radius:12px;
+  font-size:16px;
+  height:20px;
+}
+.nomatch{
+  background-color:#318ce0;
+}
+.during{
+  background-color:#e83015;
+}
+.pass{
+  background-color:#08d101;
+}
+.deny{
+  background-color:#333;
+}

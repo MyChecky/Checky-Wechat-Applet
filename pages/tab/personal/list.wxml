@@ -34,7 +34,7 @@
     </view>
   </view>
 </template>
-<!-- 图片列表项 -->
+<!-- 动态列表项 -->
 <template name="list-pic-item">
   <view class='item-view'>
     <view class='head-view'>
@@ -60,9 +60,27 @@
       <icon class='direction fa {{item.type=="income"?"fa-plus":"fa-minus"}} {{item.type}}'></icon>
     </view>
     <view class='content-view'>
-      <view class='content {{item.type}}'>
-        <icon class='rmb fa fa-rmb'></icon>{{item.flowMoney}}</view>
-      <view class='date'>{{item.flowTime}}</view>
+      <view class='{{item.type}}'>
+        <icon class='rmb fa fa-rmb'></icon>{{item.flowMoney}}
+      </view>
+      <view class='task-title'>{{item.taskTitle}}</view>
+    </view>
+    <view class='date'>{{item.flowTime}}</view>
+  </view>
+</template>
+<!-- 打卡列表项 -->
+<template name="list-check-item">
+  <view class='item-view'>
+    <view class='head-view' wx:if="{{item.images!=null}}">
+      <image class='pics-view' src='{{item.url}}{{item.images[0].fileAddr}}' mode='cover'></image>
+    </view>
+    <view class='content-view'>
+      <view class='multicontent'>{{item.text.recordContent}}</view>
+      <view class='info-view' style='justify-content: space-between;'>
+        <view class='result' style='flex-grow:2;'>任务：{{item.check.taskTitle}}</view>
+        <view class='state'>{{item.check.checkState}}</view>
+        <view class='date'>{{item.check.checkTime}}</view>
+      </view>
     </view>
   </view>
 </template>
@@ -77,8 +95,8 @@
     </view>
     <view class='info-view'>
       <view class='result-view'>
-        <view class='result'>{{item.processResult}}</view>
-        <view class='date'>{{item.processTime}}</view>
+        <view wx:if="{{item.processResult!=null}}" class='result'>{{item.processResult}}</view>
+        <view wx:if="{{item.processTime!=null}}" class='date'>{{item.processTime}}</view>
       </view>
     </view>
   </view>
@@ -100,6 +118,19 @@
       <view class='state'>
         <view class='type'>举报对象：{{item.reportType}}</view>
       </view>
+    </view>
+  </view>
+</template>
+<!-- 任务列表项 -->
+<template name="list-task-item">
+  <view class='item-view'>
+    <view class='content-view'>
+      <view class='content'>{{item.taskTitle}}</view>
+      <view class='subContent'>{{item.taskContent}}</view>
+    </view>
+    <view class='info-view'>
+      <view class='date'>{{item.taskStartTime}}到{{item.taskEndTime}}</view>
+      <view class='state {{item.taskState}}'>{{item.taskStateContent}}</view>
     </view>
   </view>
 </template>

@@ -10,7 +10,7 @@
   <view class='container-view'>
     <view class='title'>附件</view>
     <view class='image-view'>
-      <image class='img' wx:for="{{image}}" src='{{item.fileAddr}}' mode='aspectFit'></image>
+      <image class='img' wx:for="{{image}}" src='{{item.fileAddr}}' mode='aspectFill'></image>
     </view>
   </view>
   <view wx:if="{{lastPageFlag}}" class='button-view'>

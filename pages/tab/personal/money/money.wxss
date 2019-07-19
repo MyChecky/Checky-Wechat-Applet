@@ -7,18 +7,21 @@
 
 .income {
   color: #e83015;
+  font-size: 30px;
 }
 
 .cost {
   color: #333;
-}
-
-.content{
   font-size: 30px;
 }
 .date{
   margin: 5px 0px;
+  padding: 10px 0px;
 }
 .rmb{
   font-size: 20px;
+}
+.task-title{
+  font-size: 16px;
+  margin-top: 5px;
 }

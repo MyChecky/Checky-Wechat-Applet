@@ -1,0 +1,2 @@
+/* pages/tab/personal/history/history.wxss */
+@import "../list.wxss";

@@ -14,6 +14,7 @@ Page({
   sendInfo: function () {
     console.log("准备发送的数据：")
     console.log(app.globalData)
+    this.selectComponent("#toast").toastShow2("稍等", "fa-spinner fa-pulse")
     // 向后台发送
     wx.request({
       url: app.globalData.base+":"+app.globalData.port+ '/wechat/login',

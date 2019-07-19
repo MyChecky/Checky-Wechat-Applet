@@ -89,7 +89,14 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
+.multicontent{
+  max-width: 250px;
+  max-height: 50px;
+  font-size: 18px;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .operation-view {
   display: flex;
   flex-direction: column;

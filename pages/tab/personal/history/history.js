@@ -1,15 +1,16 @@
-// pages/tab/personal/taskList/taskList.js
+// pages/tab/personal/history/history.js
 const app = getApp()
 const util = require("../../../../utils/util.js")
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    title: '任务列表',
-    icon: 'fa-reorder',
-    taskList: [
+    title: "历史记录",
+    icon: "fa-history",
+    historyList: [
     ]
   },
 
@@ -18,18 +19,19 @@ Page({
    */
   onLoad: function (options) {
     wx.request({
-      url: app.globalData.base + ':' + app.globalData.port + '/task/queryUserTasks',
+      url: app.globalData.base + ':' + app.globalData.port + '/check/listCheck',
       method: 'POST',
       data: {
         userId: app.globalData.openId
       },
       success: res => {
         console.log(res.data)
-        for(var i = 0; i<res.data.length; i++){
-          res.data[i].taskStateContent = util.dataEN2CN(res.data[i].taskState)
+        for(var i=0;i<res.data.length;i++){
+          res.data[i].url = app.globalData.base + ':' + app.globalData.port+ "/"
+          res.data[i].check.checkState = util.dataEN2CN(res.data[i].check.checkState)
         }
         this.setData({
-          taskList: res.data
+          historyList: res.data
         })
       },
       fail: err => {

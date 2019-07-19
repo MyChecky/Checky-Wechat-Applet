@@ -74,7 +74,9 @@ const formatBiDate = function(biString){
 const dictionary = {
   pass: "通过",
   deny: "失败",
-  unknown: "待认证"
+  unknown: "待认证",
+  during: "进行中",
+  nomatch: "未匹配"
 }
 const dataEN2CN = function(string){
   var result = dictionary[string] 
