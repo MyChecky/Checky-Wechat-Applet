@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "toast": "../../../../component/toast"
-  },
-  "navigationBarTitleText": "发布动态"
-}
