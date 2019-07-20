@@ -6,7 +6,7 @@
   </button>
   <view class='essays-item' wx:for='{{essays}}' wx:for-index='index'>
     <!--图片-->
-    <image class='essays-pic' bindtap='essaysPic' src='{{item.essayPic}}' mode='aspectFill'></image>
+    <image class='essays-pic' bindtap='essaysPic' src='{{item.essaysPic}}' mode='aspectFill'></image>
 
     <view class="essays-right">
       <!--文字-->
@@ -14,13 +14,13 @@
       <view class='essays-bottom'>
         <view class='essays-data'>
           <view class='essays-author'>{{item.userId}}</view>
-          <view class='essays-time'>{{item.essayTime}}</view>
+          <view class='essays-time'>{{item.essaysTime}}</view>
         </view>
         <!--按钮-->
         <view class='essays-button' >
           <button class='btn {{isLike ?"fa fw fa-heart":"fa fw fa-heart-o"}}' bindtap='isLike' mode="top" ></button>
-          <text class='like-sum'>({{likeSum}})</text>
-          <button class='btn fa fw fa-commenting-o' bindtap='isComment' mode="top"></button>
+          <text class='like-sum'>({{item.likeNum}})</text>
+          <button class='btn fa fw fa-commenting-o' bindtap='essaysClick' mode="top"></button>
         </view>
       </view>
     </view>

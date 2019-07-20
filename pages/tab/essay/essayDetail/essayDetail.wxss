@@ -14,7 +14,6 @@ page {
   width: 30px;
   border-radius: 100%;
   margin-left: 14px;
-  background-color: #74b9ff;
 }
 
 .essays-title {
@@ -62,8 +61,6 @@ page {
   padding: 14px;
   height: 120px;
   width: 88%;
-  right: 14px;
-  background-color: rgb(28, 157, 161);
 }
 
 
@@ -96,11 +93,6 @@ page {
   height:16px;
   font-size: 16px;
 }
-.border{
-  background-color: #ececec;
-  height: 70px;
-  bottom:30px;
-}
 
 .essays-comment{
   padding: 6px;
@@ -110,6 +102,11 @@ page {
   position: fixed;
 	bottom: 6px;
   background-color: #fff;
+}
+.comment-area{
+  width:100%;
+  position: relative;
+  overflow:hidden;
   display: flex;
   justify-content: space-between;
 }
@@ -123,4 +120,5 @@ page {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
 }

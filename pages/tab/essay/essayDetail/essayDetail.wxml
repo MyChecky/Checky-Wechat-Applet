@@ -1,0 +1,42 @@
+<!--pages/tab/essays/essaysDetail/essaysDetail.wxml-->
+<view>
+  <scroll-view class='essaysDetail' scroll-y='true' style='height:100%'>
+    <view class='essays-title'>
+      <!--头像-->
+      <image class="essays-avatar" src="{{userAvatar}}"></image>
+      <!--用户名及时间-->
+      <view class='essays-data'>
+        <view class='essays-author'>{{userId}}</view>
+        <view class='essays-time'>{{essaysTime}}</view>
+      </view>
+      <!--举报-->
+      <view class='essays-report'>
+        <button class='fa fw fa-reorder' bindtap='report' mode="top"></button>
+      </view>
+    </view>
+
+    <view class='essays-text' style=" word-break: break-all">
+      <text>{{essaysText}}</text>
+    </view>
+
+    <view class='essays-pic' src='{{essaysPic}}'></view>
+
+    <view class='essays-button'>
+      <button class='btn {{isLike?"fa fw fa-heart":"fa fw fa-heart-o"}}' bindtap='isLike' mode="top"></button>
+      <text class='like-sum'>({{likeNum}})</text>
+      <!--评论-->
+      <button class='btn {{isComment?"fa fw fa-commenting":"fa fw fa-commenting-o"}}' bindtap='foucus' mode="top"></button>
+    </view>
+
+    <view class='essays-other-comment' wx:for='{{comment}}'>
+      <view class='item-comment'>{{item.comId}}: {{item.comment}}</view>
+    </view>
+
+    <view class='essays-comment' style="bottom:{{bottom}}px">
+      <view class='comment-area'>
+        <input placeholder='评论一下吧' bindinput='essaysComment' bindconfirm="sendComment" adjust-position="{{false}}" bindfocus="foucus" bindblur="blur"></input>
+        <button class='btn-submit' bindtap='sendComment'>发送</button>
+      </view>
+    </view>
+  </scroll-view>
+</view>

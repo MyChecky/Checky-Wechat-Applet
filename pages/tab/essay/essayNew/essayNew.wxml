@@ -2,19 +2,12 @@
 <toast id="toast" />
 
 <view class='essaysNew'>
-  <!--<button class='essays-share'>选择一条打卡发布动态
-  <image src='../../../image/forward_arrow_black.png'>
-  </image>
-  </button>-->
+
   <view class='container-view'>
-    <view class='title'>
-    <view class='title-text'>动态描述</view>
-    </view>
+
     <textarea class='content' placeholder='有什么想要分享？' maxlength='200' bindinput='lengthChange'></textarea>
     <view class='limit'>{{currentLength}}/200</view>
-  </view>
-  <view class='container-view'>
-    <view class='title'>上传附件</view>
+
     <view class='button-view'>
       <view class='img-view' wx:for="{{image}}" wx:if="{{item.URL!=''}}">
         <image class='img' src='{{item.URL}}' mode='aspectFill'></image>
@@ -22,7 +15,6 @@
       </view>
       <view class='file fa fa-file-image-o' wx:if="{{currentNum<4}}" bindtap="chooseFile"></view>
     </view>
-    <view class='limit'>{{currentNum}}/4</view>
   </view>
   <button class='submit' bindtap='submit'>发布</button>
 </view>

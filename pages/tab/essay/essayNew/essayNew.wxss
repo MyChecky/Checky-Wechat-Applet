@@ -1,18 +1,13 @@
 /* pages/tab/essays/essaysNew/essaysNew.wxss */
 
-.title{
-  color: #e83015;
-  margin: 5px;
-  padding-bottom: 10px;
-  font-size: 16px;
-  border-bottom: 1px solid rgba(144,144,144,0.3);
-}
+
 .content{
   width: auto;
-  height: 150px;
+  height: 200px;
   padding: 5px;
   word-wrap: break-word;
 }
+
 .limit{
   color: #999;
   width: auto;
@@ -40,7 +35,6 @@
   border-radius: 2px;
   background-color: #f3f5f5;
   line-height: 80px;
-  box-shadow: 1px 1px 5px 0px rgba(100,100,100,0.5);
 }
 .img-view{
   width: 22.5%;
