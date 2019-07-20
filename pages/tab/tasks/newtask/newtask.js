@@ -1,4 +1,4 @@
-// pages/tab/tasks/newtask/newtask.js
+          // pages/tab/tasks/newtask/newtask.js
 const app = getApp()
 var util = require("../../../../utils/util.js")
 Page({
@@ -130,9 +130,13 @@ Page({
   },
   // 发送信息
   sendForm: function() {
-    if (this.data.title == "" || this.data.index < 0 || this.data.startTime == "" || this.data.endTime == "" || this.data.chooseRepeat == null || this.data.money <= 0) {
+    if (this.data.title == "" || this.data.index < 0 || this.data.startTime == "" || this.data.endTime == "" || this.data.chooseRepeat == null) {
       this.selectComponent("#toast").toastShow('必要信息不可为空', 'fa-exclamation-circle', 2000)
-    } else {
+    } 
+    else if (this.data.money <= 0){
+      this.selectComponent("#toast").toastShow('无效金额', 'fa-exclamation-circle', 2000)
+    }
+    else {
       var data = {
         "userId": app.globalData.openId,
         "taskTitle": this.data.title,

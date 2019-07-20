@@ -12,10 +12,9 @@ Page({
   // 事件处理函数
   // 向后台发送用户信息
   sendInfo: function () {
-    var that = this
-    var toast = this.selectComponent("#toast")
     console.log("准备发送的数据：")
     console.log(app.globalData)
+    this.selectComponent("#toast").toastShow2("稍等", "fa-spinner fa-pulse")
     // 向后台发送
     wx.request({
       url: app.globalData.base+":"+app.globalData.port+ '/wechat/login',
@@ -29,7 +28,7 @@ Page({
         console.log(res.data)
         app.globalData.openId=res.data.states
         if (app.globalData.openId!="0"){
-          that.selectComponent("#toast").toastShow("登录成功", "fa-check", 1000)
+          this.selectComponent("#toast").toastShow("登录成功", "fa-check", 1000)
           setTimeout(function(){
             wx.switchTab({
               url: '../tab/tasks/tasks'
@@ -37,11 +36,11 @@ Page({
           },1000)
         }
         else {
-          that.selectComponent("#toast").toastShow("登陆失败", "fa-remove", 1000)
+          this.selectComponent("#toast").toastShow("登陆失败", "fa-remove", 1000)
         }
       },
       fail: (err) => {
-        that.selectComponent("#toast").toastShow("登陆失败", "fa-remove", 1000)        
+        this.selectComponent("#toast").toastShow("登陆失败", "fa-remove", 1000)        
       }
     })
   },
@@ -76,6 +75,15 @@ Page({
         }
       })
     }
+  },
+  onReady: function(){
+    // var toast = this.selectComponent("#toast")
+    // var i = 0
+    // while(toast==null){
+    //   var toast = this.selectComponent("#toast")
+    //   console.log(i++)
+    // }
+    // console.log(toast)
   },
   getUserInfo: function (e) {
     app.globalData.userInfo = e.detail.userInfo

@@ -1,9 +1,9 @@
 {
   "pages": [
-   
     "pages/index/index",
-    "pages/tab/personal/personal",
+    "pages/tab/tasks/tasks",
     "pages/tab/essays/essays",
+    "pages/tab/personal/personal",
     "pages/tab/personal/appeal/appeal",
     "pages/tab/personal/report/report",
     "pages/tab/personal/money/money",
@@ -12,15 +12,13 @@
     "pages/tab/personal/taskList/taskList",
     "pages/tab/tasks/superiseDetail/superisetaskDetail",
     "pages/tab/tasks/taskDetail/taskDetail",
-    "pages/tab/tasks/tasks",
     "pages/tab/tasks/checky/checky",
-    "pages/tab/tasks/newtask/newtask",
     "pages/tab/tasks/type/type",
     "pages/tab/tasks/upload/upload",
     "pages/tab/essays/essaysDetail/essaysDetail",
     "pages/tab/essays/essaysNew/essaysNew",
-    "pages/tab/essays/report/report"
-    
+    "pages/tab/essays/report/report",
+    "pages/tab/personal/history/history"
   ],
   "window": {
     "backgroundTextStyle": "light",

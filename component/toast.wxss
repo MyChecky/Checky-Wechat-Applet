@@ -15,6 +15,7 @@
   justify-content:space-around;
   align-items: center;
   padding: 10px;
+  transform: scale(0.01,0.01);
 }
 
 .appear {
@@ -24,12 +25,12 @@
 
 .disappear {
   animation: disappear 0.5s 0s cubic-bezier(0.175, 0.885, 0.32, 1.5) both;
-  opacity: 1;
+  opacity: 0.2;
 }
 @keyframes disappear{
   25%{transform: scale(0.5,1)}
   50%{transform: scale(0.5,0.1)}
-  100%{transform: scale(0,0)}
+  100%{transform: scale(0.01,0.01)}
 }
 @keyframes appear{
   25%{transform: scale(1.1,0.9)}

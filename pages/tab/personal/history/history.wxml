@@ -1,4 +1,4 @@
-<!--pages/tab/personal/taskList/taskList.wxml-->
+<!--pages/tab/personal/history/history.wxml-->
 <import src="../list.wxml" />
 
 <view class='from-view'>
@@ -6,6 +6,6 @@
     <view class='title'>
       <icon class='icon fa {{icon}}'></icon>{{title}}
     </view>
-    <template wx:for="{{taskList}}" is="list-task-item" data="{{item}}"/>
+    <template wx:for="{{historyList}}" is="list-check-item" data="{{item}}"/>
   </view>
 </view>

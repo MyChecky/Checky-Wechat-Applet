@@ -23,12 +23,21 @@
   border-top: 1px solid rgba(100, 100, 100, 0.2);
 }
 
-.img {
-  width: 40%;
-  margin: 5px 5%;
+.img-view{
+  width: 22.5%;
+  padding: 0px;
+  margin: 5px 1.25%;
+  padding-bottom: 22.5%;
   background-color: #f3f5f5;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0px 0px 5px 1px rgba(144,144,144,0.3);
 }
-
+.img{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
 .button-view {
   display: flex;
   flex-direction: row;
