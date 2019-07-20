@@ -1,0 +1,20 @@
+<!--pages/tab/essays/essaysNew/essaysNew.wxml-->
+<toast id="toast" />
+
+<view class='essaysNew'>
+
+  <view class='container-view'>
+
+    <textarea class='content' placeholder='有什么想要分享？' maxlength='200' bindinput='lengthChange'></textarea>
+    <view class='limit'>{{currentLength}}/200</view>
+
+    <view class='button-view'>
+      <view class='img-view' wx:for="{{image}}" wx:if="{{item.URL!=''}}">
+        <image class='img' src='{{item.URL}}' mode='aspectFill'></image>
+        <button class='cancel' bindtap='cancel' data-index="{{index}}">删除</button>
+      </view>
+      <view class='file fa fa-file-image-o' wx:if="{{currentNum<4}}" bindtap="chooseFile"></view>
+    </view>
+  </view>
+  <button class='submit' bindtap='submit'>发布</button>
+</view>

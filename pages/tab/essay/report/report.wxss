@@ -1,0 +1,69 @@
+/* pages/tab/essays/report/report.wxss */
+.report{
+  height: 100%;
+  padding: 10px 10px 10px 10px;
+  background-color: #fff;
+}
+.report-submit{
+  padding:0 5px 0 5px;
+  margin-top:30px;
+  height: 36px;
+  width: 100%;
+  background-color: #e80315;
+  display: table;
+  color: #fff;
+}
+
+.report-submit text {
+  vertical-align:middle;
+}
+
+
+.report-title{
+  height: 30px;
+  font-size: 18px;
+  align-items: center;
+}
+
+.report-view{
+  background-color: #ececec;
+  height: 60px;
+}
+.view-text{
+  margin:10px 10px 10px 10px;
+}
+
+
+.report-reason{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.report-list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.reason-item{
+  margin: 10px 10px 10px 10px;
+  height: 30px;
+  width: 80px;
+  display: flex;
+  background-color: #ececec;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.report-id{
+  color: #74b9ff;
+}
+.r-unchoose{
+  color:#000;
+}
+
+.r-choose{
+color: #e80315;
+}
+
