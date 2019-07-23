@@ -88,11 +88,7 @@ App({
   globalData: {
     code:null,
     userInfo: null,
-<<<<<<< HEAD
-    base: "http://localhost",
-=======
     base: "http://192.168.1.106",
->>>>>>> master
     port: "8080",
     curPages: null,
     location:{},
