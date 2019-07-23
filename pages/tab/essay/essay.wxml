@@ -2,22 +2,28 @@
 <view class='essays'>
   <button class='essays-new fa fa-send' bindtap='essayNew'></button>
   <view class='essays-item' wx:for='{{essays}}' wx:for-index='index'>
-    <view class='pic-text-view' data-essayid='{{item.essay.essayId}}' bindtap='essayClick'>
-      <!--图片-->
-      <image class='essays-pic' wx:if="{{item.img[0]!=null}}" catchtap='essayPic' src='{{path}}{{item.img[0].fileAddr}}' mode='aspectFill' data-index='{{index}}'></image>
-       <!--文字-->
-      <view class='essays-text' data-essayid='{{item.essay.essayId}}' >{{item.essay.essayContent}}</view>
-    </view>
-      <view class='essays-bottom'>
+    <view class="info-view">
+      <image class="avatar" src="{{item.userAvatar}}"></image>
+      <view class="inner-view">
         <view class='essays-author'>{{item.userName}}</view>
-        <!--按钮-->
-        <view class='essays-button'>
-          <view class='essays-time'>{{item.essay.essayTime}}</view>
-          <button class='btn {{item.like ?"fa fa-heart":"fa fa-heart-o"}}' bindtap='isLike' mode="top" data-index='{{index}}'  data-essayid='{{item.essayId}}' ></button>
-          <text class='like-sum'>({{item.essay.likeNum}})</text>
-          <button class='btn fa fa-commenting-o' bindtap='essayClick' data-essayid='{{item.essayId}}' mode="top"></button>
-          <text class='like-sum'>({{item.essay.commentNum}})</text>
+        <view class='essays-time'>{{item.essay.essayTime}}</view>
+      </view>
+    </view>
+    <view class='pic-text-view' data-essayid='{{item.essay.essayId}}' bindtap='essayClick'>
+      <!--文字-->
+      <view class='essays-text' data-essayid='{{item.essay.essayId}}'>{{item.essay.essayContent}}</view>
+      <!--图片-->
+      <view class="image-view">
+      <view class="image-container" wx:for="{{item.img}}">
+        <image class='essays-pic' catchtap='essayPic' src='{{path}}{{item.fileAddr}}' mode='aspectFill' data-index='{{index}}'></image>
         </view>
+      </view>
+    </view>
+    <view class='essays-bottom'>
+      <!--按钮-->
+      <button class='btn {{item.like ?"fa fa-heart":"fa fa-heart-o"}}' bindtap='isLike' mode="top" data-index='{{index}}' data-essayid='{{item.essayId}}'></button>
+      <button class='btn fa fa-commenting-o' bindtap='essayClick' data-essayid='{{item.essayId}}' mode="top"></button>
     </view>
   </view>
+  <view class="more">没有更多了</view>
 </view>
