@@ -4,6 +4,8 @@ var util = require("../../../utils/util.js")
 
 Page({
   data: {
+    height: 0,
+    supHeight: 0,
     userInfo: {},
     date: "",
     chooseDate: "",
@@ -27,15 +29,11 @@ Page({
       }
     ],
     isHid: false,
-    selectedItem: [false, false, false, false],
-    unknown: [
-    ],
-    checked: [
-    ],
-    toCheck: [
-    ],
-    toSupvise: [
-    ]
+    selectedItem: [true, true, true, true],
+    unknown: [],
+    checked: [],
+    toCheck: [],
+    toSupvise: []
   },
 
   hidCal: function() {
@@ -64,6 +62,14 @@ Page({
   onShow: function() {
     this.requestCheckList(this.data.chooseDate)
     this.requestSupList(this.data.date)
+    wx.getSystemInfo({
+      success: (res) => {
+        var tempHeight = res.windowHeight + this.data.unknown.length * 50 + this.data.toCheck.length * 50 + this.data.checked.length * 50
+        this.setData({
+          height: tempHeight
+        })
+      }
+    })
   },
   // 请求列表
   // 打卡
@@ -89,12 +95,12 @@ Page({
   },
   // 监督
   requestSupList: function(chooseDate) {
-    var startDate = new Date(Date.parse(chooseDate.replace(/-/g, '/')));//字符串格式转换为日期格式
-    var day = 10;//定义天数​
+    var startDate = new Date(Date.parse(chooseDate.replace(/-/g, '/'))); //字符串格式转换为日期格式
+    var day = 10; //定义天数​
     // 计算结束日期                   
-    var value = startDate.getTime();//将开始时间转为毫秒            
-    value -= 2 * (24 * 3600 * 1000);//将天数转换成毫秒后与开始时间相加得到结束时间的毫秒数         
-    var endDate = new Date(value);//将得到的毫秒数转换为日期
+    var value = startDate.getTime(); //将开始时间转为毫秒            
+    value -= 2 * (24 * 3600 * 1000); //将天数转换成毫秒后与开始时间相加得到结束时间的毫秒数         
+    var endDate = new Date(value); //将得到的毫秒数转换为日期
     endDate = util.formatTime(endDate)
     console.log(chooseDate)
     console.log(endDate)
@@ -208,8 +214,7 @@ Page({
     that.setData({
       currentTab: e.detail.current
     })
-    if(this.data.currentTab==1){
-    }
+    if (this.data.currentTab == 1) {}
   },
   getUserInfo: function(e) {
     console.log(e)
@@ -232,11 +237,12 @@ Page({
       })
     }
   },
-  onPageScroll: function(e) { //监听页面滚动
-    this.setData({
-      scrollTop: e.scrollTop
-    })
-  },
+  // onPageScroll: function(e) { //监听页面滚动
+  //   console.log(e.scrollTop)
+  //   this.setData({
+  //     scrollTop: e.scrollTop
+  //   })
+  // },
 
   //跳转到新建打卡
   newTask: function() {

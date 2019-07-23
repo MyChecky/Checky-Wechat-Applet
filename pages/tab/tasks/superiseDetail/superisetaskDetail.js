@@ -7,13 +7,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    date: '',
+    userAvatar: "",
+    date: "",
     info: [],
     checkId: "",
     taskId: "",
     image: [],
     content: "",
-    lastPageFlag: true
+    lastPageFlag: true,
+    userName: ""
   },
 
   /**
@@ -53,9 +55,13 @@ Page({
       data: {
         taskId: this.data.taskId
       },
-      success(res) {
+      success:(res)=> {
         console.log(res.data)
-        that.formatInfo(res.data)
+        that.formatInfo(res.data.task)
+        this.setData({
+          userName: res.data.userName,
+          userAvatar: res.data.userAvatar
+        })
         wx.setNavigationBarTitle({
           title: res.data.taskTitle
         })

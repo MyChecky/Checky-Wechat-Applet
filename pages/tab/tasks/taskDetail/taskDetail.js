@@ -134,6 +134,7 @@ Page({
     })
   },
   sendAppeal: function(e){
+    this.selectComponent("#toast").toastShow2("发送中","fa-spinner fa-pulse")
     var appealContent = e.detail.content
     wx.request({
       url: app.globalData.base+':'+app.globalData.port+'/appeal/add',
@@ -144,11 +145,13 @@ Page({
         taskId: this.data.taskId,
         content: appealContent
       },
-      success(res){
+      success:(res)=>{
         console.log(res)
+        this.selectComponent("#toast").toastShow("发送成功", "fa-check", 1000)
       },
-      fail(err){
+      fail:(err)=>{
         console.log(err)
+        this.selectComponent("#toast").toastShow("发送失败", "fa-remove", 1000)
       }
     })
   }

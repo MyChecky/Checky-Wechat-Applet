@@ -1,12 +1,14 @@
 /* pages/tab/essays/report/report.wxss */
-.report{
+
+.report {
   height: 100%;
   padding: 10px 10px 10px 10px;
   background-color: #fff;
 }
-.report-submit{
-  padding:0 5px 0 5px;
-  margin-top:30px;
+
+.report-submit {
+  padding: 0 5px 0 5px;
+  margin-top: 30px;
   height: 36px;
   width: 100%;
   background-color: #e80315;
@@ -15,55 +17,62 @@
 }
 
 .report-submit text {
-  vertical-align:middle;
+  vertical-align: middle;
 }
 
-
-.report-title{
+.report-title {
   height: 30px;
-  font-size: 18px;
+  font-size: 16px;
+  color: #666;
   align-items: center;
+  padding: 10px 0px;
 }
 
-.report-view{
+.report-view {
   background-color: #ececec;
-  height: 60px;
-}
-.view-text{
-  margin:10px 10px 10px 10px;
+  height: auto;
+  padding: 10px;
+  border-radius: 2px;
 }
 
+.notice{
+  color: #666;
+  font-size: 16px;
+}
 
-.report-reason{
+.report-reason {
+  padding: 10px 0px;
   margin-top: 10px;
   margin-bottom: 10px;
 }
-.report-list{
+
+.report-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.reason-item{
+.reason-item {
   margin: 10px 10px 10px 10px;
-  height: 30px;
-  width: 80px;
+  padding: 10px;
+  box-sizing: content-box;
+  border-radius: 5px;
   display: flex;
   background-color: #ececec;
   justify-content: center;
   align-items: center;
-  
 }
 
-.report-id{
+.report-id {
   color: #74b9ff;
 }
-.r-unchoose{
-  color:#000;
+
+.r-unchoose {
+  color: #000;
 }
 
-.r-choose{
-color: #e80315;
+.r-choose {
+  color: #fff;
+  background-color: #e83015;
 }
-

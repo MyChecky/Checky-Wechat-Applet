@@ -1,5 +1,33 @@
 /* pages/tab/tasks/superiseDetail/superisetaskDetail.wxss */
 /* pages/tab/tasks/taskDetail/taskDetail.wxss */
+.info-view{
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+.inner-info{
+  padding: 5px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.avatar{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 5px 10px 5px 0px;
+  box-shadow: 1px 1px 10px 1px rgba(100, 100, 100, 0.5);
+}
+.info{
+  font-size: 16px;
+  color: #333;
+}
+.date{
+  font-size: 14px;
+  color: #999;
+}
 .title-view{
   color: #e83015;
   font-size: 20px;
@@ -76,7 +104,7 @@
   padding: 5px;
   font-size: 22px;
   color: #333;
-  border-top: 1px solid rgba(100, 100, 100, 0.2);
+  margin-bottom: 10px;
 }
 
 .image-view {
@@ -85,7 +113,6 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   padding: 5px;
-  border-top: 1px solid rgba(100, 100, 100, 0.2);
 }
 
 .img {

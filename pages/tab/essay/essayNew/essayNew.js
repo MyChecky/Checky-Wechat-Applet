@@ -1,5 +1,5 @@
 // pages/tab/essays/essaysNew/essaysNew.js
-
+const util = require("../../../../utils/util.js")
 const app = getApp()
 Page({
 
@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    essayId: "",
     currentLength: 0,
     currentNum: 0,
     image: [
@@ -39,41 +40,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   },
   // 文本长度监督
@@ -133,40 +99,43 @@ Page({
   },
   // 提交
   submit: function () {
-    this.selectComponent("#toast").toastShow('发布中', 'fa-spinner fa-pulse', 1000)
+    this.selectComponent("#toast").toastShow2('发布中', 'fa-spinner fa-pulse')
     
     var that = this
     // 文本上传
     wx.request({
-      url: app.globalData.base + ":" + app.globalData.port + '/essays/essaysNew',
+      url: app.globalData.base + ":" + app.globalData.port + '/essay/addEssay',
       method: 'POST',
+      header: {
+        "sessionKey": app.globalData.sessionKey,
+        "userId": app.globalData.openId
+      },
       data: {
-        "checkInfo": {
-          "userId": app.globalData.openId,
-          "checkTime": app.globalData.date,
-        },
-        "content": this.data.content
+        "userId": app.globalData.openId,
+        "essayContent": this.data.content
       },
       success(res) {
         console.log(res)
-        var checkId = res.data.checkId
+        var essayId = res.data.essayId
         var done = 0
         that.setData({
-          checkId: checkId
+          essayId: essayId
         })
         // 附件上传
         for (var i = 0; i < that.data.index; i++) {
           console.log(that.data.image[i].URL)
           wx.uploadFile({
-            url: app.globalData.base + ":" + app.globalData.port + '/essays/file/upload',
+            url: app.globalData.base + ":" + app.globalData.port + '/essay/file/upload',
             filePath: that.data.image[i].URL,
             name: 'file',
             header: {
-              "Content-Type": "multipart/form-data"
+              "sessionKey": app.globalData.sessionKey,
+              "userId": app.globalData.openId
             },
             formData: {
               'userId': app.globalData.openId,
-              'type': 'picture'
+              'type': 'picture',
+              'essayId': that.data.essayId
             },
             success(res) {
               console.log(res)
@@ -174,17 +143,15 @@ Page({
             },
             fail(err) {
               console.log(err)
-              wx.showToast({
-                title: '上传图片' + done + '失败！',
-              })
-              done++
             }
           })
         }
-        // that.back()
+        that.selectComponent("#toast").toastShow('发布成功', 'fa-check', 1000)
+        that.back()
       },
       fail(err) {
         console.log(err)
+        that.selectComponent("#toast").toastShow('发布失败', 'fa-remove', 1000)
       }
     })
   },

@@ -5,39 +5,44 @@
   background-color: #f3f5f5;
 }
 .essays-new{
-  height: 30px;
-  width: 100%;
-  background-color: #fff;
-  font-size: 16px;
+  z-index: 100;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  height: 60px;
+  width: 60px;
+  background-color: #e83015;
+  font-size: 20px;
   display: table;
-  border-radius: 30px;
+  border-radius: 50%;
+  padding-top: 20px;
+  color: #fff;
+  box-shadow: 1px 1px 10px 1px rgba(100, 100, 100, 0.3)
 }
 .essays-new text {
   vertical-align:middle;
 }
 
-.fa-plus{
-  margin-right: 4px;
-  margin-bottom: 6px;
-  color: #e80315;
-  font-size: 18px;
-  vertical-align:middle;
-}
-
 .essays-item{
-  padding: 5px 10px 5px 10px;
-  margin-top: 5px;
-  height: 120px;
+  padding: 10px 10px 5px 10px;
+  margin-top: 10px;
+  border-radius: 2px;
+  height: auto;
   background-color: #fff;
   display:  flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.pic-text-view{
+  display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
-  border-bottom: 1px solid rgba(100, 100, 100, 0.1);
+  align-items: flex-start;
+  width: 100%;
 }
-
 .essays-pic{
-  height: 100px;
+  height: 120px;
   width: 120px;
   display: flex;
   align-items: center;
@@ -54,18 +59,23 @@
   align-content:flex-start;
 }
 .essays-text{
-  display: flex;
-  flex-wrap: wrap;
+  margin: 0px 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 60%;
+  display: -webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:6;
 }
 .essays-bottom{
-  height: 100px;
   width: 100%;
-  margin-top: 10px;
-  margin-bottom:10px;
+  margin: 10px 5px;
+  padding-top: 10px; 
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
+  justify-content: flex-start;
   font-size: 14px;
+  border-top: 1px solid rgba(100, 100, 100, 0.2);
 }
 
 
@@ -78,16 +88,26 @@
 }
 
 .essays-author{
+  font-size: 16px;
   color:#74B9FF;
+  margin: 0px 5px;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .essays-button{
-  width: 100%;
+  flex-grow: 2;
   display: flex;
   justify-content: flex-end;
-  font-size: 20px;
+  font-size: 22px;
+  align-items:center;
 }
-
+.essays-time{
+  font-size: 14px;
+  color: #999;
+  margin-right: 5px;
+}
 .like-sum{
   font-size:12px;
   color: #868686;
@@ -100,4 +120,14 @@
 .btn{
   color:#e80315;
   background-color: white;
+}
+.fa-commenting-o{
+  padding-bottom: 5px;
+}
+.fa-heart{
+  animation: like 0.3s cubic-bezier(.89,.51,.49,1.66);
+}
+@keyframes like {
+  0%{transform: scale(0,0);}
+  100%{transform: scale(1,1);}
 }

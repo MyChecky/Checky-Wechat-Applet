@@ -1,42 +1,55 @@
 <!--pages/tab/essays/essaysDetail/essaysDetail.wxml-->
+<toast id="toast"/>
 <view>
-  <scroll-view class='essaysDetail' scroll-y='true' style='height:100%'>
-    <view class='essays-title'>
+  <scroll-view class='essaysDetail' scroll-y='true' style='height:100%' bindscroll="scroll">
+    <view class="essays-title {{scrollTop>0?'scroll':''}}">
       <!--头像-->
-      <image class="essays-avatar" src="{{userAvatar}}"></image>
+      <image class="essays-avatar {{scrollTop>0?'hide':''}}" src="{{userAvatar}}"></image>
       <!--用户名及时间-->
       <view class='essays-data'>
-        <view class='essays-author'>{{userId}}</view>
-        <view class='essays-time'>{{essaysTime}}</view>
+        <view class='essays-author'>{{userName}}</view>
+        <view class='essays-time'>{{essay.essayTime}}</view>
       </view>
       <!--举报-->
       <view class='essays-report'>
-        <button class='fa fw fa-reorder' bindtap='report' mode="top"></button>
+        <button class='fa fw fa-reorder' bindtap='report' mode="top" data-essayid='{{essay.essayId}}'></button>
       </view>
     </view>
-
+    <!-- 文本 -->
     <view class='essays-text' style=" word-break: break-all">
-      <text>{{essaysText}}</text>
+      <text>{{essay.essayContent}}</text>
     </view>
-
-    <view class='essays-pic' src='{{essaysPic}}'></view>
-
+    <!-- 图片 -->
+    <swiper class='essays-pic-view' wx:if="{{picLength!=0}}" bindchange='slide'>
+      <swiper-item wx:for="{{essaysPic}}">
+        <image class='essays-image' src="{{path}}{{item.fileAddr}}" mode='aspectFill'></image>
+      </swiper-item>
+    </swiper>
+    <view class='pic-counter' wx:if="{{picLength!=0}}">
+      <view wx:for="{{essaysPic}}" wx:for-index='index' class='dot {{index==currentImg?"doted":""}}' id='{{index}}'></view>
+    </view>
+    <!-- 热度按钮 -->
     <view class='essays-button'>
-      <button class='btn {{isLike?"fa fw fa-heart":"fa fw fa-heart-o"}}' bindtap='isLike' mode="top"></button>
-      <text class='like-sum'>({{likeNum}})</text>
-      <!--评论-->
-      <button class='btn {{isComment?"fa fw fa-commenting":"fa fw fa-commenting-o"}}' bindtap='foucus' mode="top"></button>
+      <button class='btn {{like?"fa fw fa-heart":"fa fw fa-heart-o"}}' bindtap='isLike' mode="top"></button>
+      <text class='like-sum'>{{likeNum}}</text>
+      <button class='btn fa fa-commenting-o' bindtap='foucus' mode="top"></button>
+      <text class='like-sum'>{{commentNum}}</text>
     </view>
-
-    <view class='essays-other-comment' wx:for='{{comment}}'>
-      <view class='item-comment'>{{item.comId}}: {{item.comment}}</view>
-    </view>
-
-    <view class='essays-comment' style="bottom:{{bottom}}px">
-      <view class='comment-area'>
-        <input placeholder='评论一下吧' bindinput='essaysComment' bindconfirm="sendComment" adjust-position="{{false}}" bindfocus="foucus" bindblur="blur"></input>
-        <button class='btn-submit' bindtap='sendComment'>发送</button>
+    <!-- 评论区 -->
+    <view class='essays-other-comment'>
+      <view class='item-comment' wx:for='{{comments}}'>
+        <view class='comment-info'>
+          <view class='commentor'>{{item.userName}}</view>
+          <view class='time'>{{item.commentTime}}</view>
+          <button wx:if="{{item.userId==visitorId||essayUserId==visitorId}}" data-commentId='{{item.commentId}}' class='del-comment' bindtap="delComment">删除</button>
+        </view>
+        <view class='comment-text'>{{item.commentContent}}</view>
       </view>
     </view>
   </scroll-view>
+  <!-- 评论输入 -->
+  <view class='essays-comment' style="bottom:{{bottom}}px">
+    <input placeholder='评论一下吧' bindinput='essaysComment' bindconfirm="sendComment" adjust-position="{{false}}" bindfocus="foucus" bindblur="blur" class='comment-input' value="{{commentContent}}"></input>
+    <button class='btn-submit' bindtap='sendComment'>发送</button>
+  </view>
 </view>

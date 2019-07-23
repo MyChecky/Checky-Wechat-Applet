@@ -1,60 +1,79 @@
+const app = getApp()
 Page({
   data: {
+    path: "",
+    userName: "",
+    visitorId: "",
+    essayUserId: "",
     userAvatar: "",
-    userId: "",
-    essaysTime: "",
-    essaysText: "",
-    essaysPic: "",
-    isLike: false,
+    like: false,
     likeNum: 0,
-    comment: []
+    essay: {},
+    essaysPic: [],
+    picLength: 0,
+    commentContent: "",
+    commentNum: 0,
+    comments: [],
+    currentImg: 0
   },
-
   //举报跳转
-  report: function() {
+  report: function(e) {
     var essayId = e.target.dataset.essayid
-    var userId = e.target.dataset.userid
+    var userId = app.globalData.openId
     console.log(essayId)
     wx.navigateTo({
-      url: './report/report?essayId=' + essayId + '&userId=' + userId,
+      url: '../report/report?essayId=' + essayId + '&userName=' + this.data.userName + '&essaysText=' + this.data.essay.essayContent,
     })
   },
 
-  onLoad: function(options) {},
-
-  onReady: function() {},
-
-  onShow: function() {
-    this.requestEssayDetail(this.data.essay)
-    this.requestEssayComment(this.data.commentList)
-  },
-
-  //---------------！--需要修改--！-----------------
-  //· 获取动态详情
-  requestEssayDetail: function(essay) {
-    var that = this
+  onLoad: function(options) {
+    this.setData({
+      path: app.globalData.base + ':' + app.globalData.port + '/',
+      essayId: options.essayId,
+      visitorId: app.globalData.openId
+    })
     wx.request({
-      // url
-      url: app.globalData.base + ':' + app.globalData.port + '/essays/queryEssay',
+      url: app.globalData.base + ':' + app.globalData.port + '/essay/queryEssayById',
       method: 'POST',
-      data: {
-        essayId: that.data.essayId
+      header: {
+        "sessionKey": app.globalData.sessionKey,
+        "userId": app.globalData.openId
       },
-      success(res) {
-        console.log(res.data)
-        that.setData({
-          essay: res.essay
+      data: {
+        userId: app.globalData.openId,
+        essayId: this.data.essayId
+      },
+      success: res => {
+        console.log(res)
+        this.setData({
+          essaysPic: res.data.img,
+          essay: res.data.essay,
+          essayUserId: res.data.userId,
+          userAvatar: res.data.userAvatar,
+          userName: res.data.userName,
+          like: res.data.like,
+          likeNum: res.data.essay.likeNum,
+          picLength: res.data.img.length
         })
+      },
+      fail: err => {
+        console.log(err)
       }
     })
   },
 
+  onReady: function() {},
+
+  onShow: function() {
+    this.requestEssayComment()
+  },
+
   //· 获取评论信息
-  requestEssayComment: function(commentList) {
+  requestEssayComment: function() {
     var that = this
     wx.request({
       // url
-      url: app.globalData.base + ':' + app.globalData.port + '/essays/queryComment',
+      url: app.globalData.base + ':' + app.globalData.port + '/essay/queryComments',
       method: 'POST',
       data: {
         essayId: that.data.essayId
@@ -62,7 +81,8 @@ Page({
       success(res) {
         console.log(res.data)
         that.setData({
-          comment: res.comment
+          comments: res.data,
+          commentNum: res.data.length
         })
       }
     })
@@ -70,28 +90,105 @@ Page({
 
   //记录点赞情况
   isLike: function(e) {
-    var likeNum = e.target.dataset.likenum
-    var isLike = e.target.dataset.islike
-    console.log(likeNum)
-    this.setData({
-      isLike: !this.data.isLike,
-      likeNum: this.data.isLike ? this.data.likeNum - 1 : this.data.likeNum + 1
-    })
-  },
 
-  //评论
-  sendComment:function(){
-    if (this.data.essaysComment == "") {
-      this.selectComponent("#toast").toastShow('不能发送空的评论', 'fa-exclamation-circle', 2000)
-    } 
-    else{
-      var data = {//评论用户、评论内容
-        "comId": app.globalData.userId,
-        "comment": this.data.comment,
+    
+    if(this.data.like){
+    wx.request({
+      url: app.globalData.base + ":" + app.globalData.port + '/essay/unlike',
+      method: 'POST',
+      data: {
+        "essayId": this.data.essay.essayId,
+        "userId": app.globalData.openId
+      },
+      success: (res) => {
+        console.log(res)
+        this.setData({
+          like: !this.data.like,
+          likeNum: this.data.like ? this.data.likeNum - 1 : this.data.likeNum + 1
+        })
+      },
+      fail: (err) => {
+        console.log(err)
       }
+    })
+    }
+    else{
+      wx.request({
+        url: app.globalData.base + ":" + app.globalData.port + '/essay/like',
+        method: 'POST',
+        data: {
+          "essayId": this.data.essay.essayId,
+          "userId": app.globalData.openId
+        },
+        success: (res) => {
+          console.log(res)
+          this.setData({
+            like: !this.data.like,
+            likeNum: this.data.like ? this.data.likeNum - 1 : this.data.likeNum + 1
+          })
+        },
+        fail: (err) => {
+          console.log(err)
+        }
+      })
     }
   },
 
+  // 获取评论
+  essaysComment: function(e) {
+    this.setData({
+      commentContent: e.detail.value
+    })
+  },
+  // 发送评论
+  sendComment: function() {
+    if (this.data.commentContent == "") {
+      this.selectComponent("#toast").toastShow('不能发送空的评论', 'fa-exclamation-circle', 2000)
+    } else {
+      wx.request({
+        url: app.globalData.base + ':' + app.globalData.port + '/essay/addComment',
+        method: 'POST',
+        data: {
+          userId: app.globalData.openId,
+          essayId: this.data.essay.essayId,
+          commentContent: this.data.commentContent
+        },
+        success: res => {
+          console.log(res)
+          this.setData({
+            comments: res.data.comments,
+            commentNum: res.data.comments.length,
+            commentContent: ""
+          })
+        },
+        fail: err => {
+          console.log(err)
+        }
+      })
+    }
+  },
+  // 删除评论
+  delComment: function(e) {
+    wx.request({
+      url: app.globalData.base + ':' + app.globalData.port + '/essay/delComment',
+      method: 'POST',
+      data: {
+        commentId: e.target.dataset.commentid,
+        essayId: this.data.essay.essayId
+      },
+      success: res => {
+        console.log(res)
+        this.setData({
+          comments: res.data.comments,
+          commenNum: res.data.comments.length
+        })
+
+      },
+      fail: err => {
+        console.log(err)
+      }
+    })
+  },
   //输入聚焦
   foucus: function(e) {
     var that = this;
@@ -107,12 +204,17 @@ Page({
       bottom: 0
     })
   },
-
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
+  // 滑动图片
+  slide: function(e) {
+    this.setData({
+      currentImg: e.detail.current
+    })
+  },
+  // 页面滚动
+  scroll: function(e) {
+    console.log(e.scrollTop)
+    this.setData({
+      scrollTop: e.scrollTop
+    })
   }
 })

@@ -4,11 +4,14 @@
 
 <view class='form-view'>
   <view class='container-view'>
-    <view class='title'>描述</view>
+    <view class='info-view'>
+      <image class="avatar" src="{{userAvatar}}"></image>
+      <view class="inner-info">
+        <view class='info'>{{userName}}</view>
+        <view class='date'>{{date}}</view>
+      </view>
+    </view>
     <view class='content-view'>{{content}}</view>
-  </view>
-  <view class='container-view'>
-    <view class='title'>附件</view>
     <view class='image-view'>
       <image class='img' wx:for="{{image}}" src='{{item.fileAddr}}' mode='aspectFill'></image>
     </view>

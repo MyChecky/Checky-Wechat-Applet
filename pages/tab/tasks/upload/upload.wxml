@@ -18,5 +18,6 @@
     </view>
     <view class='limit'>{{currentNum}}/4</view>
   </view>
+  <switch class='share' bindchange='share'>同步到动态</switch>
   <button class='submit' bindtap='submit'>提交</button>
 </view>

@@ -27,6 +27,7 @@ Page({
       success: (res) => {
         console.log(res.data)
         app.globalData.openId=res.data.states
+        app.globalData.sessionKey = res.data.sessionKey
         if (app.globalData.openId!="0"){
           this.selectComponent("#toast").toastShow("登录成功", "fa-check", 1000)
           setTimeout(function(){

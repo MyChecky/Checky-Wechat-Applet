@@ -1,11 +1,26 @@
 <!--pages/tab/personal/essay/essay.wxml-->
-<import src="../list.wxml"/>
+<import src="../list.wxml" />
 
 <view class='from-view'>
   <view class='container-view'>
     <view class='title'>
       <icon class='icon fa {{icon}}'></icon>{{title}}
     </view>
-    <template wx:for="{{essayList}}" is="list-pic-item" data="{{item}}"/>
+    <view class='essays-item' wx:for='{{essays}}' wx:for-index='index'>
+      <view class='pic-text-view' data-essayid='{{item.essay.essayId}}' bindtap='essayClick'>
+        <!--图片-->
+        <image class='essays-pic' wx:if="{{item.img[0]!=null}}" catchtap='essayPic' src='{{path}}{{item.img[0].fileAddr}}' mode='aspectFill' data-index='{{index}}'></image>
+        <!--文字-->
+        <view class='essays-text' data-essayid='{{item.essay.essayId}}'>{{item.essay.essayContent}}</view>
+      </view>
+      <view class='essays-bottom'>
+        <view class='essays-author'>{{item.userName}}</view>
+        <!--按钮-->
+        <view class='essays-button'>
+          <view class='essays-time'>{{item.essay.essayTime}}</view>
+          <button class='btn fa fa-trash' bindtap='delEssay' data-essayid='{{item.essay.essayId}}' mode="top"></button>
+        </view>
+      </view>
+    </view>
   </view>
 </view>

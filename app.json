@@ -1,11 +1,8 @@
 {
   "pages": [
-    "pages/tab/essay/essayNew/essayNew",
-
     "pages/index/index",
     "pages/tab/tasks/tasks",
     "pages/tab/personal/personal",
-    "pages/tab/essay/essay",
     "pages/tab/personal/appeal/appeal",
     "pages/tab/personal/report/report",
     "pages/tab/personal/money/money",
@@ -18,7 +15,8 @@
     "pages/tab/tasks/type/type",
     "pages/tab/tasks/upload/upload",
     "pages/tab/essay/essayDetail/essayDetail",
-    
+    "pages/tab/essay/essay",
+    "pages/tab/essay/essayNew/essayNew",
     "pages/tab/essay/report/report",
     "pages/tab/personal/history/history"
   ],

@@ -1,5 +1,6 @@
 // pages/tab/personal/appealreport/appealreport.js
 const app = getApp()
+const util = require("../../../../utils/util.js")
 Page({
 
   /**
@@ -24,6 +25,9 @@ Page({
       },
       success: res=>{
         console.log(res.data)
+        for (var i=0;i<res.data.length;i++){
+          res.data[i].processResult = util.dataEN2CN(res.data[i].processResult)
+        }
         this.setData({
           appealList: res.data
         })

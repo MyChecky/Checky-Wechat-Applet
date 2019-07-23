@@ -66,6 +66,9 @@
 .img-view:hover .cancel{
   bottom: 0px;
 }
+.share{
+  font-size: 16px;
+}
 .cancel{
   position: absolute;
   width: 100%;

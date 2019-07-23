@@ -16,7 +16,8 @@ Page({
       { "URL": "" }
     ],
     index: 0,
-    content: ""
+    content: "",
+    share: false
   },
   /**
    * 生命周期函数--监听页面加载
@@ -138,7 +139,68 @@ Page({
       }
     })
   },
+  // 分享
+  share: function(e){
+    this.setData({
+      share: e.detail.value
+    })
+    console.log(this.data.share?"同步":"不同步")
+  },
+  // 回退
   back: function(){
+    // 分享到动态
+    var that = this
+    if (this.data.share) {
+      wx.request({
+        url: app.globalData.base + ":" + app.globalData.port + '/essay/addEssay',
+        method: 'POST',
+        header: {
+          "sessionKey": app.globalData.sessionKey,
+          "userId": app.globalData.openId
+        },
+        data: {
+          "userId": app.globalData.openId,
+          "essayContent": this.data.content
+        },
+        success(res) {
+          console.log(res)
+          var essayId = res.data.essayId
+          var done = 0
+          // 附件上传
+          for (var i = 0; i < that.data.index; i++) {
+            console.log(that.data.image[i].URL)
+            wx.uploadFile({
+              url: app.globalData.base + ":" + app.globalData.port + '/essay/file/upload',
+              filePath: that.data.image[i].URL,
+              name: 'file',
+              header: {
+                "Content-Type": "multipart/form-data",
+                "sessionKey": app.globalData.sessionKey,
+                "userId": app.globalData.openId
+              },
+              formData: {
+                'userId': app.globalData.openId,
+                'type': 'picture',
+                'essayId': essayId
+              },
+              success(res) {
+                console.log(res)
+                done++
+              },
+              fail(err) {
+                console.log(err)
+                toast.toastShow('上传图片失败', 'fa-exclamation-circle', 1000)
+                done++
+              }
+            })
+          }
+        },
+        fail(err) {
+          console.log(err)
+          toast.toastShow('上传打卡失败', 'fa-exclamation-circle', 1000)
+        }
+      })
+    }
     var arr = getCurrentPages()
     arr[arr.length-2].setData({
       checkId: this.data.checkId

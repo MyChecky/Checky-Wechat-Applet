@@ -25,8 +25,9 @@ Page({
       },
       success: res => {
         console.log(res.data)
-        for(item in res.data){
-          item.reportType = util.dataEN2CN(item.reportType)
+        for (var i = 0; i < res.data.length; i++) {
+          res.data[i].processResult = util.dataEN2CN(res.data[i].processResult)
+          res.data[i].reportType = util.dataEN2CN(res.data[i].reportType)
         }
         this.setData({
           reportList: res.data

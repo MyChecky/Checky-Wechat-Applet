@@ -15,6 +15,7 @@
       </view>
       <view class='file fa fa-file-image-o' wx:if="{{currentNum<4}}" bindtap="chooseFile"></view>
     </view>
+    <view class='limit'>{{currentNum}}/4</view>
   </view>
   <button class='submit' bindtap='submit'>发布</button>
 </view>

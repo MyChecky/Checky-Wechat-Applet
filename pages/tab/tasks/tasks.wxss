@@ -1,5 +1,4 @@
 /* pages/tab/tasks/tasks.wxss */
-
 .topnavFixed {
   position: fixed;
   width: 100%;
@@ -34,7 +33,7 @@ swiper-item {
 .swiper-box {
   margin-top: 40px;
   display: block;
-  height: 2000px;
+  height: auto;
   width: 100%;
   overflow: scroll;
 }

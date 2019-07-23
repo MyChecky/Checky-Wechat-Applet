@@ -1,21 +1,19 @@
 <!--pages/tab/essays/report/report.wxml-->
+<toast id="toast" />
+
 <view class='report'>
   <!--举报动态-->
   <view class='report-essays'>
-    <view class='report-title'>投诉
-      <text class='report-id'>{{userId}}</text>的动态:</view>
-    <view class='report-view'>
-      <text class='view-text'><text class='report-id'>{{userId}}</text>: {{essaysText}}</text>
+    <view class='report-title'>投诉<text class='report-id'>{{userName}}</text>的动态:
     </view>
-    <view class='report-reason'>请选择你想要举报的类型：
+    <view class='report-view'>{{essaysText}}</view>
+    <view class='report-reason'>
+      <text class='notice'>请选择你想要举报的类型：</text>
       <view class='report-list'>
-        <view class='reason-item' wx:for='{{essReason}}' wx:for-index='index' bindtap='reasonClick'>
-          <text class="reasonClick {{reasonClick ? 'r-choose' : 'r-unchoose'}}">{{essReason[index]}}</text>
-        </view>
+        <view class="reason-item {{item.check ? 'r-choose' : 'r-unchoose'}}" wx:for='{{essReason}}' wx:for-index='index' data-index='{{index}}' bindtap='reasonClick'>{{item.text}}</view>
       </view>
     </view>
   </view>
-  <button class='report-submit' bindtap='reSubmit'>
-    <text>提交</text>
+  <button class='report-submit' bindtap='send'>提交
   </button>
 </view>

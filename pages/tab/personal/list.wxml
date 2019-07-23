@@ -112,8 +112,8 @@
     </view>
     <view class='info-view'>
       <view class='result-view'>
-        <view class='result'>{{item.processResult}}</view>
-        <view class='date'>{{item.processTime}}</view>
+        <view class='result' wx:if="{{item.processResult!=null}}">{{item.processResult}}</view>
+        <view class='date' wx:if="{{item.processTime!=null}}">{{item.processTime}}</view>
       </view>
       <view class='state'>
         <view class='type'>举报对象：{{item.reportType}}</view>

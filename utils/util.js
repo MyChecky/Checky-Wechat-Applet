@@ -76,7 +76,12 @@ const dictionary = {
   deny: "失败",
   unknown: "待认证",
   during: "进行中",
-  nomatch: "未匹配"
+  nomatch: "未匹配",
+  toProcess: "待处理",
+  "0": "动态",
+  "1": "打卡",
+  "2": "任务",
+  "3": "监督人",
 }
 const dataEN2CN = function(string){
   var result = dictionary[string] 
