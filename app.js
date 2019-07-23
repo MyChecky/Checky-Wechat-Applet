@@ -45,10 +45,11 @@ App({
       }
     })
   },
+  
   request: function(url,method,data,callback,error){
     wx.request({
       url: this.base+url,
-      method:method==null?'GET':method,
+      method:method==null?'POST':method,
       data:data,
       success: res=>{
         callback(res.data)
@@ -58,6 +59,32 @@ App({
       }
     })
   },
+
+  requestWithAuth: (url,method,data,callback,error,header) => {
+    if(!header){
+      header = {} 
+    }
+    header['sessionKey'] = getApp().globalData.sessionKey
+    header['userId'] = getApp().globalData.userId
+    wx.request({
+      url: this.base+url,
+      method: method?'POST':method,
+      data: data,
+      header: header,      
+      success: res=>{
+        if (res.statusCode == 403) dealForbid()
+        callback(res)
+      },
+      fail: res=>{
+        error(res)
+      }
+    })
+  },
+
+  dealForbid: ()=>{
+
+  },
+
   globalData: {
     code:null,
     userInfo: null,
