@@ -16,9 +16,7 @@ page {
   box-shadow: 1px 1px 10px 1px rgba(100, 100, 100, 0.3);
   transition: 0.3s ease-in-out;
 }
-.hide{
-  transform: scale(0,0);
-}
+
 .essays-title {
   width: 100%;
   background-color: #fff;
@@ -33,9 +31,8 @@ page {
   max-height: 80px;
   transition: 0.3s ease-in-out;
 }
-.scroll{
-  max-height: 30px;
-}
+
+
 .essays-data {
   flex-grow: 2;
   display: flex;
@@ -67,7 +64,18 @@ page {
   color: #e83015;
   background-color: white;
 }
-
+.scroll{
+  max-height: 30px;
+  box-shadow: 1px 0px 10px 1px rgba(100, 100, 100, 0.5);
+}
+.hide{
+  width: 0px;
+  height: 0px;
+}
+.justify{
+  flex-wrap: nowrap;
+  align-items: center;
+}
 .essays-text {
   /* width: 100%; */
   margin-top: 80px;

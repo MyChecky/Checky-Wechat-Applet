@@ -1,6 +1,7 @@
 const app = getApp()
 Page({
   data: {
+    height:0,
     path: "",
     userName: "",
     visitorId: "",
@@ -27,6 +28,13 @@ Page({
   },
 
   onLoad: function (options) {
+    wx.getSystemInfo({
+      success: (res) => {
+        this.setData({
+          height: res.windowHeight
+        })
+      },
+    })
     this.setData({
       path: app.globalData.base + ':' + app.globalData.port + '/',
       essayId: options.essayId,
@@ -228,9 +236,8 @@ Page({
   },
   // 页面滚动
   scroll: function (e) {
-    console.log(e.scrollTop)
     this.setData({
-      scrollTop: e.scrollTop
+      scrollTop: e.detail.scrollTop
     })
   }
 })

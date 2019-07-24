@@ -4,6 +4,9 @@ var util = require("../../../utils/util.js")
 Page({
   data: {
     path: "",
+    height: 0,
+    cPage: 1,
+    infomation: "正在加载",
     essays: [
     ]
   },
@@ -11,11 +14,49 @@ Page({
     this.setData({
       path: app.globalData.base+':'+app.globalData.port+'/'
     })
+    wx.getSystemInfo({
+      success: (res)=> {
+        this.setData({
+          height: res.windowHeight
+        })
+      },
+    })
   },
   onShow: function() {
-    this.requestEssayList()
+    this.refreshEssayList()
   },
-
+  // 刷新列表
+  refreshEssayList: function() {
+    var that = this
+    req = {
+      url: app.globalData.base + ":" + app.globalData.port + '/essay/displayEssay',
+      method: 'POST',
+      data: {
+        "userId": app.globalData.openId,
+        "cPage": 1
+      },
+      success(res) {
+        console.log(res.data)
+        if (res.data.length < 5) {
+          that.setData({
+            infomation: "nomore",
+            essays: res.data,
+            cPage: 2
+          })
+        }
+        else {
+          that.setData({
+            infomation: "loading",
+            essays: res.data,
+            cPage: 2
+          })
+        }
+      }
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
+  },
   //获取动态列表
   requestEssayList: function() {
     var that = this
@@ -23,13 +64,23 @@ Page({
       url: app.globalData.base + ":" + app.globalData.port + '/essay/displayEssay',
       method: 'POST',
       data: {
-        "userId": app.globalData.openId
+        "userId": app.globalData.openId,
+        "cPage": that.data.cPage
       },
       success(res) {
         console.log(res.data)
-        that.setData({
-          essays: res.data
-        })
+        if(res.data.length==0){
+          that.setData({
+            infomation: "nomore"
+          })
+        }
+        else{
+          that.setData({
+            infomation: "loading",
+            essays: that.data.essays.concat(res.data),
+            cPage: that.data.cPage+1
+          })
+        }
       }
     }
     app.requestWithAuth(req)
@@ -111,5 +162,14 @@ Page({
   // 预览
   essayPic: function(e){
     console.log(e.target.dataset.index)
+  },
+  // 滚动加载
+  loadMore: function(){
+    console.log("load more")
+    this.requestEssayList()
+  },
+  refresh: function (){
+    console.log("refresh")
+    this.refreshEssayList()
   }
 })

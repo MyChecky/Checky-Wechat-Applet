@@ -14,8 +14,8 @@
     "pages/tab/tasks/checky/checky",
     "pages/tab/tasks/type/type",
     "pages/tab/tasks/upload/upload",
-    "pages/tab/essay/essayDetail/essayDetail",
     "pages/tab/essay/essay",
+    "pages/tab/essay/essayDetail/essayDetail",
     "pages/tab/essay/essayNew/essayNew",
     "pages/tab/essay/report/report",
     "pages/tab/personal/history/history"

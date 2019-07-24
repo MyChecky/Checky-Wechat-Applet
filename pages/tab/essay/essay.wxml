@@ -1,5 +1,5 @@
 <!--pages/tab/essays/essays.wxml-->
-<view class='essays'>
+<scroll-view class='essays' style="height:{{height}}px" scroll-y='true' bindscrolltolower="loadMore" bindscrolltoupper="refresh">
   <button class='essays-new fa fa-send' bindtap='essayNew'></button>
   <view class='essays-item' wx:for='{{essays}}' wx:for-index='index'>
     <view class="info-view">
@@ -25,5 +25,6 @@
       <button class='btn fa fa-commenting-o' bindtap='essayClick' data-essayid='{{item.essay.essayId}}' mode="top"></button>
     </view>
   </view>
-  <view class="more">没有更多了</view>
-</view>
+  <view class="more">
+    <view class="fa {{infomation=='nomore'?'fa-coffee':'fa-refresh fa-spin'}}"></view>{{infomation=="nomore"?"没有更多了":"加载中"}}</view>
+</scroll-view>

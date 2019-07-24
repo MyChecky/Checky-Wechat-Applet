@@ -1,12 +1,12 @@
 <!--pages/tab/essays/essaysDetail/essaysDetail.wxml-->
 <toast id="toast"/>
 <view>
-  <scroll-view class='essaysDetail' scroll-y='true' style='height:100%' bindscroll="scroll">
-    <view class="essays-title {{scrollTop>0?'scroll':''}}">
+  <scroll-view class='essaysDetail' scroll-y='true' style='height:{{height}}px' bindscroll="scroll">
+    <view class="essays-title {{scrollTop>10?'scroll':''}}">
       <!--头像-->
-      <image class="essays-avatar {{scrollTop>0?'hide':''}}" src="{{userAvatar}}"></image>
+      <image class="essays-avatar {{scrollTop>10?'hide':''}}" src="{{userAvatar}}"></image>
       <!--用户名及时间-->
-      <view class='essays-data'>
+      <view class="essays-data {{scrollTop>10?'justify':''}}">
         <view class='essays-author'>{{userName}}</view>
         <view class='essays-time'>{{essay.essayTime}}</view>
       </view>

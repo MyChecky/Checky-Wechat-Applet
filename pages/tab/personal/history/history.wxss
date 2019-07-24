@@ -1,2 +1,11 @@
 /* pages/tab/personal/history/history.wxss */
 @import "../list.wxss";
+.more{
+  height: 60px;
+  width: 100%;
+  background-color: #fff;
+  color: #999;
+  font-size: 16px;
+  text-align: center;
+  line-height: 60px;
+}

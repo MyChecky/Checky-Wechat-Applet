@@ -8,35 +8,61 @@ Page({
    * 页面的初始数据
    */
   data: {
-    path:"",
+    height: 0,
+    path: "",
     title: "历史记录",
     icon: "fa-history",
-    historyList: [
-    ]
+    infomation: "loading",
+    cPage: 1,
+    historyList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.setData({
-      path: app.globalData.base + ':' + app.globalData.port+'/'
+      path: app.globalData.base + ':' + app.globalData.port + '/'
     })
+    wx.getSystemInfo({
+      success: (res) => {
+        this.setData({
+          height: res.windowHeight
+        })
+      },
+    })
+    var that = this
     req = {
       url: app.globalData.base + ':' + app.globalData.port + '/check/listCheck',
       method: 'POST',
       data: {
-        userId: app.globalData.openId
+        userId: app.globalData.openId,
+        cPage: this.data.cPage
       },
       success: res => {
         console.log(res.data)
-        for(var i=0;i<res.data.length;i++){
-          res.data[i].url = app.globalData.base + ':' + app.globalData.port+ "/"
-          res.data[i].check.checkState = util.dataEN2CN(res.data[i].check.checkState)
+        if (res.data.length < 10) {
+          that.setData({
+            infomation: "nomore"
+          })
+          for (var i = 0; i < res.data.length; i++) {
+            res.data[i].url = app.globalData.base + ':' + app.globalData.port + "/"
+            res.data[i].check.checkState = util.dataEN2CN(res.data[i].check.checkState)
+          }
+          this.setData({
+            historyList: res.data,
+            cPage: this.data.cPage + 1
+          })
+        } else {
+          for (var i = 0; i < res.data.length; i++) {
+            res.data[i].url = app.globalData.base + ':' + app.globalData.port + "/"
+            res.data[i].check.checkState = util.dataEN2CN(res.data[i].check.checkState)
+          }
+          this.setData({
+            historyList: res.data,
+            cPage: this.data.cPage + 1
+          })
         }
-        this.setData({
-          historyList: res.data
-        })
       },
       fail: err => {
         console.log(err)
@@ -50,49 +76,47 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  loadMore: function() {
+    req = {
+      url: app.globalData.base + ':' + app.globalData.port + '/check/listCheck',
+      method: 'POST',
+      data: {
+        userId: app.globalData.openId,
+        cPage: this.data.cPage
+      },
+      success: res => {
+        console.log(res.data)
+        if (res.data.length == 0) {
+          that.setData({
+            infomation: "nomore"
+          })
+        }else {
+          for (var i = 0; i < res.data.length; i++) {
+            res.data[i].url = app.globalData.base + ':' + app.globalData.port + "/"
+            res.data[i].check.checkState = util.dataEN2CN(res.data[i].check.checkState)
+          }
+          this.setData({
+            historyList: res.data,
+            cPage: this.data.cPage + 1
+          })
+        }
+      },
+      fail: err => {
+        console.log(err)
+      }
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
   }
 })
