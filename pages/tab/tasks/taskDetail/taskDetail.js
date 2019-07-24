@@ -90,7 +90,7 @@ Page({
       },
       success(res) {
         console.log(res.data)
-        that.formatInfo(res.data)
+        that.formatInfo(res.data.task)
         wx.setNavigationBarTitle({
           title: res.data.taskTitle
         })
@@ -148,7 +148,7 @@ Page({
         userId: app.globalData.openId,
         checkId: this.data.checkId,
         taskId: this.data.taskId,
-        content: appealContent
+        appealContent: appealContent
       },
       success:(res)=>{
         console.log(res)

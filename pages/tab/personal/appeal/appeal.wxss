@@ -2,7 +2,7 @@
 @import "../list.wxss";
 
 .content{
-  max-width: 200px;
+  max-width: 50%;
 }
 .result{
   color: #e83015;

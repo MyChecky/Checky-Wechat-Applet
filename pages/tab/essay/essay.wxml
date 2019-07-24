@@ -13,8 +13,8 @@
       <!--文字-->
       <view class='essays-text' data-essayid='{{item.essay.essayId}}'>{{item.essay.essayContent}}</view>
       <!--图片-->
-      <view class="image-view">
-      <view class="image-container" wx:for="{{item.img}}">
+      <view class="image-view" catchtap='essayPic'>
+      <view class="image-container" catchtap='essayPic' wx:for="{{item.img}}">
         <image class='essays-pic' catchtap='essayPic' src='{{path}}{{item.fileAddr}}' mode='aspectFill' data-index='{{index}}'></image>
         </view>
       </view>
@@ -22,7 +22,7 @@
     <view class='essays-bottom'>
       <!--按钮-->
       <button class='btn {{item.like ?"fa fa-heart":"fa fa-heart-o"}}' bindtap='isLike' mode="top" data-index='{{index}}' data-essayid='{{item.essayId}}'></button>
-      <button class='btn fa fa-commenting-o' bindtap='essayClick' data-essayid='{{item.essayId}}' mode="top"></button>
+      <button class='btn fa fa-commenting-o' bindtap='essayClick' data-essayid='{{item.essay.essayId}}' mode="top"></button>
     </view>
   </view>
   <view class="more">没有更多了</view>

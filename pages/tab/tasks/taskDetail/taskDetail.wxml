@@ -19,7 +19,7 @@
         <view class='state item'>{{checkState}}</view>
       </view>
       <view wx:if="{{checkState=='待认证'}}" class='operation item mark'>{{numOfSuped}}/{{numOfSup}}</view>
-      <view wx:elif="{{checkState==''}}" class='operation item'>
+      <view wx:elif="{{checkState=='失败'}}" class='operation item'>
         <button class='appeal' bindtap='appeal'>申诉</button>
       </view>
     </view>
