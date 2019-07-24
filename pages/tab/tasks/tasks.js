@@ -76,7 +76,23 @@ Page({
   requestCheckList: function(chooseDate) {
     console.log(chooseDate)
     var that = this
-    wx.request({
+    // wx.request({
+    //   url: app.globalData.base + ":" + app.globalData.port + '/check/listDayCheck',
+    //   method: 'POST',
+    //   data: {
+    //     "userId": app.globalData.openId,
+    //     "date": chooseDate
+    //   },
+    //   success(res) {
+    //     console.log(res.data)
+    //     that.setData({
+    //       unknown: res.data.unknown,
+    //       toCheck: res.data.toCheck,
+    //       checked: res.data.checked
+    //     })
+    //   }
+    // })
+    req = {
       url: app.globalData.base + ":" + app.globalData.port + '/check/listDayCheck',
       method: 'POST',
       data: {
@@ -91,7 +107,10 @@ Page({
           checked: res.data.checked
         })
       }
-    })
+    }
+    app.requestWithAuth(req)
+    .then(req.success)
+    .catch(req.fail)
   },
   // 监督
   requestSupList: function(chooseDate) {
@@ -106,7 +125,22 @@ Page({
     console.log(endDate)
     var that = this
 
-    wx.request({
+    // wx.request({
+    //   url: app.globalData.base + ":" + app.globalData.port + '/supervise/needToSupervise',
+    //   method: 'POST',
+    //   data: {
+    //     "userId": app.globalData.openId,
+    //     "startDate": endDate,
+    //     "endDate": chooseDate
+    //   },
+    //   success(res) {
+    //     console.log(res.data)
+    //     that.setData({
+    //       toSupvise: res.data
+    //     })
+    //   }
+    // })
+    req = {
       url: app.globalData.base + ":" + app.globalData.port + '/supervise/needToSupervise',
       method: 'POST',
       data: {
@@ -120,7 +154,10 @@ Page({
           toSupvise: res.data
         })
       }
-    })
+    }
+    app.requestWithAuth(req)
+    .then(req.success)
+    .catch(req.fail)
     // this.requestCheckList(this.data.chooseDate)
   },
   // 点击日期

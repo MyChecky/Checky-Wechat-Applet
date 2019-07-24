@@ -60,25 +60,35 @@ App({
     })
   },
 
-  requestWithAuth: (url,method,data,callback,error,header) => {
-    if(!header){
-      header = {} 
-    }
-    header['sessionKey'] = getApp().globalData.sessionKey
-    header['userId'] = getApp().globalData.userId
-    wx.request({
-      url: this.base+url,
-      method: method?'POST':method,
-      data: data,
-      header: header,      
-      success: res=>{
-        if (res.statusCode == 403) dealForbid()
-        callback(res)
-      },
-      fail: res=>{
-        error(res)
+  requestWithAuth: (req) => {
+    url = req.url
+    method = req.method?req.method:'POST'
+    data = req.data?req.data:{}
+    header = req.header
+    // callback = req.success?req.success:()=>{}
+    // fail = req.fail?req.fail:()=>{}
+
+    return new Promise((resolve,reject)=>{
+      if (!header) {
+        header = {}
       }
+      header['sessionKey'] = getApp().globalData.sessionKey
+      header['userId'] = getApp().globalData.openId
+      wx.request({
+        url: url,
+        method: method ? 'POST' : method,
+        data: data,
+        header: header,
+        success: res => {
+          if (res.statusCode == 403) dealForbid()
+          typeof resolve=='function' && resolve(res)
+        },
+        fail: res => {
+          typeof reject == 'function' && reject(res)
+        }
+      })
     })
+    
   },
 
   dealForbid: ()=>{
@@ -88,7 +98,7 @@ App({
   globalData: {
     code:null,
     userInfo: null,
-    base: "http://192.168.1.106",
+    base: "http://localhost",
     port: "8080",
     curPages: null,
     location:{},
