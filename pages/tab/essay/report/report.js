@@ -85,7 +85,7 @@ Page({
     if (this.data.reason == "") {
       this.selectComponent("#toast").toastShow("请选择一个类型", "fa-exclamation-circle", 1500)
     } else {
-      wx.request({
+      req = {
         url: app.globalData.base + ':' + app.globalData.port + '/report/addReport',
         method: 'POST',
         data: {
@@ -109,7 +109,10 @@ Page({
           this.selectComponent("#toast").toastShow("提交失败", "fa-remove", 1000)
           console.log(err)
         }
-      })
+      }
+      app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
     }
   }
 })

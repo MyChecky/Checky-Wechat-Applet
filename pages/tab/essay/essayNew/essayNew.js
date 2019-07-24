@@ -103,7 +103,7 @@ Page({
     
     var that = this
     // 文本上传
-    wx.request({
+    req = {
       url: app.globalData.base + ":" + app.globalData.port + '/essay/addEssay',
       method: 'POST',
       header: {
@@ -153,7 +153,10 @@ Page({
         console.log(err)
         that.selectComponent("#toast").toastShow('发布失败', 'fa-remove', 1000)
       }
-    })
+    }
+    app.requestWithAuth(req)
+    .then(req.success)
+    .catch(req.fail)
   },
   back: function () {
     var arr = getCurrentPages()

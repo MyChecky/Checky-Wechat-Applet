@@ -22,7 +22,7 @@ Page({
     this.setData({
       path: app.globalData.base + ':' + app.globalData.port+'/'
     })
-    wx.request({
+    req = {
       url: app.globalData.base + ':' + app.globalData.port + '/check/listCheck',
       method: 'POST',
       data: {
@@ -41,7 +41,10 @@ Page({
       fail: err => {
         console.log(err)
       }
-    })
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
   },
 
   /**

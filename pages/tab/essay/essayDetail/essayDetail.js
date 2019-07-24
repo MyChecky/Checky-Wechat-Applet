@@ -17,7 +17,7 @@ Page({
     currentImg: 0
   },
   //举报跳转
-  report: function(e) {
+  report: function (e) {
     var essayId = e.target.dataset.essayid
     var userId = app.globalData.openId
     console.log(essayId)
@@ -26,13 +26,13 @@ Page({
     })
   },
 
-  onLoad: function(options) {
+  onLoad: function (options) {
     this.setData({
       path: app.globalData.base + ':' + app.globalData.port + '/',
       essayId: options.essayId,
       visitorId: app.globalData.openId
     })
-    wx.request({
+    req = {
       url: app.globalData.base + ':' + app.globalData.port + '/essay/queryEssayById',
       method: 'POST',
       header: {
@@ -59,19 +59,22 @@ Page({
       fail: err => {
         console.log(err)
       }
-    })
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
   },
 
-  onReady: function() {},
+  onReady: function () { },
 
-  onShow: function() {
+  onShow: function () {
     this.requestEssayComment()
   },
 
   //· 获取评论信息
-  requestEssayComment: function() {
+  requestEssayComment: function () {
     var that = this
-    wx.request({
+    req = {
       // url
       url: app.globalData.base + ':' + app.globalData.port + '/essay/queryComments',
       method: 'POST',
@@ -85,35 +88,41 @@ Page({
           commentNum: res.data.length
         })
       }
-    })
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
   },
 
   //记录点赞情况
-  isLike: function(e) {
+  isLike: function (e) {
 
-    
-    if(this.data.like){
-    wx.request({
-      url: app.globalData.base + ":" + app.globalData.port + '/essay/unlike',
-      method: 'POST',
-      data: {
-        "essayId": this.data.essay.essayId,
-        "userId": app.globalData.openId
-      },
-      success: (res) => {
-        console.log(res)
-        this.setData({
-          like: !this.data.like,
-          likeNum: this.data.like ? this.data.likeNum - 1 : this.data.likeNum + 1
-        })
-      },
-      fail: (err) => {
-        console.log(err)
+
+    if (this.data.like) {
+      req = {
+        url: app.globalData.base + ":" + app.globalData.port + '/essay/unlike',
+        method: 'POST',
+        data: {
+          "essayId": this.data.essay.essayId,
+          "userId": app.globalData.openId
+        },
+        success: (res) => {
+          console.log(res)
+          this.setData({
+            like: !this.data.like,
+            likeNum: this.data.like ? this.data.likeNum - 1 : this.data.likeNum + 1
+          })
+        },
+        fail: (err) => {
+          console.log(err)
+        }
       }
-    })
+      app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
     }
-    else{
-      wx.request({
+    else {
+      req = {
         url: app.globalData.base + ":" + app.globalData.port + '/essay/like',
         method: 'POST',
         data: {
@@ -130,22 +139,25 @@ Page({
         fail: (err) => {
           console.log(err)
         }
-      })
+      }
+      app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
     }
   },
 
   // 获取评论
-  essaysComment: function(e) {
+  essaysComment: function (e) {
     this.setData({
       commentContent: e.detail.value
     })
   },
   // 发送评论
-  sendComment: function() {
+  sendComment: function () {
     if (this.data.commentContent == "") {
       this.selectComponent("#toast").toastShow('不能发送空的评论', 'fa-exclamation-circle', 2000)
     } else {
-      wx.request({
+      req = {
         url: app.globalData.base + ':' + app.globalData.port + '/essay/addComment',
         method: 'POST',
         data: {
@@ -164,12 +176,15 @@ Page({
         fail: err => {
           console.log(err)
         }
-      })
+      }
+      app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
     }
   },
   // 删除评论
-  delComment: function(e) {
-    wx.request({
+  delComment: function (e) {
+    req = {
       url: app.globalData.base + ':' + app.globalData.port + '/essay/delComment',
       method: 'POST',
       data: {
@@ -187,10 +202,11 @@ Page({
       fail: err => {
         console.log(err)
       }
-    })
+    }
+    
   },
   //输入聚焦
-  foucus: function(e) {
+  foucus: function (e) {
     var that = this;
     that.setData({
       bottom: e.detail.height
@@ -198,20 +214,20 @@ Page({
   },
 
   //失去聚焦
-  blur: function(e) {
+  blur: function (e) {
     var that = this;
     that.setData({
       bottom: 0
     })
   },
   // 滑动图片
-  slide: function(e) {
+  slide: function (e) {
     this.setData({
       currentImg: e.detail.current
     })
   },
   // 页面滚动
-  scroll: function(e) {
+  scroll: function (e) {
     console.log(e.scrollTop)
     this.setData({
       scrollTop: e.scrollTop

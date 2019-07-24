@@ -29,7 +29,7 @@ Page({
   //获取动态列表
   requestEssayList: function () {
     var that = this
-    wx.request({
+    req = {
       url: app.globalData.base + ":" + app.globalData.port + '/essay/queryUserEssays',
       method: 'POST',
       data: {
@@ -41,7 +41,9 @@ Page({
           essays: res.data
         })
       }
-    })
+    }
+    app.requestWithAuth(req)
+    .then(req.success)
   },
 
   //记录点赞情况
@@ -49,7 +51,7 @@ Page({
     var index = e.target.dataset.index
     console.log(index)
     if (this.data.essays[index].like) {
-      wx.request({
+      req = {
         url: app.globalData.base + ":" + app.globalData.port + '/essay/unlike',
         method: 'POST',
         data: {
@@ -68,10 +70,13 @@ Page({
         fail: (err) => {
           console.log(err)
         }
-      })
+      }
+      app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
     }
     else {
-      wx.request({
+      req = {
         url: app.globalData.base + ":" + app.globalData.port + '/essay/like',
         method: 'POST',
         data: {
@@ -90,7 +95,10 @@ Page({
         fail: (err) => {
           console.log(err)
         }
-      })
+      }
+      app.requestWithAuth(req)
+        .then(req.success)
+        .catch(req.fail)
     }
   },
 
@@ -109,7 +117,7 @@ Page({
   },
   delEssay: function (e){
     console.log(e.target.dataset.essayid)
-    wx.request({
+    req = {
       url: app.globalData.base + ":" + app.globalData.port+'/essay/deleteEssay',
       method: 'POST',
       data: {
@@ -124,6 +132,9 @@ Page({
       fail: err=>{
 
       }
-    })
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
   }
 })

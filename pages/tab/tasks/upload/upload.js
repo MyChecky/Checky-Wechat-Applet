@@ -87,7 +87,7 @@ Page({
     toast.toastShow2('稍等，请勿重复提交', 'fa-spinner fa-pulse')
     var that = this
     // 文本上传
-    wx.request({
+    req = {
       url: app.globalData.base + ":" + app.globalData.port + '/check/addCheck',
       method: 'POST',
       data:{
@@ -113,7 +113,9 @@ Page({
             filePath: that.data.image[i].URL,
             name: 'file',
             header: {
-              "Content-Type": "multipart/form-data"
+              "Content-Type": "multipart/form-data",
+              "sessionKey": app.globalData.sessionKey,
+              "userId": app.globalData.openId
             },
             formData: {
               'userId': app.globalData.openId,
@@ -137,7 +139,10 @@ Page({
         console.log(err)
         toast.toastShow('上传打卡失败', 'fa-exclamation-circle',1000)
       }
-    })
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
   },
   // 分享
   share: function(e){
@@ -151,7 +156,7 @@ Page({
     // 分享到动态
     var that = this
     if (this.data.share) {
-      wx.request({
+      req = {
         url: app.globalData.base + ":" + app.globalData.port + '/essay/addEssay',
         method: 'POST',
         header: {
@@ -199,7 +204,10 @@ Page({
           console.log(err)
           toast.toastShow('上传打卡失败', 'fa-exclamation-circle', 1000)
         }
-      })
+      }
+      app.requestWithAuth(req)
+        .then(req.success)
+        .catch(req.fail)
     }
     var arr = getCurrentPages()
     arr[arr.length-2].setData({

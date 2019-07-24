@@ -81,7 +81,7 @@ Page({
    */
   onShow: function() {
     var that = this
-    wx.request({// 获取任务信息
+    req = {// 获取任务信息
       // url
       url: app.globalData.base+':'+app.globalData.port+'/task/queryTask',
       method: 'POST',
@@ -95,8 +95,11 @@ Page({
           title: res.data.taskTitle
         })
       }
-    })
-    wx.request({// 获取监督状态列表
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+
+    req = {// 获取监督状态列表
       url: app.globalData.base + ':' + app.globalData.port + '/supervise/querySupervisorState',
       method: 'POST',
       data: {
@@ -110,7 +113,9 @@ Page({
         })
         this.getSupNum(res.data)
       }
-    })
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
   },
   // 打卡或查看打卡内容
   upload: function() {
@@ -136,7 +141,7 @@ Page({
   sendAppeal: function(e){
     this.selectComponent("#toast").toastShow2("发送中","fa-spinner fa-pulse")
     var appealContent = e.detail.content
-    wx.request({
+    req = {
       url: app.globalData.base+':'+app.globalData.port+'/appeal/add',
       method:'POST',
       data:{
@@ -153,6 +158,9 @@ Page({
         console.log(err)
         this.selectComponent("#toast").toastShow("发送失败", "fa-remove", 1000)
       }
-    })
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
   }
 });

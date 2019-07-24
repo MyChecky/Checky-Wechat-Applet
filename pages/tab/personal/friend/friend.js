@@ -16,7 +16,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.request({
+    req = {
       url: app.globalData.base + ':' + app.globalData.port + '',
       method: 'POST',
       data: {
@@ -30,7 +30,10 @@ Page({
       fail: err => {
         console.log(err)
       }
-    })
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
   },
 
   /**

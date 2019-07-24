@@ -48,7 +48,7 @@ Page({
    */
   onShow: function() {
     var that = this
-    wx.request({// 获取任务信息
+    req = {// 获取任务信息
       // url
       url: app.globalData.base + ':' + app.globalData.port + '/task/queryTask',
       method: 'POST',
@@ -66,8 +66,11 @@ Page({
           title: res.data.taskTitle
         })
       }
-    })
-    wx.request({// 获取记录
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      
+    req = {// 获取记录
       url: app.globalData.base + ":" + app.globalData.port + '/record/checkRecords',
       method: 'POST',
       data: {
@@ -84,12 +87,15 @@ Page({
           date: res.data.text.recordTime
         })
       }
-    })
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      
   },
   pass: function(e){
     this.selectComponent("#toast").toastShow2("正在提交，请稍等","fa-spinner fa-pulse")
     var state = e.target.dataset.flag
-    wx.request({
+    req = {
       url: app.globalData.base + ":" + app.globalData.port+'/supervise/addSupervise',
       method: 'POST',
       data: {
@@ -109,6 +115,9 @@ Page({
       fail: err=>{
         this.selectComponent("#toast").toastShow("失败，请稍后重试", "fa-remove", 1500)
       }
-    })
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
   }
 })

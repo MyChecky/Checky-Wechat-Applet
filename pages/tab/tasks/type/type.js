@@ -20,7 +20,7 @@ Page({
   onLoad: function (options) {
     this.selectComponent("#toast").toastShow2("正在获取类型请稍后","fa-spinner fa-pulse")
     // 获取类型
-    wx.request({
+    req = {
       url: app.globalData.base + ":" + app.globalData.port + '/taskType/allType',
       data: {
       },
@@ -35,7 +35,10 @@ Page({
       fail: err => {
         this.selectComponent("#toast").toastShow("获取类型失败", "fa-remove",1000)
       }
-    })
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
   },
 
   /**
@@ -121,7 +124,7 @@ Page({
   // 发送新的建议
   confirmNewTpye: function(){
     if(this.data.newType!=""){
-      wx.request({
+      req = {
         url: app.globalData.base + ":" + app.globalData.port + '/suggestion/addSuggestion',
         method: 'POST',
         data:{
@@ -141,7 +144,10 @@ Page({
             fail(err) { }
           })
         }
-      })
+      }
+      app.requestWithAuth(req)
+        .then(req.success)
+        .catch(req.fail)
     }
   },
   newType: function(){

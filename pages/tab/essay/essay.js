@@ -19,7 +19,7 @@ Page({
   //获取动态列表
   requestEssayList: function() {
     var that = this
-    wx.request({
+    req ={
       url: app.globalData.base + ":" + app.globalData.port + '/essay/displayEssay',
       method: 'POST',
       data: {
@@ -31,7 +31,10 @@ Page({
           essays: res.data
         })
       }
-    })
+    }
+    app.requestWithAuth(req)
+    .then(req.success)
+    .catch(req.fail)
   },
 
   //记录点赞情况
@@ -39,7 +42,7 @@ Page({
     var index = e.target.dataset.index
     console.log(index)
     if (this.data.essays[index].like){
-      wx.request({
+      req = {
         url: app.globalData.base + ":" + app.globalData.port + '/essay/unlike',
         method: 'POST',
         data: {
@@ -58,10 +61,13 @@ Page({
         fail: (err) => {
           console.log(err)
         }
-      })
+      }
+      app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
     }
     else{
-      wx.request({
+      req = {
         url: app.globalData.base + ":" + app.globalData.port + '/essay/like',
         method: 'POST',
         data: {
@@ -80,7 +86,10 @@ Page({
         fail: (err) => {
           console.log(err)
         }
-      })
+      }
+      app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
     }
   },
 

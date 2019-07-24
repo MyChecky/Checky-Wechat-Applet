@@ -27,7 +27,7 @@ Page({
       checkId: options.checkId
     })
     var that = this
-    wx.request({
+    req = {
       url: app.globalData.base + ":" + app.globalData.port + '',
       data: {
         checkId: this.data.checkId
@@ -39,7 +39,10 @@ Page({
           content: res.data.content
         })
       }
-    })
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
   },
 
   /**
@@ -57,7 +60,7 @@ Page({
   },
   pass: function(e) {
     var state = e.target.dataset.flag
-    wx.request({
+    req = {
       url: app.globalData.base + ':' + app.globalData.port + '',
       data: {
         state: state,
@@ -75,6 +78,9 @@ Page({
       fail: err =>{
         this.selectComponent("#toast").toastShow("请求超时", "fa-exclamation-circle", 1000)
       }
-    })
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
   }
 })

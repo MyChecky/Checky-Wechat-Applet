@@ -149,7 +149,7 @@ Page({
         "taskMoney": this.data.money,
       }
       console.log(data)
-      wx.request({
+      req = {
         url: app.globalData.base + ":" + app.globalData.port + '/task/addTask',
         method: 'POST',
         data: data,
@@ -166,7 +166,10 @@ Page({
           console.log(err)
           this.selectComponent("#toast").toastShow("新建失败", "fa-remove", 1500)
         }
-      })
+      }
+      app.requestWithAuth(req)
+        .then(req.success)
+        .catch(req.fail)
     }
   }
 })
