@@ -150,7 +150,7 @@ Page({
       }
       console.log(data)
       req = {
-        url: app.globalData.base + ":" + app.globalData.port + '/task/addTask',
+        url: '/task/addTask',
         method: 'POST',
         data: data,
         success: res => {

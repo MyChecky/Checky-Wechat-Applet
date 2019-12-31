@@ -104,7 +104,7 @@ Page({
     var that = this
     // 文本上传
     req = {
-      url: app.globalData.base + ":" + app.globalData.port + '/essay/addEssay',
+      url: '/essay/addEssay',
       method: 'POST',
       header: {
         "sessionKey": app.globalData.sessionKey,
@@ -125,7 +125,7 @@ Page({
         for (var i = 0; i < that.data.index; i++) {
           console.log(that.data.image[i].URL)
           wx.uploadFile({
-            url: app.globalData.base + ":" + app.globalData.port + '/essay/file/upload',
+            url: app.getAbsolutePath() + '/essay/file/upload',
             filePath: that.data.image[i].URL,
             name: 'file',
             header: {

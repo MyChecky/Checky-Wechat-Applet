@@ -86,7 +86,7 @@ Page({
       this.selectComponent("#toast").toastShow("请选择一个类型", "fa-exclamation-circle", 1500)
     } else {
       req = {
-        url: app.globalData.base + ':' + app.globalData.port + '/report/addReport',
+        url: '/report/addReport',
         method: 'POST',
         data: {
           userId: app.globalData.openId,

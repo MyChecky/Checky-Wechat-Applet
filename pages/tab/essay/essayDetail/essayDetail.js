@@ -36,12 +36,12 @@ Page({
       },
     })
     this.setData({
-      path: app.globalData.base + ':' + app.globalData.port + '/',
+      path: app.getAbsolutePath() + '/',
       essayId: options.essayId,
       visitorId: app.globalData.openId
     })
     req = {
-      url: app.globalData.base + ':' + app.globalData.port + '/essay/queryEssayById',
+      url: app.getAbsolutePath() + '/essay/queryEssayById',
       method: 'POST',
       header: {
         "sessionKey": app.globalData.sessionKey,
@@ -84,7 +84,7 @@ Page({
     var that = this
     req = {
       // url
-      url: app.globalData.base + ':' + app.globalData.port + '/essay/queryComments',
+      url: '/essay/queryComments',
       method: 'POST',
       data: {
         essayId: that.data.essayId
@@ -108,7 +108,7 @@ Page({
 
     if (this.data.like) {
       req = {
-        url: app.globalData.base + ":" + app.globalData.port + '/essay/unlike',
+        url: '/essay/unlike',
         method: 'POST',
         data: {
           "essayId": this.data.essay.essayId,
@@ -131,7 +131,7 @@ Page({
     }
     else {
       req = {
-        url: app.globalData.base + ":" + app.globalData.port + '/essay/like',
+        url: '/essay/like',
         method: 'POST',
         data: {
           "essayId": this.data.essay.essayId,
@@ -166,7 +166,7 @@ Page({
       this.selectComponent("#toast").toastShow('不能发送空的评论', 'fa-exclamation-circle', 2000)
     } else {
       req = {
-        url: app.globalData.base + ':' + app.globalData.port + '/essay/addComment',
+        url: '/essay/addComment',
         method: 'POST',
         data: {
           userId: app.globalData.openId,
@@ -193,7 +193,7 @@ Page({
   // 删除评论
   delComment: function (e) {
     req = {
-      url: app.globalData.base + ':' + app.globalData.port + '/essay/delComment',
+      url: '/essay/delComment',
       method: 'POST',
       data: {
         commentId: e.target.dataset.commentid,

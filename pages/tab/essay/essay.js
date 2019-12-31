@@ -12,7 +12,7 @@ Page({
   },
   onLoad: function(){
     this.setData({
-      path: app.globalData.base+':'+app.globalData.port+'/'
+      path: app.getAbsolutePath() + '/'
     })
     wx.getSystemInfo({
       success: (res)=> {
@@ -29,7 +29,7 @@ Page({
   refreshEssayList: function() {
     var that = this
     req = {
-      url: app.globalData.base + ":" + app.globalData.port + '/essay/displayEssay',
+      url: '/essay/displayEssay',
       method: 'POST',
       data: {
         "userId": app.globalData.openId,
@@ -61,7 +61,7 @@ Page({
   requestEssayList: function() {
     var that = this
     req ={
-      url: app.globalData.base + ":" + app.globalData.port + '/essay/displayEssay',
+      url: '/essay/displayEssay',
       method: 'POST',
       data: {
         "userId": app.globalData.openId,
@@ -94,7 +94,7 @@ Page({
     console.log(index)
     if (this.data.essays[index].like){
       req = {
-        url: app.globalData.base + ":" + app.globalData.port + '/essay/unlike',
+        url: '/essay/unlike',
         method: 'POST',
         data: {
           "essayId": this.data.essays[index].essay.essayId,
@@ -119,7 +119,7 @@ Page({
     }
     else{
       req = {
-        url: app.globalData.base + ":" + app.globalData.port + '/essay/like',
+        url: '/essay/like',
         method: 'POST',
         data: {
           "essayId": this.data.essays[index].essay.essayId,

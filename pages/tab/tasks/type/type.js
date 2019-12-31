@@ -21,7 +21,7 @@ Page({
     this.selectComponent("#toast").toastShow2("正在获取类型请稍后","fa-spinner fa-pulse")
     // 获取类型
     req = {
-      url: app.globalData.base + ":" + app.globalData.port + '/taskType/allType',
+      url: '/taskType/allType',
       data: {
       },
       success: res => {
@@ -125,7 +125,7 @@ Page({
   confirmNewTpye: function(){
     if(this.data.newType!=""){
       req = {
-        url: app.globalData.base + ":" + app.globalData.port + '/suggestion/addSuggestion',
+        url: '/suggestion/addSuggestion',
         method: 'POST',
         data:{
           "suggestionContent": this.data.newType,

@@ -17,7 +17,7 @@ Page({
     this.selectComponent("#toast").toastShow2("稍等", "fa-spinner fa-pulse")
     // 向后台发送
     wx.request({
-      url: app.globalData.base+":"+app.globalData.port+ '/wechat/login',
+      url: app.getAbsolutePath() + '/wechat/login',
       method: 'POST',
       data: {
         "code": app.globalData.code,

@@ -50,7 +50,7 @@ Page({
     var that = this
     req = {// 获取任务信息
       // url
-      url: app.globalData.base + ':' + app.globalData.port + '/task/queryTask',
+      url: '/task/queryTask',
       method: 'POST',
       data: {
         taskId: this.data.taskId
@@ -71,7 +71,7 @@ Page({
       .then(req.success)
       
     req = {// 获取记录
-      url: app.globalData.base + ":" + app.globalData.port + '/record/checkRecords',
+      url: '/record/checkRecords',
       method: 'POST',
       data: {
         checkId: this.data.checkId
@@ -79,7 +79,7 @@ Page({
       success(res) {
         console.log(res.data)
         for(item in res.data.image){
-          res.data.image[item].fileAddr = app.globalData.base + ":" + app.globalData.port + '/' + res.data.image[item].fileAddr
+          res.data.image[item].fileAddr = app.getAbsolutePath() + '/' + res.data.image[item].fileAddr
         }
         that.setData({
           image: res.data.image,
@@ -96,7 +96,7 @@ Page({
     this.selectComponent("#toast").toastShow2("正在提交，请稍等","fa-spinner fa-pulse")
     var state = e.target.dataset.flag
     req = {
-      url: app.globalData.base + ":" + app.globalData.port+'/supervise/addSupervise',
+      url: '/supervise/addSupervise',
       method: 'POST',
       data: {
         superviseState: state,

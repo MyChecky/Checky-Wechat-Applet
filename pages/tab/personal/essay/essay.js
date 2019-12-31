@@ -19,7 +19,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      path: app.globalData.base + ':' + app.globalData.port + '/'
+      path: app.getAbsolutePath() + '/'
     })
   },
   onShow: function () {
@@ -30,7 +30,7 @@ Page({
   requestEssayList: function () {
     var that = this
     req = {
-      url: app.globalData.base + ":" + app.globalData.port + '/essay/queryUserEssays',
+      url:  '/essay/queryUserEssays',
       method: 'POST',
       data: {
         "userId": app.globalData.openId
@@ -52,7 +52,7 @@ Page({
     console.log(index)
     if (this.data.essays[index].like) {
       req = {
-        url: app.globalData.base + ":" + app.globalData.port + '/essay/unlike',
+        url: '/essay/unlike',
         method: 'POST',
         data: {
           "essayId": this.data.essays[index].essay.essayId,
@@ -77,7 +77,7 @@ Page({
     }
     else {
       req = {
-        url: app.globalData.base + ":" + app.globalData.port + '/essay/like',
+        url: '/essay/like',
         method: 'POST',
         data: {
           "essayId": this.data.essays[index].essay.essayId,
@@ -118,7 +118,7 @@ Page({
   delEssay: function (e){
     console.log(e.target.dataset.essayid)
     req = {
-      url: app.globalData.base + ":" + app.globalData.port+'/essay/deleteEssay',
+      url: '/essay/deleteEssay',
       method: 'POST',
       data: {
         essayId: e.target.dataset.essayid

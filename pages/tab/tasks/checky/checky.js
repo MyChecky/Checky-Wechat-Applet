@@ -28,7 +28,7 @@ Page({
     })
     var that = this
     req = {
-      url: app.globalData.base + ":" + app.globalData.port + '',
+      url: app.getAbsolutePath() + '',
       data: {
         checkId: this.data.checkId
       },

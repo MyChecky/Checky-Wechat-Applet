@@ -48,7 +48,7 @@ App({
   
   request: function(url,method,data,callback,error){
     wx.request({
-      url: this.base+url,
+      url: this.getAbsolutePath() + url,
       method:method==null?'POST':method,
       data:data,
       success: res=>{
@@ -75,7 +75,7 @@ App({
       header['sessionKey'] = getApp().globalData.sessionKey
       header['userId'] = getApp().globalData.openId
       wx.request({
-        url: url,
+        url: getApp().getAbsolutePath() + url,
         method: method ? 'POST' : method,
         data: data,
         header: header,
@@ -95,16 +95,26 @@ App({
 
   },
 
+  getAbsolutePath() {
+    return this.globalData.base + ":" + this.globalData.port + this.globalData.contextPath;
+  },
+
   globalData: {
     code:null,
     userInfo: null,
-    base: "http://192.168.1.103",
+    //base: "http://127.0.0.1",
+    //base: "http://192.168.201.146",
+    base: "http://192.168.1.101",
     port: "8080",
+    contextPath: "/Checky",
+    //contextPath:  "",
+    //absolutePath: base + port + contextPath,
     curPages: null,
     location:{},
     openId:"",
     sessionKey:"",
     types: [],
-    date: util.formatTime(new Date())
+    date: util.formatTime(new Date()),
+    
   }
 })

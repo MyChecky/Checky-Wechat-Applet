@@ -83,7 +83,7 @@ Page({
     var that = this
     req = {// 获取任务信息
       // url
-      url: app.globalData.base+':'+app.globalData.port+'/task/queryTask',
+      url: '/task/queryTask',
       method: 'POST',
       data: {
         taskId: that.data.taskId
@@ -100,7 +100,7 @@ Page({
       .then(req.success)
 
     req = {// 获取监督状态列表
-      url: app.globalData.base + ':' + app.globalData.port + '/supervise/querySupervisorState',
+      url: '/supervise/querySupervisorState',
       method: 'POST',
       data: {
         taskId: that.data.taskId,
@@ -142,7 +142,7 @@ Page({
     this.selectComponent("#toast").toastShow2("发送中","fa-spinner fa-pulse")
     var appealContent = e.detail.content
     req = {
-      url: app.globalData.base+':'+app.globalData.port+'/appeal/add',
+      url: '/appeal/add',
       method:'POST',
       data:{
         userId: app.globalData.openId,

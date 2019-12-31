@@ -18,7 +18,7 @@ Page({
    */
   onLoad: function (options) {
     req = {
-      url: app.globalData.base + ':' + app.globalData.port + '/report/queryUserReports',
+      url: '/report/queryUserReports',
       method: 'POST',
       data: {
         userId: app.globalData.openId

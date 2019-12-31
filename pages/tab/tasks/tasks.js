@@ -93,7 +93,7 @@ Page({
     //   }
     // })
     req = {
-      url: app.globalData.base + ":" + app.globalData.port + '/check/listDayCheck',
+      url: '/check/listDayCheck',
       method: 'POST',
       data: {
         "userId": app.globalData.openId,
@@ -141,7 +141,7 @@ Page({
     //   }
     // })
     req = {
-      url: app.globalData.base + ":" + app.globalData.port + '/supervise/needToSupervise',
+      url: '/supervise/needToSupervise',
       method: 'POST',
       data: {
         "userId": app.globalData.openId,

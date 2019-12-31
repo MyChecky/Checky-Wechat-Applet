@@ -18,7 +18,7 @@ Page({
    */
   onLoad: function (options) {
     req = {
-      url: app.globalData.base+':'+app.globalData.port+'/appeal/queryUserAppeal',
+      url: '/appeal/queryUserAppeal',
       method: 'POST',
       data:{
         userId: app.globalData.openId

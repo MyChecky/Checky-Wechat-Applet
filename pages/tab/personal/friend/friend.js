@@ -17,7 +17,7 @@ Page({
    */
   onLoad: function (options) {
     req = {
-      url: app.globalData.base + ':' + app.globalData.port + '',
+      url: '/friend',
       method: 'POST',
       data: {
         userId: app.globalData.openId

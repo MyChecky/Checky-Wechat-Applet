@@ -22,7 +22,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      path: app.globalData.base + ':' + app.globalData.port + '/'
+      path: app.getAbsolutePath() + '/'
     })
     wx.getSystemInfo({
       success: (res) => {
@@ -33,7 +33,7 @@ Page({
     })
     var that = this
     req = {
-      url: app.globalData.base + ':' + app.globalData.port + '/check/listCheck',
+      url: '/check/listCheck',
       method: 'POST',
       data: {
         userId: app.globalData.openId,
@@ -46,7 +46,7 @@ Page({
             infomation: "nomore"
           })
           for (var i = 0; i < res.data.length; i++) {
-            res.data[i].url = app.globalData.base + ':' + app.globalData.port + "/"
+            res.data[i].url = app.getAbsolutePath() + "/"
             res.data[i].check.checkState = util.dataEN2CN(res.data[i].check.checkState)
           }
           this.setData({
@@ -55,7 +55,7 @@ Page({
           })
         } else {
           for (var i = 0; i < res.data.length; i++) {
-            res.data[i].url = app.globalData.base + ':' + app.globalData.port + "/"
+            res.data[i].url = app.getAbsolutePath() + "/"
             res.data[i].check.checkState = util.dataEN2CN(res.data[i].check.checkState)
           }
           this.setData({
@@ -88,7 +88,7 @@ Page({
   },
   loadMore: function() {
     req = {
-      url: app.globalData.base + ':' + app.globalData.port + '/check/listCheck',
+      url: '/check/listCheck',
       method: 'POST',
       data: {
         userId: app.globalData.openId,
@@ -102,7 +102,7 @@ Page({
           })
         }else {
           for (var i = 0; i < res.data.length; i++) {
-            res.data[i].url = app.globalData.base + ':' + app.globalData.port + "/"
+            res.data[i].url = app.getAbsolutePath() + "/"
             res.data[i].check.checkState = util.dataEN2CN(res.data[i].check.checkState)
           }
           this.setData({
