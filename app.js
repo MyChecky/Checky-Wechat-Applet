@@ -104,7 +104,7 @@ App({
     userInfo: null,
     //base: "http://127.0.0.1",
     //base: "http://192.168.201.146",
-    base: "http://192.168.1.101",
+    base: "http://192.168.137.1",
     port: "8080",
     contextPath: "/Checky",
     //contextPath:  "",
