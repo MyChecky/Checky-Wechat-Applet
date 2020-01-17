@@ -1,4 +1,4 @@
-          // pages/tab/tasks/newtask/newtask.js
+// pages/tab/tasks/newtask/newtask.js
 const app = getApp()
 var util = require("../../../../utils/util.js")
 Page({
@@ -17,6 +17,8 @@ Page({
       "value": 3
     }, {
       "value": 5
+    }, {
+      "value": 7
     }],
     num: 0,
     types: [],
@@ -54,7 +56,47 @@ Page({
     array: [],
     startTime: app.globalData.date,
     endTime: app.globalData.date,
-    money: 0
+    moneyType: ['账户余额', '试玩余额'],
+    moneyTypeIndex: 0,
+    money: 0,
+
+    allowHighChoose: 1,
+    minPass: 0.5,
+    minPassChoose: [{
+      "value": 0.5
+    }, {
+      "value": 0.6
+    }, {
+      "value": 0.7
+    }, {
+      "value": 0.8
+    }, {
+      "value": 0.9
+    },{
+      "value": 1.0
+    }],
+    minCheck: 0.5,
+    minCheckChoose: [{
+      "value": 0.5
+    }, {
+        "value": 0.6
+      }, {
+        "value": 0.7
+      }, {
+        "value": 0.8
+      }, {
+        "value": 0.9
+      }, {
+        "value": 1.0
+      }],
+    minCheckTypeIndex: 0,
+    minCheckTypeChoose: ["proportion", "number"],
+    supervisorTypeIndex: 0,
+    supervisorType: ["完全随机", "熟悉的人", "陌生人"],
+    ifAreaIndex: 0,
+    ifAreaType: ["完全随机", "附近的人", "不在附近"],
+    ifHobbyIndex: 0,
+    ifHobbyType: ["完全随机", "爱好相似", "不同爱好"]
   },
 
   /**
@@ -64,6 +106,25 @@ Page({
     wx.setNavigationBarTitle({
       title: '新建任务',
     })
+    req = {
+      url: '/task/getIfHighSetting',
+      method: 'POST',
+      data: {
+        userId: app.globalData.openId
+      },
+      success: res => {
+        console.log(res.data)
+        this.setData({
+          allowHighChoose: res.data
+        })
+      },
+      fail: err => {
+        console.log(err)
+      }
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
   },
 
   /**
@@ -103,6 +164,11 @@ Page({
       endTime: e.detail.value
     })
   },
+  bindMoneyType: function (e) {
+    this.setData({
+      moneyTypeIndex: e.detail.value
+    })
+  },
   bindNum: function(e) {
     this.setData({
       num: e.detail.value
@@ -128,25 +194,67 @@ Page({
       money: e.detail.value
     })
   },
+  //后期拓展选择
+  bindMinPass: function (e) {
+    this.setData({
+      minPass: e.detail.value
+    })
+  },
+  bindMinCheckType: function (e) {
+    this.setData({
+      minCheckTypeIndex: e.detail.value
+    })
+  },
+  bindMinCheck: function (e) {
+    this.setData({
+      minCheck: e.detail.value
+    })
+  },
+  bindSupervisorType: function (e) {
+    this.setData({
+      supervisorTypeIndex: e.detail.value
+    })
+  },
+  bindAreaType: function (e) {
+    this.setData({
+      ifAreaIndex: e.detail.value
+    })
+  },
+  bindHobbyType: function (e) {
+    this.setData({
+      ifHobbyIndex: e.detail.value
+    })
+  },
+
   // 发送信息
   sendForm: function() {
+    this.data.money=10*this.data.num
     if (this.data.title == "" || this.data.index < 0 || this.data.startTime == "" || this.data.endTime == "" || this.data.chooseRepeat == null) {
       this.selectComponent("#toast").toastShow('必要信息不可为空', 'fa-exclamation-circle', 2000)
     } 
     else if (this.data.money <= 0){
-      this.selectComponent("#toast").toastShow('无效金额', 'fa-exclamation-circle', 2000)
+      this.data.money=10
+      // this.selectComponent("#toast").toastShow('无效金额', 'fa-exclamation-circle', 2000)
     }
     else {
       var data = {
         "userId": app.globalData.openId,
         "taskTitle": this.data.title,
         "taskContent": this.data.content,
+        "ifTest": this.data.moneyTypeIndex,
         "supervisorNum": this.data.num,
         "typeId": this.data.types[this.data.index].typeId,
         "taskStartTime": this.data.startTime,
         "taskEndTime": this.data.endTime,
         "checkFrec": util.formatRepeatDate(this.data.chooseRepeat),
         "taskMoney": this.data.money,
+
+        "minPass": this.data.minPass,
+        "minCheck": this.data.minCheck,
+        "minCheckType": this.data.minCheckTypeChoose[this.data.minCheckTypeIndex],
+        "supervisorType": this.data.supervisorTypeIndex,
+        "ifArea": this.data.ifAreaIndex,
+        "ifHobby": this.data.ifHobbyIndex
       }
       console.log(data)
       req = {
@@ -155,7 +263,19 @@ Page({
         data: data,
         success: res => {
           console.log(res)
-          this.selectComponent("#toast").toastShow("新建成功", "fa-check", 1500)
+          if(res.data == "addTaskSuccess"){
+            this.selectComponent("#toast").toastShow("新建成功", "fa-check", 1500)
+          } else if (res.data == "noEnoughTestMoney") {
+            this.selectComponent("#toast").toastShow("试玩余额不足，任务已保存", "fa-check", 1500)
+          } else if (res.data == "noEnoughUserMoney") {
+            this.selectComponent("#toast").toastShow("账户余额不足，任务已保存", "fa-check", 1500)
+          }else if (res.data == "addTaskFail"){
+            this.selectComponent("#toast").toastShow("未知错误", "fa-check", 1500)
+          } else if (res.data == "insertMoneyFlowError") {
+            this.selectComponent("#toast").toastShow("未知错误，请联系管理员", "fa-check", 1500)
+          } else if (res.data == " matchSupervisorError") {
+            this.selectComponent("#toast").toastShow("未知错误，请联系管理员", "fa-check", 1500)
+          }
           setTimeout(function() {
             wx.navigateBack({
               delta: 1
