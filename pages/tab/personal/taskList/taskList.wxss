@@ -13,6 +13,9 @@
   font-size:16px;
   height:20px;
 }
+.save{
+  background-color:orange
+}
 .nomatch{
   background-color:#318ce0;
 }
@@ -24,4 +27,13 @@
 }
 .deny{
   background-color:#333;
+}
+.success{
+  background-color:#08d101;
+}
+.fail{
+  background-color:#333;
+}
+.complete{
+  background-color:darkgrey
 }

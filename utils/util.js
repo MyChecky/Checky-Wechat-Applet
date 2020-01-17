@@ -72,11 +72,15 @@ const formatBiDate = function(biString){
   return date
 }
 const dictionary = {
+  save: "待发布",
+  nomatch: "未匹配",
+  during: "进行中",
+  success: "成功完成",
+  fail: "任务失败",
+  complete: "已结束",
   pass: "通过",
   deny: "失败",
   unknown: "待认证",
-  during: "进行中",
-  nomatch: "未匹配",
   toProcess: "待处理",
   "0": "动态",
   "1": "打卡",
