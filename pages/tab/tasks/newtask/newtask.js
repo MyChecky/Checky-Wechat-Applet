@@ -229,13 +229,13 @@ Page({
   // 发送信息
   sendForm: function() {
     this.data.money=10*this.data.num
+    if (this.data.money <= 0) {
+      this.data.money = 10
+      // this.selectComponent("#toast").toastShow('无效金额', 'fa-exclamation-circle', 2000)
+    }
     if (this.data.title == "" || this.data.index < 0 || this.data.startTime == "" || this.data.endTime == "" || this.data.chooseRepeat == null) {
       this.selectComponent("#toast").toastShow('必要信息不可为空', 'fa-exclamation-circle', 2000)
     } 
-    else if (this.data.money <= 0){
-      this.data.money=10
-      // this.selectComponent("#toast").toastShow('无效金额', 'fa-exclamation-circle', 2000)
-    }
     else {
       var data = {
         "userId": app.globalData.openId,
