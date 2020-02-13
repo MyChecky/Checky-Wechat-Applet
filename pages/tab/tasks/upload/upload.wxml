@@ -1,22 +1,30 @@
 <!--pages/tab/tasks/upload/upload.wxml-->
-<toast id="toast"/>
+<toast id="toast" />
 
 <view class='.form-view'>
   <view class='container-view'>
     <view class='title'>打卡描述</view>
-    <textarea class='content' placeholder='今天心情如何？'maxlength='200' bindinput='lengthChange'></textarea>
+    <textarea class='content' placeholder='今天心情如何？' maxlength='200' bindinput='lengthChange'></textarea>
     <view class='limit'>{{currentLength}}/200</view>
   </view>
   <view class='container-view'>
     <view class='title'>上传附件</view>
     <view class='button-view'>
-      <view class='img-view' wx:for="{{image}}" wx:if="{{item.URL!=''}}">
+      <view class='img-view' wx:for="{{image}}" wx:key="key" wx:if="{{item.URL!=''}}">
         <image class='img' src='{{item.URL}}' mode='aspectFill'></image>
-        <button class='cancel' bindtap='cancel' data-index="{{index}}">删除</button>
+        <button class='cancel' bindtap='cancelImage' data-index="{{index}}">删除</button>
       </view>
-      <view class='file fa fa-file-image-o' wx:if="{{currentNum<4}}" bindtap="chooseFile"></view>
+      <view class='vid-view' wx:for="{{video}}" wx:key="key" wx:if="{{item.URL!=''}}">
+        <video class='vid' src='{{video.URL}}' mode='aspectFill'></video>
+        <button class='cancel' bindtap='cancelVideo' data-index="{{index}}">删除</button>
+      </view>
+
+      <view class='file fa fa-file-image-o' wx:if="{{(fileTypeChoosing=='init' || fileTypeChoosing=='image') && currentNum<4}}" bindtap="chooseImageFile"></view>
+      <view class='file fa fa-file-video-o' wx:if="{{(fileTypeChoosing=='init' || fileTypeChoosing=='video') && currentNum<1}}" bindtap='chooseVideoFile'></view>
+      <!-- <view class='file fa fa-file-audio-o' wx:if='{{currentNum<4}}' bindtap='chooseAudioFile'></view> -->
     </view>
-    <view class='limit'>{{currentNum}}/4</view>
+    <view wx:if="{{fileTypeChoosing=='image'}}" class='limit'>{{currentNum}}/4</view>
+    <view wx:if="{{fileTypeChoosing=='video'}}" class='limit'>{{currentNum}}/1</view>
   </view>
   <switch class='share' bindchange='share'>同步到动态</switch>
   <button class='submit' bindtap='submit'>提交</button>
