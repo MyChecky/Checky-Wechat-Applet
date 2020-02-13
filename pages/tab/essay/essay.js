@@ -7,8 +7,11 @@ Page({
     height: 0,
     cPage: 1,
     infomation: "正在加载",
+    likeNum: 0,
+    commentNum: 0,
     essays: [
-    ]
+    ],
+    recordTypeNow: "video",
   },
   onLoad: function(){
     this.setData({
@@ -146,6 +149,8 @@ Page({
 
   //查看打卡详情
   essayClick: function(e) {
+    console.log("afgf")
+    console.log(e.target.dataset.essayid)
     var essayId = e.target.dataset.essayid
     var userId = app.globalData.openId
     console.log(essayId)
@@ -159,9 +164,15 @@ Page({
       url: './essayNew/essayNew',
     })
   },
-  // 预览
+  // 预览图片
   essayPic: function(e){
-    console.log(e.target.dataset.index)
+    console.log(e.target.dataset.index);
+    console.log(e.target.dataset.essayid);
+    console.log(e.target.dataset.src);
+    wx.previewImage({
+      current: e.target.dataset.src, // 当前显示图片的http链接
+      urls: [e.target.dataset.src,] // 需要预览的图片http链接列表
+    })
   },
   // 滚动加载
   loadMore: function(){
@@ -171,5 +182,15 @@ Page({
   refresh: function (){
     console.log("refresh")
     this.refreshEssayList()
+  },
+  bindPlay: function () {
+    this.videoContext.play()
+  },
+  bindPause: function () {
+    this.videoContext.pause()
+  },
+  videoErrorCallback: function (e) {
+    console.log('视频错误信息:')
+    console.log(e.detail.errMsg)
   }
 })
