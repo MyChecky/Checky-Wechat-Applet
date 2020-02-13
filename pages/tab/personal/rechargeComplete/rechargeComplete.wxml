@@ -1,0 +1,11 @@
+<!--pages/tab/personal/rechargeComplete/rechargeComplete.wxml-->
+<view>
+  <view class="withdrawTimeLine">
+    <timeLine axisTitle="发起{{opType[opIndex]}}申请" axisContent="{{opTime}}" />
+    <timeLine wx:if="{{opIndex==1}}" isCurent='{{true}}' axisTitle="系统审核中" axisContent="预计两个工作日内到账" />
+    <timeLine wx:if="{{opIndex==0}}" isCurent='{{true}}' axisTitle="{{opType[opIndex]}}成功" axisContent="" isShowLeftLine="{{false}}" />
+    <timeLine wx:if="{{opIndex==1}}" isCurent='{{false}}' axisTitle="{{opType[opIndex]}}成功" axisContent="" isShowLeftLine="{{false}}" />
+    <!-- <timeLine textArray="{{textArray}}" axisContent="数组数据用的" /> -->
+  </view>
+  <button class='confirm' bindtap='bindBack'>完成</button>
+</view>

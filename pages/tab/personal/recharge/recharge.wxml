@@ -1,0 +1,10 @@
+<!--pages/tab/personal/recharge/recharge.wxml-->
+<view class='main'>
+  <text>当前余额：{{moneyLeft}}元</text>
+  <view class='container-view'>
+    <view class='notifcation'>{{opType[opIndex]}}</view>
+    <input class='title-input' type='digit' bindinput='bindMoneyInput' value='{{opMoney}}'></input>
+  </view>
+  <button wx:if="{{opIndex==0}}" class='confirm' bindtap='craetePayOrder'>确认</button>
+  <button wx:if="{{opIndex==1}}" class='confirm' bindtap='craeteWithdrawOrder'>确认</button>
+</view>

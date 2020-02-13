@@ -1,0 +1,15 @@
+/* pages/tab/personal/rechargeComplete/rechargeComplete.wxss */
+.withdrawTimeLine{
+  padding-left: 50px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.confirm{
+  background-color: #e83015;
+  color: #fff;
+  border-radius: 2px;
+  box-shadow: 1px 1px 1px 0px rgba(100,100,100,0.5);
+  margin: 10px 5px;
+  height: 40px;
+  font-size: 16px;
+}
