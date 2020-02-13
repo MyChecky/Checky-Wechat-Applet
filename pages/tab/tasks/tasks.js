@@ -76,22 +76,6 @@ Page({
   requestCheckList: function(chooseDate) {
     console.log(chooseDate)
     var that = this
-    // wx.request({
-    //   url: app.globalData.base + ":" + app.globalData.port + '/check/listDayCheck',
-    //   method: 'POST',
-    //   data: {
-    //     "userId": app.globalData.openId,
-    //     "date": chooseDate
-    //   },
-    //   success(res) {
-    //     console.log(res.data)
-    //     that.setData({
-    //       unknown: res.data.unknown,
-    //       toCheck: res.data.toCheck,
-    //       checked: res.data.checked
-    //     })
-    //   }
-    // })
     req = {
       url: '/check/listDayCheck',
       method: 'POST',
@@ -99,21 +83,26 @@ Page({
         "userId": app.globalData.openId,
         "date": chooseDate
       },
-      success(res) {
+      success: res => {
         console.log(res.data)
         that.setData({
           unknown: res.data.unknown,
           toCheck: res.data.toCheck,
           checked: res.data.checked
         })
+        console.log(res);
+        console.log(that.data);
+      },
+      fail: err => {
+        console.log(err)
       }
     }
     app.requestWithAuth(req)
-    .then(req.success)
-    .catch(req.fail)
+      .then(req.success)
+      .catch(req.fail)
   },
   // 监督
-  requestSupList: function(chooseDate) {
+  requestSupList: function(chooseDate) {  // 调用时chooseDate是当前日期（今天）
     var startDate = new Date(Date.parse(chooseDate.replace(/-/g, '/'))); //字符串格式转换为日期格式
     var day = 10; //定义天数​
     // 计算结束日期                   
@@ -124,22 +113,6 @@ Page({
     console.log(chooseDate)
     console.log(endDate)
     var that = this
-
-    // wx.request({
-    //   url: app.globalData.base + ":" + app.globalData.port + '/supervise/needToSupervise',
-    //   method: 'POST',
-    //   data: {
-    //     "userId": app.globalData.openId,
-    //     "startDate": endDate,
-    //     "endDate": chooseDate
-    //   },
-    //   success(res) {
-    //     console.log(res.data)
-    //     that.setData({
-    //       toSupvise: res.data
-    //     })
-    //   }
-    // })
     req = {
       url: '/supervise/needToSupervise',
       method: 'POST',
@@ -156,9 +129,8 @@ Page({
       }
     }
     app.requestWithAuth(req)
-    .then(req.success)
-    .catch(req.fail)
-    // this.requestCheckList(this.data.chooseDate)
+      .then(req.success)
+      .catch(req.fail)
   },
   // 点击日期
   dayClick: function(event) {

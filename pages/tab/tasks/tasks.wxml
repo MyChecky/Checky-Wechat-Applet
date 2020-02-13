@@ -16,7 +16,7 @@
       </view>
       <!--日历-->
       <view class="hiddenCal {{!isHid?'onCal':'offCal'}}">
-        <calendar calendar-style="calendar" header-style="calendar-header" board-style="calendar-board" days-color="{{dayStyle}}" weeks-type="cn" binddayClick="dayClick" bindprevMonth="prev" bindnextMonth="next" binddateChange="dateChange"/>
+        <calendar calendar-style="calendar" header-style="calendar-header" board-style="calendar-board" days-color="{{dayStyle}}" weeks-type="cn" binddayClick="dayClick" bindprevMonth="prev" bindnextMonth="next" binddateChange="dateChange" />
       </view>
     </view>
     <!--分类 -->
@@ -27,7 +27,7 @@
           <view class='title'>未打卡</view>
         </view>
         <view class='inner-list {{selectedItem[0]?"onList":"offList"}}'>
-          <view class='list-item' wx:for='{{toCheck}}'>
+          <view class='list-item' wx:for='{{toCheck}}' wx:key="key">
             <view class='text'>
               <view class='taskTitle'>{{item.taskTitle}}</view>
               <view class='taskContent'>{{item.taskContent}}</view>
@@ -36,28 +36,30 @@
           </view>
         </view>
       </view>
+
       <view class='list'>
         <view class='list-title unknown' bindtap='changeToggle' data-index="1">
           <icon class='fa fa-fw fa-coffee'></icon>
           <view class='title'>待认证</view>
         </view>
         <view class='inner-list {{selectedItem[1]?"onList":"offList"}}'>
-          <view class='list-item' wx:for='{{unknown}}'>
+          <view class='list-item' wx:for='{{unknown}}' wx:key="key">
             <view class='text'>
               <view class='taskTitle'>{{item.taskTitle}}</view>
               <view class='taskContent'>{{item.taskContent}}</view>
             </view>
-            <button class='detail-btn fa fa-arrow-circle-o-right' bindtap='detail' mode="top"  data-taskId="{{item.taskId}}" data-checkId='{{item.checkId}}' data-checkState='{{item.checkState}}'></button>
+            <button class='detail-btn fa fa-arrow-circle-o-right' bindtap='detail' mode="top" data-taskId="{{item.taskId}}" data-checkId='{{item.checkId}}' data-checkState='{{item.checkState}}'></button>
           </view>
         </view>
       </view>
+
       <view class='list'>
         <view class='list-title checked' bindtap='changeToggle' data-index="2">
           <icon class='fa fa-fw fa-check-square-o'></icon>
           <view class='title'>已结束</view>
         </view>
         <view class='inner-list {{selectedItem[2]?"onList":"offList"}}'>
-          <view class='list-item' wx:for='{{checked}}'>
+          <view class='list-item' wx:for='{{checked}}' wx:key="key">
             <view class='text'>
               <view class='taskTitle'>{{item.taskTitle}}</view>
               <view class='taskContent'>{{item.taskContent}}</view>
@@ -70,19 +72,19 @@
   </swiper-item>
   <!--监督-->
   <swiper-item>
-        <view class='list-view'>
+    <view class='list-view'>
       <view class='list'>
         <view class='list-title toCheck' bindtap='changeToggle' data-index="3">
           <icon class='fa fa-square-o'></icon>
           <view class='title'>待审查</view>
         </view>
         <view class='inner-list {{selectedItem[3]?"onList":"offList"}}'>
-          <view class='list-item' wx:for='{{toSupvise}}'>
+          <view class='list-item' wx:for='{{toSupvise}}' wx:key="key">
             <view class='text'>
               <view class='taskTitle'>{{item.taskTitle}}</view>
               <view class='taskContent'>{{item.date}}</view>
             </view>
-            <button class='detail-btn fa fa-arrow-circle-o-right'bindtap='superise' mode="top" data-taskId="{{item.taskId}}" data-checkId="{{item.checkId}}"></button>
+            <button class='detail-btn fa fa-arrow-circle-o-right' bindtap='superise' mode="top" data-taskId="{{item.taskId}}" data-checkId="{{item.checkId}}"></button>
           </view>
         </view>
       </view>

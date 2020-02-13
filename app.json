@@ -9,6 +9,7 @@
     "pages/tab/personal/essay/essay",
     "pages/tab/personal/friend/friend",
     "pages/tab/personal/taskList/taskList",
+    "pages/tab/personal/moneyType/moneyType",
     "pages/tab/tasks/superiseDetail/superisetaskDetail",
     "pages/tab/tasks/taskDetail/taskDetail",
     "pages/tab/tasks/checky/checky",
@@ -18,7 +19,10 @@
     "pages/tab/essay/essayDetail/essayDetail",
     "pages/tab/essay/essayNew/essayNew",
     "pages/tab/essay/report/report",
-    "pages/tab/personal/history/history"
+    "pages/tab/personal/history/history",
+    "pages/tab/personal/moneyFlowList/moneyFlowList",
+    "pages/tab/personal/recharge/recharge",
+    "pages/tab/personal/rechargeComplete/rechargeComplete"
   ],
   "window": {
     "backgroundTextStyle": "light",
