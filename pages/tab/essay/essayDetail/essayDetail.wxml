@@ -1,5 +1,5 @@
 <!--pages/tab/essays/essaysDetail/essaysDetail.wxml-->
-<toast id="toast"/>
+<toast id="toast" />
 <view>
   <scroll-view class='essaysDetail' scroll-y='true' style='height:{{height}}px' bindscroll="scroll">
     <view class="essays-title {{scrollTop>10?'scroll':''}}">
@@ -20,14 +20,21 @@
       <text>{{essay.essayContent}}</text>
     </view>
     <!-- 图片 -->
-    <swiper class='essays-pic-view' wx:if="{{picLength!=0}}" bindchange='slide'>
-      <swiper-item wx:for="{{essaysPic}}">
-        <image class='essays-image' src="{{path}}{{item.fileAddr}}" mode='aspectFill'></image>
-      </swiper-item>
-    </swiper>
-    <view class='pic-counter' wx:if="{{picLength!=0}}">
-      <view wx:for="{{essaysPic}}" wx:for-index='index' class='dot {{index==currentImg?"doted":""}}' id='{{index}}'></view>
+    <view wx:if="{{essayFileRecords[0].recordType=='image'}}">
+      <swiper class='essays-pic-view' wx:if="{{essayFileRecordsLength!=0}}" bindchange='slide'>
+        <swiper-item wx:for="{{essayFileRecords}}" wx:key="key">
+          <image class='essays-image' src="{{path}}{{item.fileAddr}}" mode='aspectFill'></image>
+        </swiper-item>
+      </swiper>
+      <view class='pic-counter' wx:if="{{essayFileRecordsLength!=0}}">
+        <view wx:for="{{essayFileRecords}}" wx:key="key" wx:for-index='index' class='dot {{index==currentImg?"doted":""}}' id='{{index}}'></view>
+      </view>
     </view>
+    <!--视频-->
+    <view wx:if='{{essayFileRecords[0].recordType=="video"}}' class="video-view">
+      <video class='essays-video' src='{{path}}{{essayFileRecords[0].fileAddr}}' data-src='{{path}}{{item.fileAddr}}' binderror="videoErrorCallback" controls></video>
+    </view>
+
     <!-- 热度按钮 -->
     <view class='essays-button'>
       <button class='btn {{like?"fa fw fa-heart":"fa fw fa-heart-o"}}' bindtap='isLike' mode="top"></button>
@@ -37,7 +44,7 @@
     </view>
     <!-- 评论区 -->
     <view class='essays-other-comment'>
-      <view class='item-comment' wx:for='{{comments}}'>
+      <view class='item-comment' wx:for='{{comments}}' wx:key="key">
         <view class='comment-info'>
           <view class='commentor'>{{item.userName}}</view>
           <view class='time'>{{item.commentTime}}</view>

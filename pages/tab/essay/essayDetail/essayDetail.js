@@ -10,8 +10,8 @@ Page({
     like: false,
     likeNum: 0,
     essay: {},
-    essaysPic: [],
-    picLength: 0,
+    essayFileRecords: [],
+    essayFileRecordsLength: 0,
     commentContent: "",
     commentNum: 0,
     comments: [],
@@ -41,7 +41,7 @@ Page({
       visitorId: app.globalData.openId
     })
     req = {
-      url: app.getAbsolutePath() + '/essay/queryEssayById',
+      url: '/essay/queryEssayById',
       method: 'POST',
       header: {
         "sessionKey": app.globalData.sessionKey,
@@ -49,19 +49,19 @@ Page({
       },
       data: {
         userId: app.globalData.openId,
-        essayId: this.data.essayId
+        essayId: options.essayId
       },
       success: res => {
         console.log(res)
         this.setData({
-          essaysPic: res.data.img,
+          essayFileRecords: res.data.fileRecord,
           essay: res.data.essay,
           essayUserId: res.data.userId,
           userAvatar: res.data.userAvatar,
           userName: res.data.userName,
           like: res.data.like,
           likeNum: res.data.essay.likeNum,
-          picLength: res.data.img.length
+          essayFileRecordsLength: res.data.fileRecord.length
         })
       },
       fail: err => {
@@ -104,8 +104,6 @@ Page({
 
   //记录点赞情况
   isLike: function (e) {
-
-
     if (this.data.like) {
       req = {
         url: '/essay/unlike',
@@ -192,6 +190,7 @@ Page({
   },
   // 删除评论
   delComment: function (e) {
+    console.log("comId:"+e.target.dataset.commentid)
     req = {
       url: '/essay/delComment',
       method: 'POST',
@@ -203,7 +202,7 @@ Page({
         console.log(res)
         this.setData({
           comments: res.data.comments,
-          commenNum: res.data.comments.length
+          commenNum: res.data.comments.length,
         })
 
       },
@@ -211,6 +210,9 @@ Page({
         console.log(err)
       }
     }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
     
   },
   //输入聚焦
@@ -239,5 +241,15 @@ Page({
     this.setData({
       scrollTop: e.detail.scrollTop
     })
+  },
+  bindPlay: function () {
+    this.videoContext.play()
+  },
+  bindPause: function () {
+    this.videoContext.pause()
+  },
+  videoErrorCallback: function (e) {
+    console.log('视频错误信息:')
+    console.log(e.detail.errMsg)
   }
 })
