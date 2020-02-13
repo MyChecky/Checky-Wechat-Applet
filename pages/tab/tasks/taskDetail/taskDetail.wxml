@@ -26,7 +26,7 @@
   </view>
   <view wx:if="{{checkId!=''}}" class='container-view'>
     <view class='title-view'>监督状态</view>
-    <view class='item-view' wx:for="{{supList}}">
+    <view class='item-view' wx:for="{{supList}}" wx:key='key'>
       <view class='inner-item-view'>
         <view class='tag item'>{{item.supervisorName}}</view>
         <view class="state item {{item.supState=='fail'?'fail':''}} {{item.supState=='pass'?'pass':''}}">{{item.supervisorState}}</view>

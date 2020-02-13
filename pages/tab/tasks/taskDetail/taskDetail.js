@@ -89,10 +89,10 @@ Page({
         taskId: that.data.taskId
       },
       success(res) {
-        console.log(res.data)
+        console.log(res)
         that.formatInfo(res.data.task)
         wx.setNavigationBarTitle({
-          title: res.data.taskTitle
+          title: res.data.task.taskTitle
         })
       }
     }
