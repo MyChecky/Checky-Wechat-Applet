@@ -6,13 +6,7 @@
     <view class='title'>
       <icon class='icon fa {{icon}}'></icon>{{title}}
     </view>
-    <view class='essays-item' wx:for='{{essays}}' wx:for-index='index'>
-      <view class='pic-text-view' data-essayid='{{item.essay.essayId}}' bindtap='essayClick'>
-        <!--图片-->
-        <image class='essays-pic' wx:if="{{item.img[0]!=null}}" catchtap='essayPic' src='{{path}}{{item.img[0].fileAddr}}' mode='aspectFill' data-index='{{index}}'></image>
-        <!--文字-->
-        <view class='essays-text' data-essayid='{{item.essay.essayId}}'>{{item.essay.essayContent}}</view>
-      </view>
+    <view class='essays-item' wx:for='{{essays}}' wx:key='key' wx:for-index='index'>
       <view class='essays-bottom'>
         <view class='essays-author'>{{item.userName}}</view>
         <!--按钮-->
@@ -21,6 +15,23 @@
           <button class='btn fa fa-trash' bindtap='delEssay' data-essayid='{{item.essay.essayId}}' mode="top"></button>
         </view>
       </view>
+      <view class='pic-text-view' data-essayid='{{item.essay.essayId}}' bindtap='essayClick'>
+        <!--文字-->
+        <view class='essays-text' data-essayid='{{item.essay.essayId}}'>{{item.essay.essayContent}}</view>
+        <!--图片-->
+        <view wx:if='{{essays[index].fileRecord[0].recordType=="image"}}' class="image-view" catchtap='essayPic'>
+          <view class="image-container" catchtap='essayPic' wx:for="{{item.fileRecord}}" wx:key="key">
+            <image class='essays-pic' catchtap='essayPic' src='{{path}}{{item.fileAddr}}' mode='aspectFill' data-index='{{index}}' data-src='{{path}}{{item.fileAddr}}' data-essayid='{{item.essayId}}'></image>
+          </view>
+        </view>
+        <!--视频-->
+        <view wx:if='{{essays[index].fileRecord[0].recordType=="video"}}' class="video-view" catchtap="essayVideo">
+          <view class="video-container" catchtap='essayVideo' wx:for="{{item.fileRecord}}" wx:key="key">
+            <video class='essays-video' src='{{path}}{{item.fileAddr}}' data-src='{{path}}{{item.fileAddr}}' binderror="videoErrorCallback" controls></video>
+          </view>
+        </view>
+      </view>
+
     </view>
   </view>
 </view>

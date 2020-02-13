@@ -112,8 +112,15 @@ Page({
     })
   },
   // 预览
+  // 预览图片
   essayPic: function (e) {
-    console.log(e.target.dataset.index)
+    console.log(e.target.dataset.index);
+    console.log(e.target.dataset.essayid);
+    console.log(e.target.dataset.src);
+    wx.previewImage({
+      current: e.target.dataset.src, // 当前显示图片的http链接
+      urls: [e.target.dataset.src,] // 需要预览的图片http链接列表
+    })
   },
   delEssay: function (e){
     console.log(e.target.dataset.essayid)
@@ -121,10 +128,11 @@ Page({
       url: '/essay/deleteEssay',
       method: 'POST',
       data: {
-        essayId: e.target.dataset.essayid
+        essayId: e.target.dataset.essayid,
+        userId: app.globalData.openId,
       },
       success: res=>{
-        console.log(res.data)
+        console.log(res)
         this.setData({
           essays: res.data
         })
