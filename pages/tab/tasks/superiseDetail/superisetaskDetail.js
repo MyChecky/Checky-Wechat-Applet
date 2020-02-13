@@ -12,7 +12,7 @@ Page({
     info: [],
     checkId: "",
     taskId: "",
-    image: [],
+    fileRecords: [],
     content: "",
     lastPageFlag: true,
     userName: ""
@@ -25,7 +25,8 @@ Page({
     console.log(options)
     this.setData({
       taskId: options.taskId,
-      checkId: options.checkId
+      checkId: options.checkId,
+      path: app.getAbsolutePath() + '/'
     })
   },
   // 格式化重复日期
@@ -56,6 +57,7 @@ Page({
         taskId: this.data.taskId
       },
       success:(res)=> {
+        console.log('任务信息:')
         console.log(res.data)
         that.formatInfo(res.data.task)
         this.setData({
@@ -63,7 +65,7 @@ Page({
           userAvatar: res.data.userAvatar
         })
         wx.setNavigationBarTitle({
-          title: res.data.taskTitle
+          title: res.data.task.taskTitle
         })
       }
     }
@@ -77,20 +79,17 @@ Page({
         checkId: this.data.checkId
       },
       success(res) {
+        console.log("checkRecords返回结果：")
         console.log(res.data)
-        for(item in res.data.image){
-          res.data.image[item].fileAddr = app.getAbsolutePath() + '/' + res.data.image[item].fileAddr
-        }
         that.setData({
-          image: res.data.image,
-          content: res.data.text.recordContent,
-          date: res.data.text.recordTime
+          fileRecords: res.data.fileRecords,
+          content: res.data.textRecord.recordContent,
+          date: res.data.textRecord.recordTime
         })
       }
     }
     app.requestWithAuth(req)
       .then(req.success)
-      
   },
   pass: function(e){
     this.selectComponent("#toast").toastShow2("正在提交，请稍等","fa-spinner fa-pulse")
@@ -119,5 +118,25 @@ Page({
     app.requestWithAuth(req)
       .then(req.success)
       .catch(req.fail)
-  }
+  },
+  bindPlay: function () {
+    this.videoContext.play()
+  },
+  bindPause: function () {
+    this.videoContext.pause()
+  },
+  videoErrorCallback: function (e) {
+    console.log('视频错误信息:')
+    console.log(e.detail.errMsg)
+  },
+  // 预览图片
+  previewPic: function (e) {
+    console.log(e.target.dataset.index);
+    console.log(e.target.dataset.essayid);
+    console.log(e.target.dataset.src);
+    wx.previewImage({
+      current: e.target.dataset.src, // 当前显示图片的http链接
+      urls: [e.target.dataset.src,] // 需要预览的图片http链接列表
+    })
+  },
 })

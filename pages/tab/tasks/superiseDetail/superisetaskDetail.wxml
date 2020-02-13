@@ -12,9 +12,14 @@
       </view>
     </view>
     <view class='content-view'>{{content}}</view>
-    <view class='image-view'>
-      <image class='img' wx:for="{{image}}" src='{{item.fileAddr}}' mode='aspectFill'></image>
+
+    <view wx:if="{{fileRecords[0].recordType=='image'}}" class='image-view'>
+      <image class='img' wx:for="{{fileRecords}}" wx:key='key' src='{{path}}{{item.fileAddr}}' data-src='{{path}}{{item.fileAddr}}' mode='aspectFill' catchtap='previewPic'></image>
     </view>
+    <view wx:if="{{fileRecords[0].recordType=='video'}}" class='video-view'>
+      <video class='vid' wx:for="{{fileRecords}}" wx:key='key' src='{{path}}{{item.fileAddr}}' binderror="videoErrorCallback" controls></video>
+    </view>
+
   </view>
   <view wx:if="{{lastPageFlag}}" class='button-view'>
     <button class='sup-button pass' bindtap='pass' data-flag='pass'>
