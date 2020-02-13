@@ -1,0 +1,48 @@
+<!--pages/tab/personal/moneyType/moneyType.wxml-->
+<view>
+  <view class='inner-view'>
+    <view class='notifcation'>记录类型：</view>
+    <picker bindchange="bindMoneyType" style='padding:5px;' value='{{moneyTypeIndex}}' range="{{moneyType}}">
+      <view style='line-height:30px;' class="picker">
+        <text style='color:#333;'>{{moneyType[moneyTypeIndex]}}</text>
+      </view>
+    </picker>
+  </view>
+  <view class='inner-view'>
+    <view class='notifcation'>显示方式：</view>
+    <picker bindchange="bindDisplayType" style='padding:5px;' value='{{displayTypeIndex}}' range="{{displayType}}">
+      <view style='line-height:30px;' class="picker">
+        <text style='color:#333;'>{{displayType[displayTypeIndex]}}</text>
+      </view>
+    </picker>
+  </view>
+  <view wx:if="{{displayTypeIndex==0}}">
+    <view class='inner-view'>
+      <view class='notifcation'>开始时间：</view>
+      <picker bindchange="bindPickerStartTime" mode="date" style='padding:5px;' value='{{startTime}}'>
+        <view style='line-height:30px;' class="picker">
+          <text style='color:#333;'>{{startTime}}</text>
+        </view>
+      </picker>
+    </view>
+    <view class='inner-view'>
+      <view class='notifcation'>结束时间：</view>
+      <picker bindchange="bindPickerEndTime" mode="date" style='padding:5px;' value='{{endTime}}'>
+        <view style='line-height:30px;' class="picker">
+          <text style='color:#333;'>{{endTime}}</text>
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view wx:if="{{displayTypeIndex==1}}">
+    <view class='inner-view'>
+      <view class='notifcation'>查询年份：</view>
+      <picker bindchange="bindPickerYear" style='padding:5px;' value='{{yearIndex}}' range="{{year}}">
+        <view style='line-height:30px;' class="picker">
+          <text style='color:#333;'>{{year[yearIndex]}}</text>
+        </view>
+      </picker>
+    </view>
+  </view>
+  <button class='confirm' bindtap='sendChoice'>确认</button>
+</view>

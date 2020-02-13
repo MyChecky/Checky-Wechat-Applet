@@ -3,9 +3,38 @@
 
 <view class='from-view'>
   <view class='container-view'>
-    <view class='title'>
-      <icon class='icon fa {{icon}}'></icon>{{title}}
+    <view class='inner-view'>
+      <view class='title'>
+        <icon class='icon fa {{icon}}'></icon>{{title}}
+      </view>
+      <view style='line-height:10px;color:#333' bindtap='turnToFlowList'>详细记录
+      </view>
     </view>
-    <template wx:for="{{moneyList}}" is="list-num-item" data="{{item}}"/>
+
+    <view class='inner-view'>
+      <view class='notifcation'>充值余额：</view>
+      <view style='line-height:30px;color:#333'>{{userMoney}}</view>
+    </view>
+    <view class='inner-view'>
+      <view class='notifcation'>试玩余额：</view>
+      <view style='line-height:30px;color:#333'>{{testMoney}}</view>
+    </view>
+    <view class='inner-view' bindtap='turnToRecharge'>
+      <view class='title' bindtap='turnToRecharge'>
+        <icon class='icon fa fa-credit-card'></icon>充值
+      </view>
+      <view style='line-height:50px;' bindtap='turnToRecharge'>
+        <icon class='icon fa fa-chevron-right'></icon>
+      </view>
+    </view>
+    <view class='inner-view' bindTap='turnToWithdraw'>
+      <view class='title' bindTap='turnToWithdraw'>
+        <icon class='icon fa fa-hand-rock-o'></icon>提现
+      </view>
+      <view style='line-height:50px;' bindtap='turnToWithdraw'>
+        <icon class='icon fa fa-chevron-right'></icon>
+      </view>
+    </view>
+
   </view>
 </view>

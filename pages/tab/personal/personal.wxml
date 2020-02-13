@@ -7,8 +7,8 @@
     </view>
   </view>
   <view class='function-view'>
-    <view class='inner-view' wx:for="{{itemList}}">
-      <block  wx:for="{{item.subItemList}}">
+    <view class='inner-view' wx:for="{{itemList}}" wx:key="key">
+      <block  wx:for="{{item.subItemList}}" wx:key="key">
       <view class='function-item' data-url='{{item.url}}' data-param='{{item.param}}' bindtap='jumpTo'>
         <view class='icon fa fa-fw {{item.icon}}' data-url='{{item.url}}' data-param='{{item.param}}'></view>
         <view class='text' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.name}}</view>

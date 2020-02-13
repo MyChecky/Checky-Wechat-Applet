@@ -17,7 +17,7 @@ Page({
       {
         "subItemList": [
           { "name": "任务列表", "url": "./taskList/taskList", "param": "", "icon": "fa-reorder"},
-          { "name": "资金记录", "url": "./money/money", "param": "", "icon": "fa-rmb" },
+          { "name": "账户余额", "url": "./money/money", "param": "", "icon": "fa-rmb" },
           { "name": "历史记录", "url": "./history/history", "param": "", "icon": "fa-history" }
         ]
       },

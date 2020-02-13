@@ -1,0 +1,92 @@
+/* pages/tab/personal/moneyFlowList/moneyFlowList.wxss */
+/* pages/tab/personal/money/money.wxss */
+@import "../list.wxss";
+
+.direction {
+  padding: 20px 40px 10px 20px;
+}
+
+.income {
+  color: #e83015;
+  font-size: 30px;
+}
+
+.cost {
+  color: #333;
+  font-size: 30px;
+}
+.date{
+  margin: 5px 0px;
+  padding: 10px 0px;
+}
+.rmb{
+  font-size: 20px;
+}
+.task-title{
+  font-size: 16px;
+  margin-top: 5px;
+}
+.inner-view{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5px 0px;
+  border-bottom: 1px solid rgba(100,100,100,0.2);
+  padding:5px 0px;
+
+}
+.notifcation{
+  color: #e83015;
+  font-size: 16px;
+  padding: 5px;
+  margin: 5px 0px
+}
+.function-view {
+  margin-top: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.icon {
+  color: #e83015;
+  font-size: 22px;
+  margin-right: 20px;
+}
+
+.iconSmall{
+  color: #e83015;
+  font-size: 15px;
+  margin-right: 15px;
+}
+
+.titleSmall{
+  color: #e83015;
+  font-size: 18px;
+  padding: 5px;
+  margin: 5px 0px
+}
+
+.text {
+  letter-spacing:2px;
+  font-size: 18px;
+}
+
+/* 折线 */
+.chart{
+  width: 95%;
+  height: 550rpx;
+  margin: 0 auto;
+  padding-top: 50rpx;
+  background: #fff;
+}
+
+.chart-info{
+  height: 500rpx;
+}
+
+.canvas {
+    width: 380px;
+    height: 400px;
+}

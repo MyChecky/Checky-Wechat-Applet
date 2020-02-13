@@ -1,0 +1,65 @@
+<!--pages/tab/personal/moneyFlowList/moneyFlowList.wxml-->
+<import src="../list.wxml" />、
+
+<view class='from-view'>
+  <view class='container-view'>
+    <view class='inner-view'>
+      <view class='title'>
+        <icon class='icon fa {{icon}}'></icon>{{title[moneyTypeIndex]}}
+      </view>
+      <view style='line-height:10px;color:#333' bindtap='getMoneyType'>更多
+      </view>
+    </view>
+    <!-- 列表模式 -->
+    <view wx:if="{{displayTypeIndex==0}}">
+      <template wx:for="{{displayMoneyList}}" wx:key="key" is="list-num-item" data="{{item}}" />
+    </view>
+
+    <!-- 图表模式-->
+    <view wx:if="{{displayTypeIndex==1}}">
+      <!-- 折线区域 -->
+      <view class='chart'>
+        <!-- 图形 -->
+        <view class='chart-info'>
+          <canvas canvas-id="lineCanvas" disable-scroll="true" class="canvas" bindtouchstart="touchHandler"></canvas>
+        </view>
+        <!-- 折线图统计一年支出收入情况情况 -->
+      </view>
+      <view class='inner-view'>
+        <view class='titleSmall'>
+          {{year}}年总支出
+        </view>
+        <view style='line-height:10px;color:#333'>
+          <icon class='iconSmall fa fa-rmb'></icon>{{totalMoneyOut}}
+        </view>
+      </view>
+      <view class='inner-view'>
+        <view class='titleSmall'>
+          {{year}}年总收入
+        </view>
+        <view style='line-height:10px;color:#333'>
+          <icon class='iconSmall fa fa-rmb'></icon>{{totalMoneyIn}}
+        </view>
+      </view>
+      <view wx:if="{{moneyTypeIndex==0 || moneyTypeIndex==2}}">
+        <view class='inner-view'>
+          <view class='titleSmall'>
+            {{year}}年共充值
+          </view>
+          <view style='line-height:10px;color:#333'>
+            <icon class='iconSmall fa fa-rmb'></icon>{{totalRecharge}}
+          </view>
+        </view>
+        <view class='inner-view'>
+          <view class='titleSmall'>
+            {{year}}年共提现
+          </view>
+          <view style='line-height:10px;color:#333'>
+            <icon class='iconSmall fa fa-rmb'></icon>{{totalWithdraw}}
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</view>
