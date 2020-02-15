@@ -16,7 +16,7 @@ Page({
       },
       {
         "name": "提现",
-        "url": "./withdraw/withdraw",
+        "url": "./recharge/recharge",
         "param": "",
         "icon": "fa-globe"
       }
