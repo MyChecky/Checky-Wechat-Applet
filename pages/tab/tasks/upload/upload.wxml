@@ -15,7 +15,7 @@
         <button class='cancel' bindtap='cancelImage' data-index="{{index}}">删除</button>
       </view>
       <view class='vid-view' wx:for="{{video}}" wx:key="key" wx:if="{{item.URL!=''}}">
-        <video class='vid' src='{{video.URL}}' mode='aspectFill'></video>
+        <video class='vid' src='{{item.URL}}' mode='aspectFill'></video>
         <button class='cancel' bindtap='cancelVideo' data-index="{{index}}">删除</button>
       </view>
 

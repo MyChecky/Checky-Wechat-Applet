@@ -53,10 +53,10 @@
 }
 
 .vid-view{
-  width: 22.5%;
+  width: 96%;
   padding: 0px;
   margin: 5px 1.25%;
-  padding-bottom: 22.5%;
+  padding-bottom: 48%;
   background-color: #f3f5f5;
   position: relative;
   overflow: hidden;

@@ -33,7 +33,8 @@ Page({
     unknown: [],
     checked: [],
     toCheck: [],
-    toSupvise: []
+    toSupvise: [],
+    supOutDay: 2
   },
 
   hidCal: function() {
@@ -88,7 +89,8 @@ Page({
         that.setData({
           unknown: res.data.unknown,
           toCheck: res.data.toCheck,
-          checked: res.data.checked
+          checked: res.data.checked,
+          supOutDay: res.data.supOutDay,
         })
         console.log(res);
         console.log(that.data);
@@ -97,6 +99,7 @@ Page({
         console.log(err)
       }
     }
+    console.log(req)
     app.requestWithAuth(req)
       .then(req.success)
       .catch(req.fail)
@@ -104,10 +107,10 @@ Page({
   // 监督
   requestSupList: function(chooseDate) {  // 调用时chooseDate是当前日期（今天）
     var startDate = new Date(Date.parse(chooseDate.replace(/-/g, '/'))); //字符串格式转换为日期格式
-    var day = 10; //定义天数​
+    var day = this.data.supOutDay; //定义过期天数​
     // 计算结束日期                   
     var value = startDate.getTime(); //将开始时间转为毫秒            
-    value -= 2 * (24 * 3600 * 1000); //将天数转换成毫秒后与开始时间相加得到结束时间的毫秒数         
+    value -= day * (24 * 3600 * 1000); //将天数转换成毫秒后与开始时间相加得到结束时间的毫秒数         
     var endDate = new Date(value); //将得到的毫秒数转换为日期
     endDate = util.formatTime(endDate)
     console.log(chooseDate)
