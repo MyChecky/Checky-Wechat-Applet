@@ -1,4 +1,4 @@
-<!--pages/tab/personal/list/list.wxml-->
+<!--pages/tab/personal/newFriend/newfriend.wxml-->
 <import src="../list.wxml" />
 
 <view class='from-view'>
@@ -7,11 +7,11 @@
       <view class='title'>
         <icon class='icon fa {{icon}}'></icon>{{title}}
       </view>
-      <view style="flex-direction: row">
+      <!-- <view style="flex-direction: row">
         <view style='line-height:10px; color:#333; padding:0px 0px 10px 0px;' bindtap='searchFriend'>查找</view>
         <view style='line-height:10px; color:#333; padding:10px 0px 0px 0px;' bindtap='newFriend'>新朋友</view>
+      </view> -->
     </view>
+    <template wx:for="{{friendList}}" is="list-newFriend-item" data="{{item}}" />
   </view>
-  <template wx:for="{{friendList}}" is="list-ava-item" data="{{item}}" />
-</view>
 </view>

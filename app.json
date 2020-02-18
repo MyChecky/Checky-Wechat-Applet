@@ -22,7 +22,15 @@
     "pages/tab/personal/history/history",
     "pages/tab/personal/moneyFlowList/moneyFlowList",
     "pages/tab/personal/recharge/recharge",
-    "pages/tab/personal/rechargeComplete/rechargeComplete"
+    "pages/tab/personal/rechargeComplete/rechargeComplete",
+    "pages/tab/essay/essayPersonalIndex/essayPersonalIndex",
+    "pages/tab/personal/setting/setting",
+    "pages/tab/personal/suggest/suggest",
+    "pages/tab/personal/systemChat/systemChat",
+    "pages/tab/essay/essaySendMessage/essaySendMessage",
+    "pages/tab/essay/essayAddFriend/essayAddFriend",
+    "pages/tab/personal/searchFriend/searchFriend",
+    "pages/tab/personal/newFriend/newfriend"
   ],
   "window": {
     "backgroundTextStyle": "light",

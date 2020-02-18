@@ -1,4 +1,4 @@
-// pages/tab/personal/list/list.js
+// pages/tab/personal/searchFriend/searchFriend.js
 const app = getApp()
 Page({
 
@@ -6,10 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: '好友',
-    icon: 'fa-address-book-o',
-    friendList: [
-    ] // userName, userAvatar, latestMessage, latestMessageTime
+    inputVal: '',
+    contentSend: '',
+    friendList: [] // userName, userAvatar, latestMessage, latestMessageTime
     // content, subContent, date, opration, avatarUrl
   },
 
@@ -17,25 +16,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    req = {
-      url: '/friend/queryUserAllFriend',
-      method: 'POST',
-      data: {
-        userId: app.globalData.openId
-      },
-      success: res => {
-        console.log(res.data)
-        this.setData({
-          friendList: res.data.friendList,
-        })
-      },
-      fail: err => {
-        console.log(err)
-      }
-    }
-    app.requestWithAuth(req)
-      .then(req.success)
-      .catch(req.fail)
+
   },
 
   /**
@@ -87,7 +68,7 @@ Page({
 
   },
   // 查看个人主页
-  gotoIndex: function (e) {
+  gotoIndex: function(e) {
     console.log("个人主页");
     console.log(e.target.dataset);
     var userid = e.target.dataset.userid;
@@ -104,15 +85,43 @@ Page({
       })
     }
   },
-  // 查询好友
-  searchFriend: function(e){
-    wx.navigateTo({
-      url: '../searchFriend/searchFriend',
+  sendClick: function(e) {
+    this.searchFriend(e.detail.value);
+  },
+
+  contentChange: function(e) {
+    var text = e.detail.value
+    this.setData({
+      contentSend: text
     })
   },
-  newFriend: function(e){
-    wx.navigateTo({
-      url: '../newFriend/newfriend',
-    })
+
+  sendButton: function(e) {
+    this.searchFriend(this.data.contentSend);
+  },
+
+  // 查询好友
+  searchFriend: function(nickName) {
+    req = {
+      url: '/friend/queryUserByNickname',
+      method: 'POST',
+      data: {
+        userId: app.globalData.openId,
+        nickName: nickName
+      },
+      success: res => {
+        console.log("查询结果",res.data)
+        this.setData({
+          friendList: res.data.friendList,
+        })
+        console.log(this.data)
+      },
+      fail: err => {
+        console.log(err)
+      }
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
   }
 })

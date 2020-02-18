@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: "动态",
+    title: "我的动态",
     icon: "fa-globe",
     path: "",
     essays: [

@@ -2,9 +2,9 @@
 <template name="list-ava-item">
   <view class='item-view'>
     <view class='head-view'>
-      <image class='imgae-view' src='{{item.avatarUrl}}' mode='cover'></image>
+      <image class='imgae-view' src='{{item.avatarUrl}}' bindtap="gotoIndex" data-userid='{{item.userId}}' data-useravatar='{{item.avatarUrl}}' data-usernickname='{{item.content}}' mode='cover'></image>
     </view>
-    <view class='content-view'>
+    <view class='content-view' bindtap="gotoIndex" data-userid='{{item.userId}}' data-useravatar='{{item.avatarUrl}}' data-usernickname='{{item.content}}'>
       <view class='content'>{{item.content}}</view>
       <view class='info-view'>
         <view class='subContent'>{{item.subContent}}</view>
@@ -13,6 +13,28 @@
     </view>
     <view class='operation-view'>
       <button class='op-button fa fa-chevron-right'>{{item.operation}}</button>
+    </view>
+  </view>
+</template>
+<!--好友申请表-->
+<template name="list-newFriend-item">
+  <view class='item-view'>
+    <view class='head-view'>
+      <image class='imgae-view' src='{{item.avatarUrl}}' bindtap="gotoIndex" data-userid='{{item.userId}}' data-useravatar='{{item.avatarUrl}}' data-usernickname='{{item.content}}' mode='cover'></image>
+    </view>
+    <view class='content-view' bindtap="gotoIndex" data-userid='{{item.userId}}' data-useravatar='{{item.avatarUrl}}' data-usernickname='{{item.content}}'>
+      <view class='content'>{{item.content}}</view>
+      <view class='info-view'>
+        <view class='subContent'>{{item.subContent}}</view>
+        <view class='date'>{{item.date}}</view>
+      </view>
+    </view>
+    <view class='operation-view'>
+      <!-- <button class='op-button fa fa-chevron-right'>{{item.operation}}</button> -->
+      <view style="flex-direction: row">
+        <view style='line-height:10px; color:#333; padding:0px 0px 10px 0px;' data-userid='{{item.userId}}' bindtap='agreeNewFriend'>同意</view>
+        <view style='line-height:10px; color:#333; padding:10px 0px 0px 0px;' data-userid='{{item.userId}}' bindtap='refuseNewFriend'>拒绝</view>
+      </view>
     </view>
   </view>
 </template>

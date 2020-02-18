@@ -1,0 +1,10 @@
+<!--pages/tab/essay/essayAddFriend/essayAddFriend.wxml-->
+<toast id="toast" />
+
+<view class='suggest'>
+  <view class='container-view'>
+    <textarea class='content' placeholder='请输入验证消息' maxlength='25' bindinput='lengthChange'></textarea>
+    <view class='limit'>{{currentLength}}/25</view>
+  </view>
+  <button class='submit' bindtap='sendContent'>发送</button>
+</view>

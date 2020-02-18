@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "toast": "../../../../component/toast"
+  },
+  "navigationBarTitleText": "添加好友"
+}

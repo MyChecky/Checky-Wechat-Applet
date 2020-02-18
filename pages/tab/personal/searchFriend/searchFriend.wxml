@@ -1,0 +1,14 @@
+<!--pages/tab/personal/searchFriend/searchFriend.wxml-->
+<import src="../list.wxml" />
+
+<view class='from-view'>
+  <view class='container-view'>
+  <view class='inputRoomSearch' style='bottom: {{inputBottom}}'>
+    <!-- <image style='width: 7vw; margin-left: 3.2vw;' src='../../images/pic_icon.png' mode='widthFix'></image> -->
+    <input class='inputSearch' bindconfirm='sendClick' adjust-position='{{false}}' value='{{inputVal}}' confirm-type='send' bindfocus='focus' bindblur='blur' bindinput='contentChange'></input>
+    <button class='sendButtonSearch' bindtap="sendButton">查询</button>
+  </view>
+
+      <template wx:for="{{friendList}}" is="list-ava-item" data="{{item}}" />
+    </view>
+  </view>

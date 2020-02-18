@@ -1,0 +1,79 @@
+/* pages/tab/essay/essaySendMessage/essaySendMessage.wxss */
+
+page {
+  background-color: #f1f1f1;
+}
+
+.inputRoom {
+  width: 100vw;
+  height: 16vw;
+  border-top: 1px solid #cdcdcd;
+  background-color: #f1f1f1;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  z-index: 20;
+}
+
+.sendButton {
+  /* margin: 50px 0px; *//* padding-left: 10vw;  */
+  width: 15vw;
+  height: 10vw;
+  border-radius: 2vw;
+  background-color: #e83015;
+  color: #fff;
+  /* font-size: 10px;
+  font-weight: 600; */
+  font-size-adjust: true;
+  border: none;
+  line-height: 40px;
+  /* box-shadow: 1px 1px 10px 1px rgba(100, 100, 100, 0.5); */
+}
+
+input {
+  width: 76vw;
+  height: 9.33vw;
+  background-color: #fff;
+  border-radius: 40rpx;
+  margin-left: 2vw;
+  padding: 0 3vw;
+  font-size: 28rpx;
+  color: #444;
+}
+
+.leftMsg {
+  font-size: 35rpx;
+  color: #444;
+  line-height: 7vw;
+  padding: 2vw 2.5vw;
+  background-color: #fff;
+  margin-left: -1.6vw;
+  border-radius: 10rpx;
+  z-index: 10;
+}
+
+.rightMsg {
+  font-size: 35rpx;
+  color: #444;
+  line-height: 7vw;
+  padding: 2vw 2.5vw;
+  /* background-color: #96EB6A; */
+  background-color: #e83015;
+  margin-right: -1.6vw;
+  border-radius: 10rpx;
+  z-index: 10;
+}
+
+.centerMsgView {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.centerMsg {
+  font-size: 20rpx;
+  color: #aaa;
+}

@@ -1,0 +1,2 @@
+/* pages/tab/personal/newFriend/newfriend.wxss */
+@import "../list.wxss"

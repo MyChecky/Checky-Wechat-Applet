@@ -1,0 +1,10 @@
+<!--pages/tab/personal/suggest/suggest.wxml-->
+<toast id="toast" />
+
+<view class='suggest'>
+  <view class='container-view'>
+    <textarea class='content' placeholder='有什么建议吗？' maxlength='500' bindinput='lengthChange'></textarea>
+    <view class='limit'>{{currentLength}}/500</view>
+  </view>
+  <button class='submit' bindtap='sendContent'>发送</button>
+</view>

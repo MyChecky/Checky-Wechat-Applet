@@ -1,21 +1,32 @@
-// pages/tab/essay/essay.js
+// pages/tab/essay/essayPersonalIndex/essayPersonalIndex.js
 const app = getApp()
-var util = require("../../../utils/util.js")
+var util = require("../../../../utils/util.js")
 Page({
   data: {
+    targetUserId: '',
+    // userId: '', // 目标userId
+    userAvatar: '',
+    userNickName: '',
     path: "",
     height: 0,
     cPage: 1,
     infomation: "正在加载",
     likeNum: 0,
     commentNum: 0,
-    essays: [],
+    ifFriend: 0,
+    essays: [
+    ],
     recordTypeNow: "video",
   },
-  onLoad: function() {
+  onLoad: function (options) {
+    console.log(options)
     this.setData({
       path: app.getAbsolutePath() + '/',
+      targetUserId: options.userid,
+      userAvatar: options.userAvatar,
+      userNickName: options.userNickName,
     })
+    console.log(this.data)
     wx.getSystemInfo({
       success: (res) => {
         this.setData({
@@ -23,18 +34,39 @@ Page({
         })
       },
     })
+    req = {
+      url: '/friend/queryIfFriend',
+      method: 'POST',
+      data: {
+        userId: app.globalData.openId,
+        targetUserId: options.userid,
+      },
+      success: res => {
+        console.log(res.data)
+        this.setData({
+          ifFriend: res.data.ifFriend
+        })
+      },
+      fail: err => {
+        console.log(err)
+      }
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
   },
-  onShow: function() {
+  onShow: function () {
     this.refreshEssayList()
   },
   // 刷新列表
-  refreshEssayList: function() {
+  refreshEssayList: function () {
     var that = this
     req = {
-      url: '/essay/displayEssay',
+      url: '/friend/displayEssaysForSomeone',
       method: 'POST',
       data: {
         "userId": app.globalData.openId,
+        'targetUserId': that.data.targetUserId,
         "cPage": 1
       },
       success(res) {
@@ -45,7 +77,8 @@ Page({
             essays: res.data,
             cPage: 2
           })
-        } else {
+        }
+        else {
           that.setData({
             infomation: "loading",
             essays: res.data,
@@ -59,13 +92,14 @@ Page({
       .catch(req.fail)
   },
   //获取动态列表
-  requestEssayList: function() {
+  requestEssayList: function () {
     var that = this
     req = {
-      url: '/essay/displayEssay',
+      url: '/friend/displayEssaysForSomeone',
       method: 'POST',
       data: {
         "userId": app.globalData.openId,
+        'targetUserId': that.data.targetUserId,
         "cPage": that.data.cPage
       },
       success(res) {
@@ -74,7 +108,8 @@ Page({
           that.setData({
             infomation: "nomore"
           })
-        } else {
+        }
+        else {
           that.setData({
             infomation: "loading",
             essays: that.data.essays.concat(res.data),
@@ -89,7 +124,7 @@ Page({
   },
 
   //记录点赞情况
-  isLike: function(e) {
+  isLike: function (e) {
     var index = e.target.dataset.index
     console.log(index)
     if (this.data.essays[index].like) {
@@ -116,7 +151,8 @@ Page({
       app.requestWithAuth(req)
         .then(req.success)
         .catch(req.fail)
-    } else {
+    }
+    else {
       req = {
         url: '/essay/like',
         method: 'POST',
@@ -144,66 +180,68 @@ Page({
   },
 
   //查看打卡详情
-  essayClick: function(e) {
+  essayClick: function (e) {
     console.log("afgf")
     console.log(e.target.dataset.essayid)
     var essayId = e.target.dataset.essayid
     var userId = app.globalData.openId
     console.log(essayId)
     wx.navigateTo({
-      url: './essayDetail/essayDetail?essayId=' + essayId + '&userId=' + userId,
+      url: '../essayDetail/essayDetail?essayId=' + essayId + '&userId=' + userId,
     })
   },
-  // 查看个人主页
-  openPersonalIndex: function(e) {
-    console.log("个人主页", e.target.dataset);
-    var userid = e.target.dataset.userid;
-    var usernickname = e.target.dataset.usernickname;
-    var useravatar = e.target.dataset.useravatar;
-    if (userid != app.globalData.openId){
-      wx.navigateTo({
-        url: './essayPersonalIndex/essayPersonalIndex?userid=' + userid + '&userNickName=' + usernickname + '&userAvatar=' + useravatar,
-      })
-    }else{
-      wx.navigateTo({
-        url: '../personal/essay/essay',
-      })
-    }
 
-  },
-  //创建打卡
-  essayNew: function() {
+  //发送私信
+  sendMessage: function (e) {
+    console.log("发送私信")
+    console.log(e.target.dataset)
+    var targetUserId = e.target.dataset.targetuserid
+    var targetUserName = e.target.dataset.targetusername
     wx.navigateTo({
-      url: './essayNew/essayNew',
+      url: '../essaySendMessage/essaySendMessage?targetUserId=' + targetUserId + '&targetUserName=' + targetUserName + '&targetUserAvatar=' + this.data.userAvatar,
     })
   },
+
+  //添加好友
+  addFriend: function (e) {
+    console.log("添加好友")
+    console.log(e.target.dataset)
+    var targetUserId = e.target.dataset.targetuserid
+    var targetUserName = e.target.dataset.targetusername
+    wx.navigateTo({
+      url: '../essayAddFriend/essayAddFriend?targetUserId=' + targetUserId + '&targetUserName' + targetUserName,
+    })
+  },
+
   // 预览图片
-  essayPic: function(e) {
+  essayPic: function (e) {
     console.log(e.target.dataset.index);
     console.log(e.target.dataset.essayid);
     console.log(e.target.dataset.src);
     wx.previewImage({
       current: e.target.dataset.src, // 当前显示图片的http链接
-      urls: [e.target.dataset.src, ] // 需要预览的图片http链接列表
+      urls: [e.target.dataset.src,] // 需要预览的图片http链接列表
     })
   },
   // 滚动加载
-  loadMore: function() {
+  loadMore: function () {
     console.log("load more")
     this.requestEssayList()
   },
-  refresh: function() {
+  refresh: function () {
     console.log("refresh")
     this.refreshEssayList()
   },
-  bindPlay: function() {
+  bindPlay: function () {
     this.videoContext.play()
   },
-  bindPause: function() {
+  bindPause: function () {
     this.videoContext.pause()
   },
-  videoErrorCallback: function(e) {
+  videoErrorCallback: function (e) {
     console.log('视频错误信息:')
     console.log(e.detail.errMsg)
-  }
+  },
+
+
 })

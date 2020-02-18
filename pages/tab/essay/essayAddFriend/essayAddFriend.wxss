@@ -1,0 +1,26 @@
+/* pages/tab/essay/essayAddFriend/essayAddFriend.wxss */
+
+.content{
+  width: auto;
+  height: 100px;
+  padding: 5px;
+  word-wrap: break-word;
+}
+
+.limit{
+  color: #999;
+  width: auto;
+  font-size: 16px;
+  margin: 10px 5px;
+  padding: 2px 5px;
+  text-align: right;
+}
+.submit{
+  background-color: #e83015;
+  color: #fff;
+  border-radius: 2px;
+  box-shadow: 1px 1px 1px 0px rgba(100,100,100,0.5);
+  margin: 10px 5px;
+  height: 40px;
+  font-size: 16px;
+}

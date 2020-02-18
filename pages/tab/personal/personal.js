@@ -25,8 +25,8 @@ Page({
         "subItemList": [
           { "name": "申诉", "url": "./appeal/appeal", "param": "", "icon": "fa-exclamation-circle" },
           { "name": "举报", "url": "./report/report", "param": "", "icon": "fa-hand-paper-o" },
-          { "name": "设置", "url": "", "param": "", "icon": "fa-cog" },
-          { "name": "反馈", "url": "", "param": "", "icon": "fa-pencil-square-o" }
+          { "name": "设置", "url": "./setting/setting", "param": "", "icon": "fa-cog" },
+          { "name": "反馈", "url": "./suggest/suggest", "param": "", "icon": "fa-pencil-square-o" }
         ]
       },
     ]

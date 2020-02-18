@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "toast": "../../../../component/toast"
+  },
+  "navigationBarTitleText": "提供建议"
+}
