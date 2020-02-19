@@ -29,7 +29,7 @@
     </view>
     <view class='inner-view'>
       <view class='notifcation'>开始时间：</view>
-      <picker bindchange="bindPickerStartTime" mode="date" style='padding:5px;' value='{{startTime}}'>
+      <picker bindchange="bindPickerStartTime" mode="date" start="{{startlimit}}" style='padding:5px;' value='{{startTime}}'>
         <view style='line-height:30px;' class="picker">
           <text style='color:#333;'>{{startTime}}</text>
         </view>
@@ -37,7 +37,7 @@
     </view>
     <view class='inner-view'>
       <view class='notifcation'>结束时间：</view>
-      <picker bindchange="bindPickerEndTime" mode="date" style='padding:5px;' value='{{endTime}}'>
+      <picker bindchange="bindPickerEndTime" mode="date" start="{{startTime}}" end="{{endlimit}}" style='padding:5px;' value='{{endTime}}'>
         <view style='line-height:30px;' class="picker">
           <text style='color:#333;'>{{endTime}}</text>
         </view>

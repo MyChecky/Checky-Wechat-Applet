@@ -54,6 +54,8 @@ Page({
     chooseRepeat: null,
     index: -1,
     array: [],
+    startlimit: app.globalData.date,
+    endlimit: "",
     startTime: app.globalData.date,
     endTime: app.globalData.date,
     moneyType: ['账户余额', '试玩余额'],
@@ -139,8 +141,28 @@ Page({
    */
   onShow: function() {
     this.setData({
-      types: app.globalData.types
+      types: app.globalData.types,
+      endlimit: this.getEndLimitDate(new Date()),
     })
+  },
+  // 格式化二位数
+  formatNumber: function (n) {
+    n = n.toString()
+    return n[1] ? n : '0' + n
+  },
+  // 计算结束日期
+  getEndLimitDate(date){
+    var that = this;
+    var year = date.getFullYear()
+    var month = date.getMonth()
+    if(month < 9){
+      month = month + 4
+    }else{
+      year = year + 1;
+      month = month - 8;
+    }
+    const day = date.getDate()
+    return [year, month, day].map(this.formatNumber).join('-')
   },
   // 获取类型
   getType: function() {
@@ -155,8 +177,10 @@ Page({
     })
   },
   bindPickerStartTime: function(e) {
+    var endlimit = this.getEndLimitDate(new Date(e.detail.value))
     this.setData({
-      startTime: e.detail.value
+      startTime: e.detail.value,
+      endlimit: endlimit,
     })
   },
   bindPickerEndTime: function(e) {

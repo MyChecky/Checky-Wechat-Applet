@@ -21,7 +21,7 @@
 
       <view class='file fa fa-file-image-o' wx:if="{{(fileTypeChoosing=='init' || fileTypeChoosing=='image') && currentNum<4}}" bindtap="chooseImageFile"></view>
       <view class='file fa fa-file-video-o' wx:if="{{(fileTypeChoosing=='init' || fileTypeChoosing=='video') && currentNum<1}}" bindtap='chooseVideoFile'></view>
-      <!-- <view class='file fa fa-file-audio-o' wx:if='{{currentNum<4}}' bindtap='chooseAudioFile'></view> -->
+      <view class='file fa fa-file-audio-o' wx:if='{{currentNum<4}}' bindtap='chooseAudioFile'></view>
     </view>
     <view wx:if="{{fileTypeChoosing=='image'}}" class='limit'>{{currentNum}}/4</view>
     <view wx:if="{{fileTypeChoosing=='video'}}" class='limit'>{{currentNum}}/1</view>
