@@ -40,7 +40,7 @@ Page({
         cPage: this.data.cPage
       },
       success: res => {
-        console.log(res.data)
+        console.log("历史返回值", res.data)
         if (res.data.length < 10) {
           that.setData({
             infomation: "nomore"
@@ -100,7 +100,7 @@ Page({
           that.setData({
             infomation: "nomore"
           })
-        }else {
+        } else {
           for (var i = 0; i < res.data.length; i++) {
             res.data[i].url = app.getAbsolutePath() + "/"
             res.data[i].check.checkState = util.dataEN2CN(res.data[i].check.checkState)
@@ -118,5 +118,14 @@ Page({
     app.requestWithAuth(req)
       .then(req.success)
       .catch(req.fail)
+  },
+  checkDetail: function(options) {
+    checkid = options.target.dataset.checkid;
+    checkstate = options.target.dataset.checkstate;
+    taskid = options.target.dataset.taskid;
+    console.log("checkDetail", options.target.dataset)
+    wx.navigateTo({
+      url: '../../tasks/taskDetail/taskDetail?taskId=' + taskid + '&checkState=' + checkstate + '&checkId=' + checkid,
+    })
   }
 })

@@ -202,7 +202,7 @@ Page({
         console.log(res)
         this.setData({
           comments: res.data.comments,
-          commenNum: res.data.comments.length,
+          commentNum: res.data.comments.length,
         })
 
       },

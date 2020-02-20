@@ -92,12 +92,9 @@
 </template>
 <!-- 打卡列表项 -->
 <template name="list-check-item">
-  <view class='item-view'>
-    <view class='head-view' wx:if="{{item.images!=null}}">
-      <image class='pics-view' src='{{item.url}}{{item.images[0].fileAddr}}' mode='cover'></image>
-    </view>
+  <view class='item-view'> 
     <view class='content-view'>
-      <view class='multicontent'>{{item.text.recordContent}}</view>
+      <view class='multicontent' bindtap="checkDetail" data-checkid="{{item.check.checkId}}" data-checkstate="{{item.check.checkState}}" data-taskid="{{item.check.taskId}}" >{{item.text.recordContent}}</view>
       <view class='info-view' style='justify-content: space-between;'>
         <view class='result' style='flex-grow:2;'>任务：{{item.check.taskTitle}}</view>
         <view class='state'>{{item.check.checkState}}</view>

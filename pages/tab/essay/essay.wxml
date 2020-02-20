@@ -24,6 +24,12 @@
           <video class='essays-video' src='{{path}}{{item.fileAddr}}' data-src='{{path}}{{item.fileAddr}}' binderror="videoErrorCallback" controls></video>
         </view>
       </view>
+      <!--录音-->
+      <view wx:if='{{essays[index].fileRecord[0].recordType=="audio"}}' class="recor-view" catchtap="essayAudio">
+        <view class="recor-container" catchtap="essayAudio" wx:for="{{item.fileRecord}}" wx:key="key">
+          <audio class="essays-recor" name="{{essays[index].userName}}" author="{{essays[index].essay.essayTime}}" src='{{path}}{{item.fileAddr}}' data-src='{{path}}{{item.fileAddr}}' controls></audio>
+        </view>
+      </view>
     </view>
     <view class='essays-bottom'>
       <!--按钮-->

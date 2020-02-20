@@ -32,7 +32,7 @@
               <view class='taskTitle'>{{item.taskTitle}}</view>
               <view class='taskContent'>{{item.taskContent}}</view>
             </view>
-            <button wx:if="{{date==chooseDate}}" class='detail-btn fa fa-arrow-circle-o-right' bindtap='toCheck' mode="top" data-taskId="{{item.taskId}}"></button>
+            <button wx:if="{{date==chooseDate}}" class='detail-btn fa fa-arrow-circle-o-right' bindtap='toCheck' mode="top" data-taskname='{{item.taskTitle}}' data-taskId="{{item.taskId}}"></button>
           </view>
         </view>
       </view>

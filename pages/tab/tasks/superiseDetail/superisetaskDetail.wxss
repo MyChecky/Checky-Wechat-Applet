@@ -135,6 +135,19 @@
   background-color: #f3f5f5;
 }
 
+.recor-view {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 5px;
+}
+
+.rec {
+  width: 96%;
+  margin: 5px 5%;
+  background-color: #f3f5f5;
+}
 
 .button-view {
   display: flex;

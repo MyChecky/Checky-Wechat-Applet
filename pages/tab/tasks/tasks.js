@@ -274,9 +274,11 @@ Page({
   },
   // -未打卡情况
   toCheck: function(e) {
-    var taskId = e.target.dataset.taskid
+    console.log(e.target.dataset)
+    var taskId = e.target.dataset.taskid;
+    var taskname = e.target.dataset.taskname;
     wx.navigateTo({
-      url: './taskDetail/taskDetail?taskId=' + taskId,
+      url: './taskDetail/taskDetail?taskId=' + taskId + '&taskname=' + taskname,
     })
   },
   //跳转到监督详情

@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    modal:{
+    modal: {
       isHidden: true,
       message: 'msg',
       title: '申诉理由'
@@ -19,32 +19,43 @@ Page({
     checkState: "待认证",
     numOfSup: 0,
     numOfSuped: 0,
-    supList: [
-    ],
-    info: [
-    ]
+    supList: [],
+    info: [],
+    taskname: "",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    console.log(options)
     var that = this
     if (options.checkId != undefined) {
       this.setData({
         checkId: options.checkId,
-        checkState: util.dataEN2CN(options.checkState),
-        taskState: '已上传'
+        taskState: '已上传',
+        taskname: options.taskname,
       })
+      var isletter = /^[a-zA-Z]+$/.test(options.checkState);
+      if (isletter){
+        this.setData({
+          checkState: util.dataEN2CN(options.checkState),
+        })
+      }else{
+        this.setData({
+          checkState: options.checkState,
+        })
+      }
       var modal = this.selectComponent('#modal')
       modal.setData({
-        checkId: options.checkId
+        checkId: options.checkId,
       })
     }
     this.setData({
-      taskId: options.taskId
+      taskId: options.taskId,
+      taskname: options.taskname,
     })
-    console.log('taskId:' + this.data.taskId + ',checkId:'+this.data.checkId)
+    console.log('taskId:' + this.data.taskId + ',checkId:' + this.data.checkId)
   },
   // 格式化重复周期
   formatInfo: function(newInfo) {
@@ -58,7 +69,7 @@ Page({
     var done = 0;
     var length = list.length;
     for (var i = 0; i < length; i++) {
-      if (this.data.supList[i].supervisorState!='unknown'){
+      if (this.data.supList[i].supervisorState != 'unknown') {
         done++
       }
       list[i].supervisorState = util.dataEN2CN(this.data.supList[i].supervisorState)
@@ -81,7 +92,7 @@ Page({
    */
   onShow: function() {
     var that = this
-    req = {// 获取任务信息
+    req = { // 获取任务信息
       // url
       url: '/task/queryTask',
       method: 'POST',
@@ -99,14 +110,14 @@ Page({
     app.requestWithAuth(req)
       .then(req.success)
 
-    req = {// 获取监督状态列表
+    req = { // 获取监督状态列表
       url: '/supervise/querySupervisorState',
       method: 'POST',
       data: {
         taskId: that.data.taskId,
         checkId: that.data.checkId
       },
-      success: res =>{
+      success: res => {
         console.log(res.data)
         this.setData({
           supList: res.data
@@ -119,18 +130,17 @@ Page({
   },
   // 打卡或查看打卡内容
   upload: function() {
-    if(this.data.checkId==''){// 未打卡情况
+    if (this.data.checkId == '') { // 未打卡情况
       wx.navigateTo({
-        url: '../upload/upload?taskId='+this.data.taskId,
+        url: '../upload/upload?taskId=' + this.data.taskId + '&taskname=' + this.data.taskname,
       })
-    }
-    else{// 已打卡情况
+    } else { // 已打卡情况
       wx.navigateTo({
         url: '../checky/checky?checkId=' + this.data.checkId + '&lastPage=taskDetail',
       })
     }
   },
-  appeal: function(){
+  appeal: function() {
     var temp = this.data.modal
     temp.isHidden = false
     temp
@@ -138,23 +148,23 @@ Page({
       modal: temp
     })
   },
-  sendAppeal: function(e){
-    this.selectComponent("#toast").toastShow2("发送中","fa-spinner fa-pulse")
+  sendAppeal: function(e) {
+    this.selectComponent("#toast").toastShow2("发送中", "fa-spinner fa-pulse")
     var appealContent = e.detail.content
     req = {
       url: '/appeal/add',
-      method:'POST',
-      data:{
+      method: 'POST',
+      data: {
         userId: app.globalData.openId,
         checkId: this.data.checkId,
         taskId: this.data.taskId,
         appealContent: appealContent
       },
-      success:(res)=>{
+      success: (res) => {
         console.log(res)
         this.selectComponent("#toast").toastShow("发送成功", "fa-check", 1000)
       },
-      fail:(err)=>{
+      fail: (err) => {
         console.log(err)
         this.selectComponent("#toast").toastShow("发送失败", "fa-remove", 1000)
       }
