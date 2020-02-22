@@ -10,8 +10,6 @@ Page({
     title: "",
     content: "",
     numOfSus: [{
-      "value": 0
-    }, {
       "value": 1
     }, {
       "value": 3
@@ -19,6 +17,8 @@ Page({
       "value": 5
     }, {
       "value": 7
+    }, {
+      "value": 9
     }],
     num: 0,
     types: [],
