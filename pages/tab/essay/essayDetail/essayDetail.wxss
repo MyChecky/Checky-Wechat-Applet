@@ -244,3 +244,26 @@ page {
   height: 100%;
   width: 100%;
 }
+
+.recor-view{
+  display: flex;
+  flex-wrap: wrap;
+  height: auto;
+  width: 100%;
+}
+
+.recor-container {
+  width: 96%;
+  height: 0px;
+  padding-bottom: 20%;
+  margin: 0.5%;
+  background-color: #f3f5f5;
+  position: relative;
+}
+
+
+.essays-recor {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}

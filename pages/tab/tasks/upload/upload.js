@@ -474,6 +474,7 @@ Page({
   //
   pauseRecording: function(e) {
     var that = this;
+    console.log("暂停！")
     rm.pause()
     that.setData({
       isPausing: true,
@@ -486,21 +487,19 @@ Page({
    */
   recordStart: function(e) {
     var that = this;
-    console.log("初始", that.data.isTouchStart)
-    console.log("开始变直", that.data)
     that.setData({
       touchStart: e.timeStamp,
       isTouchEnd: false,
       isTouchStart: true,
     })
-    console.log("开始了", that.data.isTouchStart)
-    console.log("开始了", that.data)
     if (that.data.isPausing) { // 暂停中
+      console.log("继续！")
       that.setData({
         isPausing: false,
       })
       rm.resume();
     } else { //第一次开始录音
+      console.log("开始：")
       rm.start({
         format: "mp3",
         sampleRate: 32e3,
