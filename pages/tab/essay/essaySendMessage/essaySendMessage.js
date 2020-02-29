@@ -6,7 +6,7 @@ var keyHeight = 0;
 
 var socketOpen = false;
 var frameBuffer_Data, session, SocketTask;
-var url = 'ws://192.168.1.108:8080/Checky/socket/';
+//var url = 'ws://192.168.1.108:8080/Checky/socket/';
 
 /**
  * 计算msg总高度
@@ -124,7 +124,10 @@ Page({
 
   webSocket: function() {
     // var urlTotal = url + app.globalData.openId
-    var urlTotal = url + app.globalData.openId + '/' + app.globalData.sessionKey + '/' + this.data.targetUserId;
+    var addr = app.globalData.getAbsolutePath();
+    addr = addr.replace("http", "ws"); // 替换第一个
+    addr = addr.replace("https", "ws"); // 替换第一个
+    var urlTotal = addr + app.globalData.openId + '/' + app.globalData.sessionKey + '/' + this.data.targetUserId;
     console.log(urlTotal);
     // 创建Socket
     SocketTask = wx.connectSocket({
