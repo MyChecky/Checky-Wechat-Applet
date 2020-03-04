@@ -43,7 +43,7 @@
         </view>
       </picker>
     </view>
-    <view class='inner-view'>
+    <view class='inner-view' wx:if='{{ifTrueMoneyAccess}}'>
       <view class='notifcation'>押金类型：</view>
       <picker bindchange="bindMoneyType" style='padding:5px;' value='{{moneyTypeIndex}}' range="{{moneyType}}">
         <view style='line-height:30px;' class="picker">
@@ -70,7 +70,7 @@
       </checkbox-group>
     </view>
     <!-- 高级选择 -->
-    <view class='container-view' wx:if="{{allowHighChoose==1}}">
+    <view class='container-view' wx:if="{{ifNewTaskHighSettingAccess}}">
       <view>
         <view class='notifcation'>任务通过率：</view>
         <radio-group bindchange="bindMinPass" class="type">

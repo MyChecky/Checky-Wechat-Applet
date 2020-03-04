@@ -6,14 +6,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    moneyType: ['充值资金记录', '试玩资金记录', '全部资金记录'],
+    moneyType: ['试玩资金记录', '充值资金记录', '全部资金记录'],
     moneyTypeIndex: 0,
     displayType: ['列表模式', '图表模式'],
     displayTypeIndex: 0,
     startTime: app.globalData.date,
     endTime: app.globalData.date,
     year: ['2019', '2020', '2021'], // 此处写死了，不是很好！长远考虑最好用后台计算返回的形式
-    yearIndex: 0
+    yearIndex: 0,
+
+    ifTrueMoneyAccess: false,
   },
 
   /**
@@ -21,6 +23,9 @@ Page({
    */
   onLoad: function (options) {
     console.log(this.data)
+    this.setData({
+      ifTrueMoneyAccess: app.globalData.ifTrueMoneyAccess,
+    })
   },
 
   /**

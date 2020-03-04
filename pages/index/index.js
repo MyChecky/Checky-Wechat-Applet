@@ -28,6 +28,9 @@ Page({
         console.log(res.data)
         app.globalData.openId=res.data.states
         app.globalData.sessionKey = res.data.sessionKey
+        // 这里是登陆后的一些页面/控件可见性信息
+        app.globalData.ifTrueMoneyAccess = res.data.ifTrueMoneyAccess
+        app.globalData.ifNewTaskHighSettingAccess = res.data.ifNewTaskHighSettingAccess
         if (app.globalData.openId!="0"){
           this.selectComponent("#toast").toastShow("登录成功", "fa-check", 1000)
           setTimeout(function(){

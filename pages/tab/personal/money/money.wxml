@@ -11,7 +11,7 @@
       </view>
     </view>
 
-    <view class='inner-view'>
+    <view class='inner-view' wx:if='{{ifTrueMoneyAccess}}'>
       <view class='notifcation'>充值余额：</view>
       <view style='line-height:30px;color:#333'>{{userMoney}}</view>
     </view>
@@ -19,7 +19,8 @@
       <view class='notifcation'>试玩余额：</view>
       <view style='line-height:30px;color:#333'>{{testMoney}}</view>
     </view>
-    <view class='inner-view' bindtap='turnToRecharge'>
+    <view wx:if='{{ifTrueMoneyAccess}}'>
+        <view class='inner-view' bindtap='turnToRecharge'>
       <view class='title' bindtap='turnToRecharge'>
         <icon class='icon fa fa-credit-card'></icon>充值
       </view>
@@ -35,6 +36,6 @@
         <icon class='icon fa fa-chevron-right'></icon>
       </view>
     </view>
-
+    </view>
   </view>
 </view>

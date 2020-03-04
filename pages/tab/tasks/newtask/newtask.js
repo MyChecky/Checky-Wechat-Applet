@@ -98,7 +98,10 @@ Page({
     ifAreaIndex: 0,
     ifAreaType: ["完全随机", "附近的人", "不在附近"],
     ifHobbyIndex: 0,
-    ifHobbyType: ["完全随机", "爱好相似", "不同爱好"]
+    ifHobbyType: ["完全随机", "爱好相似", "不同爱好"],
+
+    ifNewTaskHighSettingAccess: false,
+    ifTrueMoneyAccess: false,
   },
 
   /**
@@ -108,25 +111,10 @@ Page({
     wx.setNavigationBarTitle({
       title: '新建任务',
     })
-    req = {
-      url: '/task/getIfHighSetting',
-      method: 'POST',
-      data: {
-        userId: app.globalData.openId
-      },
-      success: res => {
-        console.log(res.data)
-        this.setData({
-          allowHighChoose: res.data
-        })
-      },
-      fail: err => {
-        console.log(err)
-      }
-    }
-    app.requestWithAuth(req)
-      .then(req.success)
-      .catch(req.fail)
+    this.setData({
+      ifNewTaskHighSettingAccess: app.globalData.ifNewTaskHighSettingAccess,
+      ifTrueMoneyAccess: app.globalData.ifTrueMoneyAccess
+    })
   },
 
   /**

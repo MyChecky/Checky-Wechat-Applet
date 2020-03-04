@@ -41,7 +41,7 @@
           <icon class='iconSmall fa fa-rmb'></icon>{{totalMoneyIn}}
         </view>
       </view>
-      <view wx:if="{{moneyTypeIndex==0 || moneyTypeIndex==2}}">
+      <view wx:if="{{moneyTypeIndex==1 || moneyTypeIndex==2}}">
         <view class='inner-view'>
           <view class='titleSmall'>
             {{year}}年共充值

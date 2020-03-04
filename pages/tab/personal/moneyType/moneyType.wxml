@@ -1,6 +1,6 @@
 <!--pages/tab/personal/moneyType/moneyType.wxml-->
 <view>
-  <view class='inner-view'>
+  <view class='inner-view' wx:if='{{ifTrueMoneyAccess}}'>
     <view class='notifcation'>记录类型：</view>
     <picker bindchange="bindMoneyType" style='padding:5px;' value='{{moneyTypeIndex}}' range="{{moneyType}}">
       <view style='line-height:30px;' class="picker">

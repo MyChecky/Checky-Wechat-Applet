@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: ["充值资金记录", "试玩资金记录", "全部资金记录"],
+    title: ["试玩资金记录", "充值资金记录", "全部资金记录"],
     icon: "fa-rmb",
     moneyTypeIndex: 2, // 表缺省显示全部记录
     displayTypeIndex: 0, // 默认列表
@@ -24,14 +24,24 @@ Page({
     startTime: "1970-01-01", // 取全部数据
     endTime: app.globalData.date, // 取全部数据
     year: 2020,
-    yearIndex: -1 // 这里的 -1 表试默认值（默认列表不需要这个值）
+    yearIndex: -1, // 这里的 -1 表试默认值（默认列表不需要这个值）
+
+    ifTrueMoneyAccess: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.setData({
+      ifTrueMoneyAccess: app.globalData.ifTrueMoneyAccess,
+    })
+    if(! app.globalData.ifTrueMoneyAccess){
+      this.setData({
+        title: ["资金记录"],
+        moneyTypeIndex: 0,
+      })
+    }
   },
 
   /**
@@ -52,9 +62,9 @@ Page({
         userId: app.globalData.openId,
         startTime: this.data.startTime,
         endTime: this.data.endTime,
-        yearIndex: this.data.yearIndex,
-        moneyTypeIndex: this.data.moneyTypeIndex, // 0：充值，1：试玩，2：全部
-        displayTypeIndex: this.data.displayTypeIndex // 0: 列表，1：图表
+        yearIndex: parseInt(this.data.yearIndex),
+        moneyTypeIndex: parseInt(this.data.moneyTypeIndex), // 1：充值，0：试玩，2：全部
+        displayTypeIndex: parseInt(this.data.displayTypeIndex) // 0: 列表，1：图表
       },
       success: res => {
         console.log(res.data)

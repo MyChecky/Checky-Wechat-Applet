@@ -102,9 +102,8 @@ App({
   globalData: {
     code:null,
     userInfo: null,
-    //base: "http://127.0.0.1",
-    //base: "http://192.168.201.146",
-    base: "http://192.168.137.1",
+    base: "http://127.0.0.1",
+    // base: "http://192.168.1.113",
     port: "8080",
     contextPath: "/Checky",
     //contextPath:  "",
@@ -115,6 +114,9 @@ App({
     sessionKey:"",
     types: [],
     date: util.formatTime(new Date()),
-    
+    appId: "wx5f1aa0197013dad6",
+
+    ifTrueMoneyAccess: false,
+    ifNewTaskHighSettingAccess: false
   }
 })

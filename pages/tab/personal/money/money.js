@@ -23,13 +23,16 @@ Page({
     ],
     userMoney: 0,
     testMoney: 0,
+    ifTrueMoneyAccess: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    
+    this.setData({
+      ifTrueMoneyAccess: app.globalData.ifTrueMoneyAccess
+    })
   },
 
   /**
