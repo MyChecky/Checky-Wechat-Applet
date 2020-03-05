@@ -30,7 +30,9 @@
     "pages/tab/essay/essaySendMessage/essaySendMessage",
     "pages/tab/essay/essayAddFriend/essayAddFriend",
     "pages/tab/personal/searchFriend/searchFriend",
-    "pages/tab/personal/newFriend/newfriend"
+    "pages/tab/personal/newFriend/newfriend",
+    "pages/tab/personal/setAvatar/setAvatar",
+    "pages/tab/personal/setHobbies/setHobbies"
   ],
   "window": {
     "backgroundTextStyle": "light",

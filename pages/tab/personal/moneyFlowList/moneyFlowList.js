@@ -142,7 +142,6 @@ Page({
     app.requestWithAuth(req)
       .then(req.success)
       .catch(req.fail)
-
   },
 
   /**

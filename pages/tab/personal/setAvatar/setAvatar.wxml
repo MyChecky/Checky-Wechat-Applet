@@ -1,0 +1,11 @@
+<!--pages/tab/personal/setAvatar/setAvatar.wxml-->
+<import src="../../../../component/we-cropper/we-cropper.wxml" />
+
+<view class="cropper-wrapper">
+  <template is="we-cropper" data="{{...cropperOpt}}" />
+</view>
+
+  <view class="cropper-buttons">
+    <button class="weui-btn mini-btn" style="background-color:#e83015;" type="primary" size="mini" bindtap="rechooseAvatar">重选头像</button>
+    <button class="weui-btn mini-btn" style="background-color:#e83015;" type="primary" size="mini" bindtap="makesureAvatar">确认头像</button>
+  </view>

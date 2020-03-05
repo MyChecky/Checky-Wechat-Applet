@@ -1,0 +1,26 @@
+<!--pages/tab/personal/setHobbies/setHobbies.wxml-->
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title" bindtap="getMoreHobbies">换一批</view>
+  </view>
+  <view class="page__bd page__bd_spacing">
+    <view class="weui-flex" wx:for="{{newHobbies}}" wx:key="key">
+      <view class="weui-flex__item" wx:for="{{item.subHobbies}}" wx:key="key">
+        <view class="placeholder" style='{{item.ifChoose=="1"?"background-color:#aaa;":"background-color:#ee8888;"}}color: #000;' data-hobbyValue='{{item.hobbyValue}}' bindtap="addHobby">
+          {{item.hobbyValue}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="page__hd">
+    <view class="page__title">已选爱好</view>
+  </view>
+  <view class="page__bd page__bd_spacing">
+    <view class="weui-flex" wx:for="{{hobbies}}" wx:key="key">
+      <view class="weui-flex__item" wx:for="{{item.subHobbies}}" wx:key="key">
+        <view class="placeholder" style='{{item.ifChoose=="1"?"background-color:#ee8888;":"background-color:#F7F7F7;"}}color: #000;' data-hobbyValue='{{item.hobbyValue}}' bindtap="subHobby">
+          {{item.hobbyValue}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+<button class='confirm' bindtap='makesureHobby'>确认保存</button>

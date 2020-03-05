@@ -111,10 +111,6 @@ Page({
       displayTypeIndex: this.data.displayTypeIndex,
       yearIndex: this.data.yearIndex
     })
-    console.log("moneyTypeData:");
-    console.log(this.data);
-    console.log("prePageData:");
-    console.log(prePage.data);
     wx.navigateBack({
       delta: 1,
       success: function (res) {

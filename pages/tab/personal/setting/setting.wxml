@@ -1,2 +1,24 @@
 <!--pages/tab/personal/setting/setting.wxml-->
-<text>pages/tab/personal/setting/setting.wxml</text>
+<view class='form-view'>
+  <view class='header-view'>
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" bindtap="bindChangeAvatar"></image>
+    <view>昵称：
+      <input class="userinfo-nickname" bindblur='bindName' placeholder="{{userInfo.nickName}}"></input>
+    </view>
+  </view>
+  <view class='container-view'>
+    <view class='inner-view'>
+      <view class='notifcation'>性别：</view>
+      <picker bindchange="bindGenderType" style='padding:5px;' value='{{typeGenderIndex}}' range="{{typyGender}}">
+        <view style='line-height:30px;' class="picker">
+          <text style='color:#333;'>{{typyGender[typeGenderIndex]}}</text>
+        </view>
+      </picker>
+    </view>
+    <view class='inner-view'>
+      <view class='notifcation' style='width: auto;'>爱好：</view>
+      <button class='typebtn' bindtap='gotoHobby'>设置爱好</button>
+    </view>
+  </view>
+</view>
+  <button class='confirm' bindtap='makesureInfo'>确认</button>
