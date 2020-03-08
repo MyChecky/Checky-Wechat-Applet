@@ -1,9 +1,5 @@
 /* pages/tab/essay/essayPersonalIndex/essayPersonalIndex.wxss */
 
-.intro {
-  display: flex;
-  flex-direction: row;
-}
 
 .intro-btn {
   font-size: 22px;
@@ -31,15 +27,17 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 10px;
+  float: right;
 }
 
 .intro-operation {
   background-color: transparent;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  padding: 15px 10px;
+  padding: 26vw 10vw 5vw 0;
+  margin-left: 0;
+  font-size: 4px;
 }
 
 page {
@@ -254,4 +252,9 @@ page {
   font-size: 16px;
   text-align: center;
   line-height: 60px;
+}
+
+.essay-personpage-avatar{
+  margin: 0 auto;
+  padding: 0 auto;
 }

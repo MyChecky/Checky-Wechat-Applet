@@ -1,2 +1,25 @@
 /* pages/tab/personal/searchFriend/searchFriend.wxss */
-@import "../list.wxss"
+@import "../list.wxss";
+
+.inputRoomSearch {
+  width: 100vw;
+  height: 12vw;
+  display: flex;
+  z-index: 20;
+}
+
+.person-searchFriend-search{
+  padding: 0,20vw;
+}
+.person-searchFriend-search-input{
+  height: 12vw;
+}
+
+.person-searchFriend-search-button{
+  padding-top: 5vw;
+}
+
+.person-friend-a{
+  line-height:10px; 
+  color:red; 
+}

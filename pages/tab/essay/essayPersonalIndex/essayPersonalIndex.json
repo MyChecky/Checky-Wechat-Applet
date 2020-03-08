@@ -1,4 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "i-row": "../../../../component/dist/row/index",
+    "i-col": "../../../../component/dist/col/index"
+  },
   "navigationBarTitleText": "个人主页"
 }

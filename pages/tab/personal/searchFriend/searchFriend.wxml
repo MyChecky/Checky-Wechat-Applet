@@ -5,8 +5,18 @@
   <view class='container-view'>
   <view class='inputRoomSearch' style='bottom: {{inputBottom}}'>
     <!-- <image style='width: 7vw; margin-left: 3.2vw;' src='../../images/pic_icon.png' mode='widthFix'></image> -->
-    <input class='inputSearch' bindconfirm='sendClick' adjust-position='{{false}}' value='{{inputVal}}' confirm-type='send' bindfocus='focus' bindblur='blur' bindinput='contentChange'></input>
-    <button class='sendButtonSearch' bindtap="sendButton">查询</button>
+    <!-- <input class='inputSearch' bindconfirm='sendClick' adjust-position='{{false}}' value='{{inputVal}}' confirm-type='send' bindfocus='focus' bindblur='blur' bindinput='contentChange'></input>
+    <button class='sendButtonSearch' bindtap="sendButton">查询</button> -->
+    <view class='person-searchFriend-search'>
+    <i-row>
+    <i-col span="18" i-class="person-searchFriend-search-input">
+    <i-input value="{{ inputVal }}" title="好友昵称：" autofocus placeholder="请输入昵称" /></i-col>
+    <i-col span="6" i-class="person-searchFriend-search-button">
+    <view class='person-friend-a'  bindtap='handleClick'>
+    <i-icon type="search" color="red"/>查找</view>
+    </i-col>
+    </i-row>
+    </view>
   </view>
 
       <template wx:for="{{friendList}}" is="list-ava-item" data="{{item}}" />

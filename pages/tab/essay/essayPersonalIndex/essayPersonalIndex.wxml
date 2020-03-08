@@ -1,16 +1,23 @@
 <!--pages/tab/essay/essayPersonalIndex/essayPersonalIndex.wxml-->
-<view class='intro'>
-  <view class='header-view'>
+
+<i-row>
+    <i-col span="8"  offset='8' i-class="essay-personpage-avatar">
+    <view class='header-view'>
     <image class="userinfo-avatar" src="{{userAvatar}}" mode="cover"></image>
     <view>
       <text class="userinfo-nickname">{{userNickName}}</text>
     </view>
   </view>
-  <view class='intro-operation'>
+  </i-col>
+    <i-col span="8" i-class="essay-personpage-button">
+    <view class='intro-operation'>
         <button class='intro-btn fa fa-commenting-o' bindtap='sendMessage' data-targetUserName="{{userNickName}}" data-targetUserId='{{targetUserId}}' mode="top">私信</button>
-        <button wx:if="{{ifFriend==0}}" class='intro-btn fa fa-plus' bindtap='addFriend' data-targetUserName="{{userNickName}}" data-targetUserId='{{targetUserId}}' mode="top">添加</button>
+        <!-- wx:if="{{ifFriend==0}}" -->
+        <button  class='intro-btn fa fa-plus' bindtap='addFriend' data-targetUserName="{{userNickName}}" data-targetUserId='{{targetUserId}}' mode="top">添加</button>
   </view>
-</view>
+  </i-col>
+</i-row>
+
 <scroll-view class='essays' style="height:{{height}}px" scroll-y='true' bindscrolltolower="loadMore" bindscrolltoupper="refresh">
   <view class='essays-item' wx:for='{{essays}}' wx:key="key" wx:for-index='index'>
     <view class="info-view">

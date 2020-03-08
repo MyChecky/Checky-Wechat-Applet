@@ -52,6 +52,10 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
+  margin-bottom: 0;
+  height: 100%;
+  position: relative;
+  min-height: 16vw;
 }
 
 .content {
@@ -63,9 +67,24 @@
   white-space: nowrap;
 }
 
+.date-content{
+  bottom: 0;
+  position: absolute;
+  height: auto;
+}
+
+.line{
+  margin: 0 auto;
+  width: 80%;
+  height: 1px;
+  border-top: dashed red 1px;
+}
+
 .date {
-  font-size: 14px;
+  font-size: 8px;
   color: #aaa;
+  line-height: 9px;
+
 }
 
 .like {
@@ -140,14 +159,6 @@
   border-bottom: 1px solid rgba(100,100,100,0.2);
   padding:5px 0px;
 
-}
-.inputRoomSearch {
-  width: 100vw;
-  height: 16vw;
-  background-color: #f1f1f1;
-  display: flex;
-  align-items: center;
-  z-index: 20;
 }
 
 .sendButtonSearch {

@@ -1,2 +1,9 @@
 /* pages/tab/personal/list/list.wxss */
-@import "../list.wxss"
+@import "../list.wxss";
+
+.person-friend-a{
+  line-height:10px; 
+  color:red; 
+  padding:0px 10px 10px 0px;
+  margin-top: 5px;
+}
