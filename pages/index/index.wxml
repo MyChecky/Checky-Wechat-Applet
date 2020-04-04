@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<toast id="toast"/>
+<toast id="toast" />
 
 <view class="container">
   <view class="userinfo">
@@ -7,10 +7,19 @@
     <block wx:else>
       <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">Welcome：{{userInfo.nickName}}</text>
+      <view class="agree-service">
+        <checkbox-group bindchange="checkboxChange">
+          <checkbox value="ifAgree" checked="{{true}}">我已阅读并同意《
+            <text class="sub_blue" bindtap="openServiceContent">服务与隐私条款</text>》
+          </checkbox>
+        </checkbox-group>
+
+      </view>
       <button class='btn' bindtap='sendInfo'>进入</button>
     </block>
   </view>
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>
+
 </view>

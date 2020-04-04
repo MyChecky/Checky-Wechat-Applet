@@ -102,6 +102,9 @@ Page({
 
     ifNewTaskHighSettingAccess: false,
     ifTrueMoneyAccess: false,
+    isDialogShow: false,
+    taskPass: "",
+    checkPass: "",
   },
 
   /**
@@ -238,7 +241,49 @@ Page({
     })
   },
 
-  // 发送信息
+  showDialog: function(){
+    req = {
+      url: '/task/queryPassPercentage',
+      method: 'POST',
+      data: {
+        userId: app.globalData.openId,
+      },
+      success: res => {
+        console.log(res)
+        this.setData({
+          checkPass: res.data.passCheck,
+          taskPass: res.data.passTask,
+          isDialogShow: true,
+        })
+      },
+      fail: err => {
+        console.log(err)
+        this.selectComponent("#toast").toastShow("新建失败", "fa-remove", 1500)
+      }
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
+
+    console.log(this.data.isDialogShow)
+  },
+
+  dialogCancelEvent: function (e) {
+    console.log('点击了取消');
+    this.setData({
+      isDialogShow: false
+    })
+  },
+
+  dialogConfirmEvent: function (e) {
+    console.log('点击了确定');
+    this.setData({
+      isDialogShow: false
+    })
+    this.sendForm()
+  },
+
+  // 发送信息,加入条款
   sendForm: function() {
     this.data.money=10*this.data.num
     if (this.data.money <= 0) {
@@ -249,6 +294,7 @@ Page({
       this.selectComponent("#toast").toastShow('必要信息不可为空', 'fa-exclamation-circle', 2000)
     } 
     else {
+      
       var data = {
         "userId": app.globalData.openId,
         "taskTitle": this.data.title,

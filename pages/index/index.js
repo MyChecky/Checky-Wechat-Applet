@@ -7,11 +7,19 @@ Page({
     motto: 'Checky, check everyday!',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    ifAgree: true,
   },
   // 事件处理函数
   // 向后台发送用户信息
   sendInfo: function () {
+    if(this.data.ifAgree){
+      this.login_in();
+    }else{
+      this.selectComponent("#toast").toastShow("未同意服务条款", "fa-remove", 1000)
+    }
+  },
+  login_in:function(){
     console.log("准备发送的数据：")
     console.log(app.globalData)
     this.selectComponent("#toast").toastShow2("稍等", "fa-spinner fa-pulse")
@@ -22,11 +30,12 @@ Page({
       data: {
         "code": app.globalData.code,
         "userInfo": app.globalData.userInfo,
-        "location": app.globalData.location
+        "location": app.globalData.location,
+        "baseIp": app.getAbsolutePath(),
       },
       success: (res) => {
         console.log(res.data)
-        app.globalData.openId=res.data.states
+        app.globalData.openId = res.data.states
         app.globalData.sessionKey = res.data.sessionKey
         app.globalData.userInfo.gender = res.data.userGender
         app.globalData.userInfo.nickName = res.data.userNickname
@@ -35,21 +44,26 @@ Page({
         // 这里是登陆后的一些页面/控件可见性信息
         app.globalData.ifTrueMoneyAccess = res.data.ifTrueMoneyAccess
         app.globalData.ifNewTaskHighSettingAccess = res.data.ifNewTaskHighSettingAccess
-        if (app.globalData.openId!="0"){
+        if (app.globalData.openId != "0") {
           this.selectComponent("#toast").toastShow("登录成功", "fa-check", 1000)
-          setTimeout(function(){
+          setTimeout(function () {
             wx.switchTab({
               url: '../tab/tasks/tasks'
             })
-          },1000)
+          }, 1000)
         }
         else {
           this.selectComponent("#toast").toastShow("登陆失败", "fa-remove", 1000)
         }
       },
       fail: (err) => {
-        this.selectComponent("#toast").toastShow("登陆失败", "fa-remove", 1000)        
+        this.selectComponent("#toast").toastShow("登陆失败", "fa-remove", 1000)
       }
+    })
+  },
+  openServiceContent: function () {
+    wx.navigateTo({
+      url: '../tab/personal/serviceContent/serviceContent',
     })
   },
   onLoad: function () {
@@ -101,6 +115,9 @@ Page({
     })
     console.log("点击授权")
     // this.sendInfo()
+  },
+  checkboxChange: function(e){
+    this.data.ifAgree= !this.data.ifAgree
+    console.log(this.data.ifAgree)
   }
-  
 }) 

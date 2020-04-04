@@ -20,8 +20,18 @@
   margin-top: 150px;
 }
 
+.agree-service{
+    margin: 50px 0px 0px 0px;
+    font-size: 12px;
+}
+
+.sub_blue{
+  color: blue;
+  text-decoration: underline
+}
+
 .btn{
-  margin: 50px 0px;
+  margin: 5px 0px;
   width: 160px;
   height: 40px;
   border-radius: 20px;

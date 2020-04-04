@@ -114,15 +114,15 @@ Page({
       },
       formData: {
         'userId': app.globalData.openId,
-        'baseIp': app.getAbsolutePath(),
+        // 'baseIp': app.getAbsolutePath(),
       },
       success(res) {
         console.log(res);
         resData = JSON.parse(res.data)
         console.log(resData)
         // 上传信息
-        wx.request({
-          url: app.getAbsolutePath() +'/userAndHobby/updateUser',
+        req = {
+          url: '/userAndHobby/updateUser',
           method: 'POST',
           data: {
             "userId": app.globalData.openId,
@@ -139,14 +139,17 @@ Page({
           fail: err => {
             console.log(err)
           }
-        })
+        }
+        app.requestWithAuth(req)
+          .then(req.success)
+          .catch(req.fail)
         console.log("hob", this.data)
       },
       fail(err) {
         console.log(err)
         // 上传信息
-        wx.request({
-          url: app.getAbsolutePath() + '/userAndHobby/updateUser',
+        req = {
+          url: '/userAndHobby/updateUser',
           method: 'POST',
           data: {
             "userId": app.globalData.openId,
@@ -163,7 +166,10 @@ Page({
           fail: err => {
             console.log(err)
           }
-        })
+        }
+        app.requestWithAuth(req)
+          .then(req.success)
+          .catch(req.fail)
       }
     })
   },

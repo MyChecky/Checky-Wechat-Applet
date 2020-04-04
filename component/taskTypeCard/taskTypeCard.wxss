@@ -1,3 +1,4 @@
+/* component/taskTypeCard/taskTypeCard.wxss */
 .i-card {
   margin: 0 16px;
   font-size: 14px;
@@ -41,13 +42,14 @@
 .i-card-header-title {
   display: inline-block;
   vertical-align: middle;
-  font-size: 14px;
+  text-align: left;
+  font-size: 18px;
   color: #1c2438;
 }
 
 .i-card-header-extra {
   flex: 1;
-  text-align: right;
+  text-align: left;
   font-size: 14px;
   color: #80848f;
 }

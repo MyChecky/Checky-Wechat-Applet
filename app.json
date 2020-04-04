@@ -32,7 +32,8 @@
     "pages/tab/personal/searchFriend/searchFriend",
     "pages/tab/personal/newFriend/newfriend",
     "pages/tab/personal/setAvatar/setAvatar",
-    "pages/tab/personal/setHobbies/setHobbies"
+    "pages/tab/personal/setHobbies/setHobbies",
+    "pages/tab/personal/serviceContent/serviceContent"
   ],
   "window": {
     "backgroundTextStyle": "light",

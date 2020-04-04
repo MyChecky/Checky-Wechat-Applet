@@ -130,5 +130,6 @@
     <input class='title-input' type='digit' bindblur='bindMoney'></input>
   </view> -->
   <!--押金金额不让自己输入，暂定10*监督者人数（最0监督者10）-->
-  <button class='confirm' bindtap='sendForm'>确认</button>
+  <button class='confirm' bindtap='showDialog'>确认</button>
 </view>
+  <dialog id='dialog' title='发布任务' content='此次任务单次打卡需要{{checkPass}}以上监督者认证通过；总任务需要{{taskPass}}以上打卡通过方为成功。任务成功方可退还全部押金，是否确认？' cancelText='取消' confirm='确定' isShown="{{isDialogShow}}" bind:cancelEvent="dialogCancelEvent" bind:confirmEvent="dialogConfirmEvent" />

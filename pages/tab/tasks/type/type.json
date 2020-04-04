@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "toast": "../../../../component/toast"
+    "toast": "../../../../component/toast",
+    "i-card": "../../../../component/taskTypeCard/taskTypeCard"
   }
 }
