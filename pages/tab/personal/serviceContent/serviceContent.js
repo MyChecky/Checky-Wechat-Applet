@@ -6,7 +6,6 @@ Page({
    */
   data: {
     serviceTermsContent:'',
-    aa:"健康\n会u黑色忽\n然呼呼",
   },
 
   /**
@@ -41,7 +40,6 @@ Page({
         // console.log(this.data.serviceTermsContent)
         // this.data.serviceTermsContent.replace(/\\n/g, '\n')
         console.log(this.data.serviceTermsContent)
-        console.log(this.data.aa)
       },
       fail: err => {
         console.log(err)

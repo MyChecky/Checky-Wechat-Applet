@@ -124,10 +124,10 @@ Page({
 
   webSocket: function() {
     // var urlTotal = url + app.globalData.openId
-    var addr = app.globalData.getAbsolutePath();
+    var addr = app.getAbsolutePath();
     addr = addr.replace("http", "ws"); // 替换第一个
     addr = addr.replace("https", "ws"); // 替换第一个
-    var urlTotal = addr + app.globalData.openId + '/' + app.globalData.sessionKey + '/' + this.data.targetUserId;
+    var urlTotal = addr + '/socket/' + app.globalData.openId + '/' + app.globalData.sessionKey + '/' + this.data.targetUserId;
     console.log(urlTotal);
     // 创建Socket
     SocketTask = wx.connectSocket({
