@@ -9,8 +9,8 @@
     <template wx:for="{{taskList}}" is="list-task-item" data="{{item}}"/>
   </view>
   <dialog id='dialog' 
-        title='发布任务' 
-        content='请确认是否发布此任务' 
+        title='重发任务' 
+        content='请确认是否重新编辑此任务？' 
         cancelText='取消' 
         confirm='确定' 
         isShown="{{isDialogShow}}"

@@ -19,6 +19,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {
     req = {
       url: '/task/queryUserTasks',
       method: 'POST',
@@ -41,20 +55,6 @@ Page({
     app.requestWithAuth(req)
       .then(req.success)
       .catch(req.fail)
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
   },
 
   /**
@@ -98,7 +98,7 @@ Page({
       taskIdTaping: e.currentTarget.dataset.taskid,
       taskStateTaping: e.currentTarget.dataset.state
     })
-    if (e.currentTarget.dataset.state == "save") {
+    if (e.currentTarget.dataset.state == "save" || e.currentTarget.dataset.state == "nomatch") {
       this.setData({
         isDialogShow: true
       })
@@ -111,53 +111,20 @@ Page({
   },
 
   dialogCancelEvent: function(e) {
-    console.log('点击了取消');
+    console.log('点击了取消', e);
     this.setData({
       isDialogShow: false
     })
   },
 
   dialogConfirmEvent: function(e) {
-    console.log('点击了确定');
+    console.log('点击了确定', e);
     this.setData({
       isDialogShow: false
     })
-    var data = {
-      "taskId": this.data.taskIdTaping,
-      "userId": app.globalData.openId
-    }
-    console.log(data)
-    req = {
-      url: '/task/publicSavedTask',
-      method: 'POST',
-      data: data,
-      success: res => {
-        console.log(res)
-        if (res.data == "addTaskSuccess") { //本来pubTaskSuccess比较好，但是为了减少写相似代码。。
-          this.selectComponent("#toast").toastShow("发布成功", "fa-check", 1500)
-        } else if (res.data == "noEnoughTestMoney") {
-          this.selectComponent("#toast").toastShow("发布失败，试玩余额不足", "fa-check", 1500)
-        } else if (res.data == "noEnoughUserMoney") {
-          this.selectComponent("#toast").toastShow("发布失败，账户余额不足", "fa-check", 1500)
-        } else if (res.data == "insertMoneyFlowError") {
-          this.selectComponent("#toast").toastShow("未知错误，请联系管理员", "fa-check", 1500)
-        } else if (res.data == " matchSupervisorError") {
-          this.selectComponent("#toast").toastShow("未知错误，请联系管理员", "fa-check", 1500)
-        }
-        setTimeout(function() {
-          wx.navigateBack({
-            delta: 1
-          })
-        }, 1500)
-      },
-      fail: err => {
-        console.log(err)
-        this.selectComponent("#toast").toastShow("新建失败", "fa-remove", 1500)
-      }
-    }
-    app.requestWithAuth(req)
-      .then(req.success)
-      .catch(req.fail)
+    wx.navigateTo({
+      url: '../../tasks/newtask/newtask?taskid=' + this.data.taskIdTaping,
+    })
   },
 
   bindTaskTap: function(e) {

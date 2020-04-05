@@ -5,11 +5,11 @@
 <view class='form-view'>
   <view class='container-view'>
     <view class='notifcation'>标题：</view>
-    <input class='title-input' placeholder='打卡标题' bindblur="bindTitle"></input>
+    <input class='title-input' placeholder='打卡标题' value="{{title}}" bindblur="bindTitle"></input>
   </view>
   <view class='container-view'>
     <view class='notifcation'>描述内容：</view>
-    <textarea class='content-textarea' placeholder='简单地描述……' bindblur="bindContent"></textarea>
+    <textarea class='content-textarea' placeholder='简单地描述……' value="{{content}}" bindblur="bindContent"></textarea>
   </view>
   <view class='container-view'>
     <view class='notifcation'>监督人数：</view>

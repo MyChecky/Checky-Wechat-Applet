@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    taskId: '',
     title: "",
     content: "",
     numOfSus: [{
@@ -111,6 +112,50 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    console.log(options)
+    if(options.taskid != null){
+      this.setData({
+        taskId: options.taskid,
+      })
+      req = {
+        url: '/task/queryTask',
+        method: 'POST',
+        data: {
+          taskId: options.taskid,
+        },
+        success: res => {
+          console.log(res)
+          this.setData({
+            title: res.data.task.taskTitle,
+            content: res.data.task.taskContent,
+            moneyTypeIndex: res.data.task.ifTest,
+            // num: res.data.task.supervisorNum,
+            "types[0]": { typeId:res.data.task.typeId, typeContent: res.data.typeContent},
+            index: 0,
+            typeContent: res.data.typeContent,
+
+            startTime: res.data.task.taskStartTime,
+            endTime: res.data.task.taskEndTime,
+            // "checkFrec": util.formatRepeatDate(this.data.chooseRepeat),
+            money: res.data.task.taskMoney,
+            minPass: res.data.task.minPass,
+            minCheck: res.data.task.minCheck,
+            supervisorTypeIndex: res.data.task.supervisorType,
+            ifAreaIndex: res.data.task.ifArea,
+            ifHobbyIndex: res.data.task.ifHobby
+          })
+          console.log(this.data)
+        },
+        fail: err => {
+          console.log(err)
+          this.selectComponent("#toast").toastShow("未知错误，请稍后重试", "fa-remove", 1500)
+        }
+      }
+      app.requestWithAuth(req)
+        .then(req.success)
+        .catch(req.fail)
+    }
+    
     wx.setNavigationBarTitle({
       title: '新建任务',
     })
@@ -135,6 +180,11 @@ Page({
       types: app.globalData.types,
       endlimit: this.getEndLimitDate(new Date()),
     })
+    if (app.globalData.ifTrueMoneyAccess == false){
+      this.setData({
+        moneyTypeIndex: 1
+      })
+    }
   },
   // 格式化二位数
   formatNumber: function (n) {
@@ -294,8 +344,9 @@ Page({
       this.selectComponent("#toast").toastShow('必要信息不可为空', 'fa-exclamation-circle', 2000)
     } 
     else {
-      
+      console.log("seg",this.data)
       var data = {
+        "taskId": this.data.taskId,
         "userId": app.globalData.openId,
         "taskTitle": this.data.title,
         "taskContent": this.data.content,
@@ -314,7 +365,7 @@ Page({
         "ifArea": this.data.ifAreaIndex,
         "ifHobby": this.data.ifHobbyIndex
       }
-      console.log(data)
+      console.log("即将发送", data)
       req = {
         url: '/task/addTask',
         method: 'POST',
@@ -333,6 +384,8 @@ Page({
             this.selectComponent("#toast").toastShow("未知错误，请联系管理员", "fa-check", 1500)
           } else if (res.data == " matchSupervisorError") {
             this.selectComponent("#toast").toastShow("未知错误，请联系管理员", "fa-check", 1500)
+          } else if (res.data == " noEnoughSupervisor") {
+            this.selectComponent("#toast").toastShow("匹配监督者失败，请重新编辑任务", "fa-check", 1500)
           }
           setTimeout(function() {
             wx.navigateBack({
