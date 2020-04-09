@@ -90,7 +90,7 @@ Page({
   },
 
   contentChange: function(e) {
-    var text = e.detail.value
+    var text = e.detail.detail.value
     this.setData({
       contentSend: text
     })
