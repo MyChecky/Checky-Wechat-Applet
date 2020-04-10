@@ -13,12 +13,12 @@ App({
         var that = this
         // 获取code
         that.globalData.code=res.code
-        console.log("获取到code：" +res)
+        console.log("wx.login获取到code：", res)
         // 获取地址
         wx.getLocation({
           type: 'gcj02',
           success: function(res) {
-            console.log("获取到经纬度："+res)
+            console.log("wx.login获取到经纬度：", res)
             that.globalData.location = res
           },
         })
@@ -33,20 +33,20 @@ App({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
-              console.log("再次登陆获取信息" + res)
+              console.log("wx.getSetting获取信息", this.globalData.userInfo)
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
+                console.log("wx.getSetting返回较慢但即将callback")
                 this.userInfoReadyCallback(res)
+                console.log("wx.getSetting返回较慢已经callback赋值了", res)
               }
             }
           })
         }else{
           // 还没有授权过
           console.log("还没有授权，游客模式一次启动")
-          this.globalData.ifHasUserInfo = false;
         }
-        console.log("userInfo", this.globalData.userInfo)
       }
     })
   },
@@ -135,7 +135,6 @@ App({
   },
 
   globalData: {
-    ifHasUserInfo: true,
     code:null,
     userInfo: null,
     base: "http://127.0.0.1",

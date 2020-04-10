@@ -19,9 +19,9 @@ Page({
   },
   //举报跳转
   report: function (e) {
-    if (app.globalData.ifHasUserInfo === false) {
+    if (app.globalData.openId === "") {
       wx.navigateTo({
-        url: '../../index/index'
+        url: '../../../index/index'
       })
     }
     var essayId = e.target.dataset.essayid
@@ -43,7 +43,6 @@ Page({
     this.setData({
       path: app.getAbsolutePath() + '/',
       essayId: options.essayId,
-      visitorId: app.globalData.openId
     })
     req = {
       url: '/essay/queryEssayById',
@@ -108,7 +107,7 @@ Page({
         })
       }
     }
-    if (app.globalData.ifHasUserInfo) {
+    if (app.globalData.openId != "") {
       app.requestWithAuth(req)
         .then(req.success)
         .catch(req.fail)
@@ -121,9 +120,9 @@ Page({
 
   //记录点赞情况
   isLike: function (e) {
-    if (app.globalData.ifHasUserInfo === false) {
+    if (app.globalData.openId === "") {
       wx.navigateTo({
-        url: '../../index/index'
+        url: '../../../index/index'
       })
     }
     if (this.data.like) {
@@ -182,9 +181,9 @@ Page({
   },
   // 发送评论
   sendComment: function () {
-    if (app.globalData.ifHasUserInfo === false) {
+    if (app.globalData.openId === "") {
       wx.navigateTo({
-        url: '../../index/index'
+        url: '../../../index/index'
       })
     }
     if (this.data.commentContent == "") {
@@ -217,9 +216,9 @@ Page({
   },
   // 删除评论
   delComment: function (e) {
-    if (app.globalData.ifHasUserInfo === false) {
+    if (app.globalData.openId === "") {
       wx.navigateTo({
-        url: '../../index/index'
+        url: '../../../index/index'
       })
     }
     console.log("comId:"+e.target.dataset.commentid)

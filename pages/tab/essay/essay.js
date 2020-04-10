@@ -54,11 +54,11 @@ Page({
         }
       }
     }
-    if (app.globalData.ifHasUserInfo){
+    if (app.globalData.openId != "") {
       app.requestWithAuth(req)
         .then(req.success)
         .catch(req.fail)
-    }else{
+    } else {
       app.requestWithoutAuth(req)
         .then(req.success)
         .catch(req.fail)
@@ -97,68 +97,67 @@ Page({
 
   //记录点赞情况
   isLike: function(e) {
-    if(app.globalData.ifHasUserInfo === false){
+    if (app.globalData.openId === "") {
       wx.navigateTo({
         url: '../../index/index'
       })
-    }
-
-    var index = e.target.dataset.index
-    console.log(index)
-    if (this.data.essays[index].like) {
-      req = {
-        url: '/essay/unlike',
-        method: 'POST',
-        data: {
-          "essayId": this.data.essays[index].essay.essayId,
-          "userId": app.globalData.openId
-        },
-        success: (res) => {
-          console.log(res)
-          var statement1 = "essays[" + index + "].like"
-          var statement2 = "essays[" + index + "].essay.likeNum"
-          this.setData({
-            [statement1]: !this.data.essays[index].like,
-            [statement2]: this.data.essays[index].like ? this.data.essays[index].essay.likeNum - 1 : this.data.essays[index].essay.likeNum + 1
-          })
-        },
-        fail: (err) => {
-          console.log(err)
-        }
-      }
-      app.requestWithAuth(req)
-        .then(req.success)
-        .catch(req.fail)
     } else {
-      req = {
-        url: '/essay/like',
-        method: 'POST',
-        data: {
-          "essayId": this.data.essays[index].essay.essayId,
-          "userId": app.globalData.openId
-        },
-        success: (res) => {
-          console.log(res)
-          var statement1 = "essays[" + index + "].like"
-          var statement2 = "essays[" + index + "].essay.likeNum"
-          this.setData({
-            [statement1]: !this.data.essays[index].like,
-            [statement2]: this.data.essays[index].like ? this.data.essays[index].essay.likeNum - 1 : this.data.essays[index].essay.likeNum + 1
-          })
-        },
-        fail: (err) => {
-          console.log(err)
+      var index = e.target.dataset.index
+      console.log(index)
+      if (this.data.essays[index].like) {
+        req = {
+          url: '/essay/unlike',
+          method: 'POST',
+          data: {
+            "essayId": this.data.essays[index].essay.essayId,
+            "userId": app.globalData.openId
+          },
+          success: (res) => {
+            console.log(res)
+            var statement1 = "essays[" + index + "].like"
+            var statement2 = "essays[" + index + "].essay.likeNum"
+            this.setData({
+              [statement1]: !this.data.essays[index].like,
+              [statement2]: this.data.essays[index].like ? this.data.essays[index].essay.likeNum - 1 : this.data.essays[index].essay.likeNum + 1
+            })
+          },
+          fail: (err) => {
+            console.log(err)
+          }
         }
+        app.requestWithAuth(req)
+          .then(req.success)
+          .catch(req.fail)
+      } else {
+        req = {
+          url: '/essay/like',
+          method: 'POST',
+          data: {
+            "essayId": this.data.essays[index].essay.essayId,
+            "userId": app.globalData.openId
+          },
+          success: (res) => {
+            console.log(res)
+            var statement1 = "essays[" + index + "].like"
+            var statement2 = "essays[" + index + "].essay.likeNum"
+            this.setData({
+              [statement1]: !this.data.essays[index].like,
+              [statement2]: this.data.essays[index].like ? this.data.essays[index].essay.likeNum - 1 : this.data.essays[index].essay.likeNum + 1
+            })
+          },
+          fail: (err) => {
+            console.log(err)
+          }
+        }
+        app.requestWithAuth(req)
+          .then(req.success)
+          .catch(req.fail)
       }
-      app.requestWithAuth(req)
-        .then(req.success)
-        .catch(req.fail)
     }
   },
 
   //查看详情
   essayClick: function(e) {
-    console.log("afgf")
     console.log(e.target.dataset.essayid)
     var essayId = e.target.dataset.essayid
     var userId = app.globalData.openId
@@ -169,7 +168,7 @@ Page({
   },
   // 查看个人主页
   openPersonalIndex: function(e) {
-    if (app.globalData.ifHasUserInfo === false) {
+    if (app.globalData.openId === "") {
       wx.navigateTo({
         url: '../../index/index'
       })
@@ -178,11 +177,11 @@ Page({
     var userid = e.target.dataset.userid;
     var usernickname = e.target.dataset.usernickname;
     var useravatar = e.target.dataset.useravatar;
-    if (userid != app.globalData.openId){
+    if (userid != app.globalData.openId) {
       wx.navigateTo({
         url: './essayPersonalIndex/essayPersonalIndex?userid=' + userid + '&userNickName=' + usernickname + '&userAvatar=' + useravatar,
       })
-    }else{
+    } else {
       wx.navigateTo({
         url: '../personal/essay/essay',
       })
@@ -191,7 +190,7 @@ Page({
   },
 
   essayNew: function() {
-    if (app.globalData.ifHasUserInfo === false) {
+    if (app.globalData.openId === "") {
       wx.navigateTo({
         url: '../../index/index'
       })

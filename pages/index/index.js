@@ -35,6 +35,7 @@ Page({
       },
       success: (res) => {
         console.log(res.data)
+        app.globalData.notLoged = false
         app.globalData.ifHasUserInfo = true
         app.globalData.openId = res.data.states
         app.globalData.sessionKey = res.data.sessionKey
@@ -47,11 +48,9 @@ Page({
         app.globalData.ifNewTaskHighSettingAccess = res.data.ifNewTaskHighSettingAccess
         if (app.globalData.openId != "0") {
           this.selectComponent("#toast").toastShow("登录成功", "fa-check", 1000)
-          setTimeout(function () {
-            wx.switchTab({
-              url: '../tab/tasks/tasks'
+            wx.navigateBack({
+              delta: 2,
             })
-          }, 1000)
         }
         else {
           this.selectComponent("#toast").toastShow("登陆失败", "fa-remove", 1000)

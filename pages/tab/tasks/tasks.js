@@ -52,52 +52,6 @@ Page({
       selectedItem: this.data.selectedItem
     })
   },
-  onReady: function(){
-    if(app.globalData.ifHasUserInfo){
-      console.log("准备发送的数据：", app.globalData)
-      this.selectComponent("#toast").toastShow2("稍等", "fa-spinner fa-pulse")
-      req = {
-        url: '/wechat/login',
-        method: 'POST',
-        data: {
-          "code": app.globalData.code,
-          "userInfo": app.globalData.userInfo,
-          "location": app.globalData.location,
-          "baseIp": app.getAbsolutePath(),
-        },
-        success: res => {
-          console.log(res.data)
-          app.globalData.openId = res.data.states
-          app.globalData.sessionKey = res.data.sessionKey
-          app.globalData.userInfo.gender = res.data.userGender
-          app.globalData.userInfo.nickName = res.data.userNickname
-          app.globalData.userInfo.avatarUrl = res.data.userAvatar
-          app.globalData.ifHasUserInfo = true
-          console.log("success_globaldate", app.globalData)
-          // 这里是登陆后的一些页面/控件可见性信息
-          app.globalData.ifTrueMoneyAccess = res.data.ifTrueMoneyAccess
-          app.globalData.ifNewTaskHighSettingAccess = res.data.ifNewTaskHighSettingAccess
-          if (app.globalData.openId != "0") {
-            this.selectComponent("#toast").toastShow("登录成功", "fa-check", 1000)
-          }
-          else {
-            this.selectComponent("#toast").toastShow("登录失败", "fa-remove", 1000)
-          }
-        },
-        fail: err => {
-          console.log("error_login", err)
-          this.selectComponent("#toast").toastShow("登录失败", "fa-remove", 1000)
-        }
-      }
-      console.log(req)
-      app.requestWithoutAuth(req)
-        .then(req.success)
-        .catch(req.fail)
-    }else{
-      console.log("未授权用户")
-    }
-   
-  },
 
   onLoad: function() {
     var t = new Date()
@@ -106,17 +60,35 @@ Page({
       chooseDate: app.globalData.date,
       date: app.globalData.date
     })
+
+    if (app.globalData.userInfo) {
+      console.log("tasksOnload已有信息")
+      this.loginIn()
+    } else if (this.data.canIUse) {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回 
+      // 所以此处加入 callback 以防止这种情况 
+      console.log("tasksOnload无信息但已授权")
+      app.userInfoReadyCallback = res => {
+        this.loginIn()
+      }
+    } else {
+      // 在没有 open-type=getUserInfo 版本的兼容处理 
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
+          this.loginIn()
+        }
+      })
+    }
   },
 
   onShow: function() {
-    if(app.globalData.ifHasUserInfo){
-      console.log("with userinfor")
+    if (app.globalData.openId != "") {
+      console.log("tasksOnshow有信息", app.globalData.sessionKey)
       this.requestCheckList(this.data.chooseDate)
       this.requestSupList(this.data.date)
-      console.log("globaldata", app.globalData)
-    }else{
-      console.log("no userinfor")
-      app.globalData.userId = "visitor"
+    } else {
+      console.log("tasksOnshow无信息")
       this.initVisitor()
     }
     wx.getSystemInfo({
@@ -129,13 +101,13 @@ Page({
     })
   },
 
-  initVisitor: function(){
+  initVisitor: function() {
     // nothing to do
   },
   // 请求列表
   // 打卡
   requestCheckList: function(chooseDate) {
-    console.log(chooseDate)
+    console.log("tasksCheckList", chooseDate)
     var that = this
     req = {
       url: '/check/listDayCheck',
@@ -145,27 +117,24 @@ Page({
         "date": chooseDate
       },
       success: res => {
-        console.log(res.data)
         that.setData({
           unknown: res.data.unknown,
           toCheck: res.data.toCheck,
           checked: res.data.checked,
           supOutDay: res.data.supOutDay,
         })
-        console.log(res);
-        console.log(that.data);
+        console.log("tasksCheckListRes", res);
       },
       fail: err => {
-        console.log(err)
+        console.log("tasksCheckListResError", err)
       }
     }
-    console.log(req)
     app.requestWithAuth(req)
       .then(req.success)
       .catch(req.fail)
   },
   // 监督
-  requestSupList: function(chooseDate) {  // 调用时chooseDate是当前日期（今天）
+  requestSupList: function(chooseDate) { // 调用时chooseDate是当前日期（今天）
     var startDate = new Date(Date.parse(chooseDate.replace(/-/g, '/'))); //字符串格式转换为日期格式
     var day = this.data.supOutDay; //定义过期天数​
     // 计算结束日期                   
@@ -173,8 +142,6 @@ Page({
     value -= day * (24 * 3600 * 1000); //将天数转换成毫秒后与开始时间相加得到结束时间的毫秒数         
     var endDate = new Date(value); //将得到的毫秒数转换为日期
     endDate = util.formatTime(endDate)
-    console.log(chooseDate)
-    console.log(endDate)
     var that = this
     req = {
       url: '/supervise/needToSupervise',
@@ -185,7 +152,7 @@ Page({
         "endDate": chooseDate
       },
       success(res) {
-        console.log(res.data)
+        console.log("tasksRequestSupListRes", res)
         that.setData({
           toSupvise: res.data
         })
@@ -318,7 +285,7 @@ Page({
 
   //跳转到新建打卡
   newTask: function() {
-    if (app.globalData.ifHasUserInfo === false) {
+    if (app.globalData.openId === "") {
       wx.navigateTo({
         url: '../../index/index'
       })
@@ -354,5 +321,48 @@ Page({
     wx.navigateTo({
       url: './superiseDetail/superisetaskDetail?taskId=' + taskId + '&checkId=' + checkId,
     })
-  }
+  },
+
+  loginIn: function() {
+    console.log("tasksLogin准备发送的数据", app.globalData)
+    this.selectComponent("#toast").toastShow2("稍等", "fa-spinner fa-pulse")
+    // 向后台发送
+    wx.request({
+      url: app.getAbsolutePath() + '/wechat/login',
+      method: 'POST',
+      data: {
+        "code": app.globalData.code,
+        "userInfo": app.globalData.userInfo,
+        "location": app.globalData.location,
+        "baseIp": app.getAbsolutePath(),
+      },
+      success: (res) => {
+        console.log(res.data)
+        app.globalData.openId = res.data.states
+        app.globalData.sessionKey = res.data.sessionKey
+        app.globalData.userInfo.gender = res.data.userGender
+        app.globalData.userInfo.nickName = res.data.userNickname
+        app.globalData.userInfo.avatarUrl = res.data.userAvatar
+        console.log("globaldate", app.globalData)
+        // 这里是登陆后的一些页面/控件可见性信息
+        app.globalData.ifTrueMoneyAccess = res.data.ifTrueMoneyAccess
+        app.globalData.ifNewTaskHighSettingAccess = res.data.ifNewTaskHighSettingAccess
+        if (app.globalData.openId != "0") {
+          this.setData({
+            loged: true
+          })
+          this.selectComponent("#toast").toastShow("登录成功", "fa-check", 1000)
+        } else {
+          this.selectComponent("#toast").toastShow("登陆失败", "fa-remove", 1000)
+        }
+        // 登录成功后调用查询当日打卡等信息
+        console.log("tasksLoged登录成功后调用查询当日打卡")
+        this.requestCheckList(this.data.chooseDate)
+        this.requestSupList(this.data.date)
+      },
+      fail: (err) => {
+        this.selectComponent("#toast").toastShow("登陆失败", "fa-remove", 1000)
+      }
+    })
+  },
 })

@@ -2,19 +2,19 @@
 <toast id="toast" />
 <view class='form-view'>
   <view class='header-view'>
-    <view wx:if="{{!hasUserInfo && canIUse}}" class="agree-service">
-      <checkbox-group bindchange="checkboxChange">
-          <button class="userlogin-btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 微信登录 </button>
-        <checkbox value="ifAgree" checked="{{true}}">我已阅读并同意《
-          <text class="sub_blue" bindtap="openServiceContent">服务与隐私条款</text>》
-        </checkbox>
-      </checkbox-group>
-    </view>
-    <block wx:else>
+    <view wx:if="{{(hasUserInfo && canIUse) || loged}}" class="agree-service">
       <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <view>
         <text class="userinfo-nickname">{{userInfo.nickName}}</text>
       </view>
+    </view>
+    <block wx:else>
+      <checkbox-group bindchange="checkboxChange">
+        <button class="userlogin-btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 微信登录 </button>
+        <checkbox value="ifAgree" checked="{{true}}">我已阅读并同意《
+          <text class="sub_blue" bindtap="openServiceContent">服务与隐私条款</text>》
+        </checkbox>
+      </checkbox-group>
     </block>
   </view>
   <view class='function-view'>
