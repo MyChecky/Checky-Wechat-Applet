@@ -35,6 +35,7 @@ Page({
       },
       success: (res) => {
         console.log(res.data)
+        app.globalData.ifHasUserInfo = true
         app.globalData.openId = res.data.states
         app.globalData.sessionKey = res.data.sessionKey
         app.globalData.userInfo.gender = res.data.userGender

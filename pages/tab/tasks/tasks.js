@@ -53,44 +53,50 @@ Page({
     })
   },
   onReady: function(){
-    console.log("准备发送的数据：", app.globalData)
-    this.selectComponent("#toast").toastShow2("稍等", "fa-spinner fa-pulse")
-    req = {
-      url: '/wechat/login',
-      method: 'POST',
-      data: {
-        "code": app.globalData.code,
-        "userInfo": app.globalData.userInfo,
-        "location": app.globalData.location,
-        "baseIp": app.getAbsolutePath(),
-      },
-      success: res => {
-        console.log(res.data)
-        app.globalData.openId = res.data.states
-        app.globalData.sessionKey = res.data.sessionKey
-        app.globalData.userInfo.gender = res.data.userGender
-        app.globalData.userInfo.nickName = res.data.userNickname
-        app.globalData.userInfo.avatarUrl = res.data.userAvatar
-        console.log("success_globaldate", app.globalData)
-        // 这里是登陆后的一些页面/控件可见性信息
-        app.globalData.ifTrueMoneyAccess = res.data.ifTrueMoneyAccess
-        app.globalData.ifNewTaskHighSettingAccess = res.data.ifNewTaskHighSettingAccess
-        if (app.globalData.openId != "0") {
-          this.selectComponent("#toast").toastShow("登录成功", "fa-check", 1000)
-        }
-        else {
+    if(app.globalData.ifHasUserInfo){
+      console.log("准备发送的数据：", app.globalData)
+      this.selectComponent("#toast").toastShow2("稍等", "fa-spinner fa-pulse")
+      req = {
+        url: '/wechat/login',
+        method: 'POST',
+        data: {
+          "code": app.globalData.code,
+          "userInfo": app.globalData.userInfo,
+          "location": app.globalData.location,
+          "baseIp": app.getAbsolutePath(),
+        },
+        success: res => {
+          console.log(res.data)
+          app.globalData.openId = res.data.states
+          app.globalData.sessionKey = res.data.sessionKey
+          app.globalData.userInfo.gender = res.data.userGender
+          app.globalData.userInfo.nickName = res.data.userNickname
+          app.globalData.userInfo.avatarUrl = res.data.userAvatar
+          app.globalData.ifHasUserInfo = true
+          console.log("success_globaldate", app.globalData)
+          // 这里是登陆后的一些页面/控件可见性信息
+          app.globalData.ifTrueMoneyAccess = res.data.ifTrueMoneyAccess
+          app.globalData.ifNewTaskHighSettingAccess = res.data.ifNewTaskHighSettingAccess
+          if (app.globalData.openId != "0") {
+            this.selectComponent("#toast").toastShow("登录成功", "fa-check", 1000)
+          }
+          else {
+            this.selectComponent("#toast").toastShow("登录失败", "fa-remove", 1000)
+          }
+        },
+        fail: err => {
+          console.log("error_login", err)
           this.selectComponent("#toast").toastShow("登录失败", "fa-remove", 1000)
         }
-      },
-      fail: err => {
-        console.log("error_login", err)
-        this.selectComponent("#toast").toastShow("登录失败", "fa-remove", 1000)
       }
+      console.log(req)
+      app.requestWithoutAuth(req)
+        .then(req.success)
+        .catch(req.fail)
+    }else{
+      console.log("未授权用户")
     }
-    console.log(req)
-    app.requestWithoutAuth(req)
-      .then(req.success)
-      .catch(req.fail)
+   
   },
 
   onLoad: function() {

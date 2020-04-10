@@ -108,6 +108,7 @@ Page({
         app.globalData.userInfo.gender = res.data.userGender
         app.globalData.userInfo.nickName = res.data.userNickname
         app.globalData.userInfo.avatarUrl = res.data.userAvatar
+        app.globalData.ifHasUserInfo = true
         console.log("globaldate", app.globalData)
         // 这里是登陆后的一些页面/控件可见性信息
         app.globalData.ifTrueMoneyAccess = res.data.ifTrueMoneyAccess
