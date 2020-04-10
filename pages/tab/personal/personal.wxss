@@ -73,3 +73,18 @@
   letter-spacing:2px;
   font-size: 18px;
 }
+
+.agree-service{
+    margin: 20px 0px 0px 0px;
+    font-size: 12px;
+}
+
+.sub_blue{
+  color: blue;
+  text-decoration: underline
+}
+
+.userlogin-btn{
+  /* margin-top: 15rpx; */
+  font-size: 40rpx;
+}

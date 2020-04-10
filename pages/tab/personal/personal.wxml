@@ -1,18 +1,29 @@
 <!--pages/tab/personal/personal.wxml-->
+<toast id="toast" />
 <view class='form-view'>
   <view class='header-view'>
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-    <view>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    <view wx:if="{{!hasUserInfo && canIUse}}" class="agree-service">
+      <checkbox-group bindchange="checkboxChange">
+          <button class="userlogin-btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 微信登录 </button>
+        <checkbox value="ifAgree" checked="{{true}}">我已阅读并同意《
+          <text class="sub_blue" bindtap="openServiceContent">服务与隐私条款</text>》
+        </checkbox>
+      </checkbox-group>
     </view>
+    <block wx:else>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <view>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </view>
+    </block>
   </view>
   <view class='function-view'>
     <view class='inner-view' wx:for="{{itemList}}" wx:key="key">
-      <block  wx:for="{{item.subItemList}}" wx:key="key">
-      <view class='function-item' data-url='{{item.url}}' data-param='{{item.param}}' bindtap='jumpTo'>
-        <view class='icon fa fa-fw {{item.icon}}' data-url='{{item.url}}' data-param='{{item.param}}'></view>
-        <view class='text' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.name}}</view>
-      </view>
+      <block wx:for="{{item.subItemList}}" wx:key="key">
+        <view class='function-item' data-url='{{item.url}}' data-param='{{item.param}}' bindtap='jumpTo'>
+          <view class='icon fa fa-fw {{item.icon}}' data-url='{{item.url}}' data-param='{{item.param}}'></view>
+          <view class='text' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.name}}</view>
+        </view>
       </block>
     </view>
   </view>
