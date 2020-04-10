@@ -1,4 +1,5 @@
 <!--pages/tab/tasks/tasks.wxml-->
+<toast id="toast" />
 <view class="topnavFixed {{scrollTop>1?'shadow':''}}">
   <button class='newtask1 fa fa-plus' bindtap='newTask' mode="top"></button>
   <view class="swiper-tab">

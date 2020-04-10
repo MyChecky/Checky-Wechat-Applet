@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "toast": "../../../component/toast",
     "calendar": "plugin://calendar/calendar"
   }
 }
