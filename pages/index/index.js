@@ -108,13 +108,16 @@ Page({
     // console.log(toast)
   },
   getUserInfo: function (e) {
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-    console.log("点击授权")
-    // this.sendInfo()
+    console.log("点击授权，可是不一定点击同意授权了🐶🐶", e.detail)
+    if (e.detail.errMsg === "getUserInfo:fail auth deny") {
+      this.selectComponent("#toast").toastShow("授权失败", "fa-remove", 1000)
+    } else if (e.detail.errMsg === "getUserInfo:ok") {
+      app.globalData.userInfo = e.detail.userInfo
+      this.setData({
+        userInfo: e.detail.userInfo,
+        hasUserInfo: true
+      })
+    }
   },
   checkboxChange: function(e){
     this.data.ifAgree= !this.data.ifAgree
