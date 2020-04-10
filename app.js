@@ -41,7 +41,12 @@ App({
               }
             }
           })
+        }else{
+          // 还没有授权过
+          console.log("还没有授权，游客模式一次启动")
+          this.globalData.ifHasUserInfo = false;
         }
+        console.log("userInfo", this.globalData.userInfo)
       }
     })
   },
@@ -61,34 +66,64 @@ App({
   },
 
   requestWithAuth: (req) => {
+    // app = getApp()
+    // console.log("s", app.globalData)
+    // if (app.globalData.ifHasUserInfo == false){
+    //   console.log("visitor")
+    //   app.requestWithoutAuth(req)
+    // }else{
+      url = req.url
+      method = req.method ? req.method : 'POST'
+      data = req.data ? req.data : {}
+      header = req.header
+      // callback = req.success?req.success:()=>{}
+      // fail = req.fail?req.fail:()=>{}
+
+      return new Promise((resolve, reject) => {
+        if (!header) {
+          header = {}
+        }
+        header['sessionKey'] = getApp().globalData.sessionKey
+        header['userId'] = getApp().globalData.openId
+        wx.request({
+          url: getApp().getAbsolutePath() + url,
+          method: method ? 'POST' : method,
+          data: data,
+          header: header,
+          success: res => {
+            if (res.statusCode == 403) dealForbid()
+            typeof resolve == 'function' && resolve(res)
+          },
+          fail: res => {
+            typeof reject == 'function' && reject(res)
+          }
+        })
+      })
+    // } 
+  },
+
+  requestWithoutAuth: (req) => {
     url = req.url
-    method = req.method?req.method:'POST'
-    data = req.data?req.data:{}
+    method = req.method ? req.method : 'POST'
+    data = req.data ? req.data : {}
     header = req.header
     // callback = req.success?req.success:()=>{}
     // fail = req.fail?req.fail:()=>{}
 
-    return new Promise((resolve,reject)=>{
-      if (!header) {
-        header = {}
-      }
-      header['sessionKey'] = getApp().globalData.sessionKey
-      header['userId'] = getApp().globalData.openId
+    return new Promise((resolve, reject) => {
       wx.request({
         url: getApp().getAbsolutePath() + url,
         method: method ? 'POST' : method,
         data: data,
-        header: header,
         success: res => {
           if (res.statusCode == 403) dealForbid()
-          typeof resolve=='function' && resolve(res)
+          typeof resolve == 'function' && resolve(res)
         },
         fail: res => {
           typeof reject == 'function' && reject(res)
         }
       })
     })
-    
   },
 
   dealForbid: ()=>{
@@ -100,14 +135,12 @@ App({
   },
 
   globalData: {
+    ifHasUserInfo: true,
     code:null,
     userInfo: null,
     base: "http://127.0.0.1",
-    // base: "http://192.168.1.113",
     port: "8080",
     contextPath: "/Checky",
-    //contextPath:  "",
-    //absolutePath: base + port + contextPath,
     curPages: null,
     location:{},
     openId:"",

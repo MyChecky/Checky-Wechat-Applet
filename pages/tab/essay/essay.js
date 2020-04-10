@@ -54,9 +54,16 @@ Page({
         }
       }
     }
-    app.requestWithAuth(req)
-      .then(req.success)
-      .catch(req.fail)
+    if (app.globalData.ifHasUserInfo){
+      app.requestWithAuth(req)
+        .then(req.success)
+        .catch(req.fail)
+    }else{
+      app.requestWithoutAuth(req)
+        .then(req.success)
+        .catch(req.fail)
+    }
+
   },
   //获取动态列表
   requestEssayList: function() {
@@ -90,6 +97,12 @@ Page({
 
   //记录点赞情况
   isLike: function(e) {
+    if(app.globalData.ifHasUserInfo === false){
+      wx.navigateTo({
+        url: '../../index/index'
+      })
+    }
+
     var index = e.target.dataset.index
     console.log(index)
     if (this.data.essays[index].like) {
@@ -143,7 +156,7 @@ Page({
     }
   },
 
-  //查看打卡详情
+  //查看详情
   essayClick: function(e) {
     console.log("afgf")
     console.log(e.target.dataset.essayid)
@@ -156,6 +169,11 @@ Page({
   },
   // 查看个人主页
   openPersonalIndex: function(e) {
+    if (app.globalData.ifHasUserInfo === false) {
+      wx.navigateTo({
+        url: '../../index/index'
+      })
+    }
     console.log("个人主页", e.target.dataset);
     var userid = e.target.dataset.userid;
     var usernickname = e.target.dataset.usernickname;
@@ -171,8 +189,13 @@ Page({
     }
 
   },
-  //创建打卡
+
   essayNew: function() {
+    if (app.globalData.ifHasUserInfo === false) {
+      wx.navigateTo({
+        url: '../../index/index'
+      })
+    }
     wx.navigateTo({
       url: './essayNew/essayNew',
     })

@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/tab/tasks/tasks",
     "pages/tab/personal/personal",
     "pages/tab/personal/appeal/appeal",

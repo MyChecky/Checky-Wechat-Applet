@@ -19,6 +19,11 @@ Page({
   },
   //举报跳转
   report: function (e) {
+    if (app.globalData.ifHasUserInfo === false) {
+      wx.navigateTo({
+        url: '../../index/index'
+      })
+    }
     var essayId = e.target.dataset.essayid
     var userId = app.globalData.openId
     console.log(essayId)
@@ -68,9 +73,15 @@ Page({
         console.log(err)
       }
     }
-    app.requestWithAuth(req)
-      .then(req.success)
-      .catch(req.fail)
+    if (app.globalData.ifHasUserInfo) {
+      app.requestWithAuth(req)
+        .then(req.success)
+        .catch(req.fail)
+    } else {
+      app.requestWithoutAuth(req)
+        .then(req.success)
+        .catch(req.fail)
+    }
   },
 
   onReady: function () { },
@@ -97,13 +108,24 @@ Page({
         })
       }
     }
-    app.requestWithAuth(req)
-      .then(req.success)
-      .catch(req.fail)
+    if (app.globalData.ifHasUserInfo) {
+      app.requestWithAuth(req)
+        .then(req.success)
+        .catch(req.fail)
+    } else {
+      app.requestWithoutAuth(req)
+        .then(req.success)
+        .catch(req.fail)
+    }
   },
 
   //记录点赞情况
   isLike: function (e) {
+    if (app.globalData.ifHasUserInfo === false) {
+      wx.navigateTo({
+        url: '../../index/index'
+      })
+    }
     if (this.data.like) {
       req = {
         url: '/essay/unlike',
@@ -160,6 +182,11 @@ Page({
   },
   // 发送评论
   sendComment: function () {
+    if (app.globalData.ifHasUserInfo === false) {
+      wx.navigateTo({
+        url: '../../index/index'
+      })
+    }
     if (this.data.commentContent == "") {
       this.selectComponent("#toast").toastShow('不能发送空的评论', 'fa-exclamation-circle', 2000)
     } else {
@@ -190,6 +217,11 @@ Page({
   },
   // 删除评论
   delComment: function (e) {
+    if (app.globalData.ifHasUserInfo === false) {
+      wx.navigateTo({
+        url: '../../index/index'
+      })
+    }
     console.log("comId:"+e.target.dataset.commentid)
     req = {
       url: '/essay/delComment',

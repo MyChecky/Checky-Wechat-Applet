@@ -61,8 +61,15 @@ Page({
     })
   },
   onShow: function() {
-    this.requestCheckList(this.data.chooseDate)
-    this.requestSupList(this.data.date)
+    if(app.globalData.ifHasUserInfo){
+      console.log("with userinfor")
+      this.requestCheckList(this.data.chooseDate)
+      this.requestSupList(this.data.date)
+    }else{
+      console.log("no userinfor")
+      app.globalData.userId = "visitor"
+      this.initVisitor()
+    }
     wx.getSystemInfo({
       success: (res) => {
         var tempHeight = res.windowHeight + this.data.unknown.length * 50 + this.data.toCheck.length * 50 + this.data.checked.length * 50
@@ -71,6 +78,9 @@ Page({
         })
       }
     })
+  },
+  initVisitor: function(){
+    // nothing to do
   },
   // 请求列表
   // 打卡
@@ -258,6 +268,11 @@ Page({
 
   //跳转到新建打卡
   newTask: function() {
+    if (app.globalData.ifHasUserInfo === false) {
+      wx.navigateTo({
+        url: '../../index/index'
+      })
+    }
     wx.navigateTo({
       url: './newtask/newtask',
     })
