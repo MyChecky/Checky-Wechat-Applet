@@ -1,0 +1,5 @@
+/* pages/tab/personal/taskDetail/taskDetail.wxss */
+
+.weui-form-preview{
+    margin-bottom: 25px;
+}

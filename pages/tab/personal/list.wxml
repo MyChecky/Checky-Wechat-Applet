@@ -144,11 +144,11 @@
 <template name="list-task-item">
   <view bindtap='bindTaskTap' class='item-view'>
     <view class='content-view'>
-      <view class='content'>{{item.taskTitle}}</view>
-      <view class='subContent'>{{item.taskContent}}</view>
+      <view class='content' catchtap="catchTaskTap" data-state='{{item.taskState}}' data-taskId='{{item.taskId}}'>{{item.taskTitle}}</view>
+      <view class='subContent' catchtap="catchTaskTap" data-state='{{item.taskState}}' data-taskId='{{item.taskId}}'>{{item.taskContent}}</view>
     </view>
     <view class='info-view'>
-    <view catchtap='catchStateTap' data-state='{{item.taskState}}' data-taskId='{{item.taskId}}' class='state {{item.taskState}}'>{{item.taskStateContent}}</view>
+    <view catchtap='catchTaskTap' data-state='{{item.taskState}}' data-taskId='{{item.taskId}}' class='state {{item.taskState}}'>{{item.taskStateContent}}</view>
       <!-- <view class='date'>{{item.taskStartTime}}至{{item.taskEndTime}}</view> -->
       <view class='date-content'>
       <view class="date">{{item.taskStartTime}}</view>

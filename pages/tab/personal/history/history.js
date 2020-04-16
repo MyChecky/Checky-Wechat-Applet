@@ -10,7 +10,7 @@ Page({
   data: {
     height: 0,
     path: "",
-    title: "历史记录",
+    title: "打卡记录",
     icon: "fa-history",
     infomation: "loading",
     cPage: 1,

@@ -92,21 +92,20 @@ Page({
 
   },
 
-  catchStateTap: function(e) {
-    console.log(e)
-    this.setData({
-      taskIdTaping: e.currentTarget.dataset.taskid,
-      taskStateTaping: e.currentTarget.dataset.state
-    })
+  catchTaskTap: function(e) {
+    console.log("catchTaskTap", e)
     if (e.currentTarget.dataset.state == "save" || e.currentTarget.dataset.state == "nomatch") {
       this.setData({
+        taskIdTaping: e.currentTarget.dataset.taskid,
+        taskStateTaping: e.currentTarget.dataset.state
+      });
+      this.setData({
         isDialogShow: true
-      })
+      });
     } else {
-      // 跳转任务详情页,涉及文件界面还没写
-      // wx.navigateTo({
-      //   url: '../../taskDetail/taskDetail',
-      // })
+      wx.navigateTo({
+        url: '../taskDetail/taskDetail?taskId=' + e.currentTarget.dataset.taskid,
+      });
     }
   },
 

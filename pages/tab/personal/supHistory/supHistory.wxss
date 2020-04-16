@@ -1,0 +1,17 @@
+/* pages/tab/personal/supHistory/supHistory.wxss */
+
+.title {
+  padding: 5px 10px 20px 10px;
+  color: #e83015;
+  font-size: 20px;
+}
+
+.more{
+  height: 60px;
+  width: 100%;
+  background-color: #fff;
+  color: #999;
+  font-size: 16px;
+  text-align: center;
+  line-height: 60px;
+}

@@ -22,7 +22,8 @@ Page({
         "subItemList": [
           { "name": "任务列表", "url": "./taskList/taskList", "param": "", "icon": "fa-reorder"},
           { "name": "账户余额", "url": "./money/money", "param": "", "icon": "fa-rmb" },
-          { "name": "历史记录", "url": "./history/history", "param": "", "icon": "fa-history" }
+          { "name": "打卡记录", "url": "./history/history", "param": "", "icon": "fa-history" },
+          { "name": "监督记录", "url": "./supHistory/supHistory", "param": "", "icon": "fa-history" }
         ]
       },
       {

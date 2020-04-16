@@ -1,0 +1,25 @@
+<!--pages/tab/personal/supHistory/supHistory.wxml-->
+
+<scroll-view class='from-view' bindscrolltolower="loadMore">
+
+  <view class='container-view'>
+    <view class='title'>
+      <icon class='fa fa-history'></icon>监督记录
+    </view>
+  </view>
+
+  <view class="weui-cells weui-cells_after-title" wx:for="{{supList}}" wx:key="key">
+    <view class="weui-cell weui-cell_example ">
+      <view class="weui-cell__hd">
+        <image src="{{item.avatar}}" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
+      </view>
+      <view class="weui-cell__bd"  bindtap="checkDetail" data-checkid="{{item.checkId}}" data-checkstate="{{item.check.state}}" data-taskid="{{item.taskId}}">{{item.title}}</view>
+      <view class="weui-cell__ft"  bindtap="checkDetail" data-checkid="{{item.checkId}}" data-checkstate="{{item.check.state}}" data-taskid="{{item.taskId}}">{{item.state}}</view>
+    </view>
+  </view>
+
+  <view class="more">
+    <view wx:if="{{noMore}}" class="fa fa-coffee">没有更多了</view>
+    <view wx:else class="fa fa-refresh fa-spin">加载中</view>
+  </view>
+</scroll-view>

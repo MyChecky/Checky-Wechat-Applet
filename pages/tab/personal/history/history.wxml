@@ -11,4 +11,4 @@
   <view class="more">
     <view class="fa {{infomation=='nomore'?'fa-coffee':'fa-refresh fa-spin'}}">
     </view>{{infomation=="nomore"?"没有更多了":"加载中"}}</view>
-  </scroll-view>
+</scroll-view>
