@@ -3,22 +3,8 @@
 <!--修改Server代码taskController.java中getIfHighSetting()函数的返回值(后期可以改为button用户自行缩放)
 开放总任务与单词打卡通过率及监督者类型,地域，爱好等;未开放自定义金额（默认10倍监督者）-->
 <view class='form-view'>
-  <view class='container-view'>
-    <view class='notifcation'>标题：</view>
-    <input class='title-input' placeholder='打卡标题' value="{{title}}" bindblur="bindTitle"></input>
-  </view>
-  <view class='container-view'>
-    <view class='notifcation'>描述内容：</view>
-    <textarea class='content-textarea' placeholder='简单地描述……' value="{{content}}" bindblur="bindContent"></textarea>
-  </view>
-  <view class='container-view'>
-    <view class='notifcation'>监督人数：</view>
-    <radio-group bindchange="bindNum" class="type">
-      <label wx:for='{{numOfSus}}'>
-        <radio class='numOfSus' value='{{item.value}}'>{{item.value}}</radio>
-      </label>
-    </radio-group>
-  </view>
+  <view class="weui-cells__title">打卡类型与基本介绍</view>
+  <!-- 任务基本信息--介绍与类型 -->
   <view class='container-view'>
     <view class='inner-view'>
       <view class='notifcation' style='width: auto;'>打卡类别：</view>
@@ -27,6 +13,53 @@
         <text style='color:#333;' bindtap='getType'>{{typeContent}}</text>
       </view>
     </view>
+    <view class='inner-view-column'>
+      <view class='notifcation'>标题：</view>
+      <input class='title-input' placeholder='打卡标题' value="{{title}}" bindblur="bindTitle"></input>
+    </view>
+    <view class='inner-view-column'>
+      <view class='notifcation'>描述内容：</view>
+      <textarea class='content-textarea' placeholder='简单地描述……' value="{{content}}" bindblur="bindContent"></textarea>
+    </view>
+  </view>
+
+  <!-- 监督者与押金 -->
+  <view class="weui-cells__title">监督者与押金选择</view>
+  <view class='container-view'>
+    <view class='inner-view'>
+      <view class='notifcation'>监督者类型：</view>
+      <picker bindchange="bindSupervisorType" style='padding:5px;' value='{{supervisorTypeIndex}}' range="{{supervisorType}}">
+        <view style='line-height:30px;' class="picker">
+          <text style='color:#333;'>{{supervisorType[supervisorTypeIndex]}}</text>
+        </view>
+      </picker>
+    </view>
+    <view class='inner-view-column'>
+      <view class='notifcation'>监督人数：</view>
+      <radio-group bindchange="bindNum" class="type">
+        <label wx:for='{{numOfSus}}' wx:key="key">
+          <radio class='numOfSus' value='{{item.value}}'>{{item.value}}</radio>
+        </label>
+      </radio-group>
+    </view>
+    <view class='inner-view' wx:if='{{ifTrueMoneyAccess}}'>
+      <view class='notifcation'>押金类型：</view>
+      <picker bindchange="bindMoneyType" style='padding:5px;' value='{{moneyTypeIndex}}' range="{{moneyType}}">
+        <view style='line-height:30px;' class="picker">
+          <text style='color:#333;'>{{moneyType[moneyTypeIndex]}}</text>
+        </view>
+      </picker>
+    </view>
+    <view class='inner-view'>
+      <view class='notifcation'>押金金额：</view>
+      <text style='color:#333;' wx:if="{{num==0}}">10</text>
+      <text style='color:#333;' wx:else>{{10 * num}}</text>
+    </view>
+  </view>
+
+  <!-- 时间与周期 -->
+  <view class="weui-cells__title">打卡时间与周期选择</view>
+  <view class='container-view'>
     <view class='inner-view'>
       <view class='notifcation'>开始时间：</view>
       <picker bindchange="bindPickerStartTime" mode="date" start="{{startlimit}}" style='padding:5px;' value='{{startTime}}'>
@@ -43,23 +76,10 @@
         </view>
       </picker>
     </view>
-    <view class='inner-view' wx:if='{{ifTrueMoneyAccess}}'>
-      <view class='notifcation'>押金类型：</view>
-      <picker bindchange="bindMoneyType" style='padding:5px;' value='{{moneyTypeIndex}}' range="{{moneyType}}">
-        <view style='line-height:30px;' class="picker">
-          <text style='color:#333;'>{{moneyType[moneyTypeIndex]}}</text>
-        </view>
-      </picker>
-    </view>
-    <view class='inner-view'>
-      <view class='notifcation'>押金金额：</view>
-      <text style='color:#333;' wx:if="{{num==0}}">10</text>
-      <text style='color:#333;' wx:else>{{10 * num}}</text>
-    </view>
     <view>
       <view class='notifcation'>重复周期：</view>
       <checkbox-group bindchange="bindRepeatDate" style="padding: 5px;">
-        <block wx:for="{{repeatDate}}">
+        <block wx:for="{{repeatDate}}" wx:key="key">
           <label wx:if="{{item.value=='SAT'||item.value=='SUN'}}" class='date-choose weekend'>
             <checkbox value="{{item.value}}">{{item.name}}</checkbox>
           </label>
@@ -69,17 +89,20 @@
         </block>
       </checkbox-group>
     </view>
-    <!-- 高级选择 -->
-    <view class='container-view' wx:if="{{ifNewTaskHighSettingAccess}}">
-      <view>
-        <view class='notifcation'>任务通过率：</view>
-        <radio-group bindchange="bindMinPass" class="type">
-          <label wx:for='{{minPassChoose}}'>
-            <radio class='numOfSus' value='{{item.value}}'>{{item.value}}</radio>
-          </label>
-        </radio-group>
-      </view>
-      <!-- <view class='inner-view'>
+  </view>
+
+  <!-- 高级选择 -->
+  <view class="weui-cells__title" wx:if="{{ifNewTaskHighSettingAccess}}">高级参数选择</view>
+  <view class='container-view' wx:if="{{ifNewTaskHighSettingAccess}}">
+    <view class='inner-view-column'>
+      <view class='notifcation'>任务通过率：</view>
+      <radio-group bindchange="bindMinPass" class="type">
+        <label wx:for='{{minPassChoose}}'>
+          <radio class='numOfSus' value='{{item.value}}'>{{item.value}}</radio>
+        </label>
+      </radio-group>
+    </view>
+    <!-- <view class='inner-view'>
         <view class='notifcation'>单次打卡最小通过类型：</view>
         <picker bindchange="bindMinCheckType" style='padding:5px;' value='{{minCheckTypeIndex}}' range="{{minCheckTypeChoose}}">
           <view style='line-height:30px;' class="picker">
@@ -87,44 +110,35 @@
           </view>
         </picker>
       </view> -->
-      <!-- 感觉没必要进行数字类型 -->
-      <view wx:if="{{minCheckTypeIndex==0}}">
-        <view class='notifcation'>打卡通过率：</view>
-        <radio-group bindchange="bindMinCheck" class="type">
-          <label wx:for='{{minCheckChoose}}'>
-            <radio class='numOfSus' value='{{item.value}}'>{{item.value}}</radio>
-          </label>
-        </radio-group>
-      </view>
-      <view class='inner-view'>
-        <view class='notifcation'>监督者类型：</view>
-        <picker bindchange="bindSupervisorType" style='padding:5px;' value='{{supervisorTypeIndex}}' range="{{supervisorType}}">
-          <view style='line-height:30px;' class="picker">
-            <text style='color:#333;'>{{supervisorType[supervisorTypeIndex]}}</text>
-          </view>
-        </picker>
-      </view>
-
-      <view class='inner-view'>
-        <view class='notifcation'>地域选择：</view>
-        <picker bindchange="bindAreaType" style='padding:5px;' value='{{ifAreaIndex}}' range="{{ifAreaType}}">
-          <view style='line-height:30px;' class="picker">
-            <text style='color:#333;'>{{ifAreaType[ifAreaIndex]}}</text>
-          </view>
-        </picker>
-      </view>
-
-      <view class='inner-view'>
-        <view class='notifcation'>爱好选择：</view>
-        <picker bindchange="bindHobbyType" style='padding:5px;' value='{{ifHobbyIndex}}' range="{{ifHobbyType}}">
-          <view style='line-height:30px;' class="picker">
-            <text style='color:#333;'>{{ifHobbyType[ifHobbyIndex]}}</text>
-          </view>
-        </picker>
-      </view>
+    <!-- 感觉没必要进行数字类型 -->
+    <view class='inner-view-column' wx:if="{{minCheckTypeIndex==0}}">
+      <view class='notifcation'>打卡通过率：</view>
+      <radio-group bindchange="bindMinCheck" class="type">
+        <label wx:for='{{minCheckChoose}}'>
+          <radio class='numOfSus' value='{{item.value}}'>{{item.value}}</radio>
+        </label>
+      </radio-group>
     </view>
 
+    <view class='inner-view'>
+      <view class='notifcation'>地域选择：</view>
+      <picker bindchange="bindAreaType" style='padding:5px;' value='{{ifAreaIndex}}' range="{{ifAreaType}}">
+        <view style='line-height:30px;' class="picker">
+          <text style='color:#333;'>{{ifAreaType[ifAreaIndex]}}</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class='inner-view'>
+      <view class='notifcation'>爱好选择：</view>
+      <picker bindchange="bindHobbyType" style='padding:5px;' value='{{ifHobbyIndex}}' range="{{ifHobbyType}}">
+        <view style='line-height:30px;' class="picker">
+          <text style='color:#333;'>{{ifHobbyType[ifHobbyIndex]}}</text>
+        </view>
+      </picker>
+    </view>
   </view>
+
   <!-- <view class='container-view'>
     <view class='notifcation'>押金金额：</view>
     <input class='title-input' type='digit' bindblur='bindMoney'></input>
@@ -132,4 +146,7 @@
   <!--押金金额不让自己输入，暂定10*监督者人数（最0监督者10）-->
   <button class='confirm' bindtap='showDialog'>确认</button>
 </view>
-  <dialog id='dialog' title='发布任务' content='此次任务单次打卡需要{{checkPass}}以上监督者认证通过；总任务需要{{taskPass}}以上打卡通过方为成功。任务成功方可退还全部押金，是否确认？' cancelText='取消' confirm='确定' isShown="{{isDialogShow}}" bind:cancelEvent="dialogCancelEvent" bind:confirmEvent="dialogConfirmEvent" />
+<dialog id='dialog' title='发布任务' content='此次任务单次打卡需要{{checkPass}}以上监督者认证通过；总任务需要{{taskPass}}以上打卡通过方为成功。任务成功方可退还全部押金，是否确认？' cancelText='取消' confirm='确定' isShown="{{isDialogShow}}" bind:cancelEvent="dialogCancelEvent" bind:confirmEvent="dialogConfirmEvent"
+/>
+<dialog id='dialog' title='发布失败' content='此次任务您选择了{{num}}位监督者，系统为您匹配到了{{failNum}}位监督者。您可以点击"编辑"重新编辑任务，或点击"确认"以委托系统检测到相应人数后自动发布任务' cancelText='编辑' confirm='确定' isShown="{{isFailDialogShow}}" bind:cancelEvent="dialogFailCancelEvent" bind:confirmEvent="dialogFailConfirmEvent"
+/>
