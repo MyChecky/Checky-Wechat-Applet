@@ -91,7 +91,7 @@ App({
           data: data,
           header: header,
           success: res => {
-            if (res.statusCode == 403) dealForbid()
+            if (res.statusCode == 403) getApp().dealForbid(res)
             typeof resolve == 'function' && resolve(res)
           },
           fail: res => {
@@ -116,7 +116,7 @@ App({
         method: method ? 'POST' : method,
         data: data,
         success: res => {
-          if (res.statusCode == 403) dealForbid()
+          if (res.statusCode == 403) getApp().dealForbid(res)
           typeof resolve == 'function' && resolve(res)
         },
         fail: res => {
@@ -126,8 +126,8 @@ App({
     })
   },
 
-  dealForbid: ()=>{
-
+  dealForbid: (res)=>{
+    console.log("dealForbidHere,", res);
   },
 
   getAbsolutePath() {
