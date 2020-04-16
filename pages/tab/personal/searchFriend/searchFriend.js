@@ -7,8 +7,7 @@ Page({
    */
   data: {
     inputVal: '',
-    contentSend: '',
-    friendList: [] // userName, userAvatar, latestMessage, latestMessageTime
+    resultList: [] // userName, userAvatar, latestMessage, latestMessageTime
     // content, subContent, date, opration, avatarUrl
   },
 
@@ -67,10 +66,11 @@ Page({
   onShareAppMessage: function() {
 
   },
+
   // 查看个人主页
   gotoIndex: function(e) {
-    console.log("个人主页");
-    console.log(e.target.dataset);
+    console.log("即将跳转个人主页", e);
+
     var userid = e.target.dataset.userid;
     var usernickname = e.target.dataset.usernickname;
     var useravatar = e.target.dataset.useravatar;
@@ -85,34 +85,22 @@ Page({
       })
     }
   },
-  sendClick: function(e) {
-    this.searchFriend(e.detail.value);
-  },
 
-  contentChange: function(e) {
-    var text = e.detail.detail.value
-    this.setData({
-      contentSend: text
-    })
-  },
+  searchInput: function () {
+    var that = this
+    console.log("searchVal", that.data.inputVal)
 
-  sendButton: function(e) {
-    this.searchFriend(this.data.contentSend);
-  },
-
-  // 查询好友
-  searchFriend: function(nickName) {
     req = {
       url: '/friend/queryUserByNickname',
       method: 'POST',
       data: {
         userId: app.globalData.openId,
-        nickName: nickName
+        nickName: that.data.inputVal,
       },
       success: res => {
-        console.log("查询结果",res.data)
-        this.setData({
-          friendList: res.data.friendList,
+        console.log("查询结果", res.data)
+        that.setData({
+          resultList: res.data.friendList,
         })
         console.log(this.data)
       },
@@ -123,5 +111,27 @@ Page({
     app.requestWithAuth(req)
       .then(req.success)
       .catch(req.fail)
+  },
+
+  showInput: function () {
+    this.setData({
+      inputShowed: true
+    });
+  },
+  hideInput: function () {
+    this.setData({
+      inputVal: "",
+      inputShowed: false
+    });
+  },
+  clearInput: function () {
+    this.setData({
+      inputVal: ""
+    });
+  },
+  inputTyping: function (e) {
+    this.setData({
+      inputVal: e.detail.value
+    });
   }
 })

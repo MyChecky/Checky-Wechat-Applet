@@ -2,7 +2,7 @@
 <toast id="toast" />
 <view class='form-view'>
   <view class='header-view'>
-    <view wx:if="{{(hasUserInfo && canIUse) || loged}}" class="agree-service">
+    <view wx:if="{{(hasUserInfo && canIUse) || loged}}" class="userinfo">
       <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <view>
         <text class="userinfo-nickname">{{userInfo.nickName}}</text>
