@@ -9,6 +9,7 @@ Page({
     userInfo: {},
     date: "",
     chooseDate: "",
+    dateToDisplay: "今日",
     nowDate: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -43,6 +44,31 @@ Page({
     })
   },
 
+  //设置高度
+  setHeight: function(){
+    var baseHeight = 0;
+    if (this.data.currentTab === 0) { // 打卡界面
+      var baseHeight = baseHeight + 320 + 250;
+      if (this.data.selectedItem[0] === true) {
+        baseHeight += this.data.toCheck.length * 100;
+      }
+      if (this.data.selectedItem[1] === true) {
+        baseHeight += this.data.unknown.length * 100;
+      }
+      if (this.data.selectedItem[2] === true) {
+        baseHeight += this.data.checked.length * 100;
+      }
+    } else { // 监督界面
+      baseHeight += 90;
+      if (this.data.selectedItem[3] === true) {
+        baseHeight += this.data.toSupvise.length * 100;
+      }
+    }
+    this.setData({
+      height: baseHeight
+    })
+  },
+
   //item展开
   // 展开折叠选择  
   changeToggle: function(e) {
@@ -51,6 +77,7 @@ Page({
     this.setData({
       selectedItem: this.data.selectedItem
     })
+    this.setHeight();
   },
 
   onLoad: function() {
@@ -91,14 +118,7 @@ Page({
       console.log("tasksOnshow无信息")
       this.initVisitor()
     }
-    wx.getSystemInfo({
-      success: (res) => {
-        var tempHeight = res.windowHeight + this.data.unknown.length * 50 + this.data.toCheck.length * 50 + this.data.checked.length * 50
-        this.setData({
-          height: tempHeight
-        })
-      }
-    })
+    this.setHeight();
   },
 
   initVisitor: function() {
@@ -124,6 +144,7 @@ Page({
           supOutDay: res.data.supOutDay,
         })
         console.log("tasksCheckListRes", res);
+        this.setHeight();
       },
       fail: err => {
         console.log("tasksCheckListResError", err)
@@ -180,7 +201,8 @@ Page({
     var tempDate = [year, month, day].map(util.formatNumber).join('-')
     var that = this
     this.setData({
-      chooseDate: tempDate
+      chooseDate: tempDate,
+      dateToDisplay: year + '年' + month + '月' + day + '日',
     })
     this.requestCheckList(this.data.chooseDate)
   },
@@ -253,7 +275,7 @@ Page({
     that.setData({
       currentTab: e.detail.current
     })
-    if (this.data.currentTab == 1) {}
+    this.setHeight();
   },
   getUserInfo: function(e) {
     console.log(e)
@@ -275,6 +297,7 @@ Page({
         currentTab: e.target.dataset.current
       })
     }
+    this.setHeight()
   },
   // onPageScroll: function(e) { //监听页面滚动
   //   console.log(e.scrollTop)

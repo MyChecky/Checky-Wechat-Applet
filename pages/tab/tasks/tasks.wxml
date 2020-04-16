@@ -25,7 +25,7 @@
       <view class='list'>
         <view class='list-title toCheck' bindtap='changeToggle' data-index="0">
           <icon class='fa fa-fw fa-sticky-note'></icon>
-          <view class='title'>未打卡</view>
+          <view class='title'>{{dateToDisplay}}待上传打卡</view>
         </view>
         <view class='inner-list {{selectedItem[0]?"onList":"offList"}}'>
           <view class='list-item' wx:for='{{toCheck}}' wx:key="key">
@@ -41,7 +41,7 @@
       <view class='list'>
         <view class='list-title unknown' bindtap='changeToggle' data-index="1">
           <icon class='fa fa-fw fa-coffee'></icon>
-          <view class='title'>待认证</view>
+          <view class='title'>{{dateToDisplay}}待监督验证</view>
         </view>
         <view class='inner-list {{selectedItem[1]?"onList":"offList"}}'>
           <view class='list-item' wx:for='{{unknown}}' wx:key="key">
@@ -57,7 +57,7 @@
       <view class='list'>
         <view class='list-title checked' bindtap='changeToggle' data-index="2">
           <icon class='fa fa-fw fa-check-square-o'></icon>
-          <view class='title'>已结束</view>
+          <view class='title'>{{dateToDisplay}}已监督验证</view>
         </view>
         <view class='inner-list {{selectedItem[2]?"onList":"offList"}}'>
           <view class='list-item' wx:for='{{checked}}' wx:key="key">
@@ -77,7 +77,7 @@
       <view class='list'>
         <view class='list-title toCheck' bindtap='changeToggle' data-index="3">
           <icon class='fa fa-square-o'></icon>
-          <view class='title'>待审查</view>
+          <view class='title'>待验证</view>
         </view>
         <view class='inner-list {{selectedItem[3]?"onList":"offList"}}'>
           <view class='list-item' wx:for='{{toSupvise}}' wx:key="key">
