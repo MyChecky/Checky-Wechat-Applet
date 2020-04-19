@@ -137,7 +137,7 @@ Page({
       })
     } else { // 已打卡情况
       wx.navigateTo({
-        url: '../checky/checky?checkId=' + this.data.checkId + '&lastPage=taskDetail',
+        url: '../checky/checky?checkId=' + this.data.checkId + '&taskId=' + this.data.taskId,
       })
     }
   },

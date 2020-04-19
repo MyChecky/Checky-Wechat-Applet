@@ -10,7 +10,7 @@
         <view class='state item'>{{taskState}}</view>
       </view>
       <view class='operation item' bindtap='upload'>
-        <button wx:if="{{taskState=='未上传'}}" class='detail-btn fa fa-angle-right'></button>
+        <button class='detail-btn fa fa-angle-right'></button>
       </view>
     </view>
     <view class='item-view'>

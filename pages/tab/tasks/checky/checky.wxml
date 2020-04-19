@@ -1,27 +1,73 @@
 <!--pages/tab/tasks/checky/checky.wxml-->
-<toast id="toast"/>
+<toast id="toast" />
 
 <view class='form-view'>
   <view class='container-view'>
-    <view class='title'>描述</view>
+    <view class='info-view'>
+      <image class="avatar" src="{{userAvatar}}"></image>
+      <view class="inner-info">
+        <view class='info'>{{userName}}</view>
+        <view class='date'>{{date}}</view>
+      </view>
+    </view>
     <view class='content-view'>{{content}}</view>
-  </view>
-  <view class='container-view'>
-    <view class='title'>附件</view>
-    <view class='image-view'>
-      <view class='img-view' wx:for="{{image}}" wx:if="{{item.URL!=''}}">
-        <image class='img' src='{{item.URL}}' mode='aspectFill'></image>
+    <!-- 图片 -->
+    <view wx:if="{{fileRecords[0].recordType=='image'}}" class='image-view'>
+      <view class="image-container" catchtap='previewPic' wx:for="{{fileRecords}}" wx:key="key">
+        <image class='essays-pic' catchtap='previewPic' src='{{path}}{{item.fileAddr}}' mode='aspectFill' data-index='{{index}}' data-src='{{path}}{{item.fileAddr}}' data-essayid='{{item.essayId}}'></image>
+      </view>
+    </view>
+    <!--视频-->
+    <view wx:if='{{item.fileRecord[0].recordType=="video"}}' class="video-view" catchtap="essayVideo">
+      <view class="video-container" catchtap='essayVideo' wx:for="{{item.fileRecord}}" wx:key="key">
+        <video class='essays-video' src='{{path}}{{item.fileAddr}}' data-src='{{path}}{{item.fileAddr}}' binderror="videoErrorCallback" controls></video>
+      </view>
+    </view>
+    <!--录音-->
+    <view wx:if='{{item.fileRecord[0].recordType=="audio"}}' class="recor-view" catchtap="essayAudio">
+      <view class="recor-container" catchtap="essayAudio">
+        <audio class="essays-recor" name="{{item.userName}}" author="{{item.essay.essayTime}}" src='{{path}}{{item.fileRecord[0].fileAddr}}' data-src='{{path}}{{item.fileRecord[0].fileAddr}}' controls></audio>
       </view>
     </view>
   </view>
-  <view wx:if="{{lastPageFlag}}" class='button-view'>
-    <button class='sup-button pass'  bindtap='pass' data-flag='pass'>
-      <view class='icon fa fa-check-circle-o fw'></view>
-      <view>通过</view>
-    </button>
-    <button class='sup-button fail'  bindtap='pass' data-flag='deny'>
-      <view class='icon fa fa-times-circle-o fw'></view>
-      <view>不通过</view>
-    </button>
+  <view class='container-view'>
+    <view class='title-view'>其他信息</view>
+    <view class='item-view'>
+      <view class='inner-item-view'>
+        <view class='tag item'>标题</view>
+        <view class="state item">{{info.taskTitle}}</view>
+      </view>
+    </view>
+    <view class='item-view'>
+      <view class='inner-item-view'>
+        <view class='tag item'>金额</view>
+        <view class="state item">{{info.taskMoney}}</view>
+      </view>
+    </view>
+    <view class='item-view'>
+      <view class='inner-item-view'>
+        <view class='tag item'>重复</view>
+        <view class="state item">{{info.checkFrec}}</view>
+      </view>
+    </view>
+    <view class='item-view'>
+      <view class='inner-item-view'>
+        <view class='tag item'>开始时间</view>
+        <view class="state item">{{info.taskStartTime}}</view>
+      </view>
+    </view>
+    <view class='item-view'>
+      <view class='inner-item-view'>
+        <view class='tag item'>结束时间</view>
+        <view class="state item">{{info.taskEndTime}}</view>
+      </view>
+    </view>
+    <view class='item-view'>
+      <view class='inner-item-view'>
+        <view class='tag item'>描述</view>
+        <view class="state item">{{info.taskContent}}</view>
+      </view>
+    </view>
+    <view class='operation item' bindtap='upload'></view>
   </view>
 </view>
