@@ -110,18 +110,22 @@ Page({
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
       success: function(res) {
-        console.log(res);
+        console.log("chooseImageFileRes", res);
         temp = res.tempFilePaths
         for (var i = 0; i < temp.length; i++) {
           var n = that.data.index
           var url = temp[i]
-          if (n < 4) {
+          if (n < 4 && res.tempFiles[i].size < app.globalData.maxPostFileSize) {
             that.setData({
               ['image[' + n + '].URL']: url,
               index: n + 1,
               currentNum: n + 1
             })
-          } else break
+          } else if (n < 4 && res.tempFiles[i].size >= app.globalData.maxPostFileSize) {
+            that.selectComponent("#toast").toastShow('图片过大，请重新选择！', 'fa-exclamation-circle', 1000);
+          }else{
+            break
+          }
         }
         that.setData({
           fileTypeChoosing: "image"
@@ -130,7 +134,7 @@ Page({
       fail: function(res) {}
     })
   },
-  //上传视频
+  //选择视频
   chooseVideoFile: function() {
     var that = this
     var temp = []
@@ -141,18 +145,24 @@ Page({
       maxDuration: 60,
       camera: 'back',
       success: function(res) {
-        console.log(res)
+        console.log("chooseVideoFileRes", res)
         var url = res.tempFilePath
         var n = that.data.index
-        that.setData({
-          ['video[' + n + '].URL']: url,
-          index: n + 1,
-          currentNum: n + 1,
-        })
-        console.log(that.data.video)
-        that.setData({
-          fileTypeChoosing: "video"
-        })
+        if(res.size < app.globalData.maxPostFileSize){
+          that.setData({
+            ['video[' + n + '].URL']: url,
+            index: n + 1,
+            currentNum: n + 1,
+          })
+          console.log(that.data.video)
+          that.setData({
+            fileTypeChoosing: "video"
+          })
+        }else{
+          that.selectComponent("#toast").toastShow('视频过大，请重新选择！', 'fa-exclamation-circle', 1000)
+        }
+
+
       },
       fail: function(res) {
         console.log(res)

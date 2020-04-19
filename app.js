@@ -138,7 +138,7 @@ App({
     code:null,
     userInfo: null,
     base: "http://127.0.0.1",
-    port: "8080",
+    port: "8090",
     contextPath: "/Checky",
     curPages: null,
     location:{},
@@ -147,6 +147,7 @@ App({
     types: [],
     date: util.formatTime(new Date()),
     appId: "wx5f1aa0197013dad6",
+    maxPostFileSize: 50000000, // 最大文件上传字节数
 
     ifTrueMoneyAccess: false,
     ifNewTaskHighSettingAccess: false

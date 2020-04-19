@@ -72,36 +72,40 @@ Page({
     })
   },
   // 选择图片
-  chooseImageFile: function () {
+  chooseImageFile: function() {
     var that = this
     var temp = []
     wx.chooseImage({
       count: 4,
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
-      success: function (res) {
+      success: function(res) {
         console.log(res);
         temp = res.tempFilePaths
         for (var i = 0; i < temp.length; i++) {
           var n = that.data.index
           var url = temp[i]
-          if (n < 4) {
+          if (n < 4 && res.tempFiles[i].size < app.globalData.maxPostFileSize) {
             that.setData({
               ['image[' + n + '].URL']: url,
               index: n + 1,
               currentNum: n + 1
             })
-          } else break
+          } else if (n < 4 && res.tempFiles[i].size >= app.globalData.maxPostFileSize) {
+            that.selectComponent("#toast").toastShow('图片过大，请重新选择！', 'fa-exclamation-circle', 1000);
+          } else {
+            break
+          }
         }
         that.setData({
           fileTypeChoosing: "image"
         })
       },
-      fail: function (res) { }
+      fail: function(res) {}
     })
   },
   //上传视频
-  chooseVideoFile: function () {
+  chooseVideoFile: function() {
     var that = this
     var temp = []
     wx.chooseVideo({ //考虑以后可能上传多条视频，此处格式保留
@@ -110,29 +114,33 @@ Page({
       sourceType: ['album', 'camera'],
       maxDuration: 60,
       camera: 'back',
-      success: function (res) {
+      success: function(res) {
         console.log(res)
         var url = res.tempFilePath
         var n = that.data.index
-        that.setData({
-          ['video[' + n + '].URL']: url,
-          index: n + 1,
-          currentNum: n + 1,
-        })
-        console.log(that.data.video)
-        that.setData({
-          fileTypeChoosing: "video"
-        })
+        if (res.size < app.globalData.maxPostFileSize) {
+          that.setData({
+            ['video[' + n + '].URL']: url,
+            index: n + 1,
+            currentNum: n + 1,
+          })
+          console.log(that.data.video)
+          that.setData({
+            fileTypeChoosing: "video"
+          })
+        } else {
+          that.selectComponent("#toast").toastShow('视频过大，请重新选择！', 'fa-exclamation-circle', 1000)
+        }
       },
-      fail: function (res) {
+      fail: function(res) {
         console.log(res)
       }
     })
   },
   //上传音频
-  chooseAudioFile: function () { },
+  chooseAudioFile: function() {},
   // 取消上传视频
-  cancelVideo: function (e) {
+  cancelVideo: function(e) {
     var n = this.data.index - 1
     var p = e.target.dataset.index
     console.log(p + ":" + this.data.video[p].URL)
@@ -152,7 +160,7 @@ Page({
     })
   },
   // 取消上传图片
-  cancelImage: function (e) {
+  cancelImage: function(e) {
     var n = this.data.index - 1
     var p = e.target.dataset.index
     console.log(p + ":" + this.data.image[p].URL)
@@ -172,7 +180,7 @@ Page({
     })
   },
   // 提交视频文件
-  submitVideo: function (essayId) {
+  submitVideo: function(essayId) {
     var that = this;
     var essayId = essayId
     var done = 0;
@@ -206,7 +214,7 @@ Page({
     }
   },
   // 提交图片文件
-  submitImage: function (essayId) {
+  submitImage: function(essayId) {
     var that = this;
     var essayId = essayId;
     var done = 0;
@@ -239,7 +247,7 @@ Page({
     }
   },
   // 文本上传到essay
-  submitText2Essay: function () {
+  submitText2Essay: function() {
     var that = this;
     const toast = this.selectComponent("#toast")
     req = {
@@ -281,7 +289,7 @@ Page({
       .catch(req.fail)
   },
   // 提交
-  submit: function () {
+  submit: function() {
     const toast = this.selectComponent("#toast")
     toast.toastShow2('稍等，请勿重复提交', 'fa-spinner fa-pulse')
     var that = this
@@ -305,10 +313,10 @@ Page({
     })
   },
   // 经纬度
-  setLocationData: function () {
+  setLocationData: function() {
     var that = this
     wx.getLocation({
-      success: function (res) {
+      success: function(res) {
         console.log(res)
         that.setData({
           longitude: res.longitude,
