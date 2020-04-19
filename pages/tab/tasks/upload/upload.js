@@ -79,18 +79,52 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options)
+    console.log("uploadOnload", options)
     this.setData({
       taskId: options.taskId,
       taskname: options.taskname,
       nickname: app.globalData.userInfo.nickName,
     })
+    this.checkDate(options.ymd);
   },
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
     // innerAudioContext.destroy();
+  },
+
+  
+  // 检查日期
+  checkDate: function(ymd) {
+    var that = this;
+    req = {
+      url: '/check/checkDate',
+      method: 'POST',
+      data: {
+        ymd: ymd,
+      },
+      success(res) {
+        console.log("checkDateRes", res);
+        if (res.data.state != "ok") {
+          that.selectComponent("#toast").toastShow('时间不合法，请同步本机时间后重试！', 'fa-exclamation-circle', 1000);
+          wx.navigateBack({
+            delta: 1
+          })
+        }
+      },
+      fail(err) {
+        console.log("checkDateErr", err);
+        that.selectComponent("#toast").toastShow('未知错误！', 'fa-exclamation-circle', 3000);
+
+        wx.navigateBack({
+          delta: 1
+        })
+      }
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
   },
   // 文本长度监督
   lengthChange: function(e) {
@@ -123,7 +157,7 @@ Page({
             })
           } else if (n < 4 && res.tempFiles[i].size >= app.globalData.maxPostFileSize) {
             that.selectComponent("#toast").toastShow('图片过大，请重新选择！', 'fa-exclamation-circle', 1000);
-          }else{
+          } else {
             break
           }
         }
@@ -148,7 +182,7 @@ Page({
         console.log("chooseVideoFileRes", res)
         var url = res.tempFilePath
         var n = that.data.index
-        if(res.size < app.globalData.maxPostFileSize){
+        if (res.size < app.globalData.maxPostFileSize) {
           that.setData({
             ['video[' + n + '].URL']: url,
             index: n + 1,
@@ -158,7 +192,7 @@ Page({
           that.setData({
             fileTypeChoosing: "video"
           })
-        }else{
+        } else {
           that.selectComponent("#toast").toastShow('视频过大，请重新选择！', 'fa-exclamation-circle', 1000)
         }
 
@@ -179,7 +213,7 @@ Page({
   //上传音频
   chooseAudioFile: function() {},
   // 取消录音文件
-  cancelRecor: function(e){
+  cancelRecor: function(e) {
     var n = this.data.index - 1
     var p = e.target.dataset.index
     console.log(p + ":" + this.data.recor[p].URL)

@@ -28,7 +28,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options)
+    console.log("taskDetailOnload", options)
     var that = this
     if (options.checkId != undefined) {
       this.setData({
@@ -54,6 +54,7 @@ Page({
     this.setData({
       taskId: options.taskId,
       taskname: options.taskname,
+      ymd: options.ymd,
     })
     console.log('taskId:' + this.data.taskId + ',checkId:' + this.data.checkId)
   },
@@ -132,7 +133,7 @@ Page({
   upload: function() {
     if (this.data.checkId == '') { // 未打卡情况
       wx.navigateTo({
-        url: '../upload/upload?taskId=' + this.data.taskId + '&taskname=' + this.data.taskname,
+        url: '../upload/upload?taskId=' + this.data.taskId + '&taskname=' + this.data.taskname + '&ymd=' + this.data.ymd,
       })
     } else { // 已打卡情况
       wx.navigateTo({

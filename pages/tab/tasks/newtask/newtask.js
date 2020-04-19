@@ -119,7 +119,7 @@ Page({
     if (options.taskid != null) {
       this.initTask(options.taskid);
     } else {
-      this.initConfig();
+      this.initConfig(options.ymd);
     }
 
     wx.setNavigationBarTitle({
@@ -164,31 +164,44 @@ Page({
       method: 'POST',
       data: {
         taskId: taskid,
+        ymd: app.globalData.date,
       },
       success: res => {
         console.log("initTask", res)
-        that.setData({
-          title: res.data.task.taskTitle,
-          content: res.data.task.taskContent,
-          moneyTypeIndex: res.data.task.ifTest,
-          // num: res.data.task.supervisorNum,
-          "types[0]": {
-            typeId: res.data.task.typeId,
-            typeContent: res.data.typeContent
-          },
-          index: 0,
-          typeContent: res.data.typeContent,
+        if (res.data.state === "OK") {
+          that.setData({
+            title: res.data.task.taskTitle,
+            content: res.data.task.taskContent,
+            moneyTypeIndex: res.data.task.ifTest,
+            // num: res.data.task.supervisorNum,
+            "types[0]": {
+              typeId: res.data.task.typeId,
+              typeContent: res.data.typeContent
+            },
+            index: 0,
+            typeContent: res.data.typeContent,
 
-          startTime: res.data.task.taskStartTime,
-          endTime: res.data.task.taskEndTime,
-          // "checkFrec": util.formatRepeatDate(this.data.chooseRepeat),
-          money: res.data.task.taskMoney,
-          minPass: res.data.task.minPass,
-          minCheck: res.data.task.minCheck,
-          supervisorTypeIndex: res.data.task.supervisorType,
-          ifAreaIndex: res.data.task.ifArea,
-          ifHobbyIndex: res.data.task.ifHobby
-        })
+            // startTime: res.data.task.taskStartTime, // 存在发布过去时期任务的可能
+            // endTime: res.data.task.taskEndTime,
+            // "checkFrec": util.formatRepeatDate(this.data.chooseRepeat),
+            money: res.data.task.taskMoney,
+            minPass: res.data.task.minPass,
+            minCheck: res.data.task.minCheck,
+            supervisorTypeIndex: res.data.task.supervisorType,
+            ifAreaIndex: res.data.task.ifArea,
+            ifHobbyIndex: res.data.task.ifHobby
+          })
+        } else if (res.data.state === "fail") {
+          that.selectComponent("#toast").toastShow('时间不合法，请同步本机时间后重试！', 'fa-exclamation-circle', 1000);
+          wx.navigateBack({
+            delta: 1
+          })
+        } else {
+          that.selectComponent("#toast").toastShow('未知错误，请稍后重试', 'fa-exclamation-circle', 1000);
+          wx.navigateBack({
+            delta: 1
+          })
+        }
       },
       fail: err => {
         console.log("initTask", err)
@@ -201,24 +214,35 @@ Page({
   },
 
   // 后台取参数,不排除未来有更多参数的可能
-  initConfig: function(e) {
+  initConfig: function(ymd) {
     var that = this;
     req = {
       url: '/task/initConfig',
       method: 'POST',
       data: {
         userId: app.globalData.openId,
+        ymd: ymd,
       },
       success: res => {
         console.log("initConfig", res);
-        that.setData({
-          minPass: res.data.minPass,
-          minCheck: res.data.minCheck,
-        })
+        if (res.data.state === "ok") {
+          that.setData({
+            minPass: res.data.minPass,
+            minCheck: res.data.minCheck,
+          })
+        } else {
+          that.selectComponent("#toast").toastShow('时间不合法，请同步本机时间后重试！', 'fa-exclamation-circle', 1000);
+          wx.navigateBack({
+            delta: 1
+          })
+        }
       },
       fail: err => {
         console.log("initConfigErr", err)
         this.selectComponent("#toast").toastShow("未知错误，请稍后重试", "fa-remove", 1500)
+        wx.navigateBack({
+          delta: 1
+        })
       }
     }
     app.requestWithAuth(req)
@@ -373,14 +397,14 @@ Page({
     this.sendForm()
   },
 
-  dialogFailCancelEvent: function (e) {
+  dialogFailCancelEvent: function(e) {
     console.log('dialogFailCancelEvent点击了编辑');
     this.setData({
       isFailDialogShow: false
     })
   },
 
-  dialogFailConfirmEvent: function (e) {
+  dialogFailConfirmEvent: function(e) {
     console.log('dialogFailConfirmEvent点击了确定');
     this.setData({
       isFailDialogShow: false
@@ -431,17 +455,17 @@ Page({
           console.log("sendConfim", res)
           if (res.data.state == "addTaskSuccess") {
             this.selectComponent("#toast").toastShow("新建成功", "fa-check", 1500)
-          } else if (res.data.state  == "noEnoughTestMoney") {
+          } else if (res.data.state == "noEnoughTestMoney") {
             this.selectComponent("#toast").toastShow("试玩余额不足，任务已保存", "fa-check", 1500)
-          } else if (res.data.state  == "noEnoughUserMoney") {
+          } else if (res.data.state == "noEnoughUserMoney") {
             this.selectComponent("#toast").toastShow("账户余额不足，任务已保存", "fa-check", 1500)
-          } else if (res.data.state  == "addTaskFail") {
+          } else if (res.data.state == "addTaskFail") {
             this.selectComponent("#toast").toastShow("未知错误", "fa-check", 1500)
-          } else if (res.data.state  == "insertMoneyFlowError") {
+          } else if (res.data.state == "insertMoneyFlowError") {
             this.selectComponent("#toast").toastShow("未知错误，请联系管理员", "fa-check", 1500)
-          } else if (res.data.state  == "matchSupervisorError") {
+          } else if (res.data.state == "matchSupervisorError") {
             this.selectComponent("#toast").toastShow("未知错误，请联系管理员", "fa-check", 1500)
-          } else if (res.data.state  == "noEnoughSupervisor") {
+          } else if (res.data.state == "noEnoughSupervisor") {
             that.setData({
               isFailDialogShow: true,
               failTaskId: res.data.failTaskId,

@@ -19,6 +19,8 @@ Page({
     dayStyle: [{
         month: 'current',
         day: new Date().getDate(),
+        // 和‘今日’一起初始化才对一点，之后点打卡的话一起传参过去~
+        ymd: new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate(),
         color: 'white',
         background: '#e83015'
       },
@@ -45,7 +47,7 @@ Page({
   },
 
   //设置高度
-  setHeight: function(){
+  setHeight: function() {
     var baseHeight = 0;
     if (this.data.currentTab === 0) { // 打卡界面
       var baseHeight = baseHeight + 320 + 250;
@@ -205,6 +207,7 @@ Page({
       dateToDisplay: year + '年' + month + '月' + day + '日',
     })
     this.requestCheckList(this.data.chooseDate)
+    console.log("dayStyle", that.data.dayStyle);
   },
   // 月份跳转
   prev: function(event) {
@@ -314,7 +317,7 @@ Page({
       })
     }
     wx.navigateTo({
-      url: './newtask/newtask',
+      url: './newtask/newtask?ymd=' + this.data.dayStyle[0].ymd,
     })
   },
   // 跳转到打卡详情
@@ -333,7 +336,7 @@ Page({
     var taskId = e.target.dataset.taskid;
     var taskname = e.target.dataset.taskname;
     wx.navigateTo({
-      url: './taskDetail/taskDetail?taskId=' + taskId + '&taskname=' + taskname,
+      url: './taskDetail/taskDetail?taskId=' + taskId + '&taskname=' + taskname + '&ymd=' + this.data.dayStyle[0].ymd,
     })
   },
   //跳转到监督详情
