@@ -91,6 +91,14 @@ Page({
     app.requestWithAuth(req)
       .then(req.success)
   },
+
+  report: function(e){
+    console.log("report", e)
+    wx.navigateTo({
+      url: '../../essay/report/report?checkId=' + e.target.dataset.checkid + '&taskId=' + e.target.dataset.taskid + '&userName=' + e.target.dataset.username ,
+    })
+  },
+
   pass: function(e){
     this.selectComponent("#toast").toastShow2("正在提交，请稍等","fa-spinner fa-pulse")
     var state = e.target.dataset.flag

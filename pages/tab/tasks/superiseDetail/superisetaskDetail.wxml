@@ -10,6 +10,10 @@
         <view class='info'>{{userName}}</view>
         <view class='date'>{{date}}</view>
       </view>
+      <!--举报-->
+      <view class='essays-report'>
+        <button class='fa fw fa-reorder' bindtap='report' mode="top" data-checkid='{{checkId}}' data-taskid='{{taskId}}' data-username='{{userName}}'></button>
+      </view>
     </view>
     <view class='content-view'>{{content}}</view>
     <!-- 图片 -->

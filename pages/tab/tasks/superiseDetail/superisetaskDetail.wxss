@@ -12,6 +12,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 68%;
 }
 .avatar{
   width: 60px;
@@ -27,6 +28,18 @@
 .date{
   font-size: 14px;
   color: #999;
+}
+.essays-report {
+  width: 30px;
+  margin: 0px 5px;
+  font-size: 20px;
+}
+.essays-time{
+  transition: 0.3s ease-in-out;
+}
+.fa-reorder {
+  color: #e83015;
+  background-color: white;
 }
 .title-view{
   color: #e83015;

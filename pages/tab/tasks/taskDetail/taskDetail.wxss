@@ -67,6 +67,7 @@
   overflow-wrap: break-word;
   word-wrap: break-word;
   max-width: 60%;
+  margin-right: 110px ;
 }
 .pass{
   color: #08d101;

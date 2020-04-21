@@ -1,6 +1,6 @@
 <!--pages/tab/tasks/taskDetail/taskDetail.wxml-->
-<modal id='modal' modal-title="{{modal.title}}" modal-hidden="{{modal.isHidden}}" modal-msg="{{modal.message}}" bind:appeal = "sendAppeal"/>
-<toast id="toast"/>
+<modal id='modal' modal-title="{{modal.title}}" modal-hidden="{{modal.isHidden}}" modal-msg="{{modal.message}}" bind:appeal="sendAppeal" />
+<toast id="toast" />
 <view class='form-view'>
   <view class='container-view'>
     <view class='title-view'>打卡状态</view>
@@ -29,8 +29,20 @@
     <view class='item-view' wx:for="{{supList}}" wx:key='key'>
       <view class='inner-item-view'>
         <view class='tag item'>{{item.supervisorName}}</view>
-        <view class="state item {{item.supState=='fail'?'fail':''}} {{item.supState=='pass'?'pass':''}}">{{item.supervisorState}}</view>
+        <view class='state item'>{{item.supervisorState}}</view>
       </view>
+      <view wx:if="{{item.supervisorState==='失败'}}" class='operation item'>
+        <button class='appeal' bindtap='reportSup' data-supervisorid="{{item.supervisorId}}" data-username="{{item.supervisorName}}">投诉</button>
+      </view>
+
+
+      <!-- <view class='inner-item-view'>
+        <view class='tag item'>{{item.supervisorName}}</view>
+        <view class="state item {{item.supState=='fail'?'fail':''}} {{item.supState=='pass'?'pass':''}}">{{item.supervisorState}}</view>
+        <view wx:if="{{item.supervisorState==='失败'}}" class='operation item'>
+          <button class='appeal' bindtap='reportSup' data-supervisorid="{{item.supervisorId}}" data-username="{{item.supervisorName}}">投诉</button>
+        </view>
+      </view> -->
       <view class='operation item' bindtap='upload'>
       </view>
     </view>

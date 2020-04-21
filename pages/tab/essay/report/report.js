@@ -2,67 +2,54 @@ const app = getApp()
 
 Page({
   data: {
-    essReason: [{
-      "text": "垃圾营销",
-      "check": false
-    }, {
-      "text": "涉黄信息",
-      "check": false
-    }, {
-      "text": "人身攻击",
-      "check": false
-    }, {
-      "text": "不实信息",
-      "check": false
-    }, {
-      "text": "有害信息",
-      "check": false
-    }, {
-      "text": "内容抄袭",
-      "check": false
-    }, {
-      "text": "违法信息",
-      "check": false
-    }, {
-      "text": "诈骗信息",
-      "check": false
-    }, {
-      "text": "其他原因",
-      "check": false
-    }],
-    essayId: "",
     userName: "",
-    essaysText: "",
-    reason: ""
+    checkboxItems: [{
+        name: '举报整个任务',
+        value: '0',
+        checked: true
+      },
+      {
+        name: '举报此次打卡',
+        value: '1'
+      }
+    ],
+    type: 0, // 0: essay 1:task 2:sup 3:check
+    inputNum: 0, // 字数
+    reportContent: "",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.setData({
-      essayId: options.essayId,
-      essaysText: options.essaysText,
-      userName: options.userName
-    })
+    console.log("reportOnload", options)
+    if (options.checkId != null) {
+      this.setData({
+        checkId: options.checkId,
+        taskId: options.taskId,
+        userName: options.userName,
+        type: 1,
+      })
+    } else if (options.essayId != null) {
+      this.setData({
+        essayId: options.essayId,
+        userName: options.userName,
+        type: 0,
+      })
+    } else if (options.supervisorId != null) {
+      this.setData({
+        supervisorId: options.supervisorId,
+        userName: options.userName,
+        type: 2,
+      })
+    }
+
   },
-  // 选择原因
-  reasonClick: function(e) {
-    // -----多选需求注释此段并修改请求函数
-    var that = this.data.essReason
-    that.map(function(item) {
-      item.check = false
-    })
+
+  bindContentInput: function (e) {
     this.setData({
-      essReason: that
-    })
-    // -----至此
-    var statement = "essReason[" + e.target.dataset.index + "].check"
-    this.setData({
-      [statement]: !this.data.essReason[e.target.dataset.index].check
-    })
-    this.setData({
-      reason: this.data.essReason[e.target.dataset.index].text
+      reportContent: e.detail.value,
+      inputNum: e.detail.value.length,
     })
   },
 
@@ -79,40 +66,69 @@ Page({
   onShow: function() {
 
   },
+
+  checkboxChange: function(e) {
+    console.log('checkboxChange', e);
+
+    var checkboxItems = this.data.checkboxItems;
+    var valueLen = e.detail.value.length;
+
+    if (valueLen === 2) {
+      checkboxItems[0].checked = !checkboxItems[0].checked;
+      checkboxItems[1].checked = !checkboxItems[1].checked;
+      if (checkboxItems[0].checked === true){
+        this.setData({
+          type: 1,
+        })
+      } else if(checkboxItems[1].checked === true){
+        this.setData({
+          type: 3,
+        })
+      }
+    } else{
+      console.log("nochange")
+    }
+
+    this.setData({
+      checkboxItems: checkboxItems
+    });
+    console.log("afteChage", this.data);
+  },
+
   // 发送举报
   send: function() {
     this.selectComponent("#toast").toastShow2("请稍后", "fa-spinner fa-pulse")
-    if (this.data.reason == "") {
-      this.selectComponent("#toast").toastShow("请选择一个类型", "fa-exclamation-circle", 1500)
-    } else {
-      req = {
-        url: '/report/addReport',
-        method: 'POST',
-        data: {
-          userId: app.globalData.openId,
-          reportContent: this.data.reason,
-          essayId: this.data.essayId,
-          reportType: 0
-        },
-        success: res => {
-          if(res.statusCode==200){
-            this.selectComponent("#toast").toastShow("提交成功", "fa-check", 1000)
-            wx.navigateBack({
-              delta:1
-            })
-          }
-          else{
-            this.selectComponent("#toast").toastShow("提交失败", "fa-remove", 1000)
-          }
-        },
-        fail: err => {
+
+    req = {
+      url: '/report/addReport',
+      method: 'POST',
+      data: {
+        userReportedId: app.globalData.openId,
+        reportContent: this.data.reportContent,
+        essayId: this.data.essayId,
+        taskId: this.data.taskId,
+        checkId: this.data.checkId,
+        supervisorId: this.data.supervisorId,
+        reportType: this.data.type,
+      },
+      success: res => {
+        if (res.data.state == "ok") {
+          this.selectComponent("#toast").toastShow("提交成功", "fa-check", 1000)
+          wx.navigateBack({
+            delta: 1
+          })
+        } else {
           this.selectComponent("#toast").toastShow("提交失败", "fa-remove", 1000)
-          console.log(err)
         }
+      },
+      fail: err => {
+        this.selectComponent("#toast").toastShow("提交失败", "fa-remove", 1000)
+        console.log(err)
       }
-      app.requestWithAuth(req)
+    }
+    app.requestWithAuth(req)
       .then(req.success)
       .catch(req.fail)
-    }
   }
+
 })

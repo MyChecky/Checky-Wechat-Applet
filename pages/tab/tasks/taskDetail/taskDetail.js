@@ -149,6 +149,13 @@ Page({
       modal: temp
     })
   },
+  reportSup: function(e){
+    console.log("reportSup", e);
+    wx.navigateTo({
+      url: '../../essay/report/report?supervisorId=' + e.target.dataset.supervisorid + '&userName=' + e.target.dataset.username,
+    })
+  },
+
   sendAppeal: function(e) {
     this.selectComponent("#toast").toastShow2("发送中", "fa-spinner fa-pulse")
     var appealContent = e.detail.content
