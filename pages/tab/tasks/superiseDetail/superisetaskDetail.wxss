@@ -189,3 +189,71 @@
   margin-right: 10px;
   line-height: 40px;
 }
+
+
+
+.image-view {
+  display: flex;
+  flex-wrap: wrap;
+  height: auto;
+  width: 100%;
+}
+
+.video-view {
+  display: flex;
+  flex-wrap: wrap;
+  height: auto;
+  width: 100%;
+}
+
+.recor-view{
+  display: flex;
+  flex-wrap: wrap;
+  height: auto;
+  width: 100%;
+}
+
+.image-container {
+  width: 48%;
+  height: 0px;
+  padding-bottom: 48%;
+  margin: 0.5%;
+  background-color: #f3f5f5;
+  position: relative;
+}
+
+.video-container {
+  width: 96%;
+  height: 0px;
+  padding-bottom: 48%;
+  margin: 0.5%;
+  background-color: #f3f5f5;
+  position: relative;
+}
+
+.recor-container {
+  width: 96%;
+  height: 0px;
+  padding-bottom: 20%;
+  margin: 0.5%;
+  background-color: #f3f5f5;
+  position: relative;
+}
+
+.essays-pic {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.essays-recor {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.essays-video {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}

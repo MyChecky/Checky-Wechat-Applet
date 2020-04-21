@@ -10,24 +10,20 @@
         <view class='date'>{{date}}</view>
       </view>
     </view>
-    <view class='content-view'>{{content}}</view>
+    <view class='content-view' >{{content}}</view>
     <!-- 图片 -->
     <view wx:if="{{fileRecords[0].recordType=='image'}}" class='image-view'>
       <view class="image-container" catchtap='previewPic' wx:for="{{fileRecords}}" wx:key="key">
         <image class='essays-pic' catchtap='previewPic' src='{{path}}{{item.fileAddr}}' mode='aspectFill' data-index='{{index}}' data-src='{{path}}{{item.fileAddr}}' data-essayid='{{item.essayId}}'></image>
       </view>
     </view>
-    <!--视频-->
-    <view wx:if='{{item.fileRecord[0].recordType=="video"}}' class="video-view" catchtap="essayVideo">
-      <view class="video-container" catchtap='essayVideo' wx:for="{{item.fileRecord}}" wx:key="key">
-        <video class='essays-video' src='{{path}}{{item.fileAddr}}' data-src='{{path}}{{item.fileAddr}}' binderror="videoErrorCallback" controls></video>
-      </view>
+ <!--视频-->
+    <view wx:if="{{fileRecords[0].recordType=='video'}}" class='video-view'>
+      <video class='vid' wx:for="{{fileRecords}}" wx:key='key' src='{{path}}{{item.fileAddr}}' binderror="videoErrorCallback" controls></video>
     </view>
     <!--录音-->
-    <view wx:if='{{item.fileRecord[0].recordType=="audio"}}' class="recor-view" catchtap="essayAudio">
-      <view class="recor-container" catchtap="essayAudio">
-        <audio class="essays-recor" name="{{item.userName}}" author="{{item.essay.essayTime}}" src='{{path}}{{item.fileRecord[0].fileAddr}}' data-src='{{path}}{{item.fileRecord[0].fileAddr}}' controls></audio>
-      </view>
+    <view wx:if='{{fileRecords[0].recordType=="audio"}}' class="recor-view">
+      <audio class='rec' wx:for="{{fileRecords}}" wx:key='key' name="{{userName}}" author="{{item.recordTime}}" src='{{path}}{{item.fileAddr}}' controls></audio>
     </view>
   </view>
   <view class='container-view'>

@@ -105,7 +105,6 @@ Page({
     ifTrueMoneyAccess: false,
     isDialogShow: false,
     isFailDialogShow: false,
-    failTaskId: "",
     failNum: 0,
     taskPass: "",
     checkPass: "",
@@ -168,7 +167,7 @@ Page({
       },
       success: res => {
         console.log("initTask", res)
-        if (res.data.state === "OK") {
+        if (res.data.state === "ok") {
           that.setData({
             title: res.data.task.taskTitle,
             content: res.data.task.taskContent,
@@ -453,13 +452,13 @@ Page({
         data: data,
         success: res => {
           console.log("sendConfim", res)
-          if (res.data.state == "addTaskSuccess") {
+          if (res.data.state == "ok") {
             this.selectComponent("#toast").toastShow("新建成功", "fa-check", 1500)
           } else if (res.data.state == "noEnoughTestMoney") {
             this.selectComponent("#toast").toastShow("试玩余额不足，任务已保存", "fa-check", 1500)
           } else if (res.data.state == "noEnoughUserMoney") {
             this.selectComponent("#toast").toastShow("账户余额不足，任务已保存", "fa-check", 1500)
-          } else if (res.data.state == "addTaskFail") {
+          } else if (res.data.state == "insertFail") {
             this.selectComponent("#toast").toastShow("未知错误", "fa-check", 1500)
           } else if (res.data.state == "insertMoneyFlowError") {
             this.selectComponent("#toast").toastShow("未知错误，请联系管理员", "fa-check", 1500)
@@ -468,8 +467,8 @@ Page({
           } else if (res.data.state == "noEnoughSupervisor") {
             that.setData({
               isFailDialogShow: true,
-              failTaskId: res.data.failTaskId,
-              failNum: res.data.failNum,
+              taskId: res.data.taskId,
+              failNum: res.data.matchNum,
             })
             return;
           }
