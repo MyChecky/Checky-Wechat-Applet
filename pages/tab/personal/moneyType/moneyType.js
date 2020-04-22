@@ -12,7 +12,7 @@ Page({
     displayTypeIndex: 0,
     startTime: app.globalData.date,
     endTime: app.globalData.date,
-    year: ['2019', '2020', '2021'], // 此处写死了，不是很好！长远考虑最好用后台计算返回的形式
+    years: [], 
     yearIndex: 0,
 
     ifTrueMoneyAccess: false,
@@ -26,6 +26,7 @@ Page({
     this.setData({
       ifTrueMoneyAccess: app.globalData.ifTrueMoneyAccess,
     })
+    this.getYear();
   },
 
   /**
@@ -76,6 +77,29 @@ Page({
   onShareAppMessage: function () {
 
   },
+  // 获取用户注册至今的年份列表
+  getYear: function(){
+    var that = this;
+    req = {
+      url: '/money/yearList',
+      method: 'POST',
+      data: {
+        userId: app.globalData.openId
+      },
+      success: res => {
+        console.log("getYearRes", res)
+        that.setData({
+          years: res.data.years,
+        })
+      },
+      fail: err => {
+        console.log("getYearErr", err)
+      }
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
+  },
   bindPickerStartTime: function (e) {
     this.setData({
       startTime: e.detail.value
@@ -109,7 +133,7 @@ Page({
       endTime: this.data.endTime,
       moneyTypeIndex: this.data.moneyTypeIndex,
       displayTypeIndex: this.data.displayTypeIndex,
-      yearIndex: this.data.yearIndex
+      year: this.data.yearIndex + this.data.years[0],
     })
     wx.navigateBack({
       delta: 1,

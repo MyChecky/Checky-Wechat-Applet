@@ -37,9 +37,9 @@
   <view wx:if="{{displayTypeIndex==1}}">
     <view class='inner-view'>
       <view class='notifcation'>查询年份：</view>
-      <picker bindchange="bindPickerYear" style='padding:5px;' value='{{yearIndex}}' range="{{year}}">
+      <picker bindchange="bindPickerYear" style='padding:5px;' value='{{yearIndex}}' range="{{years}}">
         <view style='line-height:30px;' class="picker">
-          <text style='color:#333;'>{{year[yearIndex]}}</text>
+          <text style='color:#333;'>{{years[yearIndex]}}</text>
         </view>
       </picker>
     </view>

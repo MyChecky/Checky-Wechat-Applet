@@ -23,8 +23,7 @@ Page({
     date: '',
     startTime: "1970-01-01", // 取全部数据
     endTime: app.globalData.date, // 取全部数据
-    year: 2020,
-    yearIndex: -1, // 这里的 -1 表试默认值（默认列表不需要这个值）
+    year: "",
 
     ifTrueMoneyAccess: false,
   },
@@ -62,7 +61,7 @@ Page({
         userId: app.globalData.openId,
         startTime: this.data.startTime,
         endTime: this.data.endTime,
-        yearIndex: parseInt(this.data.yearIndex),
+        year: parseInt(this.data.year),
         moneyTypeIndex: parseInt(this.data.moneyTypeIndex), // 1：充值，0：试玩，2：全部
         displayTypeIndex: parseInt(this.data.displayTypeIndex) // 0: 列表，1：图表
       },
@@ -79,7 +78,6 @@ Page({
             displayMoneyIn: res.data.displayMoneyIn,
             totalMoneyOut: res.data.totalMoneyOut,
             totalMoneyIn: res.data.totalMoneyIn,
-            year: res.data.year
           })
           if (this.data.moneyTypeIndex == 0 || this.data.moneyTypeIndex == 2) {
             this.setData({
