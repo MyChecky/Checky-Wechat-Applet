@@ -6,11 +6,11 @@ App({
     // var logs = wx.getStorageSync('logs') || []
     // logs.unshift(Date.now())
     // wx.setStorageSync('logs', logs)
+    var that = this;
 
     // 登录
     wx.login({
       success: res => {
-        var that = this
         // 获取code
         that.globalData.code = res.code
         console.log("wx.login获取到code：", res)
@@ -28,13 +28,13 @@ App({
                   wx.getUserInfo({
                     success: res => {
                       // 可以将 res 发送给后台解码出 unionId
-                      this.globalData.userInfo = res.userInfo
-                      console.log("wx.login wx.getSetting获取信息", this.globalData.userInfo)
+                      that.globalData.userInfo = res.userInfo
+                      console.log("wx.login wx.getSetting获取信息", that.globalData.userInfo)
                       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
                       // 所以此处加入 callback 以防止这种情况
-                      if (this.userInfoReadyCallback) {
+                      if (that.userInfoReadyCallback) {
                         console.log("wx.login wx.getSetting返回较慢但即将callback")
-                        this.userInfoReadyCallback(res)
+                        that.userInfoReadyCallback(res)
                         console.log("wx.login wx.getSetting返回较慢已经callback赋值了", res)
                       }
                     }
