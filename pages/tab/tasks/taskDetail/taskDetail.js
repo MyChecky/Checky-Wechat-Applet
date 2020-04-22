@@ -152,7 +152,7 @@ Page({
   reportSup: function(e){
     console.log("reportSup", e);
     wx.navigateTo({
-      url: '../../essay/report/report?supervisorId=' + e.target.dataset.supervisorid + '&userName=' + e.target.dataset.username,
+      url: '../../essay/report/report?supervisorId=' + e.target.dataset.supervisorid + '&userName=' + e.target.dataset.username + '&taskId=' + e.target.dataset.taskid ,
     })
   },
 

@@ -39,6 +39,7 @@ Page({
     } else if (options.supervisorId != null) {
       this.setData({
         supervisorId: options.supervisorId,
+        taskId: options.taskId,
         userName: options.userName,
         type: 2,
       })
@@ -97,7 +98,9 @@ Page({
 
   // 发送举报
   send: function() {
+    var that = this;
     this.selectComponent("#toast").toastShow2("请稍后", "fa-spinner fa-pulse")
+    console.log("send", this.data)
 
     req = {
       url: '/report/addReport',
@@ -113,16 +116,16 @@ Page({
       },
       success: res => {
         if (res.data.state == "ok") {
-          this.selectComponent("#toast").toastShow("提交成功", "fa-check", 1000)
+          that.selectComponent("#toast").toastShow("提交成功", "fa-check", 1000)
           wx.navigateBack({
             delta: 1
           })
         } else {
-          this.selectComponent("#toast").toastShow("提交失败", "fa-remove", 1000)
+          that.selectComponent("#toast").toastShow("提交失败", "fa-remove", 1000)
         }
       },
       fail: err => {
-        this.selectComponent("#toast").toastShow("提交失败", "fa-remove", 1000)
+        that.selectComponent("#toast").toastShow("提交失败", "fa-remove", 1000)
         console.log(err)
       }
     }

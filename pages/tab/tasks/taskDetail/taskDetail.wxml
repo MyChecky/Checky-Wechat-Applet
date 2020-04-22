@@ -32,7 +32,7 @@
         <view class='state item'>{{item.supervisorState}}</view>
       </view>
       <view wx:if="{{item.supervisorState==='失败'}}" class='operation item'>
-        <button class='appeal' bindtap='reportSup' data-supervisorid="{{item.supervisorId}}" data-username="{{item.supervisorName}}">投诉</button>
+        <button class='appeal' bindtap='reportSup' data-supervisorid="{{item.supervisorId}}" data-username="{{item.supervisorName}}" data-taskid="{{taskId}}">投诉</button>
       </view>
 
 
