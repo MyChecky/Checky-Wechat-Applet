@@ -30,6 +30,12 @@ Page({
       taskId: options.taskId,
     })
     this.getTaskData(options.taskId);
+
+    if(options.from_ === "share"){
+      console.log("发现来自分享的用户");
+      app.globalData.fromShare = true;
+      // app.onLaunch();
+    }
   },
 
   /**
@@ -78,7 +84,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
+    var taskid = this.data.taskId;
+    return {
+      path: '/pages/tab/personal/taskDetail/taskDetail?taskId=' + taskid + '&from_=share',
+    }
   },
 
   getTaskData: function(taskId) {
@@ -108,7 +117,7 @@ Page({
         console.log("getTaskDataResErr", err);
       }
     }
-    app.requestWithAuth(req)
+    app.requestWithoutAuth(req)
       .then(req.success)
       .catch(req.fail)
   }

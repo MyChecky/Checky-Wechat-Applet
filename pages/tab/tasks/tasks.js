@@ -90,24 +90,30 @@ Page({
       date: app.globalData.date
     })
 
-    if (app.globalData.userInfo) {
-      console.log("tasksOnload已有信息")
-      this.loginIn()
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回 
-      // 所以此处加入 callback 以防止这种情况 
-      console.log("tasksOnload无信息但已授权")
-      app.userInfoReadyCallback = res => {
-        this.loginIn()
-      }
+    //处理用户从小程序分享界面跳转而来的情况
+    if (app.globalData.fromShare) {
+      this.handleFromShare();
     } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理 
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
+
+      if (app.globalData.userInfo) {
+        console.log("tasksOnload已有信息")
+        this.loginIn()
+      } else if (this.data.canIUse) {
+        // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回 
+        // 所以此处加入 callback 以防止这种情况 
+        console.log("tasksOnload无信息但已授权")
+        app.userInfoReadyCallback = res => {
           this.loginIn()
         }
-      })
+      } else {
+        // 在没有 open-type=getUserInfo 版本的兼容处理 
+        wx.getUserInfo({
+          success: res => {
+            app.globalData.userInfo = res.userInfo
+            this.loginIn()
+          }
+        })
+      };
     }
   },
 
@@ -125,6 +131,16 @@ Page({
 
   initVisitor: function() {
     // nothing to do
+  },
+  // 用户从分享页跳转到了首页
+  handleFromShare: function() {
+    console.log("handleFromShare-begin");
+    if (app.globalData.openId == "") {
+      console.log("user not logged");
+      app.onLaunch();
+    } else {
+      console.log("user already logged")
+    }
   },
   // 请求列表
   // 打卡
@@ -364,7 +380,9 @@ Page({
       },
       success: (res) => {
         console.log("loginRes", res.data)
-        if(res.data.state == "ok"){
+        if (res.data.state == "ok") {
+          app.globalData.fromShare = false;
+
           app.globalData.openId = res.data.openId
           app.globalData.sessionKey = res.data.sessionKey
           app.globalData.userInfo.gender = res.data.userGender
@@ -386,8 +404,8 @@ Page({
           console.log("tasksLoged登录成功后调用查询当日打卡")
           this.requestCheckList(this.data.chooseDate)
           this.requestSupList(this.data.date)
-        }// end state == "ok"
-        else if(res.data.state == "fail"){
+        } // end state == "ok"
+        else if (res.data.state == "fail") {
           this.selectComponent("#toast").toastShow("未知错误，请稍后重试", "fa-remove", 1000)
         } else if (res.data.state == "insertFail") {
           this.selectComponent("#toast").toastShow("注册失败", "fa-remove", 1000)

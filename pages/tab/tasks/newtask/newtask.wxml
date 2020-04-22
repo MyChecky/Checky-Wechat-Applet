@@ -62,7 +62,7 @@
   <view class='container-view'>
     <view class='inner-view'>
       <view class='notifcation'>开始时间：</view>
-      <picker bindchange="bindPickerStartTime" mode="date" start="{{startlimit}}" style='padding:5px;' value='{{startTime}}'>
+      <picker bindchange="bindPickerStartTime" mode="date" start="{{startlimit}}" end="{{endTime}}" style='padding:5px;' value='{{startTime}}'>
         <view style='line-height:30px;' class="picker">
           <text style='color:#333;'>{{startTime}}</text>
         </view>

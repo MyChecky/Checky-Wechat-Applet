@@ -44,6 +44,6 @@
 
   <view class="weui-form-preview__ft">
     <!-- <navigator class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" style="color: #e83015;">申 诉</navigator> -->
-    <view class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" style="color: #e83015;">分 享</view>
+    <!-- <button class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" open-type="share" style="color: #e83015;">分 享</button> -->
   </view>
 </view>
