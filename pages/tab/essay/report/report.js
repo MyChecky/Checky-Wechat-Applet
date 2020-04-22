@@ -103,7 +103,7 @@ Page({
       url: '/report/addReport',
       method: 'POST',
       data: {
-        userReportedId: app.globalData.openId,
+        userId: app.globalData.openId,
         reportContent: this.data.reportContent,
         essayId: this.data.essayId,
         taskId: this.data.taskId,
