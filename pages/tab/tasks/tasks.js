@@ -363,30 +363,40 @@ Page({
         "baseIp": app.getAbsolutePath(),
       },
       success: (res) => {
-        console.log(res.data)
-        app.globalData.openId = res.data.states
-        app.globalData.sessionKey = res.data.sessionKey
-        app.globalData.userInfo.gender = res.data.userGender
-        app.globalData.userInfo.nickName = res.data.userNickname
-        app.globalData.userInfo.avatarUrl = res.data.userAvatar
-        console.log("globaldate", app.globalData)
-        // 这里是登陆后的一些页面/控件可见性信息
-        app.globalData.ifTrueMoneyAccess = res.data.ifTrueMoneyAccess
-        app.globalData.ifNewTaskHighSettingAccess = res.data.ifNewTaskHighSettingAccess
-        if (app.globalData.openId != "0") {
-          this.setData({
-            loged: true
-          })
-          this.selectComponent("#toast").toastShow("登录成功", "fa-check", 1000)
-        } else {
+        console.log("loginRes", res.data)
+        if(res.data.state == "ok"){
+          app.globalData.openId = res.data.openId
+          app.globalData.sessionKey = res.data.sessionKey
+          app.globalData.userInfo.gender = res.data.userGender
+          app.globalData.userInfo.nickName = res.data.userNickname
+          app.globalData.userInfo.avatarUrl = res.data.userAvatar
+          console.log("globaldate", app.globalData)
+          // 这里是登陆后的一些页面/控件可见性信息
+          app.globalData.ifTrueMoneyAccess = res.data.ifTrueMoneyAccess
+          app.globalData.ifNewTaskHighSettingAccess = res.data.ifNewTaskHighSettingAccess
+          if (app.globalData.openId != "0") {
+            this.setData({
+              loged: true
+            })
+            this.selectComponent("#toast").toastShow("登录成功", "fa-check", 1000)
+          } else {
+            this.selectComponent("#toast").toastShow("登陆失败", "fa-remove", 1000)
+          }
+          // 登录成功后调用查询当日打卡等信息
+          console.log("tasksLoged登录成功后调用查询当日打卡")
+          this.requestCheckList(this.data.chooseDate)
+          this.requestSupList(this.data.date)
+        }// end state == "ok"
+        else if(res.data.state == "fail"){
+          this.selectComponent("#toast").toastShow("未知错误，请稍后重试", "fa-remove", 1000)
+        } else if (res.data.state == "insertFail") {
+          this.selectComponent("#toast").toastShow("注册失败", "fa-remove", 1000)
+        } else if (res.data.state == "updateFail") {
           this.selectComponent("#toast").toastShow("登陆失败", "fa-remove", 1000)
         }
-        // 登录成功后调用查询当日打卡等信息
-        console.log("tasksLoged登录成功后调用查询当日打卡")
-        this.requestCheckList(this.data.chooseDate)
-        this.requestSupList(this.data.date)
       },
       fail: (err) => {
+        console.log("loginErr", res.data)
         this.selectComponent("#toast").toastShow("登陆失败", "fa-remove", 1000)
       }
     })

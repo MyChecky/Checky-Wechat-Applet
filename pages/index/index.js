@@ -12,14 +12,14 @@ Page({
   },
   // 事件处理函数
   // 向后台发送用户信息
-  sendInfo: function () {
-    if(this.data.ifAgree){
+  sendInfo: function() {
+    if (this.data.ifAgree) {
       this.login_in();
-    }else{
+    } else {
       this.selectComponent("#toast").toastShow("未同意服务条款", "fa-remove", 1000)
     }
   },
-  login_in:function(){
+  login_in: function() {
     console.log("准备发送的数据：")
     console.log(app.globalData)
     this.selectComponent("#toast").toastShow2("稍等", "fa-spinner fa-pulse")
@@ -34,39 +34,46 @@ Page({
         "baseIp": app.getAbsolutePath(),
       },
       success: (res) => {
-        console.log(res.data)
-        app.globalData.notLoged = false
-        app.globalData.ifHasUserInfo = true
-        app.globalData.openId = res.data.states
-        app.globalData.sessionKey = res.data.sessionKey
-        app.globalData.userInfo.gender = res.data.userGender
-        app.globalData.userInfo.nickName = res.data.userNickname
-        app.globalData.userInfo.avatarUrl = res.data.userAvatar
-        console.log("globaldate", app.globalData)
-        // 这里是登陆后的一些页面/控件可见性信息
-        app.globalData.ifTrueMoneyAccess = res.data.ifTrueMoneyAccess
-        app.globalData.ifNewTaskHighSettingAccess = res.data.ifNewTaskHighSettingAccess
-        if (app.globalData.openId != "0") {
-          this.selectComponent("#toast").toastShow("登录成功", "fa-check", 1000)
+        console.log("loginRes", res.data)
+        if (res.data.state == "ok") {
+          app.globalData.openId = res.data.openId
+          app.globalData.sessionKey = res.data.sessionKey
+          app.globalData.userInfo.gender = res.data.userGender
+          app.globalData.userInfo.nickName = res.data.userNickname
+          app.globalData.userInfo.avatarUrl = res.data.userAvatar
+          console.log("globaldate", app.globalData)
+          // 这里是登陆后的一些页面/控件可见性信息
+          app.globalData.ifTrueMoneyAccess = res.data.ifTrueMoneyAccess
+          app.globalData.ifNewTaskHighSettingAccess = res.data.ifNewTaskHighSettingAccess
+          if (app.globalData.openId != "0") {
+            this.selectComponent("#toast").toastShow("登录成功", "fa-check", 1000)
             wx.navigateBack({
-              delta: 2,
+              delta: 1,
             })
-        }
-        else {
+          } else {
+            this.selectComponent("#toast").toastShow("登陆失败", "fa-remove", 1000)
+          }
+        } // end state == "ok"
+        else if (res.data.state == "fail") {
+          this.selectComponent("#toast").toastShow("未知错误，请稍后重试", "fa-remove", 1000)
+        } else if (res.data.state == "insertFail") {
+          this.selectComponent("#toast").toastShow("注册失败", "fa-remove", 1000)
+        } else if (res.data.state == "updateFail") {
           this.selectComponent("#toast").toastShow("登陆失败", "fa-remove", 1000)
         }
       },
       fail: (err) => {
+        console.log("loginErr", res.data)
         this.selectComponent("#toast").toastShow("登陆失败", "fa-remove", 1000)
       }
     })
   },
-  openServiceContent: function () {
+  openServiceContent: function() {
     wx.navigateTo({
       url: '../tab/personal/serviceContent/serviceContent',
     })
   },
-  onLoad: function () {
+  onLoad: function() {
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -98,7 +105,7 @@ Page({
       })
     }
   },
-  onReady: function(){
+  onReady: function() {
     // var toast = this.selectComponent("#toast")
     // var i = 0
     // while(toast==null){
@@ -107,7 +114,7 @@ Page({
     // }
     // console.log(toast)
   },
-  getUserInfo: function (e) {
+  getUserInfo: function(e) {
     console.log("点击授权，可是不一定点击同意授权了🐶🐶", e.detail)
     if (e.detail.errMsg === "getUserInfo:fail auth deny") {
       this.selectComponent("#toast").toastShow("授权失败", "fa-remove", 1000)
@@ -119,8 +126,8 @@ Page({
       })
     }
   },
-  checkboxChange: function(e){
-    this.data.ifAgree= !this.data.ifAgree
+  checkboxChange: function(e) {
+    this.data.ifAgree = !this.data.ifAgree
     console.log(this.data.ifAgree)
   }
-}) 
+})
