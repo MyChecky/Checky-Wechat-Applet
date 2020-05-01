@@ -7,7 +7,7 @@ Page({
   data: {
     height: 0,
     supList: [],
-    pageRequest: 0,
+    pageRequest: 1,
     pageSize: 10,
     noMore: false,
     icon: "https://wx.qlogo.cn/mmopen/vi_32/mg86W2NaRPUPJ4ZJiau8RuMAb6WAkRYoS78cPkGMrsbaUAiaiajOPC3MTAAkZ6sXkMcdlJWlymXibTco8VicsEgvlRA/132",
@@ -17,7 +17,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    wx.getSystemInfo({
+      success: (res) => {
+        this.setData({
+          height: res.windowHeight
+        })
+      }
+    })
   },
 
   /**
@@ -70,6 +76,7 @@ Page({
   },
 
   loadMore: function() {
+    console.log("supLoadMore")
     var that = this;
     req = {
       url: '/supervise/history',
@@ -81,8 +88,9 @@ Page({
       },
       success: res => {
         console.log(res.data);
+
         that.setData({
-          supList: res.data.supList,
+          supList: that.data.supList.concat(res.data.supList),
           pageRequest: that.data.pageRequest + 1,
         });
         if (res.data.supList.length < 10) {

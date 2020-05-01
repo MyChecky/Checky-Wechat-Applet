@@ -37,7 +37,7 @@ Page({
       method: 'POST',
       data: {
         userId: app.globalData.openId,
-        cPage: this.data.cPage
+        cPage: that.data.cPage
       },
       success: res => {
         console.log("历史返回值", res.data)
@@ -49,18 +49,18 @@ Page({
             res.data[i].url = app.getAbsolutePath() + "/"
             res.data[i].check.checkState = util.dataEN2CN(res.data[i].check.checkState)
           }
-          this.setData({
+          that.setData({
             historyList: res.data,
-            cPage: this.data.cPage + 1
+            cPage: that.data.cPage + 1
           })
         } else {
           for (var i = 0; i < res.data.length; i++) {
             res.data[i].url = app.getAbsolutePath() + "/"
             res.data[i].check.checkState = util.dataEN2CN(res.data[i].check.checkState)
           }
-          this.setData({
+          that.setData({
             historyList: res.data,
-            cPage: this.data.cPage + 1
+            cPage: that.data.cPage + 1
           })
         }
       },
@@ -87,12 +87,14 @@ Page({
 
   },
   loadMore: function() {
+    console.log("loadmore");
+    var that = this;
     req = {
       url: '/check/listCheck',
       method: 'POST',
       data: {
         userId: app.globalData.openId,
-        cPage: this.data.cPage
+        cPage: that.data.cPage
       },
       success: res => {
         console.log(res.data)
@@ -105,9 +107,9 @@ Page({
             res.data[i].url = app.getAbsolutePath() + "/"
             res.data[i].check.checkState = util.dataEN2CN(res.data[i].check.checkState)
           }
-          this.setData({
-            historyList: res.data,
-            cPage: this.data.cPage + 1
+          that.setData({
+            historyList: that.data.historyList.concat(res.data),
+            cPage: that.data.cPage + 1
           })
         }
       },
