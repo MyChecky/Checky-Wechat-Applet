@@ -13,19 +13,21 @@ Page({
     recordTypeNow: "video",
   },
   onLoad: function() {
+    var that = this;
     this.setData({
       path: app.getAbsolutePath() + '/',
     })
     wx.getSystemInfo({
       success: (res) => {
-        this.setData({
+        that.setData({
           height: res.windowHeight
         })
+        that.refreshEssayList()
       },
     })
   },
   onShow: function() {
-    this.refreshEssayList()
+
   },
   // 刷新列表
   refreshEssayList: function() {
@@ -43,13 +45,13 @@ Page({
           that.setData({
             infomation: "nomore",
             essays: res.data,
-            cPage: 2
+            cPage: that.data.cPage + 1
           })
         } else {
           that.setData({
             infomation: "loading",
             essays: res.data,
-            cPage: 2
+            cPage: that.data.cPage + 1
           })
         }
       }

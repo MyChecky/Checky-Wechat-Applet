@@ -104,6 +104,17 @@ Page({
       })
     }
   },
+  //发送私信
+  sendMessage: function (e) {
+    console.log("发送私信")
+    console.log(e.target.dataset)
+    var targetUserId = e.target.dataset.targetuserid;
+    var targetUserName = e.target.dataset.targetusername;
+    var targetUserAvatar = e.target.dataset.targetuseravatar;
+    wx.navigateTo({
+      url: '../../essay/essaySendMessage/essaySendMessage?targetUserId=' + targetUserId + '&targetUserName=' + targetUserName + '&targetUserAvatar=' + targetUserAvatar,
+    })
+  },
   // 查询好友
   searchFriend: function(e){
     wx.navigateTo({

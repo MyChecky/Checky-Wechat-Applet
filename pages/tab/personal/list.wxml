@@ -4,15 +4,15 @@
     <view class='head-view'>
       <image class='imgae-view' src='{{item.avatarUrl}}' bindtap="gotoIndex" data-userid='{{item.userId}}' data-useravatar='{{item.avatarUrl}}' data-usernickname='{{item.content}}' mode='cover'></image>
     </view>
-    <view class='content-view' bindtap="gotoIndex" data-userid='{{item.userId}}' data-useravatar='{{item.avatarUrl}}' data-usernickname='{{item.content}}'>
-      <view class='content'>{{item.content}}</view>
-      <view class='info-view'>
-        <view class='subContent'>{{item.subContent}}</view>
+    <view class='content-view'>
+      <view class='content-msg' bindtap="gotoIndex" data-userid='{{item.userId}}' data-useravatar='{{item.avatarUrl}}' data-usernickname='{{item.content}}'>{{item.content}}</view>
+      <view class='info-view-msg'>
+        <view class='subContent' bindtap="gotoIndex" data-userid='{{item.userId}}' data-useravatar='{{item.avatarUrl}}' data-usernickname='{{item.content}}'>{{item.subContent}}</view>
         <view class='date'>{{item.date}}</view>
       </view>
     </view>
     <view class='operation-view'>
-      <button class='op-button fa fa-chevron-right'>{{item.operation}}</button>
+      <button class='op-button fa fa-chevron-right'  bindtap='sendMessage' data-targetUserName="{{item.content}}" data-targetUserId='{{item.userId}}' data-targetuseravatar='{{item.avatarUrl}}' >{{item.operation}}</button>
     </view>
   </view>
 </template>
