@@ -454,6 +454,8 @@ Page({
           console.log("sendConfim", res)
           if (res.data.state == "ok") {
             this.selectComponent("#toast").toastShow("新建成功", "fa-check", 1500)
+          } else if (res.data.state == "zeroCheckTimes") {
+            this.selectComponent("#toast").toastShow("打卡次数不能为0", "fa-check", 1500)
           } else if (res.data.state == "noEnoughTestMoney") {
             this.selectComponent("#toast").toastShow("试玩余额不足，任务已保存", "fa-check", 1500)
           } else if (res.data.state == "noEnoughUserMoney") {
