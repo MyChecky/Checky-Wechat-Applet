@@ -142,7 +142,8 @@ swiper-item {
   margin-top: 10px;
   background-color: #fff;
   padding: 10px 5px 10px 5px;
-  border-radius: 5px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 2px #aaa;
 }
 .list-title{
   /* box-shadow: 0px 1px 2px 0px rgba(100, 100, 100, 0.5); */

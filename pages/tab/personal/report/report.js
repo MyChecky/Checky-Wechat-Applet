@@ -8,7 +8,7 @@ Page({
    */
   data: {
     title: '举报',
-    icon: 'fa-exclamation-circle',
+    icon: 'fa-hand-paper-o',
     reportList: [
     ]
   },

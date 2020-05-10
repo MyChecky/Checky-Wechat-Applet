@@ -43,6 +43,7 @@ Page({
     this.setData({
       path: app.getAbsolutePath() + '/',
       essayId: options.essayId,
+      visitorId: app.globalData.openId,
     })
     req = {
       url: '/essay/queryEssayById',
