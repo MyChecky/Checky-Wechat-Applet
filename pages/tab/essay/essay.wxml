@@ -11,7 +11,7 @@
     </view>
     <view class='pic-text-view' data-essayid='{{item.essay.essayId}}' bindtap='essayClick'>
       <!--文字-->
-      <view class='essays-text' data-essayid='{{item.essay.essayId}}'>{{item.essay.essayContent}}</view>
+      <text class='essays-text' data-essayid='{{item.essay.essayId}}'>{{item.essay.essayContent}}</text>
       <!--图片-->
       <view wx:if='{{item.fileRecord[0].recordType=="image"}}' class="image-view" catchtap='essayPic'>
 

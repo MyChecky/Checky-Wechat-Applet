@@ -57,6 +57,12 @@ Page({
           for (var i = 0; i < res.data.length; i++) {
             res.data[i].url = app.getAbsolutePath() + "/"
             res.data[i].check.checkState = util.dataEN2CN(res.data[i].check.checkState)
+            if (res.data[i].text.recordContent.length > 10) {
+              res.data[i].text.recordContent = res.data[i].text.recordContent.substring(0, 10) + '...';
+            }
+            if (res.data[i].check.taskTitle.length > 9){
+              res.data[i].check.taskTitle = res.data[i].check.taskTitle.substring(0, 9)+'...';
+            }
           }
           that.setData({
             historyList: res.data,
@@ -97,7 +103,7 @@ Page({
         cPage: that.data.cPage
       },
       success: res => {
-        console.log(res.data)
+        console.log("listCheck", res.data)
         if (res.data.length == 0) {
           that.setData({
             infomation: "nomore"
@@ -106,6 +112,12 @@ Page({
           for (var i = 0; i < res.data.length; i++) {
             res.data[i].url = app.getAbsolutePath() + "/"
             res.data[i].check.checkState = util.dataEN2CN(res.data[i].check.checkState)
+            if (res.data[i].text.recordContent.length > 10) {
+              res.data[i].text.recordContent = res.data[i].text.recordContent.substring(0, 10) + '...';
+            }
+            if (res.data[i].check.taskTitle.length > 9) {
+              res.data[i].check.taskTitle = res.data[i].check.taskTitle.substring(0, 9) + '...';
+            }
           }
           that.setData({
             historyList: that.data.historyList.concat(res.data),

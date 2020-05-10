@@ -95,7 +95,7 @@ swiper-item {
 }
 
 .onList {
-  max-height: 800px;
+  /* max-height: 800px; */
 }
 
 .offList {

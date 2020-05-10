@@ -10,7 +10,7 @@
         <view class='date'>{{date}}</view>
       </view>
     </view>
-    <view class='content-view' >{{content}}</view>
+    <text class='content-view' >{{content}}</text>
     <!-- 图片 -->
     <view wx:if="{{fileRecords[0].recordType=='image'}}" class='image-view'>
       <view class="image-container" catchtap='previewPic' wx:for="{{fileRecords}}" wx:key="key">
@@ -26,7 +26,7 @@
       <audio class='rec' wx:for="{{fileRecords}}" wx:key='key' name="{{userName}}" author="{{item.recordTime}}" src='{{path}}{{item.fileAddr}}' controls></audio>
     </view>
   </view>
-  <view class='container-view'>
+  <!-- <view class='container-view'>
     <view class='title-view'>其他信息</view>
     <view class='item-view'>
       <view class='inner-item-view'>
@@ -65,5 +65,5 @@
       </view>
     </view>
     <view class='operation item' bindtap='upload'></view>
-  </view>
+  </view> -->
 </view>

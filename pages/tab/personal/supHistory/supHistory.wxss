@@ -1,4 +1,5 @@
 /* pages/tab/personal/supHistory/supHistory.wxss */
+@import "../list.wxss";
 
 .title {
   padding: 5px 10px 20px 10px;

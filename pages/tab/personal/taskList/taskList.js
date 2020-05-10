@@ -33,6 +33,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    var that = this;
     req = {
       url: '/task/queryUserTasks',
       method: 'POST',
@@ -44,7 +45,7 @@ Page({
         for (var i = 0; i < res.data.length; i++) {
           res.data[i].taskStateContent = util.dataEN2CN(res.data[i].taskState)
         }
-        this.setData({
+        that.setData({
           taskList: res.data
         })
       },

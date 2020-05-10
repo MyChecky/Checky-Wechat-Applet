@@ -50,7 +50,7 @@ Page({
   setHeight: function() {
     var baseHeight = 0;
     if (this.data.currentTab === 0) { // 打卡界面
-      var baseHeight = baseHeight + 320 + 250;
+      var baseHeight = baseHeight + 600;
       if (this.data.selectedItem[0] === true) {
         baseHeight += this.data.toCheck.length * 100;
       }
@@ -63,7 +63,7 @@ Page({
     } else { // 监督界面
       baseHeight += 90;
       if (this.data.selectedItem[3] === true) {
-        baseHeight += this.data.toSupvise.length * 100;
+        baseHeight += this.data.toSupvise.length * 80;
       }
     }
     this.setData({
@@ -155,6 +155,21 @@ Page({
         "date": chooseDate
       },
       success: res => {
+        for (var i = 0; i < res.data.unknown.length; i++) {
+          if (res.data.unknown[i].taskTitle.length > 7){
+            res.data.unknown[i].taskTitle = res.data.unknown[i].taskTitle.substring(0, 7) + '...';
+          }
+        }
+        for (var i = 0; i < res.data.toCheck.length; i++) {
+          if (res.data.toCheck[i].taskTitle.length > 7) {
+            res.data.toCheck[i].taskTitle = res.data.toCheck[i].taskTitle.substring(0, 7) + '...';
+          }
+        }
+        for (var i = 0; i < res.data.checked.length; i++) {
+          if (res.data.checked[i].taskTitle.length > 7) {
+            res.data.checked[i].taskTitle = res.data.checked[i].taskTitle.substring(0, 7) + '...';
+          }
+        }
         that.setData({
           unknown: res.data.unknown,
           toCheck: res.data.toCheck,
@@ -192,9 +207,15 @@ Page({
       },
       success(res) {
         console.log("tasksRequestSupListRes", res)
+        for (var i = 0; i < res.data.length; i++) {
+          if (res.data[i].taskTitle.length > 7) {
+            res.data[i].taskTitle = res.data[i].taskTitle.substring(0, 7) + '...';
+          }
+        }
         that.setData({
           toSupvise: res.data
         })
+        
       }
     }
     app.requestWithAuth(req)

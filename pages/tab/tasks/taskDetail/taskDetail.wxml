@@ -6,8 +6,9 @@
     <view class='title-view'>打卡状态</view>
     <view class='item-view'>
       <view class='inner-item-view'>
-        <view class='tag item'>我的打卡:</view>
-        <view class='state item'>{{taskState}}</view>
+        <view class='tag item'>打卡状态:</view>
+        <view class='state item' wx:if="{{taskState === checkedState}}" bindtap='upload'>{{taskState}}</view>
+        <view class='state item' wx:else>{{taskState}}</view>
       </view>
       <view class='operation item' bindtap='upload'>
         <button class='detail-btn fa fa-angle-right'></button>
@@ -48,41 +49,53 @@
     </view>
   </view>
   <view class='container-view'>
-    <view class='title-view'>其他信息</view>
+    <view class='title-view'>任务信息</view>
     <view class='item-view'>
       <view class='inner-item-view'>
         <view class='tag item'>标题</view>
-        <view class="state item">{{info.taskTitle}}</view>
+        <view class="state-task-infor item">{{info.taskTitle}}</view>
       </view>
     </view>
     <view class='item-view'>
       <view class='inner-item-view'>
         <view class='tag item'>金额</view>
-        <view class="state item">{{info.taskMoney}}</view>
+        <view class="state-task-infor item">{{info.taskMoney}}</view>
       </view>
     </view>
     <view class='item-view'>
       <view class='inner-item-view'>
         <view class='tag item'>重复</view>
-        <view class="state item">{{info.checkFrec}}</view>
+        <view class="state-task-infor item">{{info.checkFrec}}</view>
       </view>
     </view>
     <view class='item-view'>
       <view class='inner-item-view'>
         <view class='tag item'>开始时间</view>
-        <view class="state item">{{info.taskStartTime}}</view>
+        <view class="state-task-infor item">{{info.taskStartTime}}</view>
       </view>
     </view>
     <view class='item-view'>
       <view class='inner-item-view'>
         <view class='tag item'>结束时间</view>
-        <view class="state item">{{info.taskEndTime}}</view>
+        <view class="state-task-infor item">{{info.taskEndTime}}</view>
+      </view>
+    </view>
+    <view class='item-view'>
+      <view class='inner-item-view'>
+        <view class='tag item'>任务类型</view>
+        <view class="state-task-infor item">{{info.typeContent}}</view>
+      </view>
+    </view>
+    <view class='item-view'>
+      <view class='inner-item-view'>
+        <view class='tag item'>类型通过率</view>
+        <view class="state-task-infor item">{{taskTypePassRate}}</view>
       </view>
     </view>
     <view class='item-view'>
       <view class='inner-item-view'>
         <view class='tag item'>描述</view>
-        <view class="state item">{{info.taskContent}}</view>
+        <view class="state-task-infor item">{{info.taskContent}}</view>
       </view>
     </view>
     <view class='operation item' bindtap='upload'></view>

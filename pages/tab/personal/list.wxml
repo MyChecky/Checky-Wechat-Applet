@@ -12,7 +12,7 @@
       </view>
     </view>
     <view class='operation-view'>
-      <button class='op-button fa fa-chevron-right'  bindtap='sendMessage' data-targetUserName="{{item.content}}" data-targetUserId='{{item.userId}}' data-targetuseravatar='{{item.avatarUrl}}' >{{item.operation}}</button>
+      <button class='op-button fa fa-chevron-right' bindtap='sendMessage' data-targetUserName="{{item.content}}" data-targetUserId='{{item.userId}}' data-targetuseravatar='{{item.avatarUrl}}'>{{item.operation}}</button>
     </view>
   </view>
 </template>
@@ -92,10 +92,10 @@
 </template>
 <!-- 打卡列表项 -->
 <template name="list-check-item">
-  <view class='item-view'> 
+  <view class='item-view'>
     <view class='content-view-check'>
-      <view class='multicontent' bindtap="checkDetail" data-checkid="{{item.check.checkId}}" data-checkstate="{{item.check.checkState}}" data-taskid="{{item.check.taskId}}" >{{item.text.recordContent}}</view>
-      
+      <view class='multicontent' bindtap="checkDetail" data-checkid="{{item.check.checkId}}" data-checkstate="{{item.check.checkState}}" data-taskid="{{item.check.taskId}}">{{item.text.recordContent}}</view>
+
       <view class='info-view-check'>
         <view class='result' style='flex-grow:2;'>任务：{{item.check.taskTitle}}</view>
         <view class='state'>{{item.check.checkState}}</view>
@@ -104,16 +104,30 @@
     </view>
   </view>
 </template>
+<!-- 监督列表项 -->
+<template name="list-sup-item">
+  <view class='item-view'>
+    <view class='content-view-check'>
+      <view class='multicontent' bindtap="checkDetail" data-checkid="{{item.checkId}}" data-checkstate="{{item.state}}" data-taskid="{{item.taskId}}">{{item.title}}</view>
+
+      <view class='info-view-check'>
+        <view class='result' style='flex-grow:2;' bindtap="checkDetail" data-checkid="{{item.checkId}}" data-checkstate="{{item.state}}" data-taskid="{{item.taskId}}">我判决了：{{item.state}}</view>
+        <!-- <view class='state'>{{item.check.checkState}}</view> -->
+        <view class='date'>{{item.date}}</view>
+      </view>
+    </view>
+  </view>
+</template>
 <!-- 申诉列表项 -->
 <template name="list-appeal-item">
   <view class='item-view' style='flex-direction: column;'>
     <view class='content-view'>
-      <view class='info-view'>
+      <view class='info-view-appeal-report'>
         <view class='content'>{{item.appealContent}}</view>
         <view class='date'>{{item.appealTime}}</view>
       </view>
     </view>
-    <view class='info-view'>
+    <view class='info-view-appeal-report'>
       <view class='result-view'>
         <view wx:if="{{item.processResult!=null}}" class='result'>{{item.processResult}}</view>
         <view wx:if="{{item.processTime!=null}}" class='date'>{{item.processTime}}</view>
@@ -125,12 +139,12 @@
 <template name="list-report-item">
   <view class='item-view' style='flex-direction: column;'>
     <view class='content-view'>
-      <view class='info-view'>
+      <view class='info-view-appeal-report'>
         <view class='content'>{{item.reportContent}}</view>
         <view class='date'>{{item.reportTime}}</view>
       </view>
     </view>
-    <view class='info-view'>
+    <view class='info-view-appeal-report'>
       <view class='result-view'>
         <view class='result' wx:if="{{item.processResult!=null}}">{{item.processResult}}</view>
         <view class='date' wx:if="{{item.processTime!=null}}">{{item.processTime}}</view>
@@ -149,12 +163,12 @@
       <view class='subContent' catchtap="catchTaskTap" data-state='{{item.taskState}}' data-taskId='{{item.taskId}}'>{{item.taskContent}}</view>
     </view>
     <view class='info-view'>
-    <view catchtap='catchTaskTap' data-state='{{item.taskState}}' data-taskId='{{item.taskId}}' class='state {{item.taskState}}'>{{item.taskStateContent}}</view>
+      <view catchtap='catchTaskTap' data-state='{{item.taskState}}' data-taskId='{{item.taskId}}' class='state {{item.taskState}}'>{{item.taskStateContent}}</view>
       <!-- <view class='date'>{{item.taskStartTime}}至{{item.taskEndTime}}</view> -->
       <view class='date-content'>
-      <view class="date">{{item.taskStartTime}}</view>
-      <view class="line"></view>
-      <view class="date">{{item.taskEndTime}}</view>
+        <view class="date">{{item.taskStartTime}}</view>
+        <view class="line"></view>
+        <view class="date">{{item.taskEndTime}}</view>
       </view>
     </view>
   </view>

@@ -69,6 +69,11 @@
   max-width: 60%;
   margin-right: 110px ;
 }
+.state-task-infor{
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  /* max-width: 60%; */
+}
 .pass{
   color: #08d101;
 }

@@ -17,6 +17,7 @@ Page({
     taskId: "",
     taskState: "未上传",
     checkState: "待认证",
+    checkedState: '查看上传',
     numOfSup: 0,
     numOfSuped: 0,
     supList: [],
@@ -31,9 +32,9 @@ Page({
     console.log("taskDetailOnload", options)
     var that = this
     if (options.checkId != undefined) {
-      this.setData({
+      that.setData({
         checkId: options.checkId,
-        taskState: '已上传',
+        taskState: that.data.checkedState,
         taskname: options.taskname,
       })
       var isletter = /^[a-zA-Z]+$/.test(options.checkState);
@@ -103,6 +104,9 @@ Page({
       success(res) {
         console.log(res)
         that.formatInfo(res.data.task)
+        that.setData({
+          taskTypePassRate: res.data.taskTypePassRate,
+        })
         wx.setNavigationBarTitle({
           title: res.data.task.taskTitle
         })

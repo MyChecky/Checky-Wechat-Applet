@@ -89,6 +89,11 @@ Page({
       success: res => {
         console.log(res.data);
 
+        for (var i = 0; i < res.data.supList.length; i++) {
+          if (res.data.supList[i].title.length > 12){
+            res.data.supList[i].title = res.data.supList[i].title.substring(0, 12) + '...';
+          }
+        }
         that.setData({
           supList: that.data.supList.concat(res.data.supList),
           pageRequest: that.data.pageRequest + 1,

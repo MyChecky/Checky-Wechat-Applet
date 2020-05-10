@@ -1,5 +1,18 @@
 <!--pages/tab/personal/supHistory/supHistory.wxml-->
+<import src="../list.wxml" />
 
+<scroll-view class='from-view' style="height:{{height}}px" scroll-y='true'  bindscrolltolower="loadMore">
+  <view class='container-view'>
+    <view class='title'>
+      <icon class='fa fa-check-square-o'></icon>监督记录
+    </view>
+    <template wx:for="{{supList}}" is="list-sup-item" data="{{item}}" />
+  </view>
+  <view class="more">
+    <view class="fa {{infomation=='nomore'?'fa-coffee':'fa-refresh fa-spin'}}">
+    </view>{{infomation=="nomore"?"没有更多了":"加载中"}}</view>
+</scroll-view>
+<!-- 
 <scroll-view class='from-view' style="height:{{height}}px" scroll-y='true' bindscrolltolower="loadMore">
 
   <view class='container-view'>
@@ -13,8 +26,8 @@
       <view class="weui-cell__hd">
         <image src="{{item.avatar}}" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
       </view>
-      <view class="weui-cell__bd"  bindtap="checkDetail" data-checkid="{{item.checkId}}" data-checkstate="{{item.check.state}}" data-taskid="{{item.taskId}}">{{item.title}}</view>
-      <view class="weui-cell__ft"  bindtap="checkDetail" data-checkid="{{item.checkId}}" data-checkstate="{{item.check.state}}" data-taskid="{{item.taskId}}">{{item.state}}</view>
+      <view class="weui-cell__bd"  bindtap="checkDetail" data-checkid="{{item.checkId}}" data-checkstate="{{item.state}}" data-taskid="{{item.taskId}}">{{item.title}}</view>
+      <view class="weui-cell__ft"  bindtap="checkDetail" data-checkid="{{item.checkId}}" data-checkstate="{{item.state}}" data-taskid="{{item.taskId}}">{{item.state}}</view>
     </view>
   </view>
 
@@ -22,4 +35,4 @@
     <view wx:if="{{noMore}}" class="fa fa-coffee">没有更多了</view>
     <view wx:else class="fa fa-refresh">加载中</view>
   </view>
-</scroll-view>
+</scroll-view> -->
