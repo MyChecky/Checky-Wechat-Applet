@@ -1,0 +1,43 @@
+<!--pages/tab/personal/checkChart/checkChart.wxml-->
+<view class='from-view'>
+  <view class='container-view'>
+    <view class='inner-view'>
+      <view class='title'>
+        <icon class='icon fa fa-bar-chart'></icon>打卡统计
+      </view>
+    </view>
+    <view class='inner-view'>
+      <view class='titleSmall'>任务发布数</view>
+      <view style='line-height:10px;color:#333'>{{taskTotalNum}}</view>
+    </view>
+    <view class='inner-view'>
+      <view class='titleSmall'>任务通过数</view>
+      <view style='line-height:10px;color:#333'>{{taskPassNum}}</view>
+    </view>
+    <view class='inner-view'>
+      <view class='titleSmall'>理应打卡数</view>
+      <view style='line-height:10px;color:#333'>{{checkShouldNum}}</view>
+    </view>
+    <view class='inner-view'>
+      <view class='titleSmall'>累计打卡数</view>
+      <view style='line-height:10px;color:#333'>{{checkTotalNum}}</view>
+    </view>
+    <view class='inner-view'>
+      <view class='titleSmall'>打卡通过数</view>
+      <view style='line-height:10px;color:#333'>{{checkPassNum}}</view>
+    </view>
+
+    <view wx:if="{{seriesTime.length > 0}}">
+      <view class="weui-cells__title">按季度统计：</view>
+      <canvas canvas-id="pieCanvasTime" disable-scroll="true" class="canvas"></canvas>
+    </view>
+    <view wx:else>
+      <view class="weui-cells__title">暂无更多数据</view>
+    </view>
+
+    <!-- 这个不好做，因为种类一多，就会换行，就会越界，还有颜色问题 -->
+    <!-- <view class="weui-cells__title">按类型统计：</view>
+    <canvas canvas-id="pieCanvasType" disable-scroll="true" class="canvas"></canvas> -->
+
+  </view>
+</view>

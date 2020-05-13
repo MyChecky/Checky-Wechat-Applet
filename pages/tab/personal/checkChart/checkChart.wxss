@@ -1,0 +1,41 @@
+/* pages/tab/personal/checkChart/checkChart.wxss */
+.canvas {
+    width: 750rpx;
+    height: 500rpx;
+}
+
+/* .canvas2{
+  height: 400rpx;
+} */
+
+.inner-view {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5px 0px;
+  border-bottom: 1px solid rgba(100, 100, 100, 0.2);
+  padding: 5px 0px;
+}
+
+.title {
+  padding: 5px 10px 20px 10px;
+  color: #e83015;
+  font-size: 20px;
+}
+
+.icon {
+  color: #e83015;
+  font-size: 22px;
+  margin-right: 20px;
+}
+
+.iconSmall{
+  color: #e83015;
+  font-size: 15px;
+  margin-right: 15px;
+}
+
+.titleSmall{
+  color: #e83015;
+  font-size: 18px;
+}

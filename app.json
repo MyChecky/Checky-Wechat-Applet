@@ -34,7 +34,8 @@
     "pages/tab/personal/setHobbies/setHobbies",
     "pages/tab/personal/serviceContent/serviceContent",
     "pages/tab/personal/supHistory/supHistory",
-    "pages/tab/personal/taskDetail/taskDetail"
+    "pages/tab/personal/taskDetail/taskDetail",
+    "pages/tab/personal/checkChart/checkChart"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -40,6 +40,12 @@ Page({
             "icon": "fa-rmb"
           },
           {
+            "name": "打卡统计",
+            "url": "./checkChart/checkChart",
+            "param": "",
+            "icon": "fa-bar-chart"
+          },
+          {
             "name": "打卡记录",
             "url": "./history/history",
             "param": "",
