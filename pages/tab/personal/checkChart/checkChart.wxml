@@ -15,11 +15,11 @@
       <view style='line-height:10px;color:#333'>{{taskPassNum}}</view>
     </view>
     <view class='inner-view'>
-      <view class='titleSmall'>理应打卡数</view>
+      <view class='titleSmall'>计划打卡数</view>
       <view style='line-height:10px;color:#333'>{{checkShouldNum}}</view>
     </view>
     <view class='inner-view'>
-      <view class='titleSmall'>累计打卡数</view>
+      <view class='titleSmall'>实际打卡数</view>
       <view style='line-height:10px;color:#333'>{{checkTotalNum}}</view>
     </view>
     <view class='inner-view'>

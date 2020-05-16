@@ -1,4 +1,94 @@
 <!--pages/tab/personal/taskDetail/taskDetail.wxml-->
+<view class='container-view'>
+  <view class='title-view'>任务基本信息</view>
+  <view class='item-view'>
+    <view class='inner-item-view'>
+      <view class='tag item'>任务标题</view>
+      <view class="state-task-infor item">{{taskTitle}}</view>
+    </view>
+  </view>
+  <view class='item-view'>
+    <view class='inner-item-view'>
+      <view class='tag item'>{{taskMoneyType}}</view>
+      <view class="state-task-infor item">{{taskMoneyState}}</view>
+    </view>
+  </view>
+  <view class='item-view'>
+    <view class='inner-item-view'>
+      <view class='tag item'>任务状态</view>
+      <view class="state-task-infor item">{{taskState}}</view>
+    </view>
+  </view>
+  <view class='item-view'>
+    <view class='inner-item-view'>
+      <view class='tag item'>重复周期</view>
+      <view class="state-task-infor item">{{checkFrec}}</view>
+    </view>
+  </view>
+  <view class='item-view'>
+    <view class='inner-item-view'>
+      <view class='tag item'>开始时间</view>
+      <view class="state-task-infor item">{{startTime}}</view>
+    </view>
+  </view>
+  <view class='item-view'>
+    <view class='inner-item-view'>
+      <view class='tag item'>结束时间</view>
+      <view class="state-task-infor item">{{endTime}}</view>
+    </view>
+  </view>
+  <view class='item-view'>
+    <view class='inner-item-view'>
+      <view class='tag item'>计划次数</view>
+      <view class="state-task-infor item">{{expectTimes}}</view>
+    </view>
+  </view>
+  <view class='item-view'>
+    <view class='inner-item-view'>
+      <view class='tag item'>打卡次数</view>
+      <view class="state-task-infor item">{{actualTimes}}</view>
+    </view>
+  </view>
+  <view class='item-view'>
+    <view class='inner-item-view'>
+      <view class='tag item'>通过次数</view>
+      <view class="state-task-infor item">{{passTimes}}</view>
+    </view>
+  </view>
+
+  <view class='item-view'>
+    <view class='inner-item-view'>
+      <view class='tag item'>任务类型</view>
+      <view class="state-task-infor item">{{taskType}}</view>
+    </view>
+  </view>
+  <view class='item-view'>
+    <view class='inner-item-view'>
+      <view class='tag item'>类型通过率</view>
+      <view class="state-task-infor item">{{taskTypePassRate}}</view>
+    </view>
+  </view>
+
+  <view class='item-view'>
+    <view class='inner-item-view'>
+      <view class='tag item'>任务描述</view>
+      <view class="state-task-infor item">{{taskDescribe}}</view>
+    </view>
+  </view>
+  <view class='operation item' bindtap='upload'></view>
+</view>
+
+<view class='container-view'>
+  <view class='title-view'>监督者信息</view>
+  <view class='item-view' wx:for="{{supList}}" wx:key="key">
+    <view class='inner-item-view'>
+      <view class='tag item'>{{item.name}}</view>
+      <view class="state-task-infor item-times">{{item.times}}次</view>
+      <view class="state-task-infor" wx:if="{{item.state!=''}}">{{item.state}}</view>
+    </view>
+  </view>
+</view>
+<!-- 
 <view class="weui-form-preview">
   <view class="weui-form-preview__hd">
     <view class="weui-form-preview__label" style="color: #e83015;">任务标题</view>
@@ -42,8 +132,8 @@
     </view>
   </view>
 
-  <view class="weui-form-preview__ft">
-    <!-- <navigator class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" style="color: #e83015;">申 诉</navigator> -->
-    <!-- <button class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" open-type="share" style="color: #e83015;">分 享</button> -->
-  </view>
-</view>
+  <view class="weui-form-preview__ft"> -->
+<!-- <navigator class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" style="color: #e83015;">申 诉</navigator> -->
+<!-- <button class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" open-type="share" style="color: #e83015;">分 享</button> -->
+<!-- </view>
+</view> -->
