@@ -27,7 +27,8 @@ Page({
     wx.getSystemInfo({
       success: (res) => {
         this.setData({
-          height: res.windowHeight
+          height: res.windowHeight,
+          width: res.windowWidth,
         })
       },
     })
@@ -41,6 +42,7 @@ Page({
       },
       success: res => {
         console.log("历史返回值", res.data)
+        console.log("width", that.data.width)
         if (res.data.length < 10) {
           that.setData({
             infomation: "nomore"
@@ -57,12 +59,22 @@ Page({
           for (var i = 0; i < res.data.length; i++) {
             res.data[i].url = app.getAbsolutePath() + "/"
             res.data[i].check.checkState = util.dataEN2CN(res.data[i].check.checkState)
-            if (res.data[i].text.recordContent.length > 10) {
-              res.data[i].text.recordContent = res.data[i].text.recordContent.substring(0, 10) + '...';
+            if(that.data.width < 350){
+              if (res.data[i].text.recordContent.length > 8) {
+                res.data[i].text.recordContent = res.data[i].text.recordContent.substring(0, 8) + '...';
+              }
+              if (res.data[i].check.taskTitle.length > 7) {
+                res.data[i].check.taskTitle = res.data[i].check.taskTitle.substring(0, 7) + '...';
+              }
+            }else{
+              if (res.data[i].text.recordContent.length > 10) {
+                res.data[i].text.recordContent = res.data[i].text.recordContent.substring(0, 10) + '...';
+              }
+              if (res.data[i].check.taskTitle.length > 9) {
+                res.data[i].check.taskTitle = res.data[i].check.taskTitle.substring(0, 9) + '...';
+              }
             }
-            if (res.data[i].check.taskTitle.length > 9){
-              res.data[i].check.taskTitle = res.data[i].check.taskTitle.substring(0, 9)+'...';
-            }
+           
           }
           that.setData({
             historyList: res.data,
@@ -112,6 +124,7 @@ Page({
           for (var i = 0; i < res.data.length; i++) {
             res.data[i].url = app.getAbsolutePath() + "/"
             res.data[i].check.checkState = util.dataEN2CN(res.data[i].check.checkState)
+            
             if (res.data[i].text.recordContent.length > 10) {
               res.data[i].text.recordContent = res.data[i].text.recordContent.substring(0, 10) + '...';
             }

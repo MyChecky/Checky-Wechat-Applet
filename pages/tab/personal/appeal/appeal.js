@@ -26,6 +26,8 @@ Page({
       success: res=>{
         console.log(res.data)
         for (var i=0;i<res.data.length;i++){
+          if (res.data[i].appealContent.length > 9)
+            res.data[i].appealContent = res.data[i].appealContent.substring(0, 9) + '...';
           res.data[i].processResult = util.dataEN2CN(res.data[i].processResult)
         }
         this.setData({

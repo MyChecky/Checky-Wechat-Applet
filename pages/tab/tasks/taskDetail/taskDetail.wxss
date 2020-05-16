@@ -67,7 +67,7 @@
   overflow-wrap: break-word;
   word-wrap: break-word;
   max-width: 60%;
-  margin-right: 110px ;
+  margin-right: 20% ;
 }
 .state-task-infor{
   overflow-wrap: break-word;
