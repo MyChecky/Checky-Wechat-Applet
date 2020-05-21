@@ -1,175 +1,201 @@
 <!-- 人像列表项 -->
 <template name="list-ava-item">
-  <view class='item-view'>
-    <view class='head-view'>
-      <image class='imgae-view' src='{{item.avatarUrl}}' bindtap="gotoIndex" data-userid='{{item.userId}}' data-useravatar='{{item.avatarUrl}}' data-usernickname='{{item.content}}' mode='cover'></image>
-    </view>
-    <view class='content-view'>
-      <view class='content-msg' bindtap="gotoIndex" data-userid='{{item.userId}}' data-useravatar='{{item.avatarUrl}}' data-usernickname='{{item.content}}'>{{item.content}}</view>
-      <view class='info-view-msg'>
-        <view class='subContent' bindtap="gotoIndex" data-userid='{{item.userId}}' data-useravatar='{{item.avatarUrl}}' data-usernickname='{{item.content}}'>{{item.subContent}}</view>
-        <view class='date'>{{item.date}}</view>
-      </view>
-    </view>
-    <view class='operation-view'>
-      <button class='op-button fa fa-chevron-right' bindtap='sendMessage' data-targetUserName="{{item.content}}" data-targetUserId='{{item.userId}}' data-targetuseravatar='{{item.avatarUrl}}'>{{item.operation}}</button>
-    </view>
-  </view>
+	<view class='item-view'>
+		<view class='head-view'>
+			<image class='imgae-view' src='{{item.avatarUrl}}' bindtap="gotoIndex" data-userid='{{item.userId}}' data-useravatar='{{item.avatarUrl}}' data-usernickname='{{item.content}}' mode='cover'></image>
+		</view>
+		<view class='content-view'>
+			<view class='content-msg' bindtap="gotoIndex" data-userid='{{item.userId}}' data-useravatar='{{item.avatarUrl}}' data-usernickname='{{item.content}}'>{{item.content}}</view>
+			<view class='info-view-msg'>
+				<view class='subContent' bindtap="gotoIndex" data-userid='{{item.userId}}' data-useravatar='{{item.avatarUrl}}' data-usernickname='{{item.content}}'>{{item.subContent}}</view>
+				<view class='date'>{{item.date}}</view>
+			</view>
+		</view>
+		<view class='operation-view'>
+			<button class='op-button fa fa-chevron-right' bindtap='sendMessage' data-targetUserName="{{item.content}}" data-targetUserId='{{item.userId}}' data-targetuseravatar='{{item.avatarUrl}}'>{{item.operation}}</button>
+		</view>
+	</view>
 </template>
 <!--好友申请表-->
 <template name="list-newFriend-item">
-  <view class='item-view'>
-    <view class='head-view'>
-      <image class='imgae-view' src='{{item.avatarUrl}}' bindtap="gotoIndex" data-userid='{{item.userId}}' data-useravatar='{{item.avatarUrl}}' data-usernickname='{{item.content}}' mode='cover'></image>
-    </view>
-    <view class='content-view' bindtap="gotoIndex" data-userid='{{item.userId}}' data-useravatar='{{item.avatarUrl}}' data-usernickname='{{item.content}}'>
-      <view class='content'>{{item.content}}</view>
-      <view class='info-view'>
-        <view class='subContent'>{{item.subContent}}</view>
-        <view class='date'>{{item.date}}</view>
-      </view>
-    </view>
-    <view class='operation-view'>
-      <!-- <button class='op-button fa fa-chevron-right'>{{item.operation}}</button> -->
-      <view style="flex-direction: row">
-        <view style='line-height:10px; color: red; padding:0px 0px 10px 0px;' data-userid='{{item.userId}}' bindtap='agreeNewFriend'>同意</view>
-        <view style='line-height:10px; color: red; padding:10px 0px 0px 0px;' data-userid='{{item.userId}}' bindtap='refuseNewFriend'>拒绝</view>
-      </view>
-    </view>
-  </view>
+	<view class='item-view'>
+		<view class='head-view'>
+			<image class='imgae-view' src='{{item.avatarUrl}}' bindtap="gotoIndex" data-userid='{{item.userId}}' data-useravatar='{{item.avatarUrl}}' data-usernickname='{{item.content}}' mode='cover'></image>
+		</view>
+		<view class='content-view' bindtap="gotoIndex" data-userid='{{item.userId}}' data-useravatar='{{item.avatarUrl}}' data-usernickname='{{item.content}}'>
+			<view class='content'>{{item.content}}</view>
+			<view class='info-view'>
+				<view class='subContent'>{{item.subContent}}</view>
+				<view class='date'>{{item.date}}</view>
+			</view>
+		</view>
+		<view class='operation-view'>
+			<!-- <button class='op-button fa fa-chevron-right'>{{item.operation}}</button> -->
+			<view style="flex-direction: row">
+				<view style='line-height:10px; color: red; padding:0px 0px 10px 0px;' data-userid='{{item.userId}}' bindtap='agreeNewFriend'>同意</view>
+				<view style='line-height:10px; color: red; padding:10px 0px 0px 0px;' data-userid='{{item.userId}}' bindtap='refuseNewFriend'>拒绝</view>
+			</view>
+		</view>
+	</view>
 </template>
 <!-- 文本列表项 -->
 <template name="list-content-item">
-  <view class='item-view'>
-    <view class='head-view'>
-      <image class='imgae-view' src='{{item.avatarUrl}}' mode='cover'></image>
-    </view>
-    <view class='content-view'>
-      <view class='content'>{{item.content}}</view>
-      <view class='info-view'>
-        <view class='subContent'>{{item.subContent}}</view>
-        <view class='date'>{{item.date}}</view>
-      </view>
-    </view>
-    <view class='operation-view'>
-      <button class='op-button fa fa-chevron-right'>{{item.operation}}</button>
-    </view>
-  </view>
+	<view class='item-view'>
+		<view class='head-view'>
+			<image class='imgae-view' src='{{item.avatarUrl}}' mode='cover'></image>
+		</view>
+		<view class='content-view'>
+			<view class='content'>{{item.content}}</view>
+			<view class='info-view'>
+				<view class='subContent'>{{item.subContent}}</view>
+				<view class='date'>{{item.date}}</view>
+			</view>
+		</view>
+		<view class='operation-view'>
+			<button class='op-button fa fa-chevron-right'>{{item.operation}}</button>
+		</view>
+	</view>
 </template>
 <!-- 动态列表项 -->
 <template name="list-pic-item">
-  <view class='item-view'>
-    <view class='head-view'>
-      <image class='pics-view' src='{{item.imageList[0]}}' mode='cover'></image>
-    </view>
-    <view class='content-view'>
-      <view class='content'>{{item.content}}</view>
-      <view class='info-view' style='justify-content: flex-start;'>
-        <icon class='like fa fa-heart'>{{item.likes}}</icon>
-        <icon class='comment fa fa-commenting'>{{item.comments}}</icon>
-        <view class='date'>{{item.date}}</view>
-      </view>
-    </view>
-    <view class='operation-view'>
-      <button class='op-button fa fa-chevron-right'></button>
-    </view>
-  </view>
+	<view class='item-view'>
+		<view class='head-view'>
+			<image class='pics-view' src='{{item.imageList[0]}}' mode='cover'></image>
+		</view>
+		<view class='content-view'>
+			<view class='content'>{{item.content}}</view>
+			<view class='info-view' style='justify-content: flex-start;'>
+				<icon class='like fa fa-heart'>{{item.likes}}</icon>
+				<icon class='comment fa fa-commenting'>{{item.comments}}</icon>
+				<view class='date'>{{item.date}}</view>
+			</view>
+		</view>
+		<view class='operation-view'>
+			<button class='op-button fa fa-chevron-right'></button>
+		</view>
+	</view>
 </template>
 <!-- 数值列表项 -->
 <template name="list-num-item">
-  <view class='item-view'>
-    <view class='head-view'>
-      <icon class='direction fa {{item.type=="income"?"fa-plus":"fa-minus"}} {{item.type}}'></icon>
-    </view>
-    <view class='content-view'>
-      <view class='{{item.type}}'>
-        <icon class='rmb fa fa-rmb'></icon>{{item.flowMoney}}
-      </view>
-      <view class='task-title'>{{item.taskTitle}}</view>
-    </view>
-    <view class='date'>{{item.flowTime}}</view>
-  </view>
+	<view class='item-view'>
+		<view class='head-view'>
+			<icon class='direction fa {{item.type=="income"?"fa-plus":"fa-minus"}} {{item.type}}'></icon>
+		</view>
+		<view class='content-view'>
+			<view class='{{item.type}}'>
+				<icon class='rmb fa fa-rmb'></icon>{{item.flowMoney}}
+			</view>
+			<view class='task-title'>{{item.taskTitle}}</view>
+		</view>
+		<view class='date'>{{item.flowTime}}</view>
+	</view>
 </template>
 <!-- 打卡列表项 -->
 <template name="list-check-item">
-  <view class='item-view'>
-    <view class='content-view-check'>
-      <view class='multicontent' bindtap="checkDetail" data-checkid="{{item.check.checkId}}" data-checkstate="{{item.check.checkState}}" data-taskid="{{item.check.taskId}}">{{item.text.recordContent}}</view>
-
-      <view class='info-view-check'>
-        <view class='result' style='flex-grow:2;'>任务：{{item.check.taskTitle}}</view>
-        <view class='state'>{{item.check.checkState}}</view>
-        <view class='date'>{{item.check.checkTime}}</view>
-      </view>
-    </view>
-  </view>
+	<view class='item-view'>
+		<view class='content-view-check'>
+			<view class='info-view-check'>
+				<view class='multicontent-h'>{{item.check.taskTitle}}</view>
+				<view class='date-h-btn' bindtap="checkDetail" data-checkid="{{item.check.checkId}}" data-checkstate="{{item.check.checkState}}" data-taskid="{{item.check.taskId}}">查看</view>
+			</view>
+			<view class='info-view-check'>
+				<view class='result-h'>{{item.taskType}}</view>
+				<view class='state-h'>{{item.check.checkState}}</view>
+				<view class='date-h'>{{item.check.checkTime}}</view>
+			</view>
+		</view>
+	</view>
 </template>
 <!-- 监督列表项 -->
 <template name="list-sup-item">
-  <view class='item-view'>
-    <view class='content-view-check'>
-      <view class='multicontent' bindtap="checkDetail" data-checkid="{{item.checkId}}" data-checkstate="{{item.state}}" data-taskid="{{item.taskId}}">{{item.title}}</view>
+	<view class='item-view'>
+		<view class='content-view-check'>
+			<view class='info-view-check'>
+				<view class='multicontent-h'>{{item.title}}</view>
+				<view class='date-h-btn' bindtap="checkDetail" data-checkid="{{item.checkId}}" data-checkstate="{{item.state}}" data-taskid="{{item.taskId}}">查看</view>
+			</view>
 
-      <view class='info-view-check'>
-        <view class='result' style='flex-grow:2;' bindtap="checkDetail" data-checkid="{{item.checkId}}" data-checkstate="{{item.state}}" data-taskid="{{item.taskId}}">我判决了：{{item.state}}</view>
-        <!-- <view class='state'>{{item.check.checkState}}</view> -->
-        <view class='date'>{{item.date}}</view>
-      </view>
-    </view>
-  </view>
+			<view class='info-view-check'>
+				<view class='result-hsup'>{{item.checkName}}</view>
+				<view class='state-h'>{{item.taskType}}</view>
+				<view class='date-h'>于{{item.supTime}}{{item.state}}</view>
+			</view>
+
+			<!-- <view class='info-view-check'>
+				<view class='result-h'>打卡于{{item.checkTime}}</view>
+				<view class='date-h'>监督于{{item.supTime}}</view>
+			</view> -->
+		</view>
+	</view>
 </template>
 <!-- 申诉列表项 -->
 <template name="list-appeal-item">
-  <view class='item-view' style='flex-direction: column;'>
-    <view class='content-view'>
-      <view class='info-view-appeal-report'>
-        <view class='content'>{{item.appealContent}}</view>
-        <view class='date'>{{item.appealTime}}</view>
-      </view>
-    </view>
-    <view class='info-view-appeal-report'>
-      <view class='result-view'>
-        <view wx:if="{{item.processResult!=null}}" class='result'>{{item.processResult}}</view>
-        <view wx:if="{{item.processTime!=null}}" class='date'>{{item.processTime}}</view>
-      </view>
-    </view>
-  </view>
+	<view class='item-view' style='flex-direction: column;'>
+		<view class='content-view'>
+			<view class='info-view-appeal-report'>
+				<view class='content'>{{item.appealContent}}</view>
+				<view class='date'>{{item.appealTime}}</view>
+			</view>
+		</view>
+		<view class='info-view-appeal-report'>
+			<view class='result-view'>
+				<view wx:if="{{item.processResult!=null}}" class='result'>{{item.processResult}}</view>
+				<view wx:if="{{item.processTime!=null}}" class='date'>{{item.processTime}}</view>
+			</view>
+		</view>
+	</view>
 </template>
 <!-- 举报列表项 -->
 <template name="list-report-item">
-  <view class='item-view' style='flex-direction: column;'>
-    <view class='content-view'>
-      <view class='info-view-appeal-report'>
-        <view class='content'>{{item.reportContent}}</view>
-        <view class='date'>{{item.reportTime}}</view>
-      </view>
-    </view>
-    <view class='info-view-appeal-report'>
-      <view class='result-view'>
-        <view class='result' wx:if="{{item.processResult!=null}}">{{item.processResult}}</view>
-        <view class='date' wx:if="{{item.processTime!=null}}">{{item.processTime}}</view>
-      </view>
-      <view class='state'>
-        <view class='type'>举报对象：{{item.reportType}}</view>
-      </view>
-    </view>
-  </view>
+	<view class='item-view' style='flex-direction: column;'>
+		<view class='content-view'>
+			<view class='info-view-appeal-report'>
+				<view class='content'>{{item.reportContent}}</view>
+				<view class='date'>{{item.reportTime}}</view>
+			</view>
+		</view>
+		<view class='info-view-appeal-report'>
+			<view class='result-view'>
+				<view class='result' wx:if="{{item.processResult!=null}}">{{item.processResult}}</view>
+				<view class='date' wx:if="{{item.processTime!=null}}">{{item.processTime}}</view>
+			</view>
+			<view class='state'>
+				<view class='type'>举报对象：{{item.reportType}}</view>
+			</view>
+		</view>
+	</view>
 </template>
 <!-- 任务列表项 -->
 <template name="list-task-item">
-  <view bindtap='bindTaskTap' class='item-view'>
-    <view class='content-view'>
-      <view class='content' catchtap="catchTaskTap" data-state='{{item.taskState}}' data-taskId='{{item.taskId}}'>{{item.taskTitle}}</view>
-      <view class='subContent' catchtap="catchTaskTap" data-state='{{item.taskState}}' data-taskId='{{item.taskId}}'>{{item.taskContent}}</view>
-    </view>
-    <view class='info-view'>
-      <view catchtap='catchTaskTap' data-state='{{item.taskState}}' data-taskId='{{item.taskId}}' class='state {{item.taskState}}'>{{item.taskStateContent}}</view>
-      <!-- <view class='date'>{{item.taskStartTime}}至{{item.taskEndTime}}</view> -->
-      <view class='date-content'>
-        <view class="date">{{item.taskStartTime}}</view>
-        <view class="line"></view>
-        <view class="date">{{item.taskEndTime}}</view>
-      </view>
-    </view>
-  </view>
+
+	<view class='item-view'>
+		<view class='content-view-check'>
+			<view class='info-view-check'>
+				<view class='multicontent-h' catchtap='catchTaskTap' data-state='{{item.taskState}}' data-taskId='{{item.taskId}}'>{{item.taskTitle}}</view>
+				<view catchtap='catchTaskTap' data-state='{{item.taskState}}' data-taskId='{{item.taskId}}' class='state {{item.taskState}}'>{{item.taskStateContent}}</view>
+			</view>
+
+			<view class='info-view-check'>
+				<view class='result-h' catchtap='catchTaskTap' data-state='{{item.taskState}}' data-taskId='{{item.taskId}}'>{{item.typeContent}}</view>
+				<view class='date-h' catchtap='catchTaskTap' data-state='{{item.taskState}}' data-taskId='{{item.taskId}}'>{{item.taskStartTime}}至{{item.taskEndTime}}</view>
+			</view>
+		</view>
+	</view>
+
+	<!-- <view bindtap='bindTaskTap' class='item-view'>
+		<view class='content-view'>
+			<view class='content' catchtap="catchTaskTap" data-state='{{item.taskState}}' data-taskId='{{item.taskId}}'>{{item.taskTitle}}</view>
+			<view class='subContent-h' catchtap="catchTaskTap" data-state='{{item.taskState}}' data-taskId='{{item.taskId}}'>{{item.taskContent}}</view>
+		</view>
+		<view class='info-view'>
+			<view catchtap='catchTaskTap' data-state='{{item.taskState}}' data-taskId='{{item.taskId}}' class='state {{item.taskState}}'>{{item.taskStateContent}}</view>
+			<view class='date-h'>{{item.taskStartTime}}至{{item.taskEndTime}}</view>
+
+			<view class='date-content'>
+				<view class="date">{{item.taskStartTime}}</view>
+				<view class="line"></view>
+				<view class="date">{{item.taskEndTime}}</view>
+			</view>
+		</view>
+	</view> -->
 </template>

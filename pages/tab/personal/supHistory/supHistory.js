@@ -90,8 +90,14 @@ Page({
         console.log(res.data);
 
         for (var i = 0; i < res.data.supList.length; i++) {
-          if (res.data.supList[i].title.length > 12){
-            res.data.supList[i].title = res.data.supList[i].title.substring(0, 12) + '...';
+          if (res.data.supList[i].title.length > 15){
+            res.data.supList[i].title = res.data.supList[i].title.substring(0, 14) + '...';
+          }
+          if(res.data.supList[i].checkName.length > 6){
+            res.data.supList[i].checkName = res.data.supList[i].checkName.substring(0, 5)+'...';
+          }
+          if(res.data.supList[i].taskType.length > 4){
+            res.data.supList[i].taskType = res.data.supList[i].taskType.substring(0, 3)+'...';
           }
         }
         that.setData({

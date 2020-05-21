@@ -41,9 +41,15 @@ Page({
         userId: app.globalData.openId
       },
       success: res => {
-        console.log(res.data)
+        console.log("queryUserTasks", res.data)
         for (var i = 0; i < res.data.length; i++) {
           res.data[i].taskStateContent = util.dataEN2CN(res.data[i].taskState)
+          if(res.data[i].taskTitle.length > 12){
+            res.data[i].taskTitle = res.data[i].taskTitle.substring(0, 11) + '...';
+          }
+          if(res.data[i].typeContent.length > 6){
+            res.data[i].typeContent = res.data[i].typeContent.substring(0, 5) + '...';
+          }
         }
         that.setData({
           taskList: res.data
