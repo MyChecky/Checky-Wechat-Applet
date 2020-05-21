@@ -23,15 +23,6 @@ Page({
             "url": "./essay/essay",
             "param": "",
             "icon": "fa-globe"
-          }
-        ]
-      },
-      {
-        "subItemList": [{
-            "name": "任务列表",
-            "url": "./taskList/taskList",
-            "param": "",
-            "icon": "fa-reorder"
           },
           {
             "name": "账户余额",
@@ -44,6 +35,15 @@ Page({
             "url": "./checkChart/checkChart",
             "param": "",
             "icon": "fa-bar-chart"
+          }
+        ]
+      },
+      {
+        "subItemList": [{
+            "name": "任务列表",
+            "url": "./taskList/taskList",
+            "param": "",
+            "icon": "fa-reorder"
           },
           {
             "name": "打卡记录",
