@@ -41,6 +41,15 @@
   line-height:30px;
   border-radius: 15px;
 }
+.state-action{
+  background-color: #fff;
+  font-size:16px;
+  color:#5f82c4;
+  height:30px;
+  width:50px;
+  line-height:30px;
+  border-radius: 15px;
+}
 .detail-btn:active{
   color: #333;
   transform: scale(1.2,1.2);

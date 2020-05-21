@@ -15,9 +15,11 @@ Page({
     title: "",
     checkId: "",
     taskId: "",
-    taskState: "未上传",
+    taskState: "未打卡",
+    checkedState: '已打卡',
+    stateAction: "去打卡",
+    checkedAction: "查看",
     checkState: "待认证",
-    checkedState: '查看上传',
     numOfSup: 0,
     numOfSuped: 0,
     supList: [],
@@ -36,6 +38,7 @@ Page({
         checkId: options.checkId,
         taskState: that.data.checkedState,
         taskname: options.taskname,
+        stateAction: that.data.checkedAction,
       })
       var isletter = /^[a-zA-Z]+$/.test(options.checkState);
       if (isletter){

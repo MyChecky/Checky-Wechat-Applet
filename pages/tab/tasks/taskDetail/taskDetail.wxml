@@ -7,11 +7,14 @@
     <view class='item-view'>
       <view class='inner-item-view'>
         <view class='tag item'>打卡状态:</view>
-        <view class='state item' wx:if="{{taskState === checkedState}}" bindtap='upload'>{{taskState}}</view>
-        <view class='state item' wx:else>{{taskState}}</view>
+        <!-- <view class='state item' wx:if="{{taskState === checkedState}}" bindtap='upload'>{{taskState}}</view>
+        <view class='state item' wx:else>{{taskState}}</view> -->
+        <view class='state item'>{{taskState}}</view>
       </view>
       <view class='operation item' bindtap='upload'>
-        <button class='detail-btn fa fa-angle-right'></button>
+        <!-- <view class='state item' bindtap='upload'>{{stateAction}}</view> -->
+        <button class='state-action'>{{stateAction}}</button>
+        <!-- <button class='detail-btn fa fa-angle-right'></button> -->
       </view>
     </view>
     <view class='item-view'>
