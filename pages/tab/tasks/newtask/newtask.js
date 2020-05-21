@@ -432,7 +432,7 @@ Page({
         "taskContent": this.data.content,
         "ifTest": this.data.moneyTypeIndex,
         "supervisorNum": this.data.num,
-        "typeId": this.data.types[this.data.index].typeId,
+        "typeId": this.data.type,
         "taskStartTime": this.data.startTime,
         "taskEndTime": this.data.endTime,
         "checkFrec": util.formatRepeatDate(this.data.chooseRepeat),
