@@ -1,14 +1,42 @@
 <!--pages/tab/personal/history/history.wxml-->
 <import src="../list.wxml" />
 
-<scroll-view class='from-view' style="height:{{height}}px" scroll-y='true'  bindscrolltolower="loadMore">
-  <view class='container-view'>
-    <view class='title'>
-      <icon class='icon fa {{icon}}'></icon>{{title}}
-    </view>
-    <template wx:for="{{historyList}}" is="list-check-item" data="{{item}}" />
-  </view>
-  <view class="more">
-    <view class="fa {{infomation=='nomore'?'fa-coffee':'fa-refresh fa-spin'}}">
-    </view>{{infomation=="nomore"?"没有更多了":"加载中"}}</view>
+<scroll-view class='from-view' style="height:{{height}}px" scroll-y='true' bindscrolltolower="loadMore">
+	<view class='container-view'>
+		<view class='title'>
+			<icon class='icon fa {{icon}}'></icon>{{title}}
+		</view>
+		<!-- <template wx:for="{{historyList}}" is="list-check-item" data="{{item}}" /> -->
+	</view>
+	<view class='container-view' wx:for="{{historyList}}" >
+		<view class='item-view'>
+			<view class='inner-item-view'>
+				<view class='tag item'>任务类型:</view>
+				<view class='state item'>{{item.taskType}}</view>
+			</view>
+			<view class='operation item'>
+				<button class='state-action' bindtap="checkDetail" data-checkid="{{item.check.checkId}}" data-checkstate="{{item.check.checkState}}" data-taskid="{{item.check.taskId}}">查看</button>
+			</view>
+		</view>
+		<view class='item-view'>
+			<view class='inner-item-view'>
+				<view class='tag item'>任务名称:</view>
+				<view class='state-title item'>{{item.check.taskTitle}}</view>
+			</view>
+		</view>
+    		<view class='item-view'>
+			<view class='inner-item-view'>
+				<view class='tag item'>打卡时间:</view>
+				<view class='state item'>{{item.check.checkTime}}</view>
+			</view>
+			<view class='operation item'>
+				<button class='checkState'>{{item.check.checkState}}</button>
+			</view>
+		</view>
+	</view>
+
+	<view class="more">
+		<view class="fa {{infomation=='nomore'?'fa-coffee':'fa-refresh fa-spin'}}">
+		</view>{{infomation=="nomore"?"没有更多了":"加载中"}}
+	</view>
 </scroll-view>

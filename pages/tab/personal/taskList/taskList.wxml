@@ -2,18 +2,46 @@
 <import src="../list.wxml" />
 <toast id="toast" />
 <view class='from-view'>
-  <view class='container-view'>
-    <view class='title'>
-      <icon class='icon fa {{icon}}'></icon>{{title}}
-    </view>
-    <template wx:for="{{taskList}}" is="list-task-item" data="{{item}}"/>
-  </view>
-  <dialog id='dialog' 
-        title='重发任务' 
-        content='请确认是否重新编辑此任务？' 
-        cancelText='取消' 
-        confirm='确定' 
-        isShown="{{isDialogShow}}"
-        bind:cancelEvent="dialogCancelEvent" 
-        bind:confirmEvent="dialogConfirmEvent"/>
+	<view class='container-view'>
+		<view class='title'>
+			<icon class='icon fa {{icon}}'></icon>{{title}}
+		</view>
+		<!-- <template wx:for="{{taskList}}" is="list-task-item" data="{{item}}"/> -->
+	</view>
+
+	<view class='container-view' wx:for="{{taskList}}">
+		<view class='item-view'>
+			<view class='inner-item-view'>
+				<view class='tag item'>任务类型:</view>
+				<view class='state item'>{{item.typeContent}}</view>
+			</view>
+			<view class='operation item'>
+				<button wx:if="{{item.taskState === 'save' || item.taskState === 'nomatch'}}" class='state-action' catchtap='catchTaskTap' data-state='{{item.taskState}}' data-taskId='{{item.taskId}}'>编辑</button>
+				<button wx:else class='state-action' catchtap='catchTaskTap' data-state='{{item.taskState}}' data-taskId='{{item.taskId}}'>查看</button>
+			</view>
+		</view>
+		<view class='item-view'>
+			<view class='inner-item-view'>
+				<view class='tag item'>任务名称:</view>
+				<view class='state-title item'>{{item.taskTitle}}</view>
+			</view>
+		</view>
+		<view class='item-view'>
+			<view class='inner-item-view'>
+				<view class='tag item'>开始时间:</view>
+				<view class='state-title item'>{{item.taskStartTime}}</view>
+			</view>
+		</view>
+		<view class='item-view'>
+			<view class='inner-item-view'>
+				<view class='tag item'>结束时间:</view>
+				<view class='state item'>{{item.taskEndTime}}</view>
+			</view>
+			<view class='operation item'>
+				<button class='checkState'>{{item.taskStateContent}}</button>
+			</view>
+		</view>
+	</view>
+
+	<dialog id='dialog' title='重发任务' content='请确认是否重新编辑此任务？' cancelText='取消' confirm='确定' isShown="{{isDialogShow}}" bind:cancelEvent="dialogCancelEvent" bind:confirmEvent="dialogConfirmEvent" />
 </view>

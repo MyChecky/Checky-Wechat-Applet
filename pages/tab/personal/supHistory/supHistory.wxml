@@ -1,16 +1,51 @@
 <!--pages/tab/personal/supHistory/supHistory.wxml-->
 <import src="../list.wxml" />
 
-<scroll-view class='from-view' style="height:{{height}}px" scroll-y='true'  bindscrolltolower="loadMore">
-  <view class='container-view'>
-    <view class='title'>
-      <icon class='fa fa-check-square-o'></icon>监督记录
-    </view>
-    <template wx:for="{{supList}}" is="list-sup-item" data="{{item}}" />
-  </view>
-  <view class="more">
-    <view class="fa {{infomation=='nomore'?'fa-coffee':'fa-refresh fa-spin'}}">
-    </view>{{infomation=="nomore"?"没有更多了":"加载中"}}</view>
+<scroll-view class='from-view' style="height:{{height}}px" scroll-y='true' bindscrolltolower="loadMore">
+	<view class='container-view'>
+		<view class='title'>
+			<icon class='fa fa-check-square-o'></icon>监督记录
+		</view>
+		<!-- <template wx:for="{{supList}}" is="list-sup-item" data="{{item}}" /> -->
+	</view>
+
+	<view class='container-view' wx:for="{{supList}}">
+		<view class='item-view'>
+			<view class='inner-item-view'>
+				<view class='tag item'>任务类型:</view>
+				<view class='state item'>{{item.taskType}}</view>
+			</view>
+			<view class='operation item'>
+				<button class='state-action' bindtap="checkDetail" data-checkid="{{item.checkId}}" data-checkstate="{{item.state}}" data-taskid="{{item.taskId}}">查看</button>
+			</view>
+		</view>
+		<view class='item-view'>
+			<view class='inner-item-view'>
+				<view class='tag item'>任务名称:</view>
+				<view class='state-title item'>{{item.title}}</view>
+			</view>
+		</view>
+		<view class='item-view'>
+			<view class='inner-item-view'>
+				<view class='tag item'>打 卡 人:</view>
+				<view class='state-title item'>{{item.checkName}}</view>
+			</view>
+		</view>
+		<view class='item-view'>
+			<view class='inner-item-view'>
+				<view class='tag item'>打卡时间:</view>
+				<view class='state item'>{{item.checkTime}}</view>
+			</view>
+			<view class='operation item'>
+				<button class='checkState'>{{item.state}}</button>
+			</view>
+		</view>
+	</view>
+
+	<view class="more">
+		<view class="fa {{infomation=='nomore'?'fa-coffee':'fa-refresh fa-spin'}}">
+		</view>{{infomation=="nomore"?"没有更多了":"加载中"}}
+	</view>
 </scroll-view>
 <!-- 
 <scroll-view class='from-view' style="height:{{height}}px" scroll-y='true' bindscrolltolower="loadMore">

@@ -9,7 +9,7 @@ Page({
     supList: [],
     pageRequest: 1,
     pageSize: 10,
-    noMore: false,
+    infomation: "loading",
     icon: "https://wx.qlogo.cn/mmopen/vi_32/mg86W2NaRPUPJ4ZJiau8RuMAb6WAkRYoS78cPkGMrsbaUAiaiajOPC3MTAAkZ6sXkMcdlJWlymXibTco8VicsEgvlRA/132",
   },
 
@@ -89,24 +89,24 @@ Page({
       success: res => {
         console.log(res.data);
 
-        for (var i = 0; i < res.data.supList.length; i++) {
-          if (res.data.supList[i].title.length > 15){
-            res.data.supList[i].title = res.data.supList[i].title.substring(0, 14) + '...';
-          }
-          if(res.data.supList[i].checkName.length > 6){
-            res.data.supList[i].checkName = res.data.supList[i].checkName.substring(0, 5)+'...';
-          }
-          if(res.data.supList[i].taskType.length > 4){
-            res.data.supList[i].taskType = res.data.supList[i].taskType.substring(0, 3)+'...';
-          }
-        }
+        // for (var i = 0; i < res.data.supList.length; i++) {
+        //   if (res.data.supList[i].title.length > 15){
+        //     res.data.supList[i].title = res.data.supList[i].title.substring(0, 14) + '...';
+        //   }
+        //   if(res.data.supList[i].checkName.length > 6){
+        //     res.data.supList[i].checkName = res.data.supList[i].checkName.substring(0, 5)+'...';
+        //   }
+        //   if(res.data.supList[i].taskType.length > 4){
+        //     res.data.supList[i].taskType = res.data.supList[i].taskType.substring(0, 3)+'...';
+        //   }
+        // }
         that.setData({
           supList: that.data.supList.concat(res.data.supList),
           pageRequest: that.data.pageRequest + 1,
         });
         if (res.data.supList.length < 10) {
           that.setData({
-            noMore: true,
+            infomation: "nomore"
           });
         }
       },

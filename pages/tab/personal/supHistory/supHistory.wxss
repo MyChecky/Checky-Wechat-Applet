@@ -1,5 +1,16 @@
 /* pages/tab/personal/supHistory/supHistory.wxss */
-@import "../list.wxss";
+/* @import "../list.wxss"; */
+
+.container-view{
+  margin: 5px 5px 10px 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0px 0px 5px 1px rgba(200, 200, 200, 0.2);
+  padding: 5px;
+}
 
 .title {
   padding: 5px 10px 20px 10px;
@@ -7,7 +18,12 @@
   font-size: 20px;
 }
 
-.more{
+.icon {
+  margin-right: 10px;
+  font-size: 22px;
+}
+
+.more {
   height: 60px;
   width: 100%;
   background-color: #fff;
@@ -15,4 +31,103 @@
   font-size: 16px;
   text-align: center;
   line-height: 60px;
+}
+
+
+.item-view {
+  padding: 15px 5px;
+  margin: 0px 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(100, 100, 100, 0.2);
+}
+
+.inner-item-view {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.item {
+  margin-right: 10px;
+}
+
+.tag {
+  min-width: 100px;
+}
+
+.detail-btn {
+  font-size: 30px;
+  color: #666;
+  background-color: transparent;
+  transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.state-action {
+  background-color: #fff;
+  font-size: 16px;
+  color: #5f82c4;
+  height: 30px;
+  width: 50px;
+  line-height: 30px;
+  border-radius: 15px;
+}
+
+.checkState {
+  background-color: #fff;
+  font-size: 16px;
+  color: #333;
+  height: 30px;
+  width: 60px;
+  line-height: 30px;
+  border-radius: 15px;
+}
+
+.detail-btn:active {
+  color: #333;
+  transform: scale(1.2, 1.2);
+}
+
+.notice {
+  background-color: #333;
+  font-size: 14px;
+  color: #fff;
+  padding: 2px;
+  letter-spacing: 2px;
+  line-height: 24px;
+  height: 26px;
+  width: 60px;
+  border-radius: 13px;
+}
+
+.notice:hover {
+  background-color: #666;
+}
+
+.tag {
+  margin-right: 20px;
+  color: #666;
+}
+
+.state {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  max-width: 60%;
+  margin-right: 20%;
+}
+
+.state-title{
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  /* max-width: 60%; */
+  margin-right: 5%;
+}
+
+.state-task-infor {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  /* max-width: 60%; */
 }
