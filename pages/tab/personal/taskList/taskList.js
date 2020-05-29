@@ -43,7 +43,11 @@ Page({
       success: res => {
         console.log("queryUserTasks", res.data)
         for (var i = 0; i < res.data.length; i++) {
-          res.data[i].taskStateContent = util.dataEN2CN(res.data[i].taskState)
+          if(res.data[i].taskState === "success" || res.data[i].taskState === "fail"){
+            res.data[i].taskStateContent = "公示中";
+          }else{
+            res.data[i].taskStateContent = util.dataEN2CN(res.data[i].taskState)
+          }
         //   if(res.data[i].taskTitle.length > 12){
         //     res.data[i].taskTitle = res.data[i].taskTitle.substring(0, 11) + '...';
         //   }
