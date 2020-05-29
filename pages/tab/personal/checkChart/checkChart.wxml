@@ -8,23 +8,23 @@
     </view>
     <view class='inner-view'>
       <view class='titleSmall'>任务发布数</view>
-      <view style='line-height:10px;color:#333'>{{taskTotalNum}}</view>
+      <view class='titleSmall-d'>{{taskTotalNum}}</view>
     </view>
     <view class='inner-view'>
       <view class='titleSmall'>任务通过数</view>
-      <view style='line-height:10px;color:#333'>{{taskPassNum}}</view>
+      <view class='titleSmall-d'>{{taskPassNum}}</view>
     </view>
     <view class='inner-view'>
       <view class='titleSmall'>计划打卡数</view>
-      <view style='line-height:10px;color:#333'>{{checkShouldNum}}</view>
+      <view class='titleSmall-d'>{{checkShouldNum}}</view>
     </view>
     <view class='inner-view'>
       <view class='titleSmall'>实际打卡数</view>
-      <view style='line-height:10px;color:#333'>{{checkTotalNum}}</view>
+      <view class='titleSmall-d'>{{checkTotalNum}}</view>
     </view>
     <view class='inner-view'>
       <view class='titleSmall'>打卡通过数</view>
-      <view style='line-height:10px;color:#333'>{{checkPassNum}}</view>
+      <view class='titleSmall-d'>{{checkPassNum}}</view>
     </view>
 
     <view wx:if="{{seriesTime.length > 0}}">

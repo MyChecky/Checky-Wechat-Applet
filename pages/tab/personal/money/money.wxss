@@ -38,7 +38,13 @@
   color: #e83015;
   font-size: 16px;
   padding: 5px;
-  margin: 5px 0px
+  /* margin: 5px 0px */
+}
+.notifcation-d{
+  color: #333;
+  font-size: 16px;
+  padding: 5px;
+  /* margin: 5px 0px */
 }
 .function-view {
   margin-top: 10px;

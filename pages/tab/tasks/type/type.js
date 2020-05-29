@@ -93,7 +93,7 @@ Page({
   getId: function (e) {
     var choice = e.target.dataset.value
     var text = e.target.dataset.text
-    console.log(choice)
+    console.log("taskTypeChoose", choice)
     var arr = getCurrentPages()
     arr[arr.length - 2].setData({
       type: choice,

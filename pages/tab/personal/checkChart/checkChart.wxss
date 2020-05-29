@@ -34,6 +34,10 @@
   font-size: 15px;
   margin-right: 15px;
 }
+.titleSmall-d{
+  color: #333;
+  font-size: 18px;
+}
 
 .titleSmall{
   color: #e83015;

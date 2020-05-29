@@ -7,17 +7,17 @@
       <view class='title'>
         <icon class='icon fa {{icon}}'></icon>{{title}}
       </view>
-      <view style='line-height:10px;color:#333' bindtap='turnToFlowList'>详细记录
+      <view style='line-height:10px;color:#5f82c4' bindtap='turnToFlowList'>详细记录
       </view>
     </view>
 
     <view class='inner-view' wx:if='{{ifTrueMoneyAccess}}'>
       <view class='notifcation'>充值余额：</view>
-      <view style='line-height:30px;color:#333'>{{userMoney}}</view>
+      <view class='notifcation-d'>{{userMoney}}</view>
     </view>
     <view class='inner-view'>
       <view class='notifcation'>试玩余额：</view>
-      <view style='line-height:30px;color:#333'>{{testMoney}}</view>
+      <view class='notifcation-d'>{{testMoney}}</view>
     </view>
     <view wx:if='{{ifTrueMoneyAccess}}'>
         <view class='inner-view' bindtap='turnToRecharge'>

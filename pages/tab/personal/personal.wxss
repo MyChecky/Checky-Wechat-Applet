@@ -38,13 +38,13 @@
   /* border-radius: 5px; */
   margin: 5px 0px;
   padding: 5px 15px;
-  background-color: #eee;
+  background-color: #ddd;
   width: 100%;
   box-sizing: border-box;
   /* box-shadow: 0px 0px 5px 1px rgba(200, 200, 200, 0.2); */
 
   margin-bottom: 5px;
-  box-shadow: 0px 5px 2px #aaa;
+  /* box-shadow: 0px 5px 2px #aaa; */
   /* background-color: #eee; */
   border-radius: 10px;
 }

@@ -8,8 +8,8 @@
         <icon class='icon fa {{icon}}'></icon>{{title}}
       </view>
       <view style="flex-direction: row">
-        <view class='person-friend-a'  bindtap='searchFriend'>查找</view>
-        <view class='person-friend-a' bindtap='newFriend'>新朋友</view>
+        <view class='person-friend-a'  bindtap='searchFriend'>查找用户</view>
+        <view class='person-friend-a' bindtap='newFriend'>好友申请</view>
     </view>
   </view>
   <template wx:for="{{friendList}}" is="list-ava-item" data="{{item}}" />

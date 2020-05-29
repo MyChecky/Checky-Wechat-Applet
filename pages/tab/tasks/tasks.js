@@ -103,6 +103,7 @@ Page({
         // 所以此处加入 callback 以防止这种情况 
         console.log("tasksOnload无信息但已授权")
         app.userInfoReadyCallback = res => {
+          console.log("准备执行登录");
           this.loginIn()
         }
       } else {

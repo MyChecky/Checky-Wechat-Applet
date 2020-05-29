@@ -7,7 +7,7 @@
       <view class='title'>
         <icon class='icon fa {{icon}}'></icon>{{title[moneyTypeIndex]}}
       </view>
-      <view style='line-height:10px;color:#333' bindtap='getMoneyType'>更多
+      <view style='line-height:10px;color:#5f82c4' bindtap='getMoneyType'>更多
       </view>
     </view>
     <!-- 列表模式 -->
