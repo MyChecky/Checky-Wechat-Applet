@@ -16,7 +16,7 @@
 				<view class='state item'>{{item.taskType}}</view>
 			</view>
 			<view class='operation item'>
-				<button class='state-action' bindtap="checkDetail" data-checkid="{{item.checkId}}" data-checkstate="{{item.state}}" data-taskid="{{item.taskId}}">查看</button>
+				<button class='state-action' bindtap="checkDetail" data-checkid="{{item.checkId}}" data-checkstate="{{item.checkState}}" data-taskid="{{item.taskId}}">查看</button>
 			</view>
 		</view>
 		<view class='item-view'>

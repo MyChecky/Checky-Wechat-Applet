@@ -15,6 +15,8 @@ Page({
     title: "",
     checkId: "",
     taskId: "",
+    taskOwnerId: '',
+    userId: '',
     taskState: "未打卡",
     checkedState: '已打卡',
     stateAction: "去打卡",
@@ -59,6 +61,7 @@ Page({
       taskId: options.taskId,
       taskname: options.taskname,
       ymd: options.ymd,
+      userId: app.globalData.openId,
     })
     console.log('taskId:' + this.data.taskId + ',checkId:' + this.data.checkId)
   },
@@ -109,6 +112,7 @@ Page({
         that.formatInfo(res.data.task)
         that.setData({
           taskTypePassRate: res.data.taskTypePassRate,
+          taskOwnerId: res.data.task.userId,
         })
         wx.setNavigationBarTitle({
           title: res.data.task.taskTitle

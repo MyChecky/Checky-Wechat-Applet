@@ -23,7 +23,7 @@
         <view class='state item'>{{checkState}}</view>
       </view>
       <view wx:if="{{checkState=='待认证'}}" class='operation item mark'>{{numOfSuped}}/{{numOfSup}}</view>
-      <view wx:elif="{{checkState=='失败'}}" class='operation item'>
+      <view wx:elif="{{checkState=='失败' && taskOwnerId === userId}}" class='operation item'>
         <button class='appeal' bindtap='appeal'>申诉</button>
       </view>
     </view>
@@ -35,7 +35,7 @@
         <view class='tag item'>{{item.supervisorName}}</view>
         <view class='state item'>{{item.supervisorState}}</view>
       </view>
-      <view wx:if="{{item.supervisorState==='失败'}}" class='operation item'>
+      <view wx:if="{{item.supervisorState==='失败' && taskOwnerId === userId}}" class='operation item'>
         <button class='appeal' bindtap='reportSup' data-supervisorid="{{item.supervisorId}}" data-username="{{item.supervisorName}}" data-taskid="{{taskId}}">投诉</button>
       </view>
 
