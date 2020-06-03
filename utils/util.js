@@ -83,9 +83,9 @@ const dictionary = {
   unknown: "待认证",
   toProcess: "待处理",
   "0": "动态",
-  "1": "打卡",
-  "2": "任务",
-  "3": "监督人",
+  "1": "任务",
+  "2": "监督人",
+  "3": "打卡",
 }
 const dataEN2CN = function(string){
   var result = dictionary[string] 
