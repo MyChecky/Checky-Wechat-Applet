@@ -204,11 +204,19 @@ Page({
   // 预览图片
   essayPic: function(e) {
     console.log(e.target.dataset.index);
-    console.log(e.target.dataset.essayid);
-    console.log(e.target.dataset.src);
+    console.log(e.target.dataset.index1);
+    // console.log(e.target.dataset.essayid);
+    // console.log(e.target.dataset.src);
+    let urls_ = []
+    var index = e.target.dataset.index;
+    for(var i = 0; i<this.data.essays[index].fileRecord.length; i++){
+      console.log(this.data.essays[index].fileRecord[i].fileAddr);
+      urls_.push(this.data.path + this.data.essays[index].fileRecord[i].fileAddr);
+    }
+    console.log(urls_)
     wx.previewImage({
-      current: e.target.dataset.src, // 当前显示图片的http链接
-      urls: [e.target.dataset.src, ] // 需要预览的图片http链接列表
+      current: urls_[e.target.dataset.index1], // 当前显示图片的http链接
+      urls: urls_ // 需要预览的图片http链接列表
     })
   },
   // 滚动加载
