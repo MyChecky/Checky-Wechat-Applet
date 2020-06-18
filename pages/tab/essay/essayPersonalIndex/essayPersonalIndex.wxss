@@ -2,7 +2,7 @@
 
 
 .intro-btn {
-  font-size: 22px;
+  font-size: 20px;
   margin: 0px 0px 0px 2px;
   color: #e83015;
   background-color: white;

@@ -11,9 +11,8 @@
   </i-col>
     <i-col span="8" i-class="essay-personpage-button">
     <view class='intro-operation'>
-        <button class='intro-btn fa fa-commenting-o' bindtap='sendMessage' data-targetUserName="{{userNickName}}" data-targetUserId='{{targetUserId}}' mode="top">私信</button>
-        <!-- wx:if="{{ifFriend==0}}" -->
-        <button  wx:if="{{ifFriend==0}}"  class='intro-btn fa fa-plus' bindtap='addFriend' data-targetUserName="{{userNickName}}" data-targetUserId='{{targetUserId}}' mode="top">添加</button>
+        <button wx:if="{{ifFriend==1}}" class='intro-btn fa fa-commenting-o' bindtap='sendMessage' data-targetUserName="{{userNickName}}" data-targetUserId='{{targetUserId}}' mode="top">私信</button>
+        <button  wx:else  class='intro-btn fa fa-plus' bindtap='addFriend' data-targetUserName="{{userNickName}}" data-targetUserId='{{targetUserId}}' mode="top">添加</button>
   </view>
   </i-col>
 </i-row>
