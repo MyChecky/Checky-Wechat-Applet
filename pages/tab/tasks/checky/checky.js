@@ -21,7 +21,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     console.log("checkyOnload", options)
     this.setData({
       taskId: options.taskId,
@@ -30,7 +30,7 @@ Page({
     })
   },
   // 格式化重复日期
-  formatInfo: function(newInfo) {
+  formatInfo: function (newInfo) {
     newInfo.checkFrec = util.formatBiDate(newInfo.checkFrec)
     this.setData({
       info: newInfo
@@ -40,14 +40,14 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     var that = this
     req = { // 获取任务信息
       // url
@@ -92,27 +92,31 @@ Page({
       .then(req.success)
   },
 
-  bindPlay: function() {
+  bindPlay: function () {
     this.videoContext.play()
   },
 
-  bindPause: function() {
+  bindPause: function () {
     this.videoContext.pause()
   },
 
-  videoErrorCallback: function(e) {
+  videoErrorCallback: function (e) {
     console.log('视频错误信息:')
     console.log(e.detail.errMsg)
   },
 
   // 预览图片
-  previewPic: function(e) {
+  previewPic: function (e) {
     console.log(e.target.dataset.index);
     console.log(e.target.dataset.essayid);
-    console.log(e.target.dataset.src);
+    let urls_ = [];
+    for (var i = 0; i < this.data.fileRecords.length; i++) {
+      urls_.push(this.data.path + this.data.fileRecords[i].fileAddr);
+    }
+    console.log("pics", urls_)
     wx.previewImage({
-      current: e.target.dataset.src, // 当前显示图片的http链接
-      urls: [e.target.dataset.src, ] // 需要预览的图片http链接列表
+      current: urls_[e.target.dataset.index], // 当前显示图片的http链接
+      urls: urls_ // 需要预览的图片http链接列表
     })
   }
 })

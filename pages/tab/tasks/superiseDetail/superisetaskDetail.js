@@ -141,10 +141,13 @@ Page({
   previewPic: function (e) {
     console.log(e.target.dataset.index);
     console.log(e.target.dataset.essayid);
-    console.log(e.target.dataset.src);
+    let urls_ = [];
+    for (var i = 0; i < this.data.fileRecords.length; i++) {
+      urls_.push(this.data.path + this.data.fileRecords[i].fileAddr);
+    }
     wx.previewImage({
-      current: e.target.dataset.src, // 当前显示图片的http链接
-      urls: [e.target.dataset.src,] // 需要预览的图片http链接列表
+      current: urls_[e.target.dataset.index], // 当前显示图片的http链接
+      urls: urls_ // 需要预览的图片http链接列表
     })
   },
 })

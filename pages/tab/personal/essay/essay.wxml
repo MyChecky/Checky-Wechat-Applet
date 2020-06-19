@@ -20,8 +20,8 @@
         <view class='essays-text' data-essayid='{{item.essay.essayId}}'>{{item.essay.essayContent}}</view>
         <!--图片-->
         <view wx:if='{{essays[index].fileRecord[0].recordType=="image"}}' class="image-view" catchtap='essayPic'>
-          <view class="image-container" catchtap='essayPic' wx:for="{{item.fileRecord}}" wx:key="key">
-            <image class='essays-pic' catchtap='essayPic' src='{{path}}{{item.fileAddr}}' mode='aspectFill' data-index='{{index}}' data-src='{{path}}{{item.fileAddr}}' data-essayid='{{item.essayId}}'></image>
+          <view class="image-container" catchtap='essayPic' wx:for="{{item.fileRecord}}" wx:for-index='index1' wx:key='index1'>
+            <image class='essays-pic' catchtap='essayPic' src='{{path}}{{item.fileAddr}}' mode='aspectFill' data-index='{{index}}' data-index1='{{index1}}' data-essayid='{{item.essayId}}'></image>
           </view>
         </view>
         <!--视频-->

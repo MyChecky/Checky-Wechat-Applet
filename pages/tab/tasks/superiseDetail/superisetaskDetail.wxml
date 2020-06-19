@@ -19,7 +19,7 @@
     <!-- 图片 -->
     <view wx:if="{{fileRecords[0].recordType=='image'}}" class='image-view'>
       <view class="image-container" catchtap='previewPic' wx:for="{{fileRecords}}" wx:key="key">
-        <image class='essays-pic' catchtap='previewPic' src='{{path}}{{item.fileAddr}}' mode='aspectFill' data-index='{{index}}' data-src='{{path}}{{item.fileAddr}}' data-essayid='{{item.essayId}}'></image>
+        <image class='essays-pic' catchtap='previewPic' src='{{path}}{{item.fileAddr}}' mode='aspectFill' data-index='{{index}}' data-essayid='{{item.essayId}}'></image>
       </view>
     </view>
     <!--视频-->
