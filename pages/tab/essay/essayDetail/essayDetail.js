@@ -23,13 +23,14 @@ Page({
       wx.navigateTo({
         url: '../../../index/index'
       })
+    }else{
+      var essayId = e.target.dataset.essayid
+      var userId = app.globalData.openId
+      console.log(essayId)
+      wx.navigateTo({
+        url: '../report/report?essayId=' + essayId + '&userName=' + this.data.userName + '&essaysText=' + this.data.essay.essayContent,
+      })
     }
-    var essayId = e.target.dataset.essayid
-    var userId = app.globalData.openId
-    console.log(essayId)
-    wx.navigateTo({
-      url: '../report/report?essayId=' + essayId + '&userName=' + this.data.userName + '&essaysText=' + this.data.essay.essayContent,
-    })
   },
 
   onLoad: function (options) {
@@ -186,33 +187,34 @@ Page({
       wx.navigateTo({
         url: '../../../index/index'
       })
-    }
-    if (this.data.commentContent == "") {
-      this.selectComponent("#toast").toastShow('不能发送空的评论', 'fa-exclamation-circle', 2000)
-    } else {
-      req = {
-        url: '/essay/addComment',
-        method: 'POST',
-        data: {
-          userId: app.globalData.openId,
-          essayId: this.data.essay.essayId,
-          commentContent: this.data.commentContent
-        },
-        success: res => {
-          console.log(res)
-          this.setData({
-            comments: res.data.comments,
-            commentNum: res.data.comments.length,
-            commentContent: ""
-          })
-        },
-        fail: err => {
-          console.log(err)
+    }else{
+      if (this.data.commentContent == "") {
+        this.selectComponent("#toast").toastShow('不能发送空的评论', 'fa-exclamation-circle', 2000)
+      } else {
+        req = {
+          url: '/essay/addComment',
+          method: 'POST',
+          data: {
+            userId: app.globalData.openId,
+            essayId: this.data.essay.essayId,
+            commentContent: this.data.commentContent
+          },
+          success: res => {
+            console.log(res)
+            this.setData({
+              comments: res.data.comments,
+              commentNum: res.data.comments.length,
+              commentContent: ""
+            })
+          },
+          fail: err => {
+            console.log(err)
+          }
         }
+        app.requestWithAuth(req)
+        .then(req.success)
+        .catch(req.fail)
       }
-      app.requestWithAuth(req)
-      .then(req.success)
-      .catch(req.fail)
     }
   },
   // 删除评论
@@ -221,31 +223,31 @@ Page({
       wx.navigateTo({
         url: '../../../index/index'
       })
-    }
-    console.log("comId:"+e.target.dataset.commentid)
-    req = {
-      url: '/essay/delComment',
-      method: 'POST',
-      data: {
-        commentId: e.target.dataset.commentid,
-        essayId: this.data.essay.essayId
-      },
-      success: res => {
-        console.log(res)
-        this.setData({
-          comments: res.data.comments,
-          commentNum: res.data.comments.length,
-        })
-
-      },
-      fail: err => {
-        console.log(err)
+    }else{
+      console.log("comId:"+e.target.dataset.commentid)
+      req = {
+        url: '/essay/delComment',
+        method: 'POST',
+        data: {
+          commentId: e.target.dataset.commentid,
+          essayId: this.data.essay.essayId
+        },
+        success: res => {
+          console.log(res)
+          this.setData({
+            comments: res.data.comments,
+            commentNum: res.data.comments.length,
+          })
+  
+        },
+        fail: err => {
+          console.log(err)
+        }
       }
+      app.requestWithAuth(req)
+        .then(req.success)
+        .catch(req.fail)
     }
-    app.requestWithAuth(req)
-      .then(req.success)
-      .catch(req.fail)
-    
   },
   //输入聚焦
   foucus: function (e) {

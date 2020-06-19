@@ -174,21 +174,21 @@ Page({
       wx.navigateTo({
         url: '../../index/index'
       })
+    }else{
+      console.log("个人主页", e.target.dataset);
+      var userid = e.target.dataset.userid;
+      var usernickname = e.target.dataset.usernickname;
+      var useravatar = e.target.dataset.useravatar;
+      if (userid != app.globalData.openId) {
+        wx.navigateTo({
+          url: './essayPersonalIndex/essayPersonalIndex?userid=' + userid + '&userNickName=' + usernickname + '&userAvatar=' + useravatar,
+        })
+      } else {
+        wx.navigateTo({
+          url: '../personal/essay/essay',
+        })
+      }
     }
-    console.log("个人主页", e.target.dataset);
-    var userid = e.target.dataset.userid;
-    var usernickname = e.target.dataset.usernickname;
-    var useravatar = e.target.dataset.useravatar;
-    if (userid != app.globalData.openId) {
-      wx.navigateTo({
-        url: './essayPersonalIndex/essayPersonalIndex?userid=' + userid + '&userNickName=' + usernickname + '&userAvatar=' + useravatar,
-      })
-    } else {
-      wx.navigateTo({
-        url: '../personal/essay/essay',
-      })
-    }
-
   },
 
   essayNew: function() {
@@ -196,17 +196,17 @@ Page({
       wx.navigateTo({
         url: '../../index/index'
       })
+    }else{
+      wx.navigateTo({
+        url: './essayNew/essayNew',
+      })
     }
-    wx.navigateTo({
-      url: './essayNew/essayNew',
-    })
   },
   // 预览图片
   essayPic: function(e) {
     console.log(e.target.dataset.index);
     console.log(e.target.dataset.index1);
-    // console.log(e.target.dataset.essayid);
-    // console.log(e.target.dataset.src);
+    console.log(e.target.dataset.essayid);
     let urls_ = []
     var index = e.target.dataset.index;
     for(var i = 0; i<this.data.essays[index].fileRecord.length; i++){

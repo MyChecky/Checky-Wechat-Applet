@@ -353,10 +353,11 @@ Page({
       wx.navigateTo({
         url: '../../index/index'
       })
+    }else{
+      wx.navigateTo({
+        url: './newtask/newtask?ymd=' + this.data.dayStyle[0].ymd,
+      })
     }
-    wx.navigateTo({
-      url: './newtask/newtask?ymd=' + this.data.dayStyle[0].ymd,
-    })
   },
   // 跳转到打卡详情
   // -已打卡情况

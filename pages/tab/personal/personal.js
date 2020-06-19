@@ -227,15 +227,18 @@ Page({
   // 跳转
   jumpTo: function(e) {
     if (app.globalData.openId === "") {
+      console.log("未曾登录");
       wx.navigateTo({
         url: '../../index/index'
       })
+    }else{
+      console.log("已然登录");
+      var url = e.target.dataset.url
+      var param = e.target.dataset.param
+      console.log(url + '?' + param)
+      wx.navigateTo({
+        url: url + '?' + param,
+      })
     }
-    var url = e.target.dataset.url
-    var param = e.target.dataset.param
-    console.log(url + '?' + param)
-    wx.navigateTo({
-      url: url + '?' + param,
-    })
   }
 })
