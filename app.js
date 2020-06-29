@@ -137,7 +137,9 @@ App({
   globalData: {
     code: null,
     userInfo: null,
-    base: "http://127.0.0.1",
+    //base: "http://127.0.0.1",
+    //base: "http://188.131.172.171",
+    base: "https://www.ycloudtech.cn",
     port: "8090",
     contextPath: "/Checky",
     curPages: null,
