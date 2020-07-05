@@ -35,7 +35,8 @@
     "pages/tab/personal/serviceContent/serviceContent",
     "pages/tab/personal/supHistory/supHistory",
     "pages/tab/personal/taskDetail/taskDetail",
-    "pages/tab/personal/checkChart/checkChart"
+    "pages/tab/personal/checkChart/checkChart",
+    "pages/tab/hot/hot"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -52,6 +53,11 @@
         "iconPath": "image/tab_essays.png",
         "selectedIconPath": "image/tab_essays_hl.png",
         "text": "动态"
+      },{
+        "pagePath": "pages/tab/hot/hot",
+        "iconPath": "image/tab_essays.png",
+        "selectedIconPath": "image/tab_essays_hl.png",
+        "text": "热门"
       },
       {
         "pagePath": "pages/tab/tasks/tasks",

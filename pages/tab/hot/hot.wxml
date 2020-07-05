@@ -1,0 +1,32 @@
+<!--pages/tab/hot/hot.wxml-->
+<view  class='calNav'>
+  <icon class="searchcion" size='20' type='search'></icon>
+  <input class="weui-input" auto-focus placeholder="输入内容以搜索"/>
+</view>
+<swiper autoplay="true">
+  <swiper-item wx:for='{{imgs}}' wx:key='key' wx:for-index='index'>
+    <image class='swiper-items' src='{{item}}'></image>
+  </swiper-item>
+</swiper>
+<view class="function-view">
+  <view class='inner-view'>
+  <view>今日最热话题🔥</view>
+    <block wx:for="{{hotTopic}}" wx:key="key">
+      <view class='function-item' data-url='{{item.url}}' data-param='{{item.param}}' bindtap='jumpTo'>
+      <view class='icon' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.index}}</view>
+      <view class='text' data-url='{{item.url}}' data-param='{{item.param}}'>#{{item.name}}#</view>
+      </view>
+    </block>
+  </view>
+</view>
+<view class="function-view">
+  <view class='inner-view'>
+  <view>打卡热门标签🔥</view>
+    <block wx:for="{{hotTopic}}" wx:key="key">
+      <view class='function-item' data-url='{{item.url}}' data-param='{{item.param}}' bindtap='jumpTo'>
+      <view class='icon' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.index}}</view>
+      <view class='text' data-url='{{item.url}}' data-param='{{item.param}}'>#{{item.name}}#</view>
+      </view>
+    </block>
+  </view>
+</view>

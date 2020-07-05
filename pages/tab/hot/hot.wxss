@@ -1,0 +1,64 @@
+/* pages/tab/hot/hot.wxss */
+.calNav {
+  padding: 5px 2px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+}
+.swiper-items {
+  width:90%;
+  margin-left: 5%;
+}
+.function-view {
+  /* margin-top: 10px; */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.inner-view {
+  /* border-radius: 5px; */
+  margin: 5px 0px;
+  padding: 5px 15px;
+  background-color: #eee;
+  width: 100%;
+  box-sizing: border-box;
+
+  margin-bottom: 5px;
+  border-radius: 10px;
+}
+.function-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  /* background-color: #fff; */
+  align-items: center;
+  padding: 5px 0px 10px 0px;
+  border-bottom: 1px solid rgba(200, 200, 200, 0.2);
+  margin: 5px 0px;
+  color: #333;
+  text-align: end;
+  height: 30px;
+  transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+  /* box-shadow: 0px 5px 2px #aaa; */
+    /* margin-bottom: 5px;
+  background-color: #ddd;
+  border-radius: 10px; */
+}
+.function-item:active {
+  color: #e83015;
+}
+.icon {
+  color: #e83015;
+  font-size: 22px;
+  margin-right: 20px;
+}
+.text {
+  color: #e83015;
+  letter-spacing: 2px;
+  font-size: 18px;
+}
