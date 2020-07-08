@@ -37,7 +37,8 @@
     "pages/tab/personal/taskDetail/taskDetail",
     "pages/tab/personal/checkChart/checkChart",
     "pages/tab/hot/hot",
-    "pages/tab/tasks/tag/tag"
+    "pages/tab/tasks/tag/tag",
+    "pages/tab/personal/achievement/achieve"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -63,7 +63,11 @@ swiper-item {
   justify-content: flex-start;
   align-items: flex-start;
 }
-
+.title {
+  padding: 10px 10px 20px 10px;
+  color: #e83015;
+  font-size: 20px;
+}
 .inner-view {
   /* border-radius: 5px; */
   margin: 5px 0px;

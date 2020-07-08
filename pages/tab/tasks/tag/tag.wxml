@@ -1,12 +1,12 @@
 <!--pages/tab/tasks/tag/tag.wxml-->
 <view class="topnavFixed {{scrollTop>1?'shadow':''}}">
 	<view class="swiper-tab">
-		<view class="swiper-tab-list {{currentTab==0 ? 'onTab' : ''}}" data-current="0" bindtap="swichNav">学习  </view>
-		<view class="swiper-tab-list {{currentTab==1 ? 'onTab' : ''}}" data-current="1" bindtap="swichNav">运动  </view>
-		<view class="swiper-tab-list {{currentTab==2 ? 'onTab' : ''}}" data-current="2" bindtap="swichNav">健身  </view>
-		<view class="swiper-tab-list {{currentTab==3 ? 'onTab' : ''}}" data-current="3" bindtap="swichNav">阅读  </view>
-		<view class="swiper-tab-list {{currentTab==4 ? 'onTab' : ''}}" data-current="4" bindtap="swichNav">电影  </view>
-		<view class="swiper-tab-list {{currentTab==5 ? 'onTab' : ''}}" data-current="5" bindtap="swichNav">美食  </view>
+		<view class="swiper-tab-list {{currentTab==0 ? 'onTab' : ''}}" data-current="0" bindtap="swichNav">学习 </view>
+		<view class="swiper-tab-list {{currentTab==1 ? 'onTab' : ''}}" data-current="1" bindtap="swichNav">运动 </view>
+		<view class="swiper-tab-list {{currentTab==2 ? 'onTab' : ''}}" data-current="2" bindtap="swichNav">健身 </view>
+		<view class="swiper-tab-list {{currentTab==3 ? 'onTab' : ''}}" data-current="3" bindtap="swichNav">阅读 </view>
+		<view class="swiper-tab-list {{currentTab==4 ? 'onTab' : ''}}" data-current="4" bindtap="swichNav">电影 </view>
+		<view class="swiper-tab-list {{currentTab==5 ? 'onTab' : ''}}" data-current="5" bindtap="swichNav">美食 </view>
 	</view>
 </view>
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange">
@@ -14,7 +14,9 @@
 	<swiper-item>
 		<view class="function-view">
 			<view class='inner-view'>
-				<view>打卡热门标签🔥</view>
+				<view class='title'>
+					<icon class='icon fa fa-bar-chart'></icon>打卡标签选择
+				</view>
 				<block wx:for="{{hotTag}}" wx:key="key">
 					<view class='function-item' data-url='{{item.url}}' data-param='{{item.param}}' bindtap='jumpTo'>
 						<view class='icon' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.index}}</view>
@@ -38,7 +40,7 @@
 			</view>
 		</view>
 	</swiper-item>
-  <!--健身-->
+	<!--健身-->
 	<swiper-item>
 		<view class="function-view">
 			<view class='inner-view'>
@@ -52,7 +54,7 @@
 			</view>
 		</view>
 	</swiper-item>
-  <!--阅读-->
+	<!--阅读-->
 	<swiper-item>
 		<view class="function-view">
 			<view class='inner-view'>
@@ -66,7 +68,7 @@
 			</view>
 		</view>
 	</swiper-item>
-  <!--电影-->
+	<!--电影-->
 	<swiper-item>
 		<view class="function-view">
 			<view class='inner-view'>
@@ -80,7 +82,7 @@
 			</view>
 		</view>
 	</swiper-item>
-  <!--美食-->
+	<!--美食-->
 	<swiper-item>
 		<view class="function-view">
 			<view class='inner-view'>

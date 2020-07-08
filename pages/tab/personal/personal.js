@@ -56,6 +56,12 @@ Page({
             "url": "./supHistory/supHistory",
             "param": "",
             "icon": "fa-check-square-o"
+          },
+          {
+            "name": "我的成就",
+            "url": "./achievement/achieve",
+            "param": "",
+            "icon": "fa-pie-chart"
           }
         ]
       },

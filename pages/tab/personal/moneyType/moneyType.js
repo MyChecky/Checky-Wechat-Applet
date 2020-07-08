@@ -8,7 +8,7 @@ Page({
   data: {
     moneyType: ['试玩资金记录', '充值资金记录', '全部资金记录'],
     moneyTypeIndex: 0,
-    displayType: ['列表模式', '图表模式'],
+    displayType: ['列表模式', '折线图模式','饼状图模式'],
     displayTypeIndex: 0,
     startTime: app.globalData.date,
     endTime: app.globalData.date,
