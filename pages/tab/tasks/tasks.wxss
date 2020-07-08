@@ -94,10 +94,6 @@ swiper-item {
   max-height: 0px;
 }
 
-.onList {
-  /* max-height: 800px; */
-}
-
 .offList {
   max-height: 0px;
 }
@@ -140,10 +136,11 @@ swiper-item {
 }
 .list{
   margin-top: 10px;
+  margin-bottom: 15px;
   background-color: #fff;
-  padding: 10px 5px 10px 5px;
+  padding: 10px 10px 10px 10px;
   border-radius: 10px;
-  box-shadow: 0px 5px 2px #aaa;
+  box-shadow: 0px 5px 10px #ccc;
 }
 .list-title{
   /* box-shadow: 0px 1px 2px 0px rgba(100, 100, 100, 0.5); */

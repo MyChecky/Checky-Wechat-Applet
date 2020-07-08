@@ -22,10 +22,10 @@
 <view class="function-view">
   <view class='inner-view'>
   <view>打卡热门标签🔥</view>
-    <block wx:for="{{hotTopic}}" wx:key="key">
+    <block wx:for="{{hotTag}}" wx:key="key">
       <view class='function-item' data-url='{{item.url}}' data-param='{{item.param}}' bindtap='jumpTo'>
       <view class='icon' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.index}}</view>
-      <view class='text' data-url='{{item.url}}' data-param='{{item.param}}'>#{{item.name}}#</view>
+      <view class='text' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.name}}</view>
       </view>
     </block>
   </view>

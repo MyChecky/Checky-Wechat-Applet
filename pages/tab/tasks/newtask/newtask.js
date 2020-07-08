@@ -271,7 +271,7 @@ Page({
   // 获取类型
   getType: function() {
     wx.navigateTo({
-      url: '../type/type',
+      url: '../tag/tag',
     })
   },
   // 获取数据

@@ -1,15 +1,11 @@
-// pages/tab/hot/hot.js
+// pages/tab/tasks/tag.js
 Page({
 
   /**
    * Page initial data
    */
   data: {
-    imgs: [
-      'https://img.yzcdn.cn/vant/cat.jpeg',
-      'https://img.yzcdn.cn/vant/apple-2.jpg',
-      'https://img.yzcdn.cn/vant/apple-1.jpg'
-    ],
+    currentTab: 0,
     hotTopic: [
       {
         'index': 1,
@@ -30,7 +26,7 @@ Page({
         'name': '雅思冲！',
       },
     ],
-    hotTag:[
+    hotTag: [
       {
         'index': 1,
         'url': '#',
@@ -48,7 +44,7 @@ Page({
         'url': '#',
         'param': '标签',
         'name': '单词',
-      },{
+      }, {
         'index': 4,
         'url': '#',
         'param': '标签',
@@ -111,5 +107,16 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  //顶部切换页面
+  swichNav: function (e) {
+    var that = this;
+    if (this.data.currentTab === e.target.dataset.current) {
+      return false;
+    } else {
+      that.setData({
+        currentTab: e.target.dataset.current
+      })
+    }
+  },
 })
