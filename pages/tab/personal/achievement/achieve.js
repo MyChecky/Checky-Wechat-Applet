@@ -5,7 +5,16 @@ Page({
    * Page initial data
    */
   data: {
-
+    medalNum: 3,
+    medals: [
+    {
+      img:'https://img.yzcdn.cn/vant/cat.jpeg',
+      desc:'达人勋章'
+    },
+    {
+      img:'https://img.yzcdn.cn/vant/apple-2.jpg',
+      desc:'坚持勋章'
+    }],
   },
 
   /**

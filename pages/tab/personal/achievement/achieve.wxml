@@ -1,2 +1,16 @@
 <!--pages/tab/personal/achievement/achieve.wxml-->
-<text>pages/tab/personal/achievement/achieve.wxml</text>
+<view class="out-container">
+	<view class="inner-container">
+		<view style="font-size: 20px">已获得勋章</view>
+		<view><text style="font-size: 40px; font-weight: 5px;">{{medalNum}}</text> 个</view>
+    <view style="font-size: 15px; color: grey;">不动声色地修炼，静待时光惊艳</view>
+	</view>
+	<swiper autoplay="true">
+		<swiper-item wx:for='{{medals}}' wx:key='key' wx:for-index='index'>
+			<view class='swiper-items'>
+				<image src='{{item.img}}'></image>
+				<view>{{item.desc}}</view>
+			</view>
+		</swiper-item>
+	</swiper>
+</view>

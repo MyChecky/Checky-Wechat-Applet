@@ -30,7 +30,7 @@ Page({
         'name': '雅思冲！',
       },
     ],
-    hotTag:[
+    hotTag: [
       {
         'index': 1,
         'url': '#',
@@ -48,7 +48,7 @@ Page({
         'url': '#',
         'param': '标签',
         'name': '单词',
-      },{
+      }, {
         'index': 4,
         'url': '#',
         'param': '标签',
@@ -60,10 +60,44 @@ Page({
   /**
    * Lifecycle function--Called when page load
    */
-  onLoad: function (options) {
-
+  onLoad: function () {
+    var that = this;
+    this.setData({
+      path: app.getAbsolutePath() + '/',
+    })
+    wx.getSystemInfo({
+      success: (res) => {
+        that.setData({
+          height: res.windowHeight
+        })
+        that.reqHotTag()
+      },
+    })
   },
-
+  //获取动态列表
+  reqHotTag: function () {
+    req = {
+      url: '/tag/rank',
+      method: 'POST',
+      success(res) {
+        console.log(res.data)
+        if (res.data.length == 0) {
+          that.setData({
+            infomation: "nomore"
+          })  
+        } else {
+          that.setData({
+            infomation: "loading",
+            essays: that.data.essays.concat(res.data),
+            cPage: that.data.cPage + 1
+          })
+        }
+      }
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
+  },
   /**
    * Lifecycle function--Called when page is initially rendered
    */
