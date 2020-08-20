@@ -1,4 +1,6 @@
 // pages/tab/hot/hot.js
+const app = getApp()
+var util = require("../../../utils/util.js")
 Page({
 
   /**
@@ -10,51 +12,9 @@ Page({
       'https://img.yzcdn.cn/vant/apple-2.jpg',
       'https://img.yzcdn.cn/vant/apple-1.jpg'
     ],
-    hotTopic: [
-      {
-        'index': 1,
-        'url': '#',
-        'param': '话题',
-        'name': '今天你上岸了吗',
-      },
-      {
-        'index': 2,
-        'url': '#',
-        'param': '话题',
-        'name': '托福分手',
-      },
-      {
-        'index': 3,
-        'url': '#',
-        'param': '话题',
-        'name': '雅思冲！',
-      },
-    ],
-    hotTag: [
-      {
-        'index': 1,
-        'url': '#',
-        'param': '标签',
-        'name': '跑步',
-      },
-      {
-        'index': 2,
-        'url': '#',
-        'param': '标签',
-        'name': '考研',
-      },
-      {
-        'index': 3,
-        'url': '#',
-        'param': '标签',
-        'name': '单词',
-      }, {
-        'index': 4,
-        'url': '#',
-        'param': '标签',
-        'name': '英语',
-      },
-    ]
+    infomation: "正在加载",
+    hotTopic:[],
+    hotTag: [],
   },
 
   /**
@@ -71,25 +31,50 @@ Page({
           height: res.windowHeight
         })
         that.reqHotTag()
+        that.reqHotTopic()
       },
     })
   },
-  //获取动态列表
+  //获取热门标签
   reqHotTag: function () {
+    var that = this
     req = {
       url: '/tag/rank',
       method: 'POST',
       success(res) {
         console.log(res.data)
-        if (res.data.length == 0) {
+        if (!res.data.rankList) {
           that.setData({
             infomation: "nomore"
-          })  
+          })
         } else {
           that.setData({
             infomation: "loading",
-            essays: that.data.essays.concat(res.data),
-            cPage: that.data.cPage + 1
+            hotTag: res.data.rankList,
+          })
+        }
+      }
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
+  },
+  //获取热门话题
+  reqHotTopic: function () {
+    var that = this
+    req = {
+      url: '/topicRank/rank',
+      method: 'POST',
+      success(res) {
+        console.log(res.data)
+        if (!res.data) {
+          that.setData({
+            infomation: "nomore"
+          })
+        } else {
+          that.setData({
+            infomation: "loading",
+            hotTopic: res.data,
           })
         }
       }

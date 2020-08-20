@@ -11,10 +11,10 @@
 <view class="function-view">
   <view class='inner-view'>
   <view>今日最热话题🔥</view>
-    <block wx:for="{{hotTopic}}" wx:key="key">
-      <view class='function-item' data-url='{{item.url}}' data-param='{{item.param}}' bindtap='jumpTo'>
-      <view class='icon' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.index}}</view>
-      <view class='text' data-url='{{item.url}}' data-param='{{item.param}}'>#{{item.name}}#</view>
+    <block wx:for="{{hotTopic}}" wx:for-index="key">
+      <view class='function-item' bindtap='jumpTo'>
+      <view class='icon' >{{key+1}}</view>
+      <view class='text' >#{{item.topic.topicContent}}#</view>
       </view>
     </block>
   </view>
@@ -22,10 +22,10 @@
 <view class="function-view">
   <view class='inner-view'>
   <view>打卡热门标签🔥</view>
-    <block wx:for="{{hotTag}}" wx:key="key">
-      <view class='function-item' data-url='{{item.url}}' data-param='{{item.param}}' bindtap='jumpTo'>
-      <view class='icon' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.index}}</view>
-      <view class='text' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.name}}</view>
+    <block wx:for="{{hotTag}}" wx:for-index="key">
+      <view class='function-item' bindtap='jumpTo'>
+      <view class='icon'>{{key+1}}</view>
+      <view class='text'>{{item.tagContent}}</view>
       </view>
     </block>
   </view>
