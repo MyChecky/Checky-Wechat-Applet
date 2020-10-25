@@ -1,11 +1,13 @@
 // pages/tab/personal/achievement/achieve.js
+const app = getApp()
+var util = require("../../../../utils/util.js")
 Page({
 
   /**
    * Page initial data
    */
   data: {
-    medalNum: 3,
+    medalNum: 0,
     medals: [
     {
       img:'https://img.yzcdn.cn/vant/cat.jpeg',
@@ -20,8 +22,47 @@ Page({
   /**
    * Lifecycle function--Called when page load
    */
-  onLoad: function (options) {
-
+  onLoad: function () {
+    var that = this;
+    this.setData({
+      path: app.getAbsolutePath() + '/',
+    })
+    wx.getSystemInfo({
+      success: (res) => {
+        that.setData({
+          height: res.windowHeight
+        })
+        that.reqAllMedal()
+      },
+    })
+  },
+  //获取勋章列表
+  reqAllMedal: function () {
+    var that = this
+    req = {
+      url: '/medal/get',
+      method: 'POST',
+      data:{
+        'userId': app.globalData.openId
+      },
+      success(res) {
+        console.log(res.data)
+        if (!res.data) {
+          that.setData({
+            infomation: "nomore"
+          })
+        } else {
+          that.setData({
+            infomation: "loading",
+            medals: res.data,
+            medalNum: that.medals.length
+          })
+        }
+      }
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
   },
 
   /**

@@ -19,8 +19,8 @@
 				</view>
 				<block wx:for="{{hotTag}}" wx:key="key">
 					<view class='function-item' data-url='{{item.url}}' data-param='{{item.param}}' bindtap='jumpTo'>
-						<view class='icon' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.index}}</view>
-						<view class='text' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.name}}</view>
+						<view class='icon' data-url='{{item.url}}' data-param='{{item.name}}'>{{item.index}}</view>
+						<view class='text' data-url='{{item.url}}' data-param='{{item.name}}'>{{item.name}}</view>
 					</view>
 				</block>
 			</view>
@@ -33,8 +33,8 @@
 				<view>打卡热门标签🔥</view>
 				<block wx:for="{{hotTag}}" wx:key="key">
 					<view class='function-item' data-url='{{item.url}}' data-param='{{item.param}}' bindtap='jumpTo'>
-						<view class='icon' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.index}}</view>
-						<view class='text' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.name}}</view>
+						<view class='icon' data-url='{{item.url}}' data-param='{{item.name}}'>{{item.index}}</view>
+						<view class='text' data-url='{{item.url}}' data-param='{{item.name}}'>{{item.name}}</view>
 					</view>
 				</block>
 			</view>
@@ -47,8 +47,8 @@
 				<view>打卡热门标签🔥</view>
 				<block wx:for="{{hotTag}}" wx:key="key">
 					<view class='function-item' data-url='{{item.url}}' data-param='{{item.param}}' bindtap='jumpTo'>
-						<view class='icon' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.index}}</view>
-						<view class='text' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.name}}</view>
+						<view class='icon' data-url='{{item.url}}' data-param='{{item.name}}'>{{item.index}}</view>
+						<view class='text' data-url='{{item.url}}' data-param='{{item.name}}'>{{item.name}}</view>
 					</view>
 				</block>
 			</view>
@@ -61,8 +61,8 @@
 				<view>打卡热门标签🔥</view>
 				<block wx:for="{{hotTag}}" wx:key="key">
 					<view class='function-item' data-url='{{item.url}}' data-param='{{item.param}}' bindtap='jumpTo'>
-						<view class='icon' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.index}}</view>
-						<view class='text' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.name}}</view>
+						<view class='icon' data-url='{{item.url}}' data-param='{{item.name}}'>{{item.index}}</view>
+						<view class='text' data-url='{{item.url}}' data-param='{{item.name}}'>{{item.name}}</view>
 					</view>
 				</block>
 			</view>
@@ -75,8 +75,8 @@
 				<view>打卡热门标签🔥</view>
 				<block wx:for="{{hotTag}}" wx:key="key">
 					<view class='function-item' data-url='{{item.url}}' data-param='{{item.param}}' bindtap='jumpTo'>
-						<view class='icon' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.index}}</view>
-						<view class='text' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.name}}</view>
+						<view class='icon' data-url='{{item.url}}' data-param='{{item.name}}'>{{item.index}}</view>
+						<view class='text' data-url='{{item.url}}' data-param='{{item.name}}'>{{item.name}}</view>
 					</view>
 				</block>
 			</view>
@@ -89,11 +89,14 @@
 				<view>打卡热门标签🔥</view>
 				<block wx:for="{{hotTag}}" wx:key="key">
 					<view class='function-item' data-url='{{item.url}}' data-param='{{item.param}}' bindtap='jumpTo'>
-						<view class='icon' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.index}}</view>
-						<view class='text' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.name}}</view>
+						<view class='icon' data-url='{{item.url}}' data-param='{{item.name}}'>{{item.index}}</view>
+						<view class='text' data-url='{{item.url}}' data-param='{{item.name}}'>{{item.name}}</view>
 					</view>
 				</block>
 			</view>
 		</view>
 	</swiper-item>
 </swiper>
+<view  wx:for="{{choosenTags}}" wx:for-index="key">
+<i-tag>#{{item}}</i-tag>
+</view>

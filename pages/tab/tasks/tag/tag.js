@@ -1,4 +1,6 @@
 // pages/tab/tasks/tag.js
+const app = getApp()
+var util = require("../../../../utils/util.js")
 Page({
 
   /**
@@ -6,6 +8,7 @@ Page({
    */
   data: {
     currentTab: 0,
+    choosenTags: [],
     hotTopic: [
       {
         'index': 1,
@@ -50,16 +53,129 @@ Page({
         'param': '标签',
         'name': '英语',
       },
-    ]
+    ],
+    allTag:[],
+    allTagInType:[],
+    allType:[]
   },
-
+  addTag: function (e) {
+    console.log(e.target)
+  },
   /**
    * Lifecycle function--Called when page load
    */
-  onLoad: function (options) {
-
+  onLoad: function () {
+    var that = this;
+    this.setData({
+      path: app.getAbsolutePath() + '/',
+    })
+    wx.getSystemInfo({
+      success: (res) => {
+        that.setData({
+          height: res.windowHeight
+        })
+        that.reqAllTag()
+        that.reqTagByTypeId()
+        that.reqAllType()
+      },
+    })
   },
-
+  //获取所有标签
+  reqAllTag: function () {
+    var that = this
+    req = {
+      url: '/tag/queryAll',
+      method: 'POST',
+      success(res) {
+        console.log(res.data)
+        if (!res.data) {
+          that.setData({
+            infomation: "nomore"
+          })
+        } else {
+          that.setData({
+            infomation: "loading",
+            allTag: res.data,
+          })
+        }
+      }
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
+  },
+  //通过类型id获取标签
+  reqTagByTypeId: function () {
+    var that = this
+    req = {
+      url: '/typeTag/getByTypeId',
+      method: 'POST',
+      data:{
+        typeId:'1',
+      },
+      success(res) {
+        console.log(res.data)
+        if (!res.data) {
+          that.setData({
+            infomation: "nomore"
+          })
+        } else {
+          that.setData({
+            infomation: "loading",
+            allTagInType: res.data,
+          })
+        }
+      }
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
+  },
+  //选择标签并跳转
+  jumpTo: function(e){
+    var text = e.target.dataset.param
+    var typeId = e.target.dataset.type
+    var arr = getCurrentPages()
+    arr[arr.length - 2].setData({
+      type: typeId,
+      typeContent: text,
+      index: 0
+    })
+    console.log(e.target.dataset.param)
+    wx.navigateBack({
+      delta: 1,
+      success: function(res){
+      }
+    })
+  },
+  //获取所有类型
+  reqAllType:function(){
+    var that = this
+    req = {
+      url: '/admin/taskType/allType',
+      method: 'POST',
+      data:{
+        page:1,
+        pageSize:20,
+      },
+      success(res) {
+        console.log(res.data)
+        if (!res.data) {
+          that.setData({
+            infomation: "nomore"
+          })
+        } else {
+          that.setData({
+            infomation: "loading",
+            allType: res.data.data,
+          })
+        }
+      }
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
+  },
   /**
    * Lifecycle function--Called when page is initially rendered
    */
