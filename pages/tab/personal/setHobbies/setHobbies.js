@@ -178,7 +178,7 @@ Page({
         }
       }
     }
-    console.log(hobbiesToUpdate)
+    console.log("hobbiesToUpdate", hobbiesToUpdate)
     req = {
       url: '/userAndHobby/updateHobbies',
       method: 'POST',
