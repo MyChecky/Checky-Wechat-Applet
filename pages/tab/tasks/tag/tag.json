@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "i-tag": "../../../../component/dist/tag/index"
+}
+}

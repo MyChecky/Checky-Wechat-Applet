@@ -271,7 +271,7 @@ Page({
   // 获取类型
   getType: function() {
     wx.navigateTo({
-      url: '../type/type',
+      url: '../tag/tag',
     })
   },
   // 获取数据
@@ -437,7 +437,6 @@ Page({
         "taskEndTime": this.data.endTime,
         "checkFrec": util.formatRepeatDate(this.data.chooseRepeat),
         "taskMoney": this.data.money,
-        "tagsId": this.data.selectedTagsId,
 
         "minPass": this.data.minPass,
         "minCheck": this.data.minCheck,

@@ -6,23 +6,11 @@
   <view class="weui-cells__title">打卡类型与基本介绍</view>
   <!-- 任务基本信息--介绍与类型 -->
   <view class='container-view'>
-    <view class='inner-view-column'>
-      <view class='inner-view-tag'>
-        <view class='notifcation' style='width: auto;'>类别标签：</view>
-        <button wx:if="{{index<0}}" class='typebtn' bindtap='getType'>选择类别</button>
-        <view style='line-height:30px;' wx:else class="picker">当前选择：
-          <text style='color:#333;' bindtap='getType'>{{typeContent}}</text>
-        </view>
-      </view>
-      <!--bluelink 5f82c4 grey 808080-->
-      <!-- <view class='inner-view-tag'>
-        <view wx:for="{{selectedTagsName}}" wx:key="key">
-          <text  style='color:#808080; '>{{item}}</text>
-        </view>
-      </view> -->
-
-      <view style='color:#808080; '>
-        {{selectedTagsNameStr}}
+    <view class='inner-view'>
+      <view class='notifcation' style='width: auto;'>打卡类别：</view>
+      <button wx:if="{{index<0}}" class='typebtn' bindtap='getType'>选择类别</button>
+      <view style='line-height:30px;' wx:else class="picker">当前选择：
+        <text style='color:#333;' bindtap='getType'>{{typeContent}}</text>
       </view>
     </view>
     <view class='inner-view-column'>
@@ -40,8 +28,7 @@
   <view class='container-view'>
     <view class='inner-view'>
       <view class='notifcation'>监督者类型：</view>
-      <picker bindchange="bindSupervisorType" style='padding:5px;' value='{{supervisorTypeIndex}}'
-        range="{{supervisorType}}">
+      <picker bindchange="bindSupervisorType" style='padding:5px;' value='{{supervisorTypeIndex}}' range="{{supervisorType}}">
         <view style='line-height:30px;' class="picker">
           <text style='color:#333;'>{{supervisorType[supervisorTypeIndex]}}</text>
         </view>
@@ -75,8 +62,7 @@
   <view class='container-view'>
     <view class='inner-view'>
       <view class='notifcation'>开始时间：</view>
-      <picker bindchange="bindPickerStartTime" mode="date" start="{{startlimit}}" end="{{endTime}}" style='padding:5px;'
-        value='{{startTime}}'>
+      <picker bindchange="bindPickerStartTime" mode="date" start="{{startlimit}}" end="{{endTime}}" style='padding:5px;' value='{{startTime}}'>
         <view style='line-height:30px;' class="picker">
           <text style='color:#333;'>{{startTime}}</text>
         </view>
@@ -84,8 +70,7 @@
     </view>
     <view class='inner-view'>
       <view class='notifcation'>结束时间：</view>
-      <picker bindchange="bindPickerEndTime" mode="date" start="{{startTime}}" end="{{endlimit}}" style='padding:5px;'
-        value='{{endTime}}'>
+      <picker bindchange="bindPickerEndTime" mode="date" start="{{startTime}}" end="{{endlimit}}" style='padding:5px;' value='{{endTime}}'>
         <view style='line-height:30px;' class="picker">
           <text style='color:#333;'>{{endTime}}</text>
         </view>
@@ -161,10 +146,7 @@
   <!--押金金额不让自己输入，暂定10*监督者人数（最0监督者10）-->
   <button class='confirm' bindtap='showDialog'>确认</button>
 </view>
-<dialog id='dialog' title='发布任务'
-  content='此次任务单次打卡需要{{checkPass}}以上监督者认证通过；总任务需要{{taskPass}}以上打卡通过方为成功。任务成功方可退还全部押金，是否确认？' cancelText='取消' confirm='确定'
-  isShown="{{isDialogShow}}" bind:cancelEvent="dialogCancelEvent" bind:confirmEvent="dialogConfirmEvent" />
-<dialog id='dialog' title='发布失败'
-  content='此次任务您选择了{{num}}位监督者，系统为您匹配到了{{failNum}}位监督者。您可以点击"编辑"重新编辑任务，或点击"确认"以委托系统检测到相应人数后自动发布任务' cancelText='编辑'
-  confirm='确定' isShown="{{isFailDialogShow}}" bind:cancelEvent="dialogFailCancelEvent"
-  bind:confirmEvent="dialogFailConfirmEvent" />
+<dialog id='dialog' title='发布任务' content='此次任务单次打卡需要{{checkPass}}以上监督者认证通过；总任务需要{{taskPass}}以上打卡通过方为成功。任务成功方可退还全部押金，是否确认？' cancelText='取消' confirm='确定' isShown="{{isDialogShow}}" bind:cancelEvent="dialogCancelEvent" bind:confirmEvent="dialogConfirmEvent"
+/>
+<dialog id='dialog' title='发布失败' content='此次任务您选择了{{num}}位监督者，系统为您匹配到了{{failNum}}位监督者。您可以点击"编辑"重新编辑任务，或点击"确认"以委托系统检测到相应人数后自动发布任务' cancelText='编辑' confirm='确定' isShown="{{isFailDialogShow}}" bind:cancelEvent="dialogFailCancelEvent" bind:confirmEvent="dialogFailConfirmEvent"
+/>

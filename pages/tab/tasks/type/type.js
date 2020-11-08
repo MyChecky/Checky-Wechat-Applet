@@ -6,22 +6,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    types: [],
-    isNew: false,
-    out: "off",
-    move: "",
-    flag: true,
-    newType: "",
-
-    selectedTypeId: "",
-    selectedTagsId: "",
+    types:[],
+    isNew:false,
+    out:"off",
+    move:"",
+    flag:true,
+    newType:""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.selectComponent("#toast").toastShow2("正在获取类型请稍后", "fa-spinner fa-pulse")
+    this.selectComponent("#toast").toastShow2("正在获取类型请稍后","fa-spinner fa-pulse")
     // 获取类型
     req = {
       url: '/taskType/allType',
@@ -36,7 +33,7 @@ Page({
         this.selectComponent("#toast").toastStop()
       },
       fail: err => {
-        this.selectComponent("#toast").toastShow("获取类型失败", "fa-remove", 1000)
+        this.selectComponent("#toast").toastShow("获取类型失败", "fa-remove",1000)
       }
     }
     app.requestWithAuth(req)
@@ -106,36 +103,36 @@ Page({
     console.log(arr[arr.length - 2].data)
     wx.navigateBack({
       delta: 1,
-      success: function (res) {
+      success: function(res){
       }
     })
   },
   // 显示输入框
-  getOut: function (e) {
+  getOut: function(e){
     this.setData({
-      out: this.data.flag ? 'on' : 'off',
-      move: this.data.flag ? 'move' : '',
+      out: this.data.flag?'on':'off',
+      move: this.data.flag?'move':'',
       flag: !this.data.flag
     })
   },
   // 获取新的建议文本
-  cancelBack: function (e) {
+  cancelBack: function(e){
     this.setData({
       newType: e.detail.value
     })
   },
   // 发送新的建议
-  confirmNewTpye: function () {
-    if (this.data.newType != "") {
+  confirmNewTpye: function(){
+    if(this.data.newType!=""){
       req = {
         url: '/suggestion/addSuggestion',
         method: 'POST',
-        data: {
+        data:{
           "suggestionContent": this.data.newType,
           "suggestionTime": app.globalData.date,
           "userId": app.globalData.openId
         },
-        success(res) {
+        success(res){
           console.log(res)
           wx.showModal({
             title: '提示',
@@ -153,63 +150,7 @@ Page({
         .catch(req.fail)
     }
   },
-  selectTypeId: function (e) {
-    console.log("selectTypeId", e.currentTarget.dataset.id);
-    console.log("e", e);
-    this.setData({
-      selectedTypeId:  e.currentTarget.dataset.id
-    })
-  },
-  checkboxChange: function (e) {
-    var that = this;
-    console.log("e", e);
-    that.setData({
-      selectedTagsId: e.detail.value
-    })
-  },
-  back:function(e){
-    var that = this;
-    var selectedTypeId = that.data.selectedTypeId;
-    var selectedTypeName = "";
-    var selectedTagsId = that.data.selectedTagsId;
-    var selectedTagsName = [];
-    var selectedTagsNameStr = "";
-
-    var that = this;
-    for(var i=0; i< that.data.types.length; ++i){
-      if(that.data.types[i].typeId == selectedTypeId){
-        selectedTypeName = that.data.types[i].typeContent;
-        var tags = that.data.types[i].tags;
-        for(var j = 0; j < selectedTagsId.length && selectedTagsId.length != selectedTagsName.length; ++j){
-          for(var k = 0; k<tags.length; ++k){
-            if(selectedTagsId[j] == tags[k].tagId){
-              selectedTagsName.push(tags[k].tagContent);
-              selectedTagsNameStr= selectedTagsNameStr+"  "+tags[k].tagContent;
-              break;
-            }
-          }
-        }
-        break;
-      }
-    }
-
-    var arr = getCurrentPages()
-    arr[arr.length - 2].setData({
-      type: selectedTypeId,
-      typeContent: selectedTypeName,
-      selectedTagsId: selectedTagsId,
-      selectedTagsName: selectedTagsName,
-      selectedTagsNameStr: selectedTagsNameStr,
-      index: 0
-    })
-    console.log(arr[arr.length - 2].data)
-    wx.navigateBack({
-      delta: 1,
-      success: function (res) {
-      }
-    })
-  },
-  newType: function () {
+  newType: function(){
 
   }
 })

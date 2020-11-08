@@ -22,20 +22,6 @@
   border-bottom: 1px solid rgba(100,100,100,0.2);
   padding:5px 0px;
 }
-.inner-view-tag{
-  display:flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding:5px 0px;
-}
-.inner-view-tag-names{
-  display:flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding:5px 0px;
-  color: gray;
-
-}
 .inner-view-column{
   display:flex;
   flex-direction: column;

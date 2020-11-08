@@ -1,34 +1,14 @@
 <!--pages/tab/tasks/type/type.wxml-->
-<toast id="toast" />
+<toast id="toast"/>
 
 <view class='container-view'>
-  <!-- <i-card title="卡片标题" extra="额外内容" full="true" thumb="https://i.loli.net/2017/08/21/599a521472424.jpg">
+<!-- <i-card title="卡片标题" extra="额外内容" full="true" thumb="https://i.loli.net/2017/08/21/599a521472424.jpg">
     <view slot="content">内容不错</view>
     <view slot="footer">尾部内容</view>
 </i-card> -->
 
-  <!-- <view class='type-view' bindtap='getId' wx:for="{{types}}" data-text="{{item.typeContent}}"
-    data-value="{{item.typeId}}">
-    {{item.typeContent}}
-  </view> -->
-
-  <view class='list-view' wx:for="{{types}}" wx:for-item="typeItem">
-    <view class='list'>
-      <view class='list-title toCheck' bindtap='selectTypeId' data-id="{{typeItem.typeId}}">
-        <view class='title'>{{typeItem.typeContent}}</view>
-        <view wx:if="{{selectedTypeId == typeItem.typeId}}" bindtap="back" class='titleComplete'>完成</view>
-      </view>
-
-
-      <checkbox-group wx:if="{{selectedTypeId == typeItem.typeId}}" class='inner-list' bindchange="checkboxChange">
-        <view class='list-item' wx:for='{{typeItem.tags}}' wx:for-item="tagItem" wx:for-index="tagIndex" wx:key="key">
-          <view class='text'>
-            <view class='tagTitle'>{{tagItem.tagContent}}</view>
-          </view>
-          <checkbox value="{{tagItem.tagId}}" />
-        </view>
-      </checkbox-group>
-    </view>
+  <view class='type-view' bindtap='getId' wx:for="{{types}}" 
+    data-text = "{{item.typeContent}}" data-value="{{item.typeId}}" >{{item.typeContent}}
   </view>
   <!-- <view class='def-view' style='overflow:hidden;'>
     <text class='notification {{move}}' bindtap='getOut'>自定义</text>
