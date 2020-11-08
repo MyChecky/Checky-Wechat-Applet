@@ -73,3 +73,74 @@
   padding: 0px;
   line-height: 30px;
 }
+
+
+.list-view{
+  margin-top: 10px;
+  padding: 5px;
+  background-color: #f3f5f5;
+}
+.list{
+  margin-top: 3px;
+  background-color: #fff;
+  padding: 10px 10px 10px 10px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px #ccc;
+}
+.list-title{
+  /* box-shadow: 0px 1px 2px 0px rgba(100, 100, 100, 0.5); */
+  font-size: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 5px 0px 10px 10px;
+  border-bottom: 1px solid rgba(100, 100, 100, 0.1);
+}
+.title{
+  margin-left: 5px;
+}
+.titleComplete {
+margin-right: 5px;
+font-size: 15px;
+color: #5f82c4;
+}
+.toCheck{
+  /* background-color: #e83015; */
+  color: #e83015;
+}
+.checked{
+  /* background-color: #5eb1f5; */
+  color: #5eb1f5;
+}
+.unknown{
+  /* background-color: #666; */
+  color: #666; 
+}
+.list-item{
+  padding: 5px 10px 5px 10px;
+  display:  flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(100, 100, 100, 0.1);
+}
+.text{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 5px 0px;
+  width: 60%;
+}
+.inner-list {
+  height: auto;
+  overflow: hidden;
+  transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.tagTitle{
+  margin: 5px 0px 5px 0px;
+  color: #333;
+  font-size: 15px;
+  margin-left: 10px;
+}
