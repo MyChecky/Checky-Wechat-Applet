@@ -1,4 +1,8 @@
-<!--pages/tab/essays/essays.wxml-->
+<!--pages/tab/essay/essayTopic/essayTopic.wxml-->
+<view class = 'topic-pageTitle'>
+    #{{topicName}}#
+</view>
+
 <scroll-view class='essays' style="height:{{height}}px" scroll-y='true' bindscrolltolower="loadMore"
   bindscrolltoupper="refresh">
   <button class='essays-new fa fa-send' bindtap='essayNew'></button>

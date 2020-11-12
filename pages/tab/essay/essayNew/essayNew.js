@@ -7,6 +7,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    topicId: "",
+    topicName: "",
+    isTopicSelected: false,
+
     essayId: "",
     currentLength: 0,
     currentNum: 0,
@@ -259,9 +263,10 @@ Page({
       },
       data: {
         "userId": app.globalData.openId,
-        "essayContent": this.data.content,
-        "longitude": this.data.longitude + "",
-        "latitude": this.data.latitude + "",
+        "essayContent": that.data.content,
+        "longitude": that.data.longitude + "",
+        "latitude": that.data.latitude + "",
+        "topicId": that.data.topicId,
       },
       success(res) {
         console.log("上传essay成功:")
@@ -325,4 +330,10 @@ Page({
       },
     })
   },
+  // 选择话题
+  getTopic: function(){
+    wx.navigateTo({
+      url: '../topicSelect/topicSelect',
+    })
+  }
 })

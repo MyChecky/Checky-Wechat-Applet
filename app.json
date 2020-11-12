@@ -1,90 +1,92 @@
 {
-  "pages": [
-    "pages/tab/tasks/tasks",
-    "pages/tab/personal/personal",
-    "pages/tab/personal/appeal/appeal",
-    "pages/tab/personal/report/report",
-    "pages/tab/personal/money/money",
-    "pages/tab/personal/essay/essay",
-    "pages/tab/personal/friend/friend",
-    "pages/tab/personal/taskList/taskList",
-    "pages/tab/personal/moneyType/moneyType",
-    "pages/tab/tasks/superiseDetail/superisetaskDetail",
-    "pages/tab/tasks/taskDetail/taskDetail",
-    "pages/tab/tasks/checky/checky",
-    "pages/tab/tasks/type/type",
-    "pages/tab/tasks/upload/upload",
-    "pages/tab/essay/essay",
-    "pages/tab/essay/essayDetail/essayDetail",
-    "pages/tab/essay/essayNew/essayNew",
-    "pages/tab/essay/report/report",
-    "pages/tab/personal/history/history",
-    "pages/tab/personal/moneyFlowList/moneyFlowList",
-    "pages/tab/personal/recharge/recharge",
-    "pages/tab/personal/rechargeComplete/rechargeComplete",
-    "pages/tab/essay/essayPersonalIndex/essayPersonalIndex",
-    "pages/tab/personal/setting/setting",
-    "pages/tab/personal/suggest/suggest",
-    "pages/tab/personal/systemChat/systemChat",
-    "pages/tab/essay/essaySendMessage/essaySendMessage",
-    "pages/tab/essay/essayAddFriend/essayAddFriend",
-    "pages/tab/personal/searchFriend/searchFriend",
-    "pages/tab/personal/newFriend/newfriend",
-    "pages/tab/personal/setAvatar/setAvatar",
-    "pages/tab/personal/setHobbies/setHobbies",
-    "pages/tab/personal/serviceContent/serviceContent",
-    "pages/tab/personal/supHistory/supHistory",
-    "pages/tab/personal/taskDetail/taskDetail",
-    "pages/tab/personal/checkChart/checkChart",
-    "pages/tab/hot/hot",
-    "pages/tab/personal/achievement/achieve"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Checky",
-    "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "color": "#333",
-    "selectedColor": "#e83015",
-    "list": [
-      {
-        "pagePath": "pages/tab/essay/essay",
-        "iconPath": "image/tab_essays.png",
-        "selectedIconPath": "image/tab_essays_hl.png",
-        "text": "动态"
-      },
-      {
-        "pagePath": "pages/tab/hot/hot",
-        "iconPath": "image/tab_essays.png",
-        "selectedIconPath": "image/tab_essays_hl.png",
-        "text": "热门"
-      },
-      {
-        "pagePath": "pages/tab/tasks/tasks",
-        "iconPath": "image/tab_tasks.png",
-        "selectedIconPath": "image/tab_tasks_hl.png",
-        "text": "主页"
-      },
-      {
-        "pagePath": "pages/tab/personal/personal",
-        "iconPath": "image/tab_personal.png",
-        "selectedIconPath": "image/tab_personal_hl.png",
-        "text": "我的"
-      }
-    ]
-  },
-  "sitemapLocation": "sitemap.json",
-  "permission": {
-    "scope.userLocation": {
-      "desc": "小程序将获取您的位置信息"
+    "pages": [
+        "pages/tab/tasks/tasks",
+        "pages/tab/personal/personal",
+        "pages/tab/personal/appeal/appeal",
+        "pages/tab/personal/report/report",
+        "pages/tab/personal/money/money",
+        "pages/tab/personal/essay/essay",
+        "pages/tab/personal/friend/friend",
+        "pages/tab/personal/taskList/taskList",
+        "pages/tab/personal/moneyType/moneyType",
+        "pages/tab/tasks/superiseDetail/superisetaskDetail",
+        "pages/tab/tasks/taskDetail/taskDetail",
+        "pages/tab/tasks/checky/checky",
+        "pages/tab/tasks/type/type",
+        "pages/tab/tasks/upload/upload",
+        "pages/tab/essay/essay",
+        "pages/tab/essay/essayDetail/essayDetail",
+        "pages/tab/essay/essayNew/essayNew",
+        "pages/tab/essay/report/report",
+        "pages/tab/personal/history/history",
+        "pages/tab/personal/moneyFlowList/moneyFlowList",
+        "pages/tab/personal/recharge/recharge",
+        "pages/tab/personal/rechargeComplete/rechargeComplete",
+        "pages/tab/essay/essayPersonalIndex/essayPersonalIndex",
+        "pages/tab/personal/setting/setting",
+        "pages/tab/personal/suggest/suggest",
+        "pages/tab/personal/systemChat/systemChat",
+        "pages/tab/essay/essaySendMessage/essaySendMessage",
+        "pages/tab/essay/essayAddFriend/essayAddFriend",
+        "pages/tab/personal/searchFriend/searchFriend",
+        "pages/tab/personal/newFriend/newfriend",
+        "pages/tab/personal/setAvatar/setAvatar",
+        "pages/tab/personal/setHobbies/setHobbies",
+        "pages/tab/personal/serviceContent/serviceContent",
+        "pages/tab/personal/supHistory/supHistory",
+        "pages/tab/personal/taskDetail/taskDetail",
+        "pages/tab/personal/checkChart/checkChart",
+        "pages/tab/hot/hot",
+        "pages/tab/personal/achievement/achieve",
+        "pages/tab/essay/essayTopic/essayTopic",
+        "pages/tab/essay/topicSelect/topicSelect"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "Checky",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "color": "#333",
+        "selectedColor": "#e83015",
+        "list": [
+            {
+                "pagePath": "pages/tab/essay/essay",
+                "iconPath": "image/tab_essays.png",
+                "selectedIconPath": "image/tab_essays_hl.png",
+                "text": "动态"
+            },
+            {
+                "pagePath": "pages/tab/hot/hot",
+                "iconPath": "image/tab_essays.png",
+                "selectedIconPath": "image/tab_essays_hl.png",
+                "text": "热门"
+            },
+            {
+                "pagePath": "pages/tab/tasks/tasks",
+                "iconPath": "image/tab_tasks.png",
+                "selectedIconPath": "image/tab_tasks_hl.png",
+                "text": "主页"
+            },
+            {
+                "pagePath": "pages/tab/personal/personal",
+                "iconPath": "image/tab_personal.png",
+                "selectedIconPath": "image/tab_personal_hl.png",
+                "text": "我的"
+            }
+        ]
+    },
+    "sitemapLocation": "sitemap.json",
+    "permission": {
+        "scope.userLocation": {
+            "desc": "小程序将获取您的位置信息"
+        }
+    },
+    "plugins": {
+        "calendar": {
+            "version": "1.1.3",
+            "provider": "wx92c68dae5a8bb046"
+        }
     }
-  },
-  "plugins": {
-    "calendar": {
-      "version": "1.1.3",
-      "provider": "wx92c68dae5a8bb046"
-    }
-  }
 }

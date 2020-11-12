@@ -8,7 +8,7 @@
     <textarea class='content' placeholder='有什么想要分享？' maxlength='200' bindinput='lengthChange'></textarea>
     <view class='limit'>{{currentLength}}/200</view>
 
-<view class='button-view'>
+    <view class='button-view'>
       <view class='img-view' wx:for="{{image}}" wx:key="key" wx:if="{{item.URL!=''}}">
         <image class='img' src='{{item.URL}}' mode='aspectFill'></image>
         <button class='cancel' bindtap='cancelImage' data-index="{{index}}">删除</button>
@@ -18,13 +18,30 @@
         <button class='cancel' bindtap='cancelVideo' data-index="{{index}}">删除</button>
       </view>
 
-      <view class='file fa fa-file-image-o' wx:if="{{(fileTypeChoosing=='init' || fileTypeChoosing=='image') && currentNum<4}}" bindtap="chooseImageFile"></view>
-      <view class='file fa fa-file-video-o' wx:if="{{(fileTypeChoosing=='init' || fileTypeChoosing=='video') && currentNum<1}}" bindtap='chooseVideoFile'></view>
+      <view class='file fa fa-file-image-o'
+        wx:if="{{(fileTypeChoosing=='init' || fileTypeChoosing=='image') && currentNum<4}}" bindtap="chooseImageFile">
+      </view>
+      <view class='file fa fa-file-video-o'
+        wx:if="{{(fileTypeChoosing=='init' || fileTypeChoosing=='video') && currentNum<1}}" bindtap='chooseVideoFile'>
+      </view>
       <!-- <view class='file fa fa-file-audio-o' wx:if='{{currentNum<4}}' bindtap='chooseAudioFile'></view> -->
     </view>
 
     <view wx:if="{{fileTypeChoosing=='image'}}" class='limit'>{{currentNum}}/4</view>
     <view wx:if="{{fileTypeChoosing=='video'}}" class='limit'>{{currentNum}}/1</view>
   </view>
+
+  <!--选择话题-->
+  <view class='inner-view-column'>
+    <view class='inner-view-tag'>
+      <view class='notifcation' style='width: auto;'>动态话题：</view>
+      <button wx:if="{{isTopicSelected == false}}" class='typebtn' bindtap='getTopic' style="color:#5f82c4">去选择</button>
+      <view style='line-height:30px;' wx:else class="picker">当前选择：
+        <text style='color:#333;' bindtap='getTopic'>{{topicName}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!--提交-->
   <button class='submit' bindtap='submit'>发布</button>
 </view>

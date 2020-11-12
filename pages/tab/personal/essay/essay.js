@@ -30,7 +30,7 @@ Page({
   requestEssayList: function () {
     var that = this
     req = {
-      url:  '/essay/queryUserEssays',
+      url: '/essay/queryUserEssays',
       method: 'POST',
       data: {
         "userId": app.globalData.openId
@@ -43,7 +43,7 @@ Page({
       }
     }
     app.requestWithAuth(req)
-    .then(req.success)
+      .then(req.success)
   },
 
   //记录点赞情况
@@ -72,8 +72,8 @@ Page({
         }
       }
       app.requestWithAuth(req)
-      .then(req.success)
-      .catch(req.fail)
+        .then(req.success)
+        .catch(req.fail)
     }
     else {
       req = {
@@ -119,7 +119,7 @@ Page({
     console.log(e.target.dataset.essayid);
     let urls_ = []
     var index = e.target.dataset.index;
-    for(var i = 0; i<this.data.essays[index].fileRecord.length; i++){
+    for (var i = 0; i < this.data.essays[index].fileRecord.length; i++) {
       console.log(this.data.essays[index].fileRecord[i].fileAddr);
       urls_.push(this.data.path + this.data.essays[index].fileRecord[i].fileAddr);
     }
@@ -129,7 +129,7 @@ Page({
       urls: urls_ // 需要预览的图片http链接列表
     })
   },
-  delEssay: function (e){
+  delEssay: function (e) {
     console.log(e.target.dataset.essayid)
     req = {
       url: '/essay/deleteEssay',
@@ -138,18 +138,26 @@ Page({
         essayId: e.target.dataset.essayid,
         userId: app.globalData.openId,
       },
-      success: res=>{
+      success: res => {
         console.log(res)
         this.setData({
           essays: res.data
         })
       },
-      fail: err=>{
+      fail: err => {
 
       }
     }
     app.requestWithAuth(req)
       .then(req.success)
       .catch(req.fail)
+  },
+  goToTopic: function (e) {
+    console.log("goToTopic", e);
+    var topicId = e.currentTarget.dataset.topicid;
+    var topicName = e.currentTarget.dataset.topicname;
+    wx.navigateTo({
+      url: '../../essay/essayTopic/essayTopic?topicId=' + topicId + '&topicName=' + topicName,
+    })
   }
 })

@@ -19,6 +19,13 @@
     <view class='essays-text' style=" word-break: break-all">
       <text>{{essay.essayContent}}</text>
     </view>
+    <!--Topic-->
+    <view class='topic-father' wx:if='{{topicId != null &&topicId != ""}}'>
+      <view class="topic-self" bindtap="goToTopic" data-topicid="{{topicId}}"
+        data-topicname="{{topicName}}">
+        #{{topicName}}#
+      </view>
+    </view>
     <!-- 图片 -->
     <view wx:if="{{essayFileRecords[0].recordType=='image'}}">
       <swiper class='essays-pic-view' wx:if="{{essayFileRecordsLength!=0}}" bindchange='slide'>
@@ -27,17 +34,20 @@
         </swiper-item>
       </swiper>
       <view class='pic-counter' wx:if="{{essayFileRecordsLength!=0}}">
-        <view wx:for="{{essayFileRecords}}" wx:key="key" wx:for-index='index' class='dot {{index==currentImg?"doted":""}}' id='{{index}}'></view>
+        <view wx:for="{{essayFileRecords}}" wx:key="key" wx:for-index='index'
+          class='dot {{index==currentImg?"doted":""}}' id='{{index}}'></view>
       </view>
     </view>
     <!--视频-->
     <view wx:if='{{essayFileRecords[0].recordType=="video"}}' class="video-view">
-      <video class='essays-video' src='{{path}}{{essayFileRecords[0].fileAddr}}' data-src='{{path}}{{item.fileAddr}}' binderror="videoErrorCallback" controls></video>
+      <video class='essays-video' src='{{path}}{{essayFileRecords[0].fileAddr}}' data-src='{{path}}{{item.fileAddr}}'
+        binderror="videoErrorCallback" controls></video>
     </view>
     <!--录音-->
     <view wx:if='{{essayFileRecords[0].recordType=="audio"}}' class="recor-view">
       <view class="recor-container" wx:for="{{essayFileRecords}}" wx:key="key">
-        <audio class="essays-recor" name="{{userName}}" author="{{essayFileRecords[0].recordTime}}" src='{{path}}{{item.fileAddr}}' data-src='{{path}}{{item.fileAddr}}' controls></audio>
+        <audio class="essays-recor" name="{{userName}}" author="{{essayFileRecords[0].recordTime}}"
+          src='{{path}}{{item.fileAddr}}' data-src='{{path}}{{item.fileAddr}}' controls></audio>
       </view>
     </view>
 
@@ -54,7 +64,8 @@
         <view class='comment-info'>
           <view class='commentor'>{{item.userName}}</view>
           <view class='time'>{{item.commentTime}}</view>
-          <button wx:if="{{item.userId==visitorId||essayUserId==visitorId}}" data-commentId='{{item.commentId}}' class='del-comment' bindtap="delComment">删除</button>
+          <button wx:if="{{item.userId==visitorId||essayUserId==visitorId}}" data-commentId='{{item.commentId}}'
+            class='del-comment' bindtap="delComment">删除</button>
         </view>
         <view class='comment-text'>{{item.commentContent}}</view>
       </view>
@@ -62,7 +73,8 @@
   </scroll-view>
   <!-- 评论输入 -->
   <view class='essays-comment' style="bottom:{{bottom}}px">
-    <input placeholder='评论一下吧' bindinput='essaysComment' bindconfirm="sendComment" adjust-position="{{false}}" bindfocus="foucus" bindblur="blur" class='comment-input' value="{{commentContent}}"></input>
+    <input placeholder='评论一下吧' bindinput='essaysComment' bindconfirm="sendComment" adjust-position="{{false}}"
+      bindfocus="foucus" bindblur="blur" class='comment-input' value="{{commentContent}}"></input>
     <button class='btn-submit' bindtap='sendComment'>发送</button>
   </view>
 </view>

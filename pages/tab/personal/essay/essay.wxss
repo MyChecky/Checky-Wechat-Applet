@@ -198,6 +198,12 @@
   margin-left: 2px;
   margin-right: 5px;
 }
+.topic-father{
+  flex-direction: column;
+}
+.topic-self{
+  color: #5f82c4;
+}
 
 .btn{
   color:#e80315;

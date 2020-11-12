@@ -27,21 +27,40 @@
         <progress strokeWidth="4" percent="{{value}}" wx:if="{{showPg}}"></progress>
         <view class="recording-op-left fa fa-play" wx:if="{{isTouchStart==false}}" bindtap="recordStart"></view>
         <view class="recording-op-left fa fa-pause" wx:if="{{isTouchStart==true}}" bindtap="pauseRecording"></view>
-        <view class="dot {{isTouchStart==true?'dot-blowup':''}} {{isTouchEnd==true?'dot-zoomout':''}}" style="display:{{isDot}}"></view>
+        <view class="dot {{isTouchStart==true?'dot-blowup':''}} {{isTouchEnd==true?'dot-zoomout':''}}"
+          style="display:{{isDot}}"></view>
         <view class="recording">
           <view class="microphone fa fa-microphone"></view>
         </view>
         <view class="recording-op-right fa fa-stop" bindtap="recordTerm"></view>
       </view>
 
-      <view class='file fa fa-file-image-o' wx:if="{{(fileTypeChoosing=='init' || fileTypeChoosing=='image') && currentNum<4}}" bindtap="chooseImageFile"></view>
-      <view class='file fa fa-file-video-o' wx:if="{{(fileTypeChoosing=='init' || fileTypeChoosing=='video') && currentNum<1}}" bindtap='chooseVideoFile'></view>
+      <view class='file fa fa-file-image-o'
+        wx:if="{{(fileTypeChoosing=='init' || fileTypeChoosing=='image') && currentNum<4}}" bindtap="chooseImageFile">
+      </view>
+      <view class='file fa fa-file-video-o'
+        wx:if="{{(fileTypeChoosing=='init' || fileTypeChoosing=='video') && currentNum<1}}" bindtap='chooseVideoFile'>
+      </view>
       <!-- <view class='file fa fa-file-audio-o' wx:if="{{(fileTypeChoosing=='init' || fileTypeChoosing=='audio') && currentNum<1}}" bindtap='chooseAudioFile'></view> -->
-      <view class='file fa fa-microphone' wx:if="{{(fileTypeChoosing=='init' || fileTypeChoosing=='recor') && currentNum<1}}" bindtap='chooseRecorFile'></view>
+      <view class='file fa fa-microphone'
+        wx:if="{{(fileTypeChoosing=='init' || fileTypeChoosing=='recor') && currentNum<1}}" bindtap='chooseRecorFile'>
+      </view>
     </view>
     <view wx:if="{{fileTypeChoosing=='image'}}" class='limit'>{{currentNum}}/4</view>
     <view wx:if="{{fileTypeChoosing=='video'}}" class='limit'>{{currentNum}}/1</view>
   </view>
+  <!--动态相关-->
   <switch class='share' bindchange='share'>同步到动态</switch>
+  <!--选择话题-->
+  <view class='inner-view-column' wx:if="{{share}}">
+    <view class='inner-view-tag'>
+      <view class='notifcation' style='width: auto;'>动态话题：</view>
+      <button wx:if="{{isTopicSelected == false}}" class='typebtn' bindtap='getTopic' style="color:#5f82c4">去选择</button>
+      <view style='line-height:30px;' wx:else class="picker">当前选择：
+        <text style='color:#333;' bindtap='getTopic'>{{topicName}}</text>
+      </view>
+    </view>
+  </view>
+  <!--提交-->
   <button class='submit' bindtap='submit'>提交</button>
 </view>

@@ -242,6 +242,13 @@ Page({
     console.log('视频错误信息:')
     console.log(e.detail.errMsg)
   },
-
+  goToTopic: function (e) {
+    console.log("goToTopic", e);
+    var topicId = e.currentTarget.dataset.topicid;
+    var topicName = e.currentTarget.dataset.topicname;
+    wx.navigateTo({
+      url: '../essayTopic/essayTopic?topicId=' + topicId + '&topicName=' + topicName,
+    })
+  },
 
 })

@@ -233,3 +233,9 @@ page {
   text-align: center;
   line-height: 60px;
 }
+.topic-father{
+  flex-direction: column;
+}
+.topic-self{
+  color: #5f82c4;
+}

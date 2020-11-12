@@ -271,3 +271,10 @@ page {
   width: 100%;
   position: absolute;
 }
+.topic-father{
+  flex-direction: column;
+  margin-left: 15px;
+}
+.topic-self{
+  color: #5f82c4;
+}

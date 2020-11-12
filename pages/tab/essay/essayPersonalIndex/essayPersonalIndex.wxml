@@ -1,23 +1,26 @@
 <!--pages/tab/essay/essayPersonalIndex/essayPersonalIndex.wxml-->
 
 <i-row>
-    <i-col span="8"  offset='8' i-class="essay-personpage-avatar">
+  <i-col span="8" offset='8' i-class="essay-personpage-avatar">
     <view class='header-view'>
-    <image class="userinfo-avatar" src="{{userAvatar}}" mode="cover"></image>
-    <view>
-      <text class="userinfo-nickname">{{userNickName}}</text>
+      <image class="userinfo-avatar" src="{{userAvatar}}" mode="cover"></image>
+      <view>
+        <text class="userinfo-nickname">{{userNickName}}</text>
+      </view>
     </view>
-  </view>
   </i-col>
-    <i-col span="8" i-class="essay-personpage-button">
+  <i-col span="8" i-class="essay-personpage-button">
     <view class='intro-operation'>
-        <button wx:if="{{ifFriend==1}}" class='intro-btn fa fa-commenting-o' bindtap='sendMessage' data-targetUserName="{{userNickName}}" data-targetUserId='{{targetUserId}}' mode="top">私信</button>
-        <button  wx:else  class='intro-btn fa fa-plus' bindtap='addFriend' data-targetUserName="{{userNickName}}" data-targetUserId='{{targetUserId}}' mode="top">添加</button>
-  </view>
+      <button wx:if="{{ifFriend==1}}" class='intro-btn fa fa-commenting-o' bindtap='sendMessage'
+        data-targetUserName="{{userNickName}}" data-targetUserId='{{targetUserId}}' mode="top">私信</button>
+      <button wx:else class='intro-btn fa fa-plus' bindtap='addFriend' data-targetUserName="{{userNickName}}"
+        data-targetUserId='{{targetUserId}}' mode="top">添加</button>
+    </view>
   </i-col>
 </i-row>
 
-<scroll-view class='essays' style="height:{{height}}px" scroll-y='true' bindscrolltolower="loadMore" bindscrolltoupper="refresh">
+<scroll-view class='essays' style="height:{{height}}px" scroll-y='true' bindscrolltolower="loadMore"
+  bindscrolltoupper="refresh">
   <view class='essays-item' wx:for='{{essays}}' wx:key="key" wx:for-index='index'>
     <view class="info-view">
       <image class="avatar" src="{{item.userAvatar}}"></image>
@@ -29,33 +32,48 @@
     <view class='pic-text-view' data-essayid='{{item.essay.essayId}}' bindtap='essayClick'>
       <!--文字-->
       <view class='essays-text' data-essayid='{{item.essay.essayId}}'>{{item.essay.essayContent}}</view>
+      <!--Topic-->
+      <view class='topic-father' wx:if='{{item.essay.topicId != null &&item.essay.topicId != ""}}'>
+        <view class="topic-self" bindtap="goToTopic" data-topicid="{{item.essay.topicId}}"
+          data-topicname="{{item.essay.topicName}}">
+          #{{item.essay.topicName}}#
+        </view>
+      </view>
+
       <!--图片-->
       <view wx:if='{{essays[index].fileRecord[0].recordType=="image"}}' class="image-view" catchtap='essayPic'>
         <view class="image-container" catchtap='essayPic' wx:for="{{item.fileRecord}}" wx:key="key">
-          <image class='essays-pic' catchtap='essayPic' src='{{path}}{{item.fileAddr}}' mode='aspectFill' data-index='{{index}}' data-src='{{path}}{{item.fileAddr}}' data-essayid='{{item.essayId}}'></image>
+          <image class='essays-pic' catchtap='essayPic' src='{{path}}{{item.fileAddr}}' mode='aspectFill'
+            data-index='{{index}}' data-src='{{path}}{{item.fileAddr}}' data-essayid='{{item.essayId}}'></image>
         </view>
       </view>
       <!--视频-->
       <view wx:if='{{essays[index].fileRecord[0].recordType=="video"}}' class="video-view" catchtap="essayVideo">
         <view class="video-container" catchtap='essayVideo' wx:for="{{item.fileRecord}}" wx:key="key">
-          <video class='essays-video' src='{{path}}{{item.fileAddr}}' data-src='{{path}}{{item.fileAddr}}' binderror="videoErrorCallback" controls></video>
+          <video class='essays-video' src='{{path}}{{item.fileAddr}}' data-src='{{path}}{{item.fileAddr}}'
+            binderror="videoErrorCallback" controls></video>
         </view>
       </view>
       <!--录音-->
       <view wx:if='{{essays[index].fileRecord[0].recordType=="audio"}}' class="recor-view" catchtap="essayAudio">
         <view class="recor-container" catchtap="essayAudio" wx:for="{{item.fileRecord}}" wx:key="key">
-          <audio class="essays-recor" name="{{essays[index].userName}}" author="{{essays[index].essay.essayTime}}" src='{{path}}{{item.fileAddr}}' data-src='{{path}}{{item.fileAddr}}' controls></audio>
+          <audio class="essays-recor" name="{{essays[index].userName}}" author="{{essays[index].essay.essayTime}}"
+            src='{{path}}{{item.fileAddr}}' data-src='{{path}}{{item.fileAddr}}' controls></audio>
         </view>
       </view>
     </view>
     <view class='essays-bottom'>
       <!--按钮-->
-      <button class='btn {{item.like ?"fa fa-heart":"fa fa-heart-o"}}' bindtap='isLike' mode="top" data-index='{{index}}' data-essayid='{{item.essayId}}'></button>
+      <button class='btn {{item.like ?"fa fa-heart":"fa fa-heart-o"}}' bindtap='isLike' mode="top"
+        data-index='{{index}}' data-essayid='{{item.essayId}}'></button>
       <text class='like-sum'>{{essays[index].essay.likeNum}}</text>
-      <button class='btn fa fa-commenting-o' bindtap='essayClick' data-essayid='{{item.essay.essayId}}' mode="top"></button>
+      <button class='btn fa fa-commenting-o' bindtap='essayClick' data-essayid='{{item.essay.essayId}}'
+        mode="top"></button>
       <text class='like-sum'>{{essays[index].essay.commentNum}}</text>
     </view>
   </view>
   <view class="more">
-    <view class="fa {{infomation=='nomore'?'fa-coffee':'fa-refresh fa-spin'}}"></view>{{infomation=="nomore"?"没有更多了":"加载中"}}</view>
+    <view class="fa {{infomation=='nomore'?'fa-coffee':'fa-refresh fa-spin'}}"></view>
+    {{infomation=="nomore"?"没有更多了":"加载中"}}
+  </view>
 </scroll-view>

@@ -28,6 +28,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isTopicSelected: false,
+
     checkId: "",
     nickname: "",
     taskname: "",
@@ -580,5 +582,10 @@ Page({
       timerPointNow: 300,
     });
     clearInterval(this.timer);
+  },
+  getTopic:function(){
+    wx.navigateTo({
+      url: '../../essay/topicSelect/topicSelect',
+    })
   }
 })

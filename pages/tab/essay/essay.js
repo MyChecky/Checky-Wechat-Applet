@@ -11,8 +11,23 @@ Page({
     commentNum: 0,
     essays: [],
     recordTypeNow: "video",
+
+    topicsTmp: [
+      {
+        "topicId": "11",
+        "topicContent": "英语"
+      },
+      {
+        "topicId": "12",
+        "topicContent": "早起背单词"
+      },
+      {
+        "topicId": "13",
+        "topicContent": "我爱学习"
+      },
+    ],
   },
-  onLoad: function() {
+  onLoad: function () {
     var that = this;
     this.setData({
       path: app.getAbsolutePath() + '/',
@@ -26,11 +41,11 @@ Page({
       },
     })
   },
-  onShow: function() {
+  onShow: function () {
 
   },
   // 刷新列表
-  refreshEssayList: function() {
+  refreshEssayList: function () {
     var that = this
     req = {
       url: '/essay/displayEssay',
@@ -68,7 +83,7 @@ Page({
 
   },
   //获取动态列表
-  requestEssayList: function() {
+  requestEssayList: function () {
     var that = this
     req = {
       url: '/essay/displayEssay',
@@ -98,7 +113,7 @@ Page({
   },
 
   //记录点赞情况
-  isLike: function(e) {
+  isLike: function (e) {
     if (app.globalData.openId === "") {
       wx.navigateTo({
         url: '../../index/index'
@@ -159,7 +174,7 @@ Page({
   },
 
   //查看详情
-  essayClick: function(e) {
+  essayClick: function (e) {
     console.log(e.target.dataset.essayid)
     var essayId = e.target.dataset.essayid
     var userId = app.globalData.openId
@@ -169,12 +184,12 @@ Page({
     })
   },
   // 查看个人主页
-  openPersonalIndex: function(e) {
+  openPersonalIndex: function (e) {
     if (app.globalData.openId === "") {
       wx.navigateTo({
         url: '../../index/index'
       })
-    }else{
+    } else {
       console.log("个人主页", e.target.dataset);
       var userid = e.target.dataset.userid;
       var usernickname = e.target.dataset.usernickname;
@@ -191,25 +206,25 @@ Page({
     }
   },
 
-  essayNew: function() {
+  essayNew: function () {
     if (app.globalData.openId === "") {
       wx.navigateTo({
         url: '../../index/index'
       })
-    }else{
+    } else {
       wx.navigateTo({
         url: './essayNew/essayNew',
       })
     }
   },
   // 预览图片
-  essayPic: function(e) {
+  essayPic: function (e) {
     console.log(e.target.dataset.index);
     console.log(e.target.dataset.index1);
     console.log(e.target.dataset.essayid);
     let urls_ = []
     var index = e.target.dataset.index;
-    for(var i = 0; i<this.data.essays[index].fileRecord.length; i++){
+    for (var i = 0; i < this.data.essays[index].fileRecord.length; i++) {
       console.log(this.data.essays[index].fileRecord[i].fileAddr);
       urls_.push(this.data.path + this.data.essays[index].fileRecord[i].fileAddr);
     }
@@ -220,22 +235,30 @@ Page({
     })
   },
   // 滚动加载
-  loadMore: function() {
+  loadMore: function () {
     console.log("load more")
     this.requestEssayList()
   },
-  refresh: function() {
+  refresh: function () {
     console.log("refresh")
     this.refreshEssayList()
   },
-  bindPlay: function() {
+  bindPlay: function () {
     this.videoContext.play()
   },
-  bindPause: function() {
+  bindPause: function () {
     this.videoContext.pause()
   },
-  videoErrorCallback: function(e) {
+  videoErrorCallback: function (e) {
     console.log('视频错误信息:')
     console.log(e.detail.errMsg)
+  },
+  goToTopic: function(e){
+    console.log("goToTopic", e);
+    var topicId = e.currentTarget.dataset.topicid;
+    var topicName = e.currentTarget.dataset.topicname;
+    wx.navigateTo({
+      url: './essayTopic/essayTopic?topicId='+topicId+'&topicName='+topicName,
+    })
   }
 })

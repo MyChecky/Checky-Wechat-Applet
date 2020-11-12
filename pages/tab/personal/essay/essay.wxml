@@ -18,22 +18,33 @@
       <view class='pic-text-view' data-essayid='{{item.essay.essayId}}' bindtap='essayClick'>
         <!--文字-->
         <view class='essays-text' data-essayid='{{item.essay.essayId}}'>{{item.essay.essayContent}}</view>
+        <!--Topic-->
+        <view class='topic-father' wx:if='{{item.essay.topicId != null &&item.essay.topicId != ""}}'>
+          <view class="topic-self" bindtap="goToTopic" data-topicid="{{item.essay.topicId}}"
+            data-topicname="{{item.essay.topicName}}">
+            #{{item.essay.topicName}}#
+          </view>
+        </view>
         <!--图片-->
         <view wx:if='{{essays[index].fileRecord[0].recordType=="image"}}' class="image-view" catchtap='essayPic'>
-          <view class="image-container" catchtap='essayPic' wx:for="{{item.fileRecord}}" wx:for-index='index1' wx:key='index1'>
-            <image class='essays-pic' catchtap='essayPic' src='{{path}}{{item.fileAddr}}' mode='aspectFill' data-index='{{index}}' data-index1='{{index1}}' data-essayid='{{item.essayId}}'></image>
+          <view class="image-container" catchtap='essayPic' wx:for="{{item.fileRecord}}" wx:for-index='index1'
+            wx:key='index1'>
+            <image class='essays-pic' catchtap='essayPic' src='{{path}}{{item.fileAddr}}' mode='aspectFill'
+              data-index='{{index}}' data-index1='{{index1}}' data-essayid='{{item.essayId}}'></image>
           </view>
         </view>
         <!--视频-->
         <view wx:if='{{essays[index].fileRecord[0].recordType=="video"}}' class="video-view" catchtap="essayVideo">
           <view class="video-container" catchtap='essayVideo' wx:for="{{item.fileRecord}}" wx:key="key">
-            <video class='essays-video' src='{{path}}{{item.fileAddr}}' data-src='{{path}}{{item.fileAddr}}' binderror="videoErrorCallback" controls></video>
+            <video class='essays-video' src='{{path}}{{item.fileAddr}}' data-src='{{path}}{{item.fileAddr}}'
+              binderror="videoErrorCallback" controls></video>
           </view>
         </view>
         <!--录音-->
         <view wx:if='{{essays[index].fileRecord[0].recordType=="audio"}}' class="recor-view" catchtap="essayAudio">
           <view class="recor-container" catchtap="essayAudio" wx:for="{{item.fileRecord}}" wx:key="key">
-            <audio class="essays-recor" name="{{essays[index].userName}}" author="{{essays[index].essay.essayTime}}" src='{{path}}{{item.fileAddr}}' data-src='{{path}}{{item.fileAddr}}' controls></audio>
+            <audio class="essays-recor" name="{{essays[index].userName}}" author="{{essays[index].essay.essayTime}}"
+              src='{{path}}{{item.fileAddr}}' data-src='{{path}}{{item.fileAddr}}' controls></audio>
           </view>
         </view>
       </view>
