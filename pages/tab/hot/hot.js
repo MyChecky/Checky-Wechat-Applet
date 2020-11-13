@@ -13,7 +13,7 @@ Page({
       'https://img.yzcdn.cn/vant/apple-1.jpg'
     ],
     infomation: "正在加载",
-    hotTopic:[],
+    hotTopic: [],
     hotTag: [],
   },
 
@@ -39,7 +39,7 @@ Page({
   reqHotTag: function () {
     var that = this
     req = {
-      url: '/tag/rank',
+      url: '/tag/hotFive',
       method: 'POST',
       success(res) {
         console.log(res.data)
@@ -63,72 +63,25 @@ Page({
   reqHotTopic: function () {
     var that = this
     req = {
-      url: '/topicRank/rank',
+      url: '/topic/hotFive',
       method: 'POST',
       success(res) {
-        console.log(res.data)
-        if (!res.data) {
-          that.setData({
-            infomation: "nomore"
-          })
-        } else {
-          that.setData({
-            infomation: "loading",
-            hotTopic: res.data,
-          })
-        }
+        console.log('/topic/hotFive', res.data)
+        that.setData({
+          topicCountList: res.data.topicCountList,
+        })
       }
     }
     app.requestWithAuth(req)
       .then(req.success)
       .catch(req.fail)
   },
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady: function () {
-
+  gotoTopic: function(e){
+    console.log("goToTopic", e);
+    var topicId = e.currentTarget.dataset.topicid;
+    var topicName = e.currentTarget.dataset.topicname;
+    wx.navigateTo({
+      url: '../essay/essayTopic/essayTopic?topicId='+topicId+'&topicName='+topicName,
+    })
   },
-
-  /**
-   * Lifecycle function--Called when page show
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage: function () {
-
-  }
 })

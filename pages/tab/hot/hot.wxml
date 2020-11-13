@@ -1,7 +1,7 @@
 <!--pages/tab/hot/hot.wxml-->
-<view  class='calNav'>
+<view class='calNav'>
   <icon class="searchcion" size='20' type='search'></icon>
-  <input class="weui-input" auto-focus placeholder="输入内容以搜索"/>
+  <input class="weui-input" auto-focus placeholder="输入内容以搜索" />
 </view>
 <swiper autoplay="true">
   <swiper-item wx:for='{{imgs}}' wx:key='key' wx:for-index='index'>
@@ -10,22 +10,24 @@
 </swiper>
 <view class="function-view">
   <view class='inner-view'>
-  <view>今日最热话题🔥</view>
-    <block wx:for="{{hotTopic}}" wx:for-index="key">
-      <view class='function-item' bindtap='jumpTo'>
-      <view class='icon' >{{key+1}}</view>
-      <view class='text' >#{{item.topic.topicContent}}#</view>
+    <view>今日最热话题🔥</view>
+    <block wx:for="{{topicCountList}}" wx:for-index="key">
+      <view class='function-item' bindtap='gotoTopic' data-topicid="{{item.topicId}}"
+        data-topicname="{{item.topic.topicContent}}">
+        <view class='icon'>{{key+1}}</view>
+        <view class='text'>#{{item.topic.topicContent}}#</view>
       </view>
     </block>
   </view>
 </view>
+
 <view class="function-view">
   <view class='inner-view'>
-  <view>打卡热门标签🔥</view>
-    <block wx:for="{{hotTag}}" wx:for-index="key">
+    <view>打卡热门标签🔥</view>
+    <block wx:for="{{tagList}}" wx:for-index="key">
       <view class='function-item' bindtap='jumpTo'>
-      <view class='icon'>{{key+1}}</view>
-      <view class='text'>{{item.tagContent}}</view>
+        <view class='icon'>{{key+1}}</view>
+        <view class='text'>{{item.tagContent}}</view>
       </view>
     </block>
   </view>
