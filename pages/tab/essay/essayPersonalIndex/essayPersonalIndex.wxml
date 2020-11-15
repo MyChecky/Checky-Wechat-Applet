@@ -25,7 +25,11 @@
     <view class="info-view">
       <image class="avatar" src="{{item.userAvatar}}"></image>
       <view class="inner-view">
-        <view class='essays-author'>{{item.userName}}</view>
+        <view class='essays-author'>{{item.userName}}
+          <image wx:for="{{item.medalList}}" wx:for-item="medalItem"  wx:key="medalKey" class="user-medal"
+          data-userid='{{item.userId}}' data-useravatar='{{item.userAvatar}}'data-usernickname='{{item.userName}}' 
+          bindtap="openPersonalIndex" src="../../../../image/medal/{{medalItem.medalUrl}}"></image>
+        </view>
         <view class='essays-time'>{{item.essay.essayTime}}</view>
       </view>
     </view>

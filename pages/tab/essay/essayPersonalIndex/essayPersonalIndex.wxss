@@ -265,3 +265,8 @@ page {
 .topic-self{
   color: #5f82c4;
 }
+.user-medal{
+  margin-left:5px;
+  width: 20px;
+  height: 20px;
+}

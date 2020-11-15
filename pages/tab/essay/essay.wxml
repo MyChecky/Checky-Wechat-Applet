@@ -4,12 +4,21 @@
   <button class='essays-new fa fa-send' bindtap='essayNew'></button>
   <view class='essays-item' wx:for='{{essays}}' wx:key="key" wx:for-index='index'>
 
+    <!--个人信息-->
     <view class="info-view">
+      <!--头像-->
       <image class="avatar" src="{{item.userAvatar}}" data-userid='{{item.userId}}'
-        data-useravatar='{{item.userAvatar}}' data-usernickname='{{item.userName}}' bindtap="openPersonalIndex"></image>
+        data-useravatar='{{item.userAvatar}}' data-usernickname='{{item.userName}}' bindtap="openPersonalIndex">
+      </image>
+      <!--昵称 时间-->
       <view class="inner-view">
-        <view class='essays-author' data-userid='{{item.userid}}' data-useravatar='{{item.userAvatar}}'
-          data-usernickname='{{item.userName}}' bindtap="openPersonalIndex">{{item.userName}}</view>
+        <view class='essays-author' data-userid='{{item.userId}}' data-useravatar='{{item.userAvatar}}'
+          data-usernickname='{{item.userName}}' bindtap="openPersonalIndex">
+          {{item.userName}}
+          <image wx:for="{{item.medalList}}" wx:for-item="medalItem"  wx:key="medalKey" class="user-medal"
+          data-userid='{{item.userId}}' data-useravatar='{{item.userAvatar}}'data-usernickname='{{item.userName}}' 
+          bindtap="openPersonalIndex" src="../../../image/medal/{{medalItem.medalUrl}}"></image>
+        </view>
         <view class='essays-time'>{{item.essay.essayTime}}</view>
       </view>
     </view>
