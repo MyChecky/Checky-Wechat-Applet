@@ -5,9 +5,10 @@
 
 <scroll-view class='essays' style="height:{{height}}px" scroll-y='true' bindscrolltolower="loadMore"
   bindscrolltoupper="refresh">
-  <button class='essays-new fa fa-send' bindtap='essayNew'></button>
-  <view class='essays-item' wx:for='{{essays}}' wx:key="key" wx:for-index='index'>
+  <!--不让在这里发说说，任务标签跟说说不相干-->
+  <!-- <button class='essays-new fa fa-send' bindtap='essayNew'></button> -->
 
+  <view class='essays-item' wx:for='{{essays}}' wx:key="key" wx:for-index='index'>
     <view class="info-view">
       <image class="avatar" src="{{item.userAvatar}}" data-userid='{{item.userId}}'
         data-useravatar='{{item.userAvatar}}' data-usernickname='{{item.userName}}' bindtap="openPersonalIndex"></image>

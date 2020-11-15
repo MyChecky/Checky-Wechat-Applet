@@ -22,7 +22,7 @@
     </view>
 </view>
 
-<view wx:if="{{topicList != null}}">
+<view wx:if="{{topicList != null && topicList.length > 0}}">
     <view class='list' wx:for="{{topicList}}" wx:key="key">
         <view class='list-title checked'>
             <view class='title' bindtap="selectEnd" data-topicid="{{item.topicId}}"
@@ -30,6 +30,6 @@
         </view>
     </view>
 </view>
-<view wx:else>
+<view class="searchNothing fa fa-coffee" wx:else>
     什么也没搜到
 </view>

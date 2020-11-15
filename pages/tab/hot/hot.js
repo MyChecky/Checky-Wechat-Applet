@@ -7,14 +7,13 @@ Page({
    * Page initial data
    */
   data: {
+    inputShowed: false,
+
     imgs: [
       'https://img.yzcdn.cn/vant/cat.jpeg',
       'https://img.yzcdn.cn/vant/apple-2.jpg',
       'https://img.yzcdn.cn/vant/apple-1.jpg'
     ],
-    infomation: "正在加载",
-    hotTopic: [],
-    hotTag: [],
   },
 
   /**
@@ -69,6 +68,8 @@ Page({
       .then(req.success)
       .catch(req.fail)
   },
+
+  // 页面跳转
   gotoTopic: function (e) {
     console.log("goToTopic", e);
     var topicId = e.currentTarget.dataset.topicid;
@@ -84,5 +85,92 @@ Page({
     wx.navigateTo({
       url: './hotTag/hotTag?tagId=' + tagId + '&tagName=' + tagName,
     })
+  },
+
+  // 搜索任务标签
+  searchTag: function(){
+    var that = this;
+    req = {
+      url: '/tag/queryByKeyword',
+      method: 'POST',
+      data: {
+        userId: app.globalData.openId,
+        keyword: that.data.inputVal,
+      },
+      success: res => {
+        console.log("查询结果", res.data)
+        that.setData({
+          tagSearchList: res.data.tagList,
+        })
+        console.log(this.data)
+      },
+      fail: err => {
+        console.log(err)
+      }
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
+  },
+
+  // 搜索动态话题
+  searchTopic: function(){
+    var that = this;
+
+    req = {
+      url: '/topic/queryByKeyword',
+      method: 'POST',
+      data: {
+        userId: app.globalData.openId,
+        keyword: that.data.inputVal,
+      },
+      success: res => {
+        console.log("查询结果", res.data)
+        that.setData({
+          topicCountSearchList: res.data.TopicList,
+        })
+      },
+      fail: err => {
+        console.log(err)
+      }
+    }
+    app.requestWithAuth(req)
+      .then(req.success)
+      .catch(req.fail)
+  },
+
+  // 搜索相关
+  searchInput: function () {
+    var that = this
+    console.log("searchInput", that.data.inputVal)
+    that.searchTopic();
+    that.searchTag();
+  },
+
+  showInput: function () {
+    this.setData({
+      inputShowed: true
+    });
+  },
+
+  hideInput: function () {
+    var topicListAll = this.data.topicListAll;
+    this.setData({
+      inputVal: "",
+      topicList: topicListAll,
+      inputShowed: false,
+    });
+  },
+
+  clearInput: function () {
+    this.setData({
+      inputVal: ""
+    });
+  },
+
+  inputTyping: function (e) {
+    this.setData({
+      inputVal: e.detail.value
+    });
   }
 })

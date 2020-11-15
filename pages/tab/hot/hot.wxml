@@ -1,14 +1,37 @@
 <!--pages/tab/hot/hot.wxml-->
-<view class='calNav'>
-  <icon class="searchcion" size='20' type='search'></icon>
-  <input class="weui-input" auto-focus placeholder="输入内容以搜索" />
+<!--搜索-->
+<view class="page__bd">
+  <view class="weui-search-bar">
+    <view class="weui-search-bar__form">
+      <view class="weui-search-bar__box">
+        <icon class="weui-icon-search_in-box" type="search" size="14" bindtap="searchInput"></icon>
+        <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}"
+          bindinput="inputTyping" />
+        <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+          <icon type="clear" size="14"></icon>
+        </view>
+      </view>
+      <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+        <icon class="weui-icon-search" type="search" size="14"></icon>
+        <view class="weui-search-bar__text">搜索</view>
+      </label>
+    </view>
+    <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" style="color:red;" bindtap="searchInput">查询
+    </view>
+    <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" style="color:red;" bindtap="hideInput">取消
+    </view>
+  </view>
 </view>
+
+<!--轮播图-->
 <swiper autoplay="true">
   <swiper-item wx:for='{{imgs}}' wx:key='key' wx:for-index='index'>
     <image class='swiper-items' src='{{item}}'></image>
   </swiper-item>
 </swiper>
-<view class="function-view">
+
+<!--热门-->
+<view class="function-view" wx:if="{{inputShowed == false}}">
   <view class='inner-view'>
     <view>今日最热话题🔥</view>
     <block wx:for="{{topicCountList}}" wx:for-index="key">
@@ -21,7 +44,7 @@
   </view>
 </view>
 
-<view class="function-view">
+<view class="function-view" wx:if="{{inputShowed == false}}">
   <view class='inner-view'>
     <view>打卡热门标签🔥</view>
     <block wx:for="{{tagList}}" wx:for-index="key">
@@ -30,5 +53,45 @@
         <view class='text'>{{item.tagContent}}</view>
       </view>
     </block>
+  </view>
+</view>
+
+<!--搜索话题、标签-->
+<view class="function-view" wx:if="{{inputShowed}}">
+  <view class='inner-view'>
+    <view>搜索动态话题结果</view>
+    <view wx:if="{{topicCountSearchList != null && topicCountSearchList.length > 0}}">
+      <block wx:for="{{topicCountSearchList}}" wx:for-index="key">
+        <view class='function-item' bindtap='gotoTopic' data-topicid="{{item.topicId}}"
+          data-topicname="{{item.topicContent}}">
+          <view class='icon'>{{key+1}}</view>
+          <view class='text'>#{{item.topicContent}}#</view>
+        </view>
+      </block>
+    </view>
+    <view class="searchNothing fa fa-coffee" wx:else>
+      什么也没搜到
+    </view>
+
+  </view>
+</view>
+
+<view class="function-view" wx:if="{{inputShowed}}">
+  <view class='inner-view'>
+    <view>搜索任务标签结果</view>
+
+    <view wx:if="{{tagSearchList != null && tagSearchList.length > 0}}">
+      <block wx:for="{{tagSearchList}}" wx:for-index="key">
+        <view class='function-item' bindtap='gotoTag' data-tagid="{{item.tagId}}" data-tagName="{{item.tagContent}}">
+          <view class='icon'>{{key+1}}</view>
+          <view class='text'>{{item.tagContent}}</view>
+        </view>
+      </block>
+    </view>
+
+    <view class="searchNothing fa fa-coffee" wx:else>
+      什么也没搜到
+    </view>
+
   </view>
 </view>
