@@ -436,6 +436,7 @@ Page({
         "essayContent": this.data.content,
         "longitude": this.data.longitude + "",
         "latitude": this.data.latitude + "",
+        "topicId": that.data.topicId,
       },
       success(res) {
         console.log("上传essay成功:")

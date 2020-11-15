@@ -39,7 +39,8 @@
         "pages/tab/hot/hot",
         "pages/tab/personal/achievement/achieve",
         "pages/tab/essay/essayTopic/essayTopic",
-        "pages/tab/essay/topicSelect/topicSelect"
+        "pages/tab/essay/topicSelect/topicSelect",
+        "pages/tab/hot/hotTag/hotTag"
     ],
     "window": {
         "backgroundTextStyle": "light",

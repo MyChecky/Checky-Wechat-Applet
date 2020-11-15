@@ -1,0 +1,255 @@
+/* pages/tab/hot/hotTag/hotTag.wxss */
+page {
+    background-color: #fff;
+}
+
+.topic-pageTitle {
+    font-size: 18px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #e83015;
+}
+
+.essays {
+    margin-top: 5px;
+    padding: 5px;
+    background-color: #fff;
+}
+
+.essays-new {
+    z-index: 100;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    height: 60px;
+    width: 60px;
+    background-color: #e83015;
+    font-size: 20px;
+    display: table;
+    border-radius: 50%;
+    padding-top: 20px;
+    color: #fff;
+    box-shadow: 1px 1px 10px 1px rgba(100, 100, 100, 0.3);
+}
+
+.info-view {
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+.inner-view {
+    padding: 5px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 5px 10px 5px 0px;
+}
+
+.essays-item {
+    border-radius: 12px;
+    height: auto;
+    background-color: #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    padding: 10px 20px;
+    box-shadow: 0px 5px 10px #ccc;
+    box-sizing: border-box;
+}
+
+.pic-text-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.image-view {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    width: 100%;
+}
+
+.video-view {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    width: 100%;
+}
+
+.recor-view {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    width: 100%;
+}
+
+.image-container {
+    width: 48%;
+    height: 0px;
+    padding-bottom: 48%;
+    margin: 0.5%;
+    background-color: #f3f5f5;
+    position: relative;
+}
+
+.video-container {
+    width: 96%;
+    height: 0px;
+    padding-bottom: 48%;
+    margin: 0.5%;
+    background-color: #f3f5f5;
+    position: relative;
+}
+
+.recor-container {
+    width: 96%;
+    height: 0px;
+    padding-bottom: 20%;
+    margin: 0.5%;
+    background-color: #f3f5f5;
+    position: relative;
+}
+
+.essays-pic {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.essays-recor {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.essays-video {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.essays-text {
+    margin: 10px 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 8;
+}
+
+.essays-bottom {
+    width: 100%;
+    margin: 10px 5px 0px 5px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    font-size: 14px;
+    /* border-bottom: 1px solid rgba(100, 100, 100, 0.2); */
+    align-items: center;
+
+}
+
+.essays-data {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    color: #868686;
+    font-size: 14px;
+}
+
+.essays-author {
+    font-size: 20px;
+    color: #74b9ff;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.essays-button {
+    flex-grow: 2;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 22px;
+    align-items: center;
+}
+
+.essays-time {
+    font-size: 14px;
+    color: #999;
+}
+
+.like-sum {
+    font-size: 12px;
+    color: #868686;
+    height: 20px;
+    margin-top: 4px;
+    margin-left: 2px;
+    margin-right: 5px;
+}
+
+.btn {
+    color: #999;
+    background-color: #eee;
+    font-size: 22px;
+    margin: 0px 5px 0px 10px;
+}
+
+.fa-commenting-o {
+    padding-bottom: 5px;
+}
+
+.fa-heart {
+    color: #e83015;
+    animation: like 0.3s cubic-bezier(0.89, 0.51, 0.49, 1.66);
+}
+
+@keyframes like {
+    0% {
+        transform: scale(0, 0);
+    }
+
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
+.more {
+    height: 60px;
+    width: 100%;
+    background-color: #fff;
+    color: #999;
+    font-size: 16px;
+    text-align: center;
+    line-height: 60px;
+}
+
+.topic-father {
+    flex-direction: column;
+}
+
+.topic-self {
+    color: #5f82c4;
+}

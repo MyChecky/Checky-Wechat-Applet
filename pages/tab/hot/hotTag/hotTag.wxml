@@ -1,0 +1,84 @@
+<!--pages/tab/hot/hotTag/hotTag.wxml-->
+<view class = 'topic-pageTitle'>
+    #{{tagName}}#
+</view>
+
+<scroll-view class='essays' style="height:{{height}}px" scroll-y='true' bindscrolltolower="loadMore"
+  bindscrolltoupper="refresh">
+  <button class='essays-new fa fa-send' bindtap='essayNew'></button>
+  <view class='essays-item' wx:for='{{essays}}' wx:key="key" wx:for-index='index'>
+
+    <view class="info-view">
+      <image class="avatar" src="{{item.userAvatar}}" data-userid='{{item.userId}}'
+        data-useravatar='{{item.userAvatar}}' data-usernickname='{{item.userName}}' bindtap="openPersonalIndex"></image>
+      <view class="inner-view">
+        <view class='essays-author' data-userid='{{item.userid}}' data-useravatar='{{item.userAvatar}}'
+          data-usernickname='{{item.userName}}' bindtap="openPersonalIndex">{{item.userName}}</view>
+        <view class='essays-time'>{{item.essay.essayTime}}</view>
+      </view>
+    </view>
+    <view class='pic-text-view' data-essayid='{{item.essay.essayId}}' bindtap='essayClick'>
+      <!--文字-->
+      <text class='essays-text' data-essayid='{{item.essay.essayId}}'>{{item.essay.essayContent}}</text>
+      <!--TopicAbout-->
+      <!-- <view class='topic-father' wx:for="{{topicsTmp}}" wx:for-item="topicItem">
+        <view class="topic-self" bindtap="goToTopic" data-topicid="{{topicItem.topicId}}"
+          data-topicname="{{topicItem.topicContent}}">
+          #{{topicItem.topicContent}}#
+        </view>
+      </view> -->
+      <view class='topic-father' wx:if='{{item.essay.topicId != null &&item.essay.topicId != ""}}'>
+        <view class="topic-self" bindtap="goToTopic" data-topicid="{{item.essay.topicId}}"
+          data-topicname="{{item.essay.topicName}}">
+          #{{item.essay.topicName}}#
+        </view>
+      </view>
+
+      <!--图片-->
+      <view wx:if='{{item.fileRecord[0].recordType=="image"}}' class="image-view" catchtap='essayPic'>
+
+        <view class="image-container" catchtap='essayPic' wx:for="{{item.fileRecord}}" wx:for-index='index1'
+          wx:key='index1'>
+          <image class='essays-pic' catchtap='essayPic' src='{{path}}{{item.fileAddr}}' mode='aspectFill'
+            data-index='{{index}}' data-index1='{{index1}}' data-essayid='{{item.essayId}}'></image>
+        </view>
+      </view>
+      <!--视频-->
+      <view wx:if='{{item.fileRecord[0].recordType=="video"}}' class="video-view" catchtap="essayVideo">
+        <view class="video-container" catchtap='essayVideo' wx:for="{{item.fileRecord}}" wx:key="key">
+          <video class='essays-video' src='{{path}}{{item.fileAddr}}' data-src='{{path}}{{item.fileAddr}}'
+            binderror="videoErrorCallback" controls></video>
+        </view>
+      </view>
+      <!--录音-->
+      <view wx:if='{{item.fileRecord[0].recordType=="audio"}}' class="recor-view" catchtap="essayAudio">
+        <view class="recor-container" catchtap="essayAudio">
+
+          <audio class="essays-recor" name="{{item.userName}}" author="{{item.essay.essayTime}}"
+            src='{{path}}{{item.fileRecord[0].fileAddr}}' data-src='{{path}}{{item.fileRecord[0].fileAddr}}'
+            controls></audio>
+
+        </view>
+      </view>
+    </view>
+
+    <view class='essays-bottom'>
+      <!--TODO share-->
+      <!-- <button class='btn fa fa-share' bindtap='isLike' mode="top" data-index='{{index}}' data-essayid='{{item.essayId}}'></button>
+      <text class='like-sum'>{{essays[index].essay.likeNum}}</text> -->
+
+      <button class='btn {{item.like ?"fa fa-heart":"fa fa-heart-o"}}' bindtap='isLike' mode="top"
+        data-index='{{index}}' data-essayid='{{item.essayId}}'></button>
+      <text class='like-sum'>{{essays[index].essay.likeNum}}</text>
+      <button class='btn fa fa-commenting-o' bindtap='essayClick' data-essayid='{{item.essay.essayId}}'
+        mode="top"></button>
+      <text class='like-sum'>{{essays[index].essay.commentNum}}</text>
+    </view>
+
+  </view>
+  <view class="more">
+    <view class="fa {{infomation=='nomore'?'fa-coffee':'fa-refresh fa-spin'}}"></view>
+    {{infomation=="nomore"?"没有更多了":"加载中"}}
+  </view>
+</scroll-view>
+

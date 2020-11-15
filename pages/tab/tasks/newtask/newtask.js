@@ -175,10 +175,15 @@ Page({
             // num: res.data.task.supervisorNum,
             "types[0]": {
               typeId: res.data.task.typeId,
-              typeContent: res.data.typeContent
+              typeContent: res.data.task.typeContent
             },
+
             index: 0,
-            typeContent: res.data.typeContent,
+            typeContent: res.data.task.typeContent,
+
+            selectedTagsId: res.data.selectedTagsId,
+            // selectedTagsName: res.data.selectedTagsName,
+            selectedTagsNameStr: res.data.selectedTagsNameStr,
 
             // startTime: res.data.task.taskStartTime, // 存在发布过去时期任务的可能
             // endTime: res.data.task.taskEndTime,

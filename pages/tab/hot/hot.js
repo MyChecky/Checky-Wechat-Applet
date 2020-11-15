@@ -39,20 +39,13 @@ Page({
   reqHotTag: function () {
     var that = this
     req = {
-      url: '/tag/hotFive',
+      url: '/tag/rank',
       method: 'POST',
       success(res) {
-        console.log(res.data)
-        if (!res.data.rankList) {
-          that.setData({
-            infomation: "nomore"
-          })
-        } else {
-          that.setData({
-            infomation: "loading",
-            hotTag: res.data.rankList,
-          })
-        }
+        console.log("tag_rank", res.data)
+        that.setData({
+          tagList: res.data.rankList,
+        })
       }
     }
     app.requestWithAuth(req)
@@ -76,12 +69,20 @@ Page({
       .then(req.success)
       .catch(req.fail)
   },
-  gotoTopic: function(e){
+  gotoTopic: function (e) {
     console.log("goToTopic", e);
     var topicId = e.currentTarget.dataset.topicid;
     var topicName = e.currentTarget.dataset.topicname;
     wx.navigateTo({
-      url: '../essay/essayTopic/essayTopic?topicId='+topicId+'&topicName='+topicName,
+      url: '../essay/essayTopic/essayTopic?topicId=' + topicId + '&topicName=' + topicName,
     })
   },
+  gotoTag: function (e) {
+    console.log("gotoTag", e);
+    var tagId = e.currentTarget.dataset.tagid;
+    var tagName = e.currentTarget.dataset.tagname;
+    wx.navigateTo({
+      url: './hotTag/hotTag?tagId=' + tagId + '&tagName=' + tagName,
+    })
+  }
 })
