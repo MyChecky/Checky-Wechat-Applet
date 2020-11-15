@@ -60,8 +60,8 @@
             },
             {
                 "pagePath": "pages/tab/hot/hot",
-                "iconPath": "image/tab_essays.png",
-                "selectedIconPath": "image/tab_essays_hl.png",
+                "iconPath": "image/tab_hot.png",
+                "selectedIconPath": "image/tab_hot_hl.png",
                 "text": "热门"
             },
             {
