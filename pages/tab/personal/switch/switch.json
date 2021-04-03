@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "toast": "../../../../component/toast",
+    "i-input": "../../../../component/dist/input/index",
+    "i-button": "../../../../component/dist/button/index",
+    "i-row": "../../../../component/dist/row/index",
+    "i-col": "../../../../component/dist/col/index",
+    "i-icon": "../../../../component/dist/icon/index"
+  }
+}

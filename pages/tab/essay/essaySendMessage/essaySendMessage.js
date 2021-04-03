@@ -242,7 +242,8 @@ Page({
       "content": content,
       "date": timeStr,
       "toUserId": this.data.targetUserId,
-      "fromUserId": app.globalData.openId,
+      // "fromUserId": app.globalData.openId,
+      "userId": app.globalData.openId,
     };
     // 发送消息到服务器
     if (socketOpen) {

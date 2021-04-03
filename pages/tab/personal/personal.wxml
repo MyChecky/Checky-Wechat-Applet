@@ -7,6 +7,9 @@
       <view>
         <text class="userinfo-nickname">{{userInfo.nickName}}</text>
       </view>
+      <view>
+        <text wx:if="{{switchStatus}}">当前身份：{{switchUserNameChosen}}</text>
+      </view>
     </view>
     <block wx:else>
       <checkbox-group bindchange="checkboxChange">
@@ -23,6 +26,14 @@
         <view class='function-item' data-url='{{item.url}}' data-param='{{item.param}}' bindtap='jumpTo'>
           <view class='icon fa fa-fw {{item.icon}}' data-url='{{item.url}}' data-param='{{item.param}}'></view>
           <view class='text' data-url='{{item.url}}' data-param='{{item.param}}'>{{item.name}}</view>
+        </view>
+      </block>
+    </view>
+    <view class='inner-view' wx:if="{{ifAdminSwitchUser == 1}}">
+      <block>
+        <view class='function-item' data-url='{{switch.url}}' data-param='{{switch.param}}' bindtap='jumpTo'>
+          <view class='icon fa fa-fw {{switch.icon}}' data-url='{{switch.url}}' data-param='{{switch.param}}'></view>
+          <view class='text' data-url='{{switch.url}}' data-param='{{switch.param}}'>{{switch.name}}</view>
         </view>
       </block>
     </view>

@@ -11,6 +11,13 @@ Page({
     hasUserInfo: false,
     loged: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    ifAdminSwitchUser: 1,
+    switch: {
+      "name": "切换用户",
+      "url": "./switch/switch",
+      "param": "",
+      "icon": "fa-user-o"
+    },
     "itemList": [{
         "subItemList": [{
             "name": "好友",
@@ -102,6 +109,9 @@ Page({
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
+        ifAdminSwitchUser: app.globalData.ifAdminSwitchUser,
+        switchStatus: app.globalData.switchStatus,
+        switchUserNameChosen: app.globalData.switchUserNameChosen,
         hasUserInfo: true
       })
       console.log("personal已有信息")
@@ -146,6 +156,9 @@ Page({
     this.setData({
       loged: loged,
       userInfo: app.globalData.userInfo,
+      ifAdminSwitchUser: app.globalData.ifAdminSwitchUser,
+      switchStatus: app.globalData.switchStatus,
+      switchUserNameChosen: app.globalData.switchUserNameChosen,
     })
     console.log(this.data.hasUserInfo, this.data.loged, this.data.canIUse)
   },
@@ -172,6 +185,7 @@ Page({
           app.globalData.userInfo.gender = res.data.userGender
           app.globalData.userInfo.nickName = res.data.userNickname
           app.globalData.userInfo.avatarUrl = res.data.userAvatar
+          app.globalData.ifAdminSwitchUser = res.data.ifAdminSwitchUser;
           console.log("globaldate", app.globalData)
           // 这里是登陆后的一些页面/控件可见性信息
           app.globalData.ifTrueMoneyAccess = res.data.ifTrueMoneyAccess

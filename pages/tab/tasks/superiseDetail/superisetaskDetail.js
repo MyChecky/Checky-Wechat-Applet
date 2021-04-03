@@ -108,6 +108,7 @@ Page({
       data: {
         superviseState: state,
         supervisorId: app.globalData.openId,
+        userId: app.globalData.openId,
         checkId: this.data.checkId,
         superviseTime: util.formatTime(new Date())
       },

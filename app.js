@@ -79,6 +79,12 @@ App({
     // callback = req.success?req.success:()=>{}
     // fail = req.fail?req.fail:()=>{}
 
+    console.log("dataRaw", data);
+    if(app.globalData.switchStatus){
+      data.userId = app.globalData.switchUserIdChosen;
+      console.log("dataChanged", data);
+    }
+
     return new Promise((resolve, reject) => {
       if (!header) {
         header = {}
@@ -102,13 +108,20 @@ App({
     // } 
   },
 
+  // 在这里进行switchStatus 的检验：如果switchStatus 为true,替换req.data.userId
   requestWithoutAuth: (req) => {
-    url = req.url
-    method = req.method ? req.method : 'POST'
-    data = req.data ? req.data : {}
-    header = req.header
+    url = req.url;
+    method = req.method ? req.method : 'POST';
+    data = req.data ? req.data : {};
+    header = req.header;
     // callback = req.success?req.success:()=>{}
     // fail = req.fail?req.fail:()=>{}
+
+    console.log("dataRaw", data);
+    if(app.globalData.switchStatus){
+      data.userId = app.globalData.switchUserIdChosen;
+      console.log("dataChanged", data);
+    }
 
     return new Promise((resolve, reject) => {
       wx.request({
@@ -137,11 +150,11 @@ App({
   globalData: {
     code: null,
     userInfo: null,
-    base: "http://127.0.0.1",
+    // base: "http://127.0.0.1",
     //base: "http://188.131.172.171",
-    //base: "https://www.ycloudtech.cn",
-    //port: "8090",
-    port: "8099",
+    base: "https://www.ycloudtech.cn",
+    port: "8090",
+    // port: "8099",
     contextPath: "/Checky",
     curPages: null,
     location: {},
@@ -151,6 +164,11 @@ App({
     date: util.formatTime(new Date()),
     appId: "wx5f1aa0197013dad6",
     maxPostFileSize: 50000000, // 最大文件上传字节数
+
+    ifAdminSwitchUser: 0,  // 加到user 表的字段
+    switchStatus: false,  // 切换状态
+    switchUserIdChosen: "",  // 当前选中的id
+    switchUserNameChosen: "",  // 当前选中的昵称
 
     ifTrueMoneyAccess: false,
     ifNewTaskHighSettingAccess: false
